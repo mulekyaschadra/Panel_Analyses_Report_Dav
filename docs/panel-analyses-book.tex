@@ -231,86 +231,135 @@ You can write citations, too. For example, we are using the \textbf{bookdown} pa
 \hypertarget{introduction}{%
 \section{INTRODUCTION}\label{introduction}}
 
-A panel data regression differs from a regular time-series or cross-section regression in that it
-has a double subscript on its variables, i.e.
+A panel data regression differs from a regular time-series or
+cross-section regression in that it has a double subscript on its
+variables, i.e.
 
 \[  y_{it}= \alpha + X_{it}^{'} \beta + u_{it}                      \]
-\[ i=1, ... , N  ; t=1, ... ,T  \]
-(2.1)
+\[ i=1, ... , N  ; t=1, ... ,T  \] (2.1)
 
-with \[ i \] denoting households, individuals, firms, countries, etc. and t denoting time. The i subscript, therefore, denotes the cross-section dimension whereas t denotes the time-series dimension. \[ \alpha  \] is a scalar, \[ \beta \] is \[ K × 1 \] and Xi t is the \[ it_{th} \] observation on K explanatory variables.
-Most of the panel data applications utilize a one-way error component model for the disturbances, with
+with \$ i \$ denoting households, individuals, firms, countries, etc. and
+t denoting time. The i subscript, therefore, denotes the cross-section
+dimension whereas t denotes the time-series dimension. \[ \alpha  \] is
+a scalar, \[ \beta \] is \[ K × 1 \] and Xi t is the \$ it\_\{th\} \$
+observation on K explanatory variables. Most of the panel data
+applications utilize a one-way error component model for the
+disturbances, with
 
-\[ u_{it}= \mu_i +  v_{it}      \]
-(2.2)
+\[ u_{it}= \mu_i +  v_{it}      \] (2.2)
 
-where μi denotes the unobservable individual-specific effect and νi t denotes the remainder disturbance. For example, in an earnings equation in labor economics, yi t will measure earnings of the head of the household, whereas \[ X_{it} \] may contain a set of variables like experience, education, union membership, sex, race, etc. Note that μi is time-invariant and it accounts for any individual-specific effect that is not included in the regression. In this case we could think of it as the individual's unobserved ability. The remainder disturbance \[ v_{it} \] varies with individuals and time and can be thought of as the usual disturbance in the regression. Alternatively, for a production function utilizing data on firms across time, \[ y_{it} \] will measure output and \[ X_{it} \] will measure inputs. The unobservable firm-specific effects will be captured by the \[ \mu_i \]
-and we can think of these as the unobservable entrepreneurial or managerial skills of the firm's executives. Early applications of error components in economics include Kuh (1959) on investment, Mundlak (1961) and Hoch (1962) on production functions and Balestra and Nerlove (1966) on demand for natural gas. In vector form (2.1) can be written as
+where μi denotes the unobservable individual-specific effect and νi t
+denotes the remainder disturbance. For example, in an earnings equation
+in labor economics, yi t will measure earnings of the head of the
+household, whereas \[ X_{it} \] may contain a set of variables like
+experience, education, union membership, sex, race, etc. Note that μi is
+time-invariant and it accounts for any individual-specific effect that
+is not included in the regression. In this case we could think of it as
+the individual's unobserved ability. The remainder disturbance
+\[ v_{it} \] varies with individuals and time and can be thought of as
+the usual disturbance in the regression. Alternatively, for a production
+function utilizing data on firms across time, \[ y_{it} \] will measure
+output and \[ X_{it} \] will measure inputs. The unobservable
+firm-specific effects will be captured by the \[ \mu_i \] and we can
+think of these as the unobservable entrepreneurial or managerial skills
+of the firm's executives. Early applications of error components in
+economics include Kuh (1959) on investment, Mundlak (1961) and Hoch
+(1962) on production functions and Balestra and Nerlove (1966) on demand
+for natural gas. In vector form (2.1) can be written as
 
 \[ y= \alpha i_{NT} + X \beta + u = Z \delta + u      \] (2.3)
 
 \[ y= \alpha i_{NT} + X \beta + u = Z \delta + u      \] (2.3)
 
-where \[ y \] is \[ NT × 1 \], \[ X \] is \[ NT × K \], \[ Z = [ι_{NT} , X] \],
-\[ \delta^{'} = (α^{'},\beta^{'}) \] and \[ι_NT\] is a vector of ones of
+where \$ y \$ is \$ NT × 1 \$, \$ X \$ is \$ NT × K \$, \$ Z = {[}ι\_\{NT\} , X{]} \$,
+\$ \delta\^{}\{`\} = (α\textsuperscript{\{'\},\beta}\{'\}) \$ and \(ι_NT\) is a vector of ones of
 dimension NT. Also, (2.2) can be written as
 
 \[ u=Z_\mu \mu +v  \] (2.4)
 
-\[  y_{it} = \alpha + X_{it}^{'} + U_{it}   \] , \$ i=1,\ldots,N ; t=1,\ldots,T \$
-with i denoting households, individuals, firms, countries, etc. and t denoting time. The i subscript, therefore, denotes the cross-section dimension whereas t denotes the time-series dimension. \$ \alpha \$ is a scalar, \$ \beta \$ is \$ K × 1 \$ and \$X\_\{it\} \$is the \$ it\^{}\{th\} \$ observation on K explanatory variables.
-disturbances, with it
-\[ u_{it}=u_i  + v_{it}     \]
+\[  y_{it} = \alpha + X_{it}^{'} + U_{it}   \] , \$ i=1,\ldots,N ;
+t=1,\ldots,T \$ with i denoting households, individuals, firms, countries,
+etc. and t denoting time. The i subscript, therefore, denotes the
+cross-section dimension whereas t denotes the time-series dimension. \$
+\alpha \$ is a scalar, \$ \beta \$ is \$ K × 1 \$ and \$X\_\{it\} \$is the
+\$ it\^{}\{th\} \$ observation on K explanatory variables. disturbances,
+with it \[ u_{it}=u_i  + v_{it}     \]
 
-where μi denotes the unobservable individual-specific effect and \(ν{it}\) denotes the remainder disturbance. For example, in an earnings equation in labor economics, \(y_{it}\) will measure earnings of the head of the household, whereas Xi t may contain a set of variables like experience, education, union membership, sex, race, etc. Note that μi is time-invariant and it accounts for any individual-specific effect that is not included in the regression. In this case we could think of it as the individual's unobserved ability. The remainder disturbance \$ ν\{it\} \$ varies with individuals
-and time and can be thought of as the usual disturbance in the regression. Alternatively, for a production function utilizing data on firms across time, \$ y\_\{it\} \$ will measure output and \$ X\_\{it\} \$ will measure inputs. The unobservable firm-specific effects will be captured by the \$ \mu\_i \$ and we can think of these as the unobservable entrepreneurial or managerial skills of the firm's executives. Early applications of error components in economics include Kuh (1959) on investment, Mundlak (1961) and Hoch (1962) on production functions and Balestra and Nerlove (1966) on demand for natural gas. In vector form (2.1) can be written as
+where μi denotes the unobservable individual-specific effect and \(ν{it}\)
+denotes the remainder disturbance. For example, in an earnings equation
+in labor economics, \(y_{it}\) will measure earnings of the head of the
+household, whereas Xi t may contain a set of variables like experience,
+education, union membership, sex, race, etc. Note that μi is
+time-invariant and it accounts for any individual-specific effect that
+is not included in the regression. In this case we could think of it as
+the individual's unobserved ability. The remainder disturbance \$ ν\{it\}
+\$ varies with individuals and time and can be thought of as the usual
+disturbance in the regression. Alternatively, for a production function
+utilizing data on firms across time, \$ y\_\{it\} \$ will measure output
+and \$ X\_\{it\} \$ will measure inputs. The unobservable firm-specific
+effects will be captured by the \$ \mu\_i \$ and we can think of these
+as the unobservable entrepreneurial or managerial skills of the firm's
+executives. Early applications of error components in economics include
+Kuh (1959) on investment, Mundlak (1961) and Hoch (1962) on production
+functions and Balestra and Nerlove (1966) on demand for natural gas. In
+vector form (2.1) can be written as
 
 \[ y= \alpha i_{NT}  + X\beta +u = Z\delta + u \]
 
-where \(y\) is \$ NT × 1\$ , X is \(NT × K\) , \$ Z = {[}i\_\{NT\} , X{]} \$ , \$ \delta\^{}\{`\}=(\alpha\textsuperscript{\{'\},\beta}\{'\}) \$ and \(i_{NT}\) is a vector of ones of dimension \(NT\) . Also, (2.2) can be written as
+where \(y\) is \$ NT × 1\$ , X is \(NT × K\) , \$ Z = {[}i\_\{NT\} , X{]} \$ , \$
+\delta\^{}\{`\}=(\^{}\alpha{'},\beta\^{}\{'\}) \$ and \(i_{NT}\) is a vector of ones
+of dimension \(NT\) . Also, (2.2) can be written as
 
-\[ u=Z_\mu \mu  + v\]
-(2.4)
+\[ u=Z_\mu \mu  + v\] (2.4)
 
-where \$ u\^{}\{`\} = (u\_\{11\}, . . . , u\_\{1T\} , u\_\{21\}, . . . , u\_\{2T\}, . . . , u\_\{N1\}, . . . , u\_\{NT\} ) \$ with the observations stacked
-such that the slower index is over individuals and the faster index is over time.\$ Z\_\mu = IN \otimes ιT \$
-where IN is an identity matrix of dimension N, ιT is a vector of ones of dimension T and \$ \otimes \$ denotes Kronecker product. \$ Z\_\mu \$ is a selector matrix of ones and zeros, or simply the matrix of individual dummies that one may include in the regression to estimate theμi if they are assumed to
-be fixed parameters. \$ \mu\^{}\{'\} = (\mu\_1, . . . , \mu\_N )\$ and \(ν^{'} = (ν11, . . . , ν_{1T} , . . . , ν_{N1}, . . . , ν_{NT} )\). Note that
+where \$ u\^{}\{`\} = (u\_\{11\}, . . . , u\_\{1T\} , u\_\{21\}, . . . , u\_\{2T\},
+. . . , u\_\{N1\}, . . . , u\_\{NT\} ) \$ with the observations stacked such
+that the slower index is over individuals and the faster index is over
+time.\$ Z\_\mu = IN \otimes ιT \$ where IN is an identity matrix of
+dimension N, ιT is a vector of ones of dimension T and \$ \otimes \$
+denotes Kronecker product. \$ Z\_\mu \$ is a selector matrix of ones and
+zeros, or simply the matrix of individual dummies that one may include
+in the regression to estimate theμi if they are assumed to be fixed
+parameters. \$ \mu\^{}\{'\} = (\mu\_1, . . . , \mu\_N )\$ and
+\(ν^{'} = (ν11, . . . , ν_{1T} , . . . , ν_{N1}, . . . , ν_{NT} )\). Note
+that \$Z\_\mu Z\^{}\{`\}\mu = I\_N \otimes J\_T \$ where \(J_T\) is a matrix of
+ones of dimension T and \$ P = Zμ(Z\textsuperscript{\{'\}}\mu Z\mu)\{−1\} Z\^{}\{'\}\mu \$ , the
+projectionmatrix on \$ Z\_\mu \$ , reduces to \$ IN \otimes J\_T \$ where
+\$J \_T= JT /T \$ . P is a matrix which averages the observation across
+time for each individual, and Q = INT − P is a matrix which obtains the
+deviations from individual means. For example, regressing y on the
+matrix of dummy variables \(Z_μ\) gets the predicted values \$ P\_y \$
+which has a typical element
 
-\$Z\_\mu Z\^{}\{'\}\emph{\mu = I\_N \otimes J\_T \$
-where
-\$ JT \$
-is a matrix of ones of dimension T and
-\$ P = Zμ(Z\^{}\{`\}\emph{\mu Z}\mu)\^{}\{−1\} Z\^{}\{'\}}\mu  \$
-, the projectionmatrix on \$ Z\_\mu \$ , reduces to
-\$ IN \otimes J\_T \$
-where
-\$J \_T= JT /T \$
-. P is a matrix which averages the observation across time for each individual, and Q = INT − P is a matrix which obtains
-the deviations from individual means. For example, regressing y on the matrix of dummy variables
-\(Z_μ\) gets the predicted values \$ P\_y \$ which has a typical element
+\[ \bar y_i = \sum_{t=1}^T \frac{y_{it}}{T}  \] repeated T times for
+each individual. The residuals of this regression are given by Qy which
+has a typical element \[ (y_{it} - \bar y _{i.} ) \] P and Q are (i)
+symmetric idempotent matrices, i.e.
 
-\[ \bar y_i = \sum_{t=1}^T \frac{y_{it}}{T}  \]
-repeated T times for each individual. The residuals of this regression are given by Qy which has a typical element
-\[ (y_{it} - \bar y _{i.} ) \]
-P and Q are (i) symmetric idempotent matrices, i.e.
-
-\$ P\^{}\{'\} = P \$
-and
-\$ P\^{}2 = P \$.
-This means that
-\$ rank(P) = tr(P) = N\$
-and
-\$ rank(Q) = tr(Q) = N(T − 1) \$.
-This uses the result that the rank of an idempotent matrix is equal to its trace (see Graybill, 1961,theorem 1.63). Also, (ii) P and Q are orthogonal, i.e.~PQ = 0 and (iii) they sum to the identity matrix P + Q = INT . In fact, any two of these properties imply the third (see Graybill, 1961, theorem 1.68).
+\(P^{'} = P\) and \$ P\^{}2 = P \$. This means that \(rank(P) = tr(P) = N\)
+and \(rank(Q) = tr(Q) = N(T − 1)\) . This uses the result that the rank of
+an idempotent matrix is equal to its trace (see Graybill, 1961,theorem
+1.63). Also, (ii) P and Q are orthogonal, i.e.~\$PQ=0 \$ and (iii) they
+sum to the identity matrix \(P + Q = I_{NT}\). In fact, any two of these
+properties imply the third (see Graybill, 1961, theorem 1.68).
 
 \hypertarget{the-fixed-effects-model}{%
 \section{THE FIXED EFFECTS MODEL}\label{the-fixed-effects-model}}
 
-In this case, the μi are assumed to be fixed parameters to be estimated and the remainder disturbances stochastic with νi t independent and identically distributed \$IID (0, \sigma\_v\^{}2) \$. The \(X_{it}\) are assumed independent of the νi t for all i and t. The fixed effects model is an appropriate specification if we are focusing on a specific set of N firms, say, IBM, GE,Westinghouse, etc. and our inference is restricted to the behavior of these sets of firms. Alternatively, it could be
-a set of N OECD countries, or N American states. Inference in this case is conditional on the particular N firms, countries or states that are observed. One can substitute the disturbances given by (2.4) into (2.3) to get
+In this case, the μi are assumed to be fixed parameters to be estimated
+and the remainder disturbances stochastic with \(v_{it}\) independent and
+identically distributed \(IID(0,\sigma_v^2)\). The \(X_{it}\) are assumed
+independent of the \(v_{it}\) for all i and t. The fixed effects model is
+an appropriate specification if we are focusing on a specific set of N
+firms, say, IBM, GE,Westinghouse, etc. and our inference is restricted
+to the behavior of these sets of firms. Alternatively, it could be a set
+of N OECD countries, or N American states. Inference in this case is
+conditional on the particular N firms, countries or states that are
+observed. One can substitute the disturbances given by (2.4) into (2.3)
+to get
 
-\[ y=\alpha i_{IT} + X\beta + Z_\mu \mu +v = Z\delta + Z_\mu \mu +v    \] (2.5)
+\[ y=\alpha i_{IT} + X\beta + Z_\mu \mu +v = Z\delta + Z_\mu \mu +v    \]
+(2.5)
 
 \hypertarget{methods}{%
 \chapter{Methods}\label{methods}}

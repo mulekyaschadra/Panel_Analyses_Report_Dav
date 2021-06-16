@@ -1,0 +1,345 @@
+<rdf:RDF
+ xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+ xmlns:z="http://www.zotero.org/namespaces/export#"
+ xmlns:dcterms="http://purl.org/dc/terms/"
+ xmlns:bib="http://purl.org/net/biblio#"
+ xmlns:link="http://purl.org/rss/1.0/modules/link/"
+ xmlns:dc="http://purl.org/dc/elements/1.1/"
+ xmlns:vcard="http://nwalsh.com/rdf/vCard#"
+ xmlns:foaf="http://xmlns.com/foaf/0.1/"
+ xmlns:prism="http://prismstandard.org/namespaces/1.2/basic/">
+    <bib:Article rdf:about="#item_17">
+        <z:itemType>journalArticle</z:itemType>
+        <dcterms:isPartOf>
+           <bib:Journal></bib:Journal>
+        </dcterms:isPartOf>
+        <link:link rdf:resource="#item_3"/>
+        <dc:title>Méthodes qualitatives, quantitatives et mixtes : dans la recherche en sciences humaines, sociales et de la santé</dc:title>
+        <z:libraryCatalog>Zotero</z:libraryCatalog>
+        <bib:pages>718</bib:pages>
+    </bib:Article>
+    <z:Attachment rdf:about="#item_3">
+        <z:itemType>attachment</z:itemType>
+        <rdf:resource rdf:resource="files/3/Méthodes qualitatives, quantitatives et mixtes  d.pdf"/>
+        <dc:title>Méthodes qualitatives, quantitatives et mixtes  d.pdf</dc:title>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <bib:Book rdf:about="urn:isbn:978-1-59718-065-8">
+        <z:itemType>book</z:itemType>
+        <dc:publisher>
+            <foaf:Organization>
+                <vcard:adr>
+                    <vcard:Address>
+                       <vcard:locality>College Station, Tex</vcard:locality>
+                    </vcard:Address>
+                </vcard:adr>
+                <foaf:name>StataCorp LP</foaf:name>
+            </foaf:Organization>
+        </dc:publisher>
+        <bib:editors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                       <foaf:surname>StataCorp LP</foaf:surname>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:editors>
+        <link:link rdf:resource="#item_6"/>
+        <dc:subject>
+            <z:AutomaticTag>
+               <rdf:value>Computer programs</rdf:value>
+            </z:AutomaticTag>
+        </dc:subject>
+        <dc:subject>
+            <z:AutomaticTag>
+               <rdf:value>Handbooks, manuals, etc</rdf:value>
+            </z:AutomaticTag>
+        </dc:subject>
+        <dc:subject>
+            <z:AutomaticTag>
+               <rdf:value>Longitudinal method</rdf:value>
+            </z:AutomaticTag>
+        </dc:subject>
+        <dc:subject>
+           <z:AutomaticTag><rdf:value>Panel analysis</rdf:value></z:AutomaticTag>
+        </dc:subject>
+        <dc:subject>
+           <z:AutomaticTag><rdf:value>Stata</rdf:value></z:AutomaticTag>
+        </dc:subject>
+        <dc:subject>
+            <z:AutomaticTag>
+               <rdf:value>Statistical methods Computer programs</rdf:value>
+            </z:AutomaticTag>
+        </dc:subject>
+        <dc:title>Stata longitudinal-data/panel-data reference manual: release 11</dc:title>
+        <dc:date>2009</dc:date>
+        <z:language>en</z:language>
+        <z:shortTitle>Stata longitudinal-data/panel-data reference manual</z:shortTitle>
+        <z:libraryCatalog>Library of Congress ISBN</z:libraryCatalog>
+        <dc:subject>
+           <dcterms:LCC><rdf:value>HA32 .S67485 2009</rdf:value></dcterms:LCC>
+        </dc:subject>
+        <dc:description>OCLC: ocn428030424</dc:description>
+        <dc:identifier>ISBN 978-1-59718-065-8</dc:identifier>
+        <z:numPages>563</z:numPages>
+    </bib:Book>
+    <z:Attachment rdf:about="#item_6">
+        <z:itemType>attachment</z:itemType>
+        <rdf:resource rdf:resource="files/6/StataCorp LP - 2009 - Stata longitudinal-datapanel-data reference manua.pdf"/>
+        <dc:title>StataCorp LP - 2009 - Stata longitudinal-datapanel-data reference manua.pdf</dc:title>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <bib:Article rdf:about="#item_19">
+        <z:itemType>journalArticle</z:itemType>
+        <dcterms:isPartOf>
+           <bib:Journal></bib:Journal>
+        </dcterms:isPartOf>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Blanchard</foaf:surname>
+                        <foaf:givenName>P</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <link:link rdf:resource="#item_7"/>
+        <dc:title>L'économétrie des données de panel avec SAS : une introduction</dc:title>
+        <z:language>fr</z:language>
+        <z:libraryCatalog>Zotero</z:libraryCatalog>
+        <bib:pages>67</bib:pages>
+    </bib:Article>
+    <z:Attachment rdf:about="#item_7">
+        <z:itemType>attachment</z:itemType>
+        <rdf:resource rdf:resource="files/7/Blanchard - L'économétrie des données de panel avec SAS  une .pdf"/>
+        <dc:title>Blanchard - L'économétrie des données de panel avec SAS  une .pdf</dc:title>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <bib:Book rdf:about="urn:isbn:978-1-118-94917-7%20978-1-118-94918-4">
+        <z:itemType>book</z:itemType>
+        <dc:publisher>
+            <foaf:Organization>
+                <vcard:adr>
+                    <vcard:Address>
+                       <vcard:locality>Hoboken, NJ</vcard:locality>
+                    </vcard:Address>
+                </vcard:adr>
+                <foaf:name>John Wiley &amp; Sons</foaf:name>
+            </foaf:Organization>
+        </dc:publisher>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Croissant</foaf:surname>
+                        <foaf:givenName>Yves</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Millo</foaf:surname>
+                        <foaf:givenName>Giovanni</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <link:link rdf:resource="#item_8"/>
+        <dc:subject>
+           <z:AutomaticTag><rdf:value>Econometrics</rdf:value></z:AutomaticTag>
+        </dc:subject>
+        <dc:subject>
+           <z:AutomaticTag><rdf:value>Panel analysis</rdf:value></z:AutomaticTag>
+        </dc:subject>
+        <dc:subject>
+            <z:AutomaticTag>
+               <rdf:value>R (Computer program language)</rdf:value>
+            </z:AutomaticTag>
+        </dc:subject>
+        <dc:title>Panel data econometrics with R</dc:title>
+        <dc:date>2018</dc:date>
+        <z:language>en</z:language>
+        <z:libraryCatalog>Library of Congress ISBN</z:libraryCatalog>
+        <dc:subject>
+           <dcterms:LCC><rdf:value>HB139</rdf:value></dcterms:LCC>
+        </dc:subject>
+        <dc:identifier>ISBN 978-1-118-94917-7 978-1-118-94918-4</dc:identifier>
+        <prism:edition>First edition</prism:edition>
+        <z:numPages>1</z:numPages>
+    </bib:Book>
+    <z:Attachment rdf:about="#item_8">
+        <z:itemType>attachment</z:itemType>
+        <rdf:resource rdf:resource="files/8/Croissant et Millo - 2018 - Panel data econometrics with R.pdf"/>
+        <dc:title>Croissant et Millo - 2018 - Panel data econometrics with R.pdf</dc:title>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <bib:Article rdf:about="#item_21">
+        <z:itemType>journalArticle</z:itemType>
+        <dcterms:isPartOf>
+           <bib:Journal></bib:Journal>
+        </dcterms:isPartOf>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Baltagi</foaf:surname>
+                        <foaf:givenName>Badi H</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <link:link rdf:resource="#item_10"/>
+        <dc:title>Econometric Analysis of Panel Data</dc:title>
+        <z:language>en</z:language>
+        <z:libraryCatalog>Zotero</z:libraryCatalog>
+        <bib:pages>317</bib:pages>
+    </bib:Article>
+    <z:Attachment rdf:about="#item_10">
+        <z:itemType>attachment</z:itemType>
+        <rdf:resource rdf:resource="files/10/Baltagi - Econometric Analysis of Panel Data.pdf"/>
+        <dc:title>Baltagi - Econometric Analysis of Panel Data.pdf</dc:title>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <bib:Article rdf:about="#item_22">
+        <z:itemType>journalArticle</z:itemType>
+        <dcterms:isPartOf>
+           <bib:Journal></bib:Journal>
+        </dcterms:isPartOf>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Montassar</foaf:surname>
+                        <foaf:givenName>Dr Zayati</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <link:link rdf:resource="#item_12"/>
+        <dc:title>Économétrie des données de Panel</dc:title>
+        <z:language>fr</z:language>
+        <z:libraryCatalog>Zotero</z:libraryCatalog>
+        <bib:pages>10</bib:pages>
+    </bib:Article>
+    <z:Attachment rdf:about="#item_12">
+        <z:itemType>attachment</z:itemType>
+        <rdf:resource rdf:resource="files/12/Montassar - Économétrie des données de Panel.pdf"/>
+        <dc:title>Montassar - Économétrie des données de Panel.pdf</dc:title>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <bib:Article rdf:about="#item_23">
+        <z:itemType>journalArticle</z:itemType>
+        <dcterms:isPartOf>
+           <bib:Journal></bib:Journal>
+        </dcterms:isPartOf>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Hurlin</foaf:surname>
+                        <foaf:givenName>Christophe</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <link:link rdf:resource="#item_13"/>
+        <dc:title>L’Econométrie des Données de Panel</dc:title>
+        <z:language>fr</z:language>
+        <z:libraryCatalog>Zotero</z:libraryCatalog>
+        <bib:pages>68</bib:pages>
+    </bib:Article>
+    <z:Attachment rdf:about="#item_13">
+        <z:itemType>attachment</z:itemType>
+        <rdf:resource rdf:resource="files/13/Hurlin - L’Econométrie des Données de Panel.pdf"/>
+        <dc:title>Hurlin - L’Econométrie des Données de Panel.pdf</dc:title>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <bib:Book rdf:about="urn:isbn:978-2-10-072151-1">
+        <z:itemType>book</z:itemType>
+        <dc:publisher>
+            <foaf:Organization>
+                <vcard:adr>
+                    <vcard:Address>
+                       <vcard:locality>Paris</vcard:locality>
+                    </vcard:Address>
+                </vcard:adr>
+                <foaf:name>Dunod</foaf:name>
+            </foaf:Organization>
+        </dc:publisher>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Bourbonnais</foaf:surname>
+                        <foaf:givenName>Régis</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <link:link rdf:resource="#item_15"/>
+        <dc:title>Économétrie</dc:title>
+        <dc:date>2015</dc:date>
+        <z:language>fr</z:language>
+        <z:libraryCatalog>Open WorldCat</z:libraryCatalog>
+        <dc:description>OCLC: 906276339</dc:description>
+        <dc:identifier>ISBN 978-2-10-072151-1</dc:identifier>
+    </bib:Book>
+    <z:Attachment rdf:about="#item_15">
+        <z:itemType>attachment</z:itemType>
+        <rdf:resource rdf:resource="files/15/Bourbonnais - 2015 - Économétrie.pdf"/>
+        <dc:title>Bourbonnais - 2015 - Économétrie.pdf</dc:title>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <bib:Book rdf:about="urn:isbn:978-0-19-924528-4%20978-0-19-924529-1">
+        <z:itemType>book</z:itemType>
+        <dcterms:isPartOf>
+            <bib:Series>
+               <dc:title>Advanced texts in econometrics</dc:title>
+            </bib:Series>
+        </dcterms:isPartOf>
+        <dc:publisher>
+            <foaf:Organization>
+                <vcard:adr>
+                    <vcard:Address>
+                       <vcard:locality>Oxford ; New York</vcard:locality>
+                    </vcard:Address>
+                </vcard:adr>
+                <foaf:name>Oxford University Press</foaf:name>
+            </foaf:Organization>
+        </dc:publisher>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Arellano</foaf:surname>
+                        <foaf:givenName>Manuel</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <link:link rdf:resource="#item_16"/>
+        <dc:subject>
+           <z:AutomaticTag><rdf:value>Econometrics</rdf:value></z:AutomaticTag>
+        </dc:subject>
+        <dc:subject>
+           <z:AutomaticTag><rdf:value>Panel analysis</rdf:value></z:AutomaticTag>
+        </dc:subject>
+        <dc:title>Panel data econometrics</dc:title>
+        <dc:date>2003</dc:date>
+        <z:language>en</z:language>
+        <z:libraryCatalog>Library of Congress ISBN</z:libraryCatalog>
+        <dc:subject>
+           <dcterms:LCC><rdf:value>HB139 .A74 2003</rdf:value></dcterms:LCC>
+        </dc:subject>
+        <dc:description>OCLC: ocm46846834</dc:description>
+        <dc:identifier>ISBN 978-0-19-924528-4 978-0-19-924529-1</dc:identifier>
+        <z:numPages>231</z:numPages>
+    </bib:Book>
+    <z:Attachment rdf:about="#item_16">
+        <z:itemType>attachment</z:itemType>
+        <rdf:resource rdf:resource="files/16/Arellano - 2003 - Panel data econometrics.pdf"/>
+        <dc:title>Arellano - 2003 - Panel data econometrics.pdf</dc:title>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+</rdf:RDF>
