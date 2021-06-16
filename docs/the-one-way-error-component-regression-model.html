@@ -165,8 +165,7 @@ div.csl-indent {
 <li class="chapter" data-level="4" data-path="the-one-way-error-component-regression-model.html"><a href="the-one-way-error-component-regression-model.html"><i class="fa fa-check"></i><b>4</b> The One-way Error Component Regression Model</a>
 <ul>
 <li class="chapter" data-level="4.1" data-path="the-one-way-error-component-regression-model.html"><a href="the-one-way-error-component-regression-model.html#introduction"><i class="fa fa-check"></i><b>4.1</b> INTRODUCTION</a></li>
-<li class="chapter" data-level="4.2" data-path="the-one-way-error-component-regression-model.html"><a href="the-one-way-error-component-regression-model.html#manque-3-lignes-et-2-équations"><i class="fa fa-check"></i><b>4.2</b> Manque 3 lignes et 2 équations</a></li>
-<li class="chapter" data-level="4.3" data-path="the-one-way-error-component-regression-model.html"><a href="the-one-way-error-component-regression-model.html#the-fixed-effects-model"><i class="fa fa-check"></i><b>4.3</b> THE FIXED EFFECTS MODEL</a></li>
+<li class="chapter" data-level="4.2" data-path="the-one-way-error-component-regression-model.html"><a href="the-one-way-error-component-regression-model.html#the-fixed-effects-model"><i class="fa fa-check"></i><b>4.2</b> THE FIXED EFFECTS MODEL</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="methods.html"><a href="methods.html"><i class="fa fa-check"></i><b>5</b> Methods</a></li>
 <li class="chapter" data-level="6" data-path="analyses.html"><a href="analyses.html"><i class="fa fa-check"></i><b>6</b> Analyses</a>
@@ -238,14 +237,14 @@ be fixed parameters. $ ^{’} = (_1, . . . , _N )$ and <span class="math inline"
 is a matrix of ones of dimension T and $ P = Zμ(Z^{‘}<em>Z</em>)^{−1} Z^{’}</em>$, the projectionmatrix on $ Z_$ , reduces to IN ⊗ J¯T where $J¯T = JT /T $. P is a matrix which averages the observation across time for each individual, and Q = INT − P is a matrix which obtains
 the deviations from individual means. For example, regressing y on the matrix of dummy variables
 <span class="math inline">\(Z_μ\)</span> gets the predicted values $ P_y $ which has a typical element</p>
-</div>
-<div id="manque-3-lignes-et-2-équations" class="section level2" number="4.2">
-<h2><span class="header-section-number">4.2</span> Manque 3 lignes et 2 équations</h2>
-<p>P and <span class="math inline">\(Q\)</span> are (i) symmetric idempotent matrices, i.e.
+<p><span class="math display">\[ \bar y_i = \sum_{t=1}^T \frac{y_{it}}{T}  \]</span>
+repeated T times for each individual. The residuals of this regression are given by Qy which has a typical element
+<span class="math display">\[ (y_{it} - \bar y _{i.} ) \]</span>
+P and Q are (i) symmetric idempotent matrices, i.e.
 $ P^{’} = P $ and $P^2 = P $. This means that $ rank(P) = tr(P) = N$ and $ rank(Q) = tr(Q) = N(T − 1) $. This uses the result that the rank of an idempotent matrix is equal to its trace (see Graybill, 1961,theorem 1.63). Also, (ii) P and Q are orthogonal, i.e. PQ = 0 and (iii) they sum to the identity matrix P + Q = INT . In fact, any two of these properties imply the third (see Graybill, 1961, theorem 1.68).</p>
 </div>
-<div id="the-fixed-effects-model" class="section level2" number="4.3">
-<h2><span class="header-section-number">4.3</span> THE FIXED EFFECTS MODEL</h2>
+<div id="the-fixed-effects-model" class="section level2" number="4.2">
+<h2><span class="header-section-number">4.2</span> THE FIXED EFFECTS MODEL</h2>
 <p>In this case, the μi are assumed to be fixed parameters to be estimated and the remainder disturbances stochastic with νi t independent and identically distributed $IID (0, _v^2) $. The <span class="math inline">\(X_{it}\)</span> are assumed independent of the νi t for all i and t. The fixed effects model is an appropriate specification if we are focusing on a specific set of N firms, say, IBM, GE,Westinghouse, etc. and our inference is restricted to the behavior of these sets of firms. Alternatively, it could be
 a set of N OECD countries, or N American states. Inference in this case is conditional on the particular N firms, countries or states that are observed. One can substitute the disturbances given by (2.4) into (2.3) to get</p>
 <p><span class="math display">\[ y=\alpha i_{IT} + X\beta + Z_\mu \mu +v = Z\delta + Z_\mu \mu +v    \]</span> (2.5)</p>

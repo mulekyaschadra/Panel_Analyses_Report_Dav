@@ -8,7 +8,6 @@ intro
 literature
 the-one-way-error-component-regression-model
 introduction
-manque-3-lignes-et-2-équations
 the-fixed-effects-model
 methods
 analyses

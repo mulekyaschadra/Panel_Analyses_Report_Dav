@@ -56,10 +56,12 @@ is a matrix of ones of dimension T and $ P = Zμ(Z^{'}_\mu Z_\mu)^{−1} Z^{'}_\
 the deviations from individual means. For example, regressing y on the matrix of dummy variables
  $Z_μ$ gets the predicted values $ P_y $ which has a typical element 
  
-## Manque 3 lignes et 2 équations 
- 
- P and $Q$  are (i) symmetric idempotent matrices, i.e.
-$ P^{'} = P $ and $P^2 = P $. This means that $ rank(P) = tr(P) = N$ and $ rank(Q) = tr(Q) = N(T − 1) $. This uses the result that the rank of an idempotent matrix is equal to its trace (see Graybill, 1961,theorem 1.63). Also, (ii) P and Q are orthogonal, i.e. PQ = 0 and (iii) they sum to the identity matrix P + Q = INT . In fact, any two of these properties imply the third (see Graybill, 1961, theorem 1.68).
+ $$ \bar y_i = \sum_{t=1}^T \frac{y_{it}}{T}  $$ 
+ repeated T times for each individual. The residuals of this regression are given by Qy which has a typical element 
+ $$ (y_{it} - \bar y _{i.} ) $$
+ P and Q are (i) symmetric idempotent matrices, i.e.
+ $ P^{'} = P $ and $P^2 = P $. This means that $ rank(P) = tr(P) = N$ and $ rank(Q) = tr(Q) = N(T − 1) $. This uses the result that the rank of an idempotent matrix is equal to its trace (see Graybill, 1961,theorem 1.63). Also, (ii) P and Q are orthogonal, i.e. PQ = 0 and (iii) they sum to the identity matrix P + Q = INT . In fact, any two of these properties imply the third (see Graybill, 1961, theorem 1.68).
+
 
 ## THE FIXED EFFECTS MODEL
 
