@@ -1,0 +1,1396 @@
+# Analyses
+
+Nous  faisons  _application_ des méthodes présentées dans le chapitre précédant pour l'analyse des données de pannel
+
+Avant de passefr à la modélisation, nous ferons une description de nos variables d'interet d'une manière statique : nos prédicteurs et la variables réponses
+
+
+## Netoyage de la base des données
+```{r libraries,include=FALSE,echo=FALSE,message=FALSE}
+library(tidyverse)
+library(broom)
+library(plm)
+library(questionr)
+library(dlookr)
+library(rio)
+library(DT)
+library(readxl)
+library(knitr)
+library(gtsummary)
+```
+
+
+```{r message=FALSE,echo=FALSE,warning=FALSE}
+# import des données
+
+#ptaxe <- rio::import(file="DATA  ARRANGED PANEL 2.xlsx",format = "xlsx")
+taxe_df <- readxl::read_xlsx("DATA  ARRANGED PANEL 2.xlsx")
+attach(taxe_df)
+```
+
+Apperçue globale des données 
+
+```{r echo=FALSE}
+head(taxe_df,10) %>% kable(caption = "Echantillon de la base des données")
+```
+Voici la structure de la base des données
+```{r echo=FALSE}
+taxe_df <- taxe_df %>% mutate(Goods =factor(Goods))
+glimpse(taxe_df) 
+# taxe_df %>% attach()
+```
+
+Voici les modalités de la variabme `Goods` qui signifie 
+`Marchandises`
+
+```{r g, echo=FALSE}
+levels(taxe_df$Goods) %>% kable(caption = 'Modalités de la variable Goods à l\'importation des donnees')
+```
+
+La variables `Goods` a g modalités
+
+
+Faison la cactérisation des niveaux des marchandises dont l'encodage fait défaut
+
+```{r include=FALSE,echo=FALSE}
+# taxe_df <- taxe_df %>% select(-`Goods <- factor(Goods)`)
+taxe_df$Goods <- taxe_df$Goods %>% fct_recode("WOLFRAM" ="WOLFRAMI",
+                                              "WOLFRAM"="Wolframite"
+                                              )
+levels(Goods)
+taxe_df$Goods <- taxe_df$Goods %>% fct_recode("Wolframite"="WOLFRAMITE")
+
+taxe_df$Goods <- taxe_df$Goods %>% fct_recode("Wolframite"="WOLFRAM" ,
+                                               "Véhicule" ="VEHICULE AUTO","Véhicule"="Vehicule automobile","Véhicule" ="VEHICULE LAND ROVER" )
+                                             
+
+levels(taxe_df$Goods)
+```
+
+
+```{r echo=FALSE,include=FALSE}
+taxe_df$Goods <- taxe_df$Goods %>% fct_recode("TOYOTA" ="TOYOTA ID",
+                                              "TOYOTA"="Toyota hilux surf",
+                                              "TOYOTA"="Toyota Land cruiser",
+                                              "TOYOTA"="TOYOTA LAND CRUISER" 
+                                               )
+levels(taxe_df$Goods)
+```
+
+```{r echo=FALSE,include=FALSE}
+taxe_df$Goods <- taxe_df$Goods %>% fct_recode("TOYOTA"="Toyota Hilux",
+                                              "Treuils cabestans"="Treuils cabestants",
+                                              "vaisselle et art de tables et de cuisine en mat plastiques"="Vaisselle et art de tables et de cuisine en matières plast" ,
+                                              "TABACS" ="TABACS ECOTES",
+                                              "TABACS"="TABACS PARTIELLEMENT ECOTES",
+                                              "TABACS"="Tabac partiellement ecotes",
+                                              "Sel"="SEL IODE",
+                                              "Sacs et sachets d'e mballage en autres synthétiques ou articles"="Sacs et sachets d'emballage en autres sythetiques ou artificiels",
+                                              "Sacs et sachets d'e mballage en autres synthétiques ou articles"="Sacs et sachets en bonneterie de jute ou autres fibres")
+ levels(taxe_df$Goods)                                             
+```
+
+
+
+
+```{r echo=FALSE, include=FALSE}
+taxe_df$Goods <- taxe_df$Goods %>% fct_recode("Quinquina" ="QUINQUINA",
+                                              "Reservoirs, futs, tambours, bidons, d'une" ="Reservoirs,foudres,cuves et autres(+300)en matières plastiques",
+                                              "Plantes médecinales"="Plantes medicales",
+                                              "Pneumatiques"="Pneumatiques rechapes pour auto-bus ou camion",
+                                              "Pompes"="Pompe à vide",
+                                              "Pompes"="pompes a carburant",
+                                              "Pompes"="Pompes à injection pour moteurs à explosion",
+                                              "Matériel d'échafaudage,de coffrage ou d'étayage" ="Materiel d'echafaudage,de coffrage ou d'etayge en fonte,fer ou acier",
+                                              "Matériel d'échafaudage,de coffrage ou d'étayage"  ="Materiels d'echafaudage,de coffrage ou d'etayage en fonte,fer ou acier")
+
+levels(taxe_df$Goods)
+
+```
+
+
+```{r echo=FALSE, include=FALSE}
+taxe_df$Goods <- taxe_df$Goods %>% fct_recode("Chaudières" ="CHAUDIERE ET SES ACCESSOIRES",
+                                              "Coltan"="coltan",                                      "Coltan"="COLTAN",                                      "Coltan"="Coltan-scorie stanique 20-25% Ta2O5",         "Coltan"="Coltan & scorie stanique (concentres de","Coltan"="Coltan et scorie stanique de 26-30%",    "Coltan"="COLTANS",                                     "Coltan"="COLTN")
+
+
+```
+
+
+```{r echo=FALSE,include=FALSE}
+taxe_df$Goods <- taxe_df$Goods %>% fct_recode("Peaux des betes"="PEAUX",
+               "Peaux des betes"="PEAUX DE BETTES",
+               "Peaux des betes"="Peaux de bovins",
+               "Peaux des betes"="PEAUX DES BEBES",
+               "Peaux des betes"="Peaux des betes" ,
+               "Peaux des betes"="PEAUX DES BETTES",
+               "Pieres synthétiques ou reconstituees"="Pieres synthetiques ou reconstituées",
+               "Pieres synthétiques ou reconstituees"="Pierres synth ou reconstituées",
+               "Préparations alimentaires ndca"="PREPARATIONS ALIMENTAIRES NDCA",
+               "Préparations alimentaires ndca"="Preparations pour enfants,conditionnees pour",
+               "Préparations alimentaires ndca"="Préparations soufflées ou grillées a base de cereales",
+               "Préparations alimentaires ndca"="PREPARATIONS ALIMENTAIRES NDCA","Préparations alimentaires ndca"="Préparations,pour sauces,sauces,condiments et assaisonnements",
+               "Produits de beaute"="PRODUIT DE BEAUTE",
+               "Produits de beaute"="Produits de beaute,de maquillage,solaires ou pour la peau",
+               "Quinquina"="quinquina",
+               "Sacs et sachets d'e mballage en autres synthétiques ou articles"="Sacs,sachets,pochettes,cornets en polyethylene",
+               "PARTIES ET ACC MACHINE ET VEHICULE"="PARTIES ET ACCESSOIRES DES MACHINES",
+               "PARTIES ET ACC MACHINE ET VEHICULE"="Parties et accessoires des vehicules  des 87.01 à 87,05" ,
+               "PARTIES ET ACC MACHINE ET VEHICULE"="Parties et accessoires des vehicules des n°87.01 à 87.05",
+               "PARTIES ET ACC MACHINE ET VEHICULE"="PARTIES ET ACC VEHICULE",
+               "PARTIES ET ACC MACHINE ET VEHICULE"="PARTIES RECONNAISSABLES DES MACHINES DES N°85.01 OU 85.02",
+               "PARTIES ET ACC MACHINE ET VEHICULE"="Parties et accessoires")
+
+
+
+levels(taxe_df$Goods)
+
+
+```
+
+
+
+```{r echo=FALSE,include=FALSE}
+taxe_df$Goods <- taxe_df$Goods %>% fct_recode(
+  "HARICOTS"="Haricots communs:de semences",
+  "Groupes electrogene"="Goupes electrogene (diesel, semi- disiel)" ,
+  "Groupes electrogene"="Groupes electrogene(diesel,semi-diesel)de puissance n'excedant pas 75kva" ,
+  "Groupes electrogene"="Groupes electrogenes(diesel,semi-diesel) de",
+  "HUILE DE GRAISSAGE"="Huiles,graissages et fractions,non chimiquement modifiées",
+  "LAND CRUISER"="LAND CRUISER PRADO" ,
+  "LAND CRUISER"="LAND ROVER",
+  "LAND CRUISER"="Land rover defender 90",
+  "LAND CRUISER"="Véhicule",
+  "Machines et appareil"="Machines et appareils du n° 84.30" ,
+  "Machines et appareil"="MACHINES ET APPAREILS POUR LA PREP OU TRANSFORMATION DU TABAC",
+  "Machines et appareil"="Machines et appareils pour le brochage ou la",
+  "Machines et appareil"="Machines pr la transformation du tabac" ,
+  "Machines et appareil"="Machines qui assurent au moins deux des fonctions suivantes impression,copie ou transm"
+  
+)
+
+levels(taxe_df$Goods)
+
+```
+
+
+
+```{r echo=FALSE,include=FALSE}
+taxe_df$Goods <- taxe_df$Goods %>% fct_recode(
+  "Minerais de coltan"="MINERAIS DE COLTAN",
+  "Minerais de coltan"="Minérais de coltan",
+  "Minerais de coltan"="Minerais de coltan & scorie de 26-30 % Tao5",
+  "Minerais de coltan"="Minerais de coltan & scorie stanique" ,
+  "Minerais de coltan"="Minerais de coltan & scorie stanique de" ,
+  "Minerais de coltan"="Minerais de Coltan & scorie stanique de",
+  "Minerais de coltan"="Minerais de coltan & scorie stanique de 26-30 % Ta05",
+  "Minerais de coltan"="MINERAIS DE COLTAN & SCORIE STANIQUE DE 26-30%",
+  "Minerais de coltan"="Minerais de coltan & scorie stanique de 26-30% Ta 05",
+  "Minerais de coltan"="Minerais de coltan & scorie stanique de 26-30% Ta05"
+)
+
+levels(taxe_df$Goods)
+```
+
+
+```{r echo=FALSE,include=FALSE}
+taxe_df$Goods <- taxe_df$Goods %>% fct_recode(
+  "Minerais de coltan"="Minerais de coltan & scorie stanique de 26-30% Tao5" ,
+  "Minerais de coltan"="Minerais de coltan & scorie stanique de 26-30% TaO5",
+  "Minerais de coltan"="Minerais de Coltan & scorie stanique de 26-30% TaO5" ,
+  "Minerais de coltan"="Minerais de coltan & scorie stanique de 4-14% Ta05",
+  "Minerais de coltan"="Minerais de coltan & scories stanique de 26-30%",
+  "Minerais de coltan"="MINERAIS DE COLTAN &SCORIE STANIQUE DE 26-30 %Ta05",
+  "Minerais de coltan"="MINERAIS DE COLTAN &SCORIE STANIQUE DE 26-30%",
+  "Minerais de coltan"="Minerais de coltan &scorie stanique de 26-30%TaO5",
+  "Minerais de coltan"="Minerais de coltan &scorie stanique de 26-30%TaO5",
+  "Minerais de coltan"="Minerais de coltan et scorie",
+  "Minerais de coltan"="Minerais de coltan et scorie stanique",
+  "Minerais de coltan"="MINERAIS DE COLTAN ET SCORIE STANIQUE",
+  "Minerais de coltan"="Minerais de coltan et scorie stanique de 26-30%",
+  "Minerais de coltan"="Minerais de coltan et scorie stanique de 26-30% Ta05",
+  "Minerais de coltan"="Minerais de coltan et scorie stanique de 26-30%Ta05",
+  "Minerais de coltan"="Minerais de coltan et scorie stanique de 4-14% ta05" ,
+  "Minerais de coltan"="Minérais de coltan et scories",
+  "Minerais de coltan"="MINERAIS DE COLTAN&SCORIE STANIQUE",
+  "Minerais de coltan"="Minerais de coltant & scorie stanique de 26-30% Ta05"
+)
+levels(taxe_df$Goods)
+
+```
+
+
+```{r echo=FALSE,include=FALSE}
+taxe_df$Goods <- taxe_df$Goods %>% fct_recode(
+  "Minerais de coltan"="MINERAIS DE COLTA § SCORIE STANIQUE DE + DE 35",
+  "Minerais de coltan"="Minerais de coltan & scorie stanique de 26-30%Ta05",
+  "Minérais de tantale"="MINERAIS DE TANTALE",
+  "Minérais de tantale"="Minerais de tantale et leurs concentres",
+  "Minérais de tantale"="Minerais de tantale teneur 26-30%",
+  "Minérais de tantale"="Minerais de tantale teneur 26-30% tantale et 40-59% oxyde niobium ou colombite" ,
+  "Minérais de tantale"="MINERAIS DE TANTALE TENEUR 26-30% TANTALE ET 40-59% OXYDE NIOBIUM OUCOLOM" ,
+  "Minérais de tantale"="Minerais de tantale teneur 26-30%tentale et 40-59% oxyde niobium ou colombite",
+  "Minérais de tantale"="Minerais de tantale teneure 26-30% et 40-59% oxyde niobium ou colombite"
+)
+
+levels(taxe_df$Goods)
+```
+
+
+```{r echo=FALSE,include=FALSE}
+taxe_df$Goods <- taxe_df$Goods %>% fct_recode(
+  "Maghony,scies longitudinalement,sciages avives"="Mahagany, scies lingutudinalement, sciage avices d'une epaisseur superieur a 50mm" ,
+  "Maghony,scies longitudinalement,sciages avives"="Mahagany, scies longitudinalement, sciage avives d'une epaisseur inferieur à 50mm",
+  "Maghony,scies longitudinalement,sciages avives"="Mahogaany, scies lingitudinalement, sciagaes avives d'une epaisseur superieur a 50mm",
+  "Maghony,scies longitudinalement,sciages avives"="Mahogany, scies lingitudianlement, sciages avives d'une epaisseur superieure a 50mm",
+  "Maghony,scies longitudinalement,sciages avives"="Mahogany,scies lingitudinalement,sciages avives",
+  "Maghony,scies longitudinalement,sciages avives"="Mahogany,scies lingitudinalement,sciages avives d une epaisseur superieure a 50 mm" ,
+  "Maghony,scies longitudinalement,sciages avives"="Mahogany,scies longitudinalement",
+  "Maghony,scies longitudinalement,sciages avives"="Mahogany,sciés longitudinalement" ,
+  "Maghony,scies longitudinalement,sciages avives"="Mahogany,scies longitudinalement,sciages avives" ,
+  "Maghony,scies longitudinalement,sciages avives"="Mahogany,scies longitudinalement,sciages avives d'une epaisseur",
+  "Maghony,scies longitudinalement,sciages avives"="Mahogany,scies longitudinalement,sciages avives d'une épaisseur inf à 50 mm" ,
+  "Maghony,scies longitudinalement,sciages avives"="Mahogany,scies longitudinalement,sciages avives d'une epaisseur inférieure à 50 mm" ,
+  "Maghony,scies longitudinalement,sciages avives"="Mahogany,scies longitudinalement,sciages avives d une epaisseur inferieure à 50 mm",
+  "Margarine, a l'exclusion de la margarine" ="Margarine,a l exclusion de la margarine liquide" ,
+  "Matières colorantes" ="MATIERES COLORANTES",
+  "Minerais d'etain et leurs concentré"="Minerais d'etain et leurs concentré d'une teneur de 55 à 65 % en etain" ,
+  "Minerais d'etain et leurs concentré"="minerais d'etain et leurs concentres d'une teneur de 55 à 65",
+  "Minerais d'etain et leurs concentré"="minerais d'etain et leurs concentres d'une teneur de 55 à 65" ,
+  "Minerais d'etain et leurs concentré"="Minerais d'étain et leurs concentrés d une teneur de 55 à 65% en etain/cassiterite",
+  "Minerais d'etain et leurs concentré"="Minerais d étain et leurs concentrés d une teneur de 55 à 65% en étain" ,
+  "Minerais d'etain et leurs concentré"="Minerais d étain et leurs concentrés dune teneur de 55% à 65%",
+  "Minerais de coltan"="MIERAIS DE COLTAN    ET SCORIE STANIQUE DE 26-30%TA05" ,
+  "Minerais et leurs concentres" ="Minerais et leurs concentrés d une teneur de 55 à 65% en etain/cassiterite"
+)
+
+levels(taxe_df$Goods)
+```
+
+
+```{r echo=FALSE,include=FALSE}
+taxe_df$Goods <- taxe_df$Goods %>% fct_recode(
+  "Bois ciés"="BOIS RABOTES OU PONCES" ,
+  "Bois ciés"="Bois scies" ,
+  "Bois ciés"="BOIS SCIES" ,
+  "Bois ciés"="Bois sciés",
+  "Bois ciés"="Bois scies longitudinalement" ,
+  "Bois ciés"="Bois topicaux, scie long..sciages avives d'1 epaisseur supérieur à 50mm",
+  "Bois ciés"="Bois tropicaux" ,
+  "Bois ciés"="Bois tropicaux scies" ,
+  "Bois ciés"="Bois tropicaux scies long,sciages avives d'un epaisseur superieur à 50 mm",
+  "Bois ciés"="Bois tropicaux,scies",
+  "Bois ciés"="Bois tropicaux,scies long",
+  "Bois ciés"="Bois tropicaux,scies long,sciages avives",
+  "Bois ciés"="Bois tropicaux,scies long,sciages vives d'un epaisseur supérieure à 50 mm" ,
+  "Bois ciés"="Boites  et cartonnages,pliants,en papier ou carton non ondulé",
+  "Boites  et cartonnages,pliants,en papier ou carton non ondulé" ="Boites et caisses en papier ou carton ondule"
+)
+
+levels(taxe_df$Goods)
+```
+
+
+
+
+```{r echo=FALSE,include=FALSE}
+taxe_df$Goods <- taxe_df$Goods %>% fct_recode(
+  "Boites et cartonnages,pliants"="Boites  et cartonnages,pliants,en papier ou carton non ondulé",
+    "Boites et cartonnages,pliants"="Boites et caisses en papier ou carton ondulé",
+  "Boites et cartonnages,pliants"="Boites et cartonnaages,pliants en papier ou carton non ondule",
+  "Boites et cartonnages,pliants"="Boites et cartonnages pliants en papier ou carton non ondule",
+  "Boites et cartonnages,pliants"="Boites et cartonnages, en papier ou carton non ondule",
+  "Boites et cartonnages,pliants"="Boites et cartonnages, pliants, en papier ou",
+  "Boites et cartonnages,pliants"="Boites et cartonnages, pliants, en papier ou caton non ondule",
+  "Boites et cartonnages,pliants"="Boites et cartonnages,pliants , en papier ou carton",
+  "Boites et cartonnages,pliants"="Boites et cartonnages,pliants en papier ou carton non ondule",
+  "Boites et cartonnages,pliants"="BOITES ET CARTONNAGES,PLIANTS EN PAPIER OU CARTON NON ONDULE",
+  "Boites et cartonnages,pliants"="Boites et cartonnages,pliants,en papier",
+  "Boites et cartonnages,pliants"="Boites et cartonnages,pliants,en papier ou carton non ondule",
+  "Boites et cartonnages,pliants"="Boites et cartonnages,pliants,en papier ou carton non ondules",
+  "Boites et cartonnages,pliants"="Boites et cartonnagesmpliantsmen papier ou carton non ondule",
+  "Boites et cartonnages,pliants"="Boites et cartonnagres",
+  "Boites et cartonnages,pliants"="Boites et catonnages, pliants, en papier ou carton non ondule",
+  "Boites et cartonnages,pliants"="Boites, caisses et similaires en matieres plastiques" ,
+  "Boites et cartonnages,pliants"="Boites,caisses,casiers et similaires en matières plastiques",
+  "Boites et cartonnages,pliants"="Boites,caisses,casiers et similaires plastiques"
+)
+
+levels(taxe_df$Goods)
+```
+
+
+```{r echo=FALSE,include=FALSE}
+taxe_df$Goods <- taxe_df$Goods %>% fct_recode(
+  "Mitrailles de fer"="Mitraille de fer",
+  "Mitrailles de fer"="Mitralles de fer",
+  "Minerais d'etain et leurs concentré" ="Minerais d'etain et leurs concentres" ,
+  "MACHINE POUR TRANS DE TABAC"="MACHINE POUR PREPARER DU TABAC",
+  "MACHINE POUR TRANS DE TABAC"="MACHINE POUR PREPARATION DU TABAC",
+  "MACHINE POUR TRANS DE TABAC"="Machine et appareil pour la fabrication du tabac" ,
+  "Instruments et appareils de photographie" ="Instruments et appareils de photographie",
+  "CAF Vert arabica, en feves K4, Est"="Caf? vert arabica, en feves K4, Est",
+  "CAF Vert arabica, en feves K4, Est"="Caf¿ vert arabica, en feves K3, Est",
+  "Café arabica"="Cafe arabica" ,
+  "Café arabica"="CAFE ARABICA" ,
+  "Café arabica"="Café Arabica",
+  "Café arabica"="Café arabica k4",
+  "Café arabica"="Café arabica k7",
+  "Café arabica"="Café arabica, en feve K4",
+  "Café arabica"="Café arabica,en feves k3,est",
+  "Café arabica"="Cafe arabica,en feves k4",
+  "Café arabica"="Café arabica,en feves k4,est",
+  "Café arabica"="Cafe arabica,en feves k7",
+  "Café arabica"="Café cert, en feves k4 (kivu4)" ,
+  "Café arabica"="Cafe non torrefie, non decaféiné" ,
+  "Café arabica"="Café non torrifié"  ,
+  "Café arabica"="Café ver arabica k4",
+  "Café arabica"="CAFE VERT" ,
+  "Café arabica"="Café vert",
+  "Café arabica"="Café vert  arabica" ,
+  "Café arabica"="CAFE VERT AFRICA;EN FEVES K4",
+  "Café arabica"="CAFE VERT ARAB K4" ,
+  "Café arabica"="Cafe vert arabica",
+  "Café arabica"="CAFE VERT ARABICA" ,
+  "Café arabica"="Café vert arabica" ,
+  "Café arabica"="Café vert Arabica",
+  "Café arabica"="CAFE VERT ARABICA ;EN FEVES",
+  "Café arabica"="Cafe vert arabica en  feves k4" ,
+  "Café arabica"="café vert arabica en feve k4 Est",
+  "Café arabica"="Cafe vert arabica en feves" ,
+  "Café arabica"="café vert arabica en feves",
+  "Café arabica"="Cafe vert arabica en fèves",
+  "Café arabica"="CAFE VERT ARABICA EN FEVES DE K4" ,
+  "Café arabica"="Cafe vert arabica en feves k3",
+  "Café arabica"="CAFE vert arabica en feves k3" ,
+  "Café arabica"="Café vert arabica en feves k3" ,
+  "Café arabica"="Café vert arabica en fèves K3" ,
+  "Café arabica"="café vert arabica en feves k3 est" ,
+  "Café arabica"="Cafe vert arabica en fèves K3(kivu)",
+  "Café arabica"="cafe vert arabica en feves k4",
+  "Café arabica"="Cafe vert arabica en feves k4",
+  "Café arabica"="CAFE VERT ARABICA EN FEVES K4",
+  "Café arabica"="Café vert arabica en feves k4",
+  "Café arabica"="Café vert arabica en fèves K4",
+  "Café arabica"="Cafe vert arabica en feves k4 est",
+  "Café arabica"="café vert arabica en feves k4 est" ,
+  "Café arabica"="Cafe vert arabica en fèves K4(kivu4)",
+  "Café arabica"="Cafe vert arabica en fèves k4,Est" ,
+  "Café arabica"="Cafe vert arabica en feves k7",
+  "Café arabica"="Café vert arabica en feves,k3" ,
+  "Café arabica"="Cafe vert arabica en fevres",
+  "Café arabica"="Cafe vert arabica feves k4",
+  "Café arabica"="café vert arabica k",
+  "Café arabica"="Café vert arabica k'" ,
+  "Café arabica"="café vert arabica k3",
+  "Café arabica"="Café vert arabica k3",
+  "Café arabica"="Cafe vert arabica k4",
+  "Café arabica"="CAFE VERT ARABICA k4",
+  "Café arabica"="CAFE VERT ARABICA K4",
+  "Café arabica"="Café vert arabica k4",
+  "Café arabica"="Cafe vert arabica k7",
+  "Café arabica"="café vert arabica k7",
+  "Café arabica"="Café vert arabica k7",
+  "Café arabica"="Café vert arabica k8",
+  "Café arabica"="Café vert arabica, en faves k4",
+  "Café arabica"="Cafe vert arabica, en faveurs k4",
+  "Café arabica"="Cafe vert arabica, en feve K3",
+  "Café arabica"="Café vert arabica, en feve K3",
+  "Café arabica"="Café vert arabica, en feve k3, est",
+  "Café arabica"="Cafe vert arabica, en feve k4",
+  "Café arabica"="café vert arabica, en feve K4" ,
+  "Café arabica"="Café vert arabica, en feve k4",
+  "Café arabica"="Café vert arabica, en feve K4",
+  "Café arabica"="Cafe vert arabica, en feves k3" ,
+  "Café arabica"="Café vert arabica, en feves k3",
+  "Café arabica"="Café vert arabica, en feves K3 (KIVU 3 )",
+  "Café arabica"="Cafe vert arabica, en feves k3 (kivu 3)",
+  "Café arabica"="café vert arabica, en feves k3, Est",
+  "Café arabica"="Café vert arabica, en feves k3, Est",
+  "Café arabica"="Café vert arabica, en fèves K3, EST",
+  "Café arabica"="Cafe vert arabica, en feves k4",
+  "Café arabica"="Café vert arabica, en feves k4",
+  "Café arabica"="Cafe vert arabica, en feves k4 (kivu 4)",
+  "Café arabica"="Café vert arabica, en feves k4 (kivu 4)",
+  "Café arabica"="Cafe vert arabica, en feves k4 (kivu4)",
+  "Café arabica"="Cafe vert arabica, en feves k4 (kivu4)",
+  "Café arabica"="Café vert arabica, en feves K4 (KIVU4)" ,
+  "Café arabica"="Café vert arabica, en feves k4 est",
+  "Café arabica"="Cafe vert arabica, en feves K4, Est",
+  "Café arabica"="Café vert arabica, en feves k4, Est",
+  "Café arabica"="Café vert arabica, en feves K4, Est" ,
+  "Café arabica"="Café vert arabica, en fèves K4, EST",
+  "Café arabica"="Cafe vert arabica, en feves k5 (kivu 5)",
+  "Café arabica"="Cafe vert arabica, en feves k6 (kivu 6)" ,
+  "Café arabica"="Cafe vert arabica, en feves k7 (kivu 7)",
+  "Café arabica"="Café vert arabica, en feves K7 (KIVU7)",
+  "Café arabica"="Café vert arabica, en feves k7, Est",
+  "Café arabica"="Café vert arabica,en feve k4 est",
+  "Café arabica"="Café vert arabica,en feve k7 est",
+  "Café arabica"="Café vert arabica,en feves",
+  "Café arabica"="café vert arabica,en feves 4,est",
+  "Café arabica"="cafe vert arabica,en feves k3"
+)
+
+levels(taxe_df$Goods)
+
+
+```
+
+
+
+```{r echo=FALSE,include=FALSE}
+taxe_df$Goods <- taxe_df$Goods %>% fct_recode(
+  "Café arabica"="Café vert arabica en fèves" ,
+  "Café arabica"="Café vert arabica en feves,k4",
+  "Café arabica"="Cafe vert arabica en fevesk4" ,
+  "Café arabica"="CAFE VERT ARABICA K3",
+  "Café arabica"="café vert arabica k4",
+  "Café arabica"="Café vert Arabica K4",
+  "Café arabica"="CAFE VERT ARABICA K7",
+  "Café arabica"="Cafe vert arabica, en feves k3 (kivu3)",
+  "Café arabica"="Café vert arabica, en feves K4 (KIVU 4)",
+  "Café arabica"="Cafe vert arabica,en feves k3",
+  "Café arabica"="Cafe vert arabica,en feves K3",
+  "Café arabica"="café vert arabica,en feves k3",
+  "Café arabica"="Café vert arabica,en feves k3",
+  "Café arabica"="café vert arabica,en fèves k3",
+  "Café arabica"="CAFE VERT ARABICA,EN FEVES K3(kivu)",
+  "Café arabica"="Café vert arabica,en feves K3, Est",
+  "Café arabica"="café vert arabica,en feves k3,Est",
+  "Café arabica"="Café vert arabica,en feves k3,Est",
+  "Café arabica"="Café vert arabica,en feves K3,Est",
+  "Café arabica"="cafe vert arabica,en feves k4",
+  "Café arabica"="Cafe vert arabica,en feves k4",
+  "Café arabica"="Café vert arabica,en feves k4",
+  "Café arabica"="café vert arabica,en fèves k4",
+  "Café arabica"="café vert arabica,en feves k4 est",
+  "Café arabica"="Café vert arabica,en feves k4 est",
+  "Café arabica"="Café vert arabica,en feves K4 EST",
+  "Café arabica"="CAFE VERT ARABICA,EN FEVES K4(kivi)",
+  "Café arabica"="CAFE VERT ARABICA,EN FEVES K4(kivu4)" ,
+  "Café arabica"="Café vert arabica,en feves k4(kivu4)",
+  "Café arabica"="Cafe vert arabica,en feves k4,est",
+  "Café arabica"="café vert arabica,en feves k4,Est" ,
+  "Café arabica"="café vert arabica,en feves K4,est",
+  "Café arabica"="Café vert arabica,en feves k4,est",
+  "Café arabica"="Café vert arabica,en feves K4,Est",
+  "Café arabica"="cafe vert arabica,en feves k5" ,
+  "Café arabica"="Cafe vert arabica,en feves k7",
+  "Café arabica"="Café vert arabica,en feves k7,est",
+  "Café arabica"="Café vert arabica,en feves k7,Est" ,
+  "Café arabica"="cafe vert arabira,en feves k3",
+  "Café arabica"="CAFE VERT EN FEVE",
+  "Café arabica"="Cafe vert en fèves k4" ,
+  "Café arabica"="Cafe vert en feves,k3",
+  "Café arabica"="CAFE VERT K4" ,
+  "Café arabica"="CAFE VERTS",
+  "Café arabica"="Cafévert arabica,en feves K4,Est"
+)
+
+levels(taxe_df$Goods)
+
+```
+
+
+
+
+```{r echo=FALSE,include=FALSE}
+taxe_df$Goods <- taxe_df$Goods %>% fct_recode(
+  "Articles de bureau" ="ARTICLES DE BUREAU",
+  "Articles de bureau"="Articles de bureau ou de la papeterie" ,
+  "Articles de friperie"="ARTICLES DE FRIPERIE",
+  "Art et materiel d'athletisme" ="Articles et materiel d'athletisme" ,
+  "Autres"="AUTRES" ,
+  "Autres abats comestibles frais ou refrigérés de chevaux,anes,mulets,ovins,caprins"="Autres abats comestibles,congeles,de chevaux,anes,mulets,ovins ou caprins" ,
+  "Autres Art de menage"="Autres articles d'economie domestique, en",
+  "Articles de bureau"="autres articles de bureau" ,
+  "Articles de bureau"="AUTRES ARTICLES DE BUREAU OU D PAPETERIE EN PAPIER OU CARTON",
+  "Articles de bureau"="Autres articles de bureau ou de papeterie en",
+  "Articles de bureau"="Autres art de bureau ou de papeterie en papier",
+  "Bois ciés"="Autres bois",
+  "Bois ciés"="Autres bois scies",
+  "Bois ciés"="AUTRES BOIS SCIES",
+  "Bois ciés"="autres bois sciés" ,
+  "Bois ciés"="Autres bois sciés" ,
+  "Bois ciés"="Autres bois tropicaux, a scies long, sciages d'1 avives d'1 epaisseur superieure a 50mm",
+  "Bois ciés"="Autres bois tropicaux, scies lon, sciages avives d'1 epaisseur superieure a 50mm" ,
+  "Bois ciés"="Autres bois tropicaux,scies long",
+  "Bois ciés"="AUTRES BOIS TROPICAUX,SCIES LONG-SCIAGES AVIVESD'1 EPAISSEEUR SUPERIEURE A 50MM",
+  "Bois ciés"="Autres bois tropicaux,scies long,sciages avivées",
+  "Bois ciés"="Autres bois tropicaux,scies long,sciages avives",
+  "Bois ciés"="Autres bois tropicaux,sciés long…sciages avives" ,
+  "Bois ciés"="Autres bois tropicauxmscies long"
+  
+)
+
+levels(taxe_df$Goods)
+
+```
+
+
+
+```{r echo=FALSE,include=FALSE}
+taxe_df$Goods <- taxe_df$Goods %>% fct_recode(
+  "Abats comestibles,congeles,de chevaux,anes,mulets,ovins ou caprins"="ABATS COMESTIBLES;CONGELES;DE CHEVAUX;ANES;MULETS;OVINS",
+  "antennes et refleteurs"="Antennes et reflecteurs d'antennes",
+  "antennes et refleteurs"="Antennes",
+  "Appareils d'éclairage"="Appareils d'eclairage electriques" ,
+  "Appareils d'éclairage"="Appareils d'eclairage non electriques" ,
+  "Appareils d'éclairage"="Appareils d'eclairages electriques",
+  "Bois ciés"="Autres bois sciées",
+  "Bois ciés"="AUTRES BOIS ROPICAUX SCIES LONG" ,
+  "Autres dechets et debris d'aciers alliés" ="Autres dechets et debris d aciers" ,
+  "Autres dechets et debris d'aciers alliés"="Autres déchets et débris d'aciers alliés",
+  "Bois ciés"="Autres et debris de bois",
+  "Autres fours,cuisinières,rechauds"="Autres fours, cuisinieres, rechauds, grils",
+  "Autres fours,cuisinières,rechauds"="Autres fours industriels ou de laboratoires",
+  "Autres legumes, frais ou refrigeres"="Autres legumes ¿ cosse secs, ¿coss¿s, m¿me",
+  "Autres machines" ="autres machines" ,
+  "Autres medicaments"="AUTRES MEDICAMENTS",
+  "AUTRES MINERAIS DE TANTALE"="AUTRES MINERALS DE TANTALE (Coltan)" ,
+  "Autres moteurs diésel" ="Autres moteurs diésels",
+  "Autres papiers non denommés ni compris ailleurs"="Autres papiers non denommes ni compris ailleurs",
+  "Autres papiers non denommés ni compris ailleurs"="AUTRES PAPIERS NON DENOMMES NI COMPRIS AILLEURS",
+  "AUTRES PARTIES DE PLANTES EN MEDECINE" ="AUTRES PARTIES DE PLANTES UTILISEES PRINCIPALEMENT EN MEDECINE",
+  "AUTRES PARTIES DE PLANTES EN MEDECINE"="Autres parties de plantes utilisés en medecine",
+  "AUTRES PARTIES DE PLANTES EN MEDECINE"="Autres parties des plantes utilisées principalement en medecine",
+  "Autres parties et accessoires de"="Autres parties et accesoires des vehicules",
+  "Autres parties et accesoires des vehicules"="Autres parties et accessoires de"
+)
+
+levels(taxe_df$Goods)
+```
+
+
+
+
+```{r echo=FALSE,include=FALSE}
+taxe_df$Goods <- taxe_df$Goods %>% fct_recode(
+  "BACHES"="Baches et stores d'exterieur de fibres",
+  "BACHES"="Baches et stores d'exterieur de fibres synth",
+  "Vetementssss"="Autres vetements de dessous en coton, pour",
+  "Vetementssss"="Autres vetements en bonneterie d'autres",
+  "BISCUIT" ="Biscuits additionnes d'edulcorants" ,
+  "Véhicules"="Autres vehicules automobiles a usages" ,
+  "Véhicules"="Autres vehicules automobiles a usages speciaux",
+  "Véhicules"="Autres vehicules autom a usages speciaux" ,
+  "AUTRES PARTIES ET ACCESSOIRES DE VEHICULES DES n87.01 a 87.05"="Autres parties et accessoires de",
+  "AUTRES PARTIES ET ACCESSOIRES DE VEHICULES DES n87.01 a 87.05"="Autres parties et accesoires des vehicules" ,
+  "AUTRES PARTIES ET ACCESSOIRES DE VEHICULES DES n87.01 a 87.05"="AUTRES PARTIES ET ACCESSOIRES DES VEHICULES",
+  "AUTRES PARTIES ET ACCESSOIRES DE VEHICULES DES n87.01 a 87.05"="autres parties et accessoires des vehicules des 8701 a 8705",
+  "AUTRES PARTIES ET ACCESSOIRES DE VEHICULES DES n87.01 a 87.05"="Autres parties et accessoires des vehicules des 8701 a 8705" ,
+  "AUTRES PARTIES ET ACCESSOIRES DE VEHICULES DES n87.01 a 87.05"="Autres parties et accessoires des vehicules des 8701 a 8705",
+  "AUTRES PARTIES ET ACCESSOIRES DE VEHICULES DES n87.01 a 87.05"="AUTRES PARTIES ET ACCESSOIRES DES VEHICULES DES N 87.01 A 87.05",
+  "AUTRES PARTIES ET ACCESSOIRES DE VEHICULES DES n87.01 a 87.05"="Autres parties et accessoires des vehicules des n 8701 à 8705" ,
+  "AUTRES PARTIES ET ACCESSOIRES DE VEHICULES DES n87.01 a 87.05"="Autres parties et accessoires des vehicules n 8701 à 8705" ,
+  "Coltants"="Autres coltan" ,
+  "Coltants"="Autres coltans" ,
+  "OBJET DE DEMENAGEMENT" ="OBJET DE DEMEN" ,
+  "Papier a cigarettes en rouleaux d'une"="PAPIER A CIGARETTE EN ROULEAUX D'UNE LARGEUR N'EXCEDANT PAS 5 CM",
+  "Parties de machines"="PARTIES DES MACHINES ET APPAREILS DU N 84.74",
+  "Parties de machines et appareils"="Parties de machines",
+  "Parties de machines et appareils"="PARTIES DES MACHINES ET APPAREILS DU N 84.74",
+  "Parties de machines et appareils"="Parties des machines et appareils du n° 84.53"
+)
+
+levels(taxe_df$Goods)
+```
+
+
+```{r echo=FALSE,include=FALSE}
+taxe_df$Goods <- taxe_df$Goods %>% fct_recode(
+ "Café arabica"="CAF Vert arabica, en feves K4, Est" ,
+ "Café arabica" ="CAFE",
+ "Café arabica"="3Café vert arabica, en feve K3" 
+)
+
+
+levels(taxe_df$Goods)
+```
+```{r echo=FALSE,include=FALSE}
+taxe_df$Goods <- stringr::str_to_lower(taxe_df$Goods)
+
+```
+
+```{r}
+class(taxe_df$Goods)
+```
+
+```{r echo=FALSE,include=FALSE}
+glimpse(taxe_df)
+```
+
+Usage de tm et Stringr
+
+```{r echo=FALSE,include=FALSE}
+taxe_df$Goods <- tm::removeNumbers(taxe_df$Goods)
+taxe_df$Goods <- tm::removePunctuation(taxe_df$Goods)
+
+taxe_df$Goods <-  tm::removeWords(taxe_df$Goods,words = "automobiles a usages speciaux")
+
+taxe_df$Goods <-  tm::removeWords(taxe_df$Goods,words =c( " a usages speciaux","de","autres parties","oxyde","autres","autre "))
+taxe_df$Goods <- factor(taxe_df$Goods)
+
+```
+
+
+
+```{r echo=FALSE,include=FALSE}
+levels(taxe_df$Goods)
+```
+
+
+```{r echo=FALSE,include=FALSE}
+taxe_df$Goods <- taxe_df$Goods %>% fct_recode(
+  "véhicules"="vehicule kia sorento",
+  "véhicules"="vehicules ",
+  "Vetements"="vetements neuf",
+  "Vetements"="vetements usage",
+  "Vetements"="vetementssss",
+  "véhicules"="toyota" ,
+  "véhicules"="toyota ambulance",
+  "véhicules"="toyota dina agés  plus   ans",
+  "véhicules"="toyota pick up",
+  "véhicules"="toyota rav doccasion",
+  "prep alimentaire"="préparations alimentaires ndca",
+  "peaux des betes"="peaux",
+  "farine de froment"= "farine  froment ble ou  meteil",
+  "farine de froment"="farine  froment ou  meteil",
+  "ecorce quinquina"="ecorce quinquinna",
+  "ecorce quinquina"="ecorces  quinquina",
+  "ecorce quinquina"="ecorces quinkina",
+  "ecorce quinquina"="ecorces quinquina",
+  "eaux conditionnées pour la table"="eaux minerales et eaux gazeifiees",
+  "eaux conditionnées pour la table"="eaux minerales et eaux gazeifiées",
+  "eaux conditionnées pour la table"="eaux minerales",
+  "constructions prefabriquées"="constructions prefabriques",
+"compacteurs niveleuses"="compacteurs autopropulses"
+)
+```
+
+
+
+```{r echo=FALSE,include=FALSE}
+levels(taxe_df$Goods)
+taxe_df$Goods <- taxe_df$Goods %>% stringr::str_replace(" ","")
+taxe_df$Goods <- factor(taxe_df$Goods)
+
+```
+
+
+
+
+```{r echo=FALSE,include=FALSE}
+levels(taxe_df$Goods)
+taxe_df$Goods <- taxe_df$Goods %>% fct_recode(
+  "véhicules"="toyotaprado tx",
+  "coltan"="coltants",
+  "constructionprefabriquees"="constructionset parties  constructions en aluminium que ",
+  "constructionprefabriquees"="constructionsprefabriquées")
+levels(taxe_df$Goods)
+
+taxe_df$Goods <- taxe_df$Goods %>% fct_recode(
+  "slips et calecons"="slipset caleçons pour hommes ou garçonnets en bonneterie  coton",
+  "sacset sachets  mballage en  synthétiques ou articles"="sacssachetspochettes",
+"refrigerateur"="refrigerateurs menagers",
+"produits beaute"="produits  beautede",
+"produits beaute"="produits  beaute",
+"mineraiset leurs concentres"="mineraisdetain et leurs concentré",
+"minerais  tantale"="minérais tantale"
+
+
+
+)
+
+levels(taxe_df$Goods)
+
+taxe_df$Goods <- taxe_df$Goods %>% fct_recode(
+  "accumulateurs electriques"="accumulateurselectriques",
+  "art  menage"="articles  menage ou déconomie en aluminium",
+  "babeurrelait et creme" ="babeurrelait et creme caillésyoghourt",
+  "babeurrelait et creme"="babeurrelaitet creme caillesyoghourt ou avec fruits ou cacao",
+  "boisciés"="bois plaques ou stratifies",
+  "boiteset cartonnagespliants"="boiteset cartonnagespliantsen papier ou carton non ondulé" ,
+  "cadreset conteneurs"="cadreset conteneurs multimodaux ycconteneurs citernes et rervoirs" ,
+  "camion"="camionben doccasion",
+  "camion"="camionciterne doccasion",
+  "camion"="camionfamil",
+  "camion"="camionrenault kerax",
+  "camion"="camionsomul",
+  "caoutchouc"="caoutchou" ,
+  "caoutchouc"="caoutchoucnaturel",
+  "caoutchouc"="caouthouxnaturel",
+  "cassiterite"="casseterite",
+  "cassiterite"="cassiterite    ",
+  "cassiterite"="cassiteriet detain   sn",
+  "cassiterite"="cassiterite     sno",
+  "cassiterite"="cassiterite d étain    sn",
+  "cassiterite"="cassitérite d étain    sn",
+  "cassiterite"="cassiterite detain"
+)
+levels(taxe_df$Goods)
+
+taxe_df$Goods <- taxe_df$Goods %>% fct_recode(
+  "peauxdes betes"="peaux des bovins",
+  "peauxdes betes"="peaux",
+  "pierres"="pierres taille ou construction",
+  "cartonsvide"="cartonsvides",
+  "cartonsvide"="cartonsvides usages pour reemploies",
+  "cartonsvide"="cartonsvides usages pour reemplois",
+  "cassiterite"="cassiterite detain ",
+  "cassiterite"="cassiterite detain  ",
+  "cassiterite"="cassiterite detain    sn" ,
+  "cassiterite"="cassiterite détain    sn",
+  "cassiterite"="cassitérite détain    sn",
+  "cassiterite"="cassitérite détain    sn",
+  "cassiterite"="cassiterites d etain  ",
+  "cassiterite"="cassiterites detain    sn",
+  "cassiterite"="cassitérites detain    sn",
+  "cereales que semences"="cereales que semences",
+  "dechetset brisures  cafe vert arabica"="dechetset brisures  cafe vert robusta",
+  "dechetset brisures  cafe vert arabica"="dechetset brisures  café vert robusta",
+  "constructionprefabriquees"="constructions",
+  "désinfectants"="desinfectant",
+  "eauxconditionnées pour la table"="eaux y compris leau douce",
+  "eauxconditionnées pour la table"="eaux vie  vin ou  marc  raisin",
+  "engins du n "="enginsdu n°",
+  "groupes electrogenes"="groupeselectrogene",
+  "groupes electrogenes"="groupes elect",
+  "fourscuisinièresrechauds"="fourscuisinieresrechaudsgrilset rotissoires  electriques",
+  "filsdacetate"="filsdacetate  cellulose",
+  "machinea scier et accessoires"="machinea raboter et accessoires",
+  "groupes electrogenes"="machinesgeneatrices à courant alternatif   kva",
+  "groupes electrogenes"="machinesgeneratrices a courant alternatif")
+
+levels(taxe_df$Goods)
+
+taxe_df$Goods <- taxe_df$Goods %>% fct_recode(
+  "minerais"="minerais  tantale",
+  "minerais"="minerais coltan",
+  "minerais"="minerais que ceux des n  a " ,
+  "minerais"="minerais titane coltant",
+  "minerais"="mineraiscassiterites",
+  "minerais"="mineraiscassiterites",
+  "minerais"="mineraiset leurs concentres",
+  "minerais"="mineraus coltant  scorie stanique   ta",
+  "machines et appareils"="machines et appareils du n ",
+  "machines et appareils"="machineset appareil",
+  "instruments et appareils"="instruments et appareils du n ",
+  "instruments et appareils"="instrumentset appareils  photographie",
+  "dechets et debris minerais"="dechets et debris",
+  "dechets et debris minerais"="dechetset debris  fer ou dacier",
+  "dechets et debris minerais"="dechetset debris  zirconium et ouvrages" ,
+  "dechets et debris minerais"="dechetset debris daciers allies" 
+  
+)
+
+
+levels(taxe_df$Goods)
+
+taxe_df$Goods <- taxe_df$Goods %>% fct_recode(
+  "cassiterite"="cassiterite detain   " ,
+  "huile palme brute"="huiles  paliste ou babassu",
+  "machines"="machinesqui assurent au moins deux des fonctions suivantes",
+  "minerais"="cassiterite",
+  "moteurs"="moteuraviation",
+  "moteurs"="moteursà explosion pour vehicule du chapitre ",
+  "moteurs"="moteursuniversels  puissance excedant w",
+  "pierres"="pieres synthétiques" ,
+  "pierres"="pierres couleur",
+  "moteurs"="propulseursa reaction  que les turboreacteurs",
+  "cerealesque semences"="cereales que semences",
+  "huilesvegetales"="huile palme brute"
+)
+
+levels(taxe_df$Goods)
+
+taxe_df$Goods <- taxe_df$Goods %>%  fct_recode(
+  "tissusimprimés"="tissus  coton imprimé gm et",
+  "art  menage"="vaisselleet art  tables et  cuisine en mat plastiques",
+  " bois scies"="boisciés",
+  'farines'="farine mais",
+  'farines'="farine moutarde et moutarde préparée",
+  'farines'="farine moutarde preparée",
+  'farines'="farinede froment",
+  'farines'="farines mais" ,
+  "accessoires véhicules"="et accessoires  vehicules des n a " ,
+  "accessoires véhicules"="charset automobiles blindees  combat et")
+
+
+levels(taxe_df$Goods)
+
+
+
+```
+
+
+```{r echo=FALSE,include=FALSE}
+taxe_df$Goods <- taxe_df$Goods %>%fct_recode(
+  "Vetements"="ages  ans ou moins",
+  "Vetements"="ages plus   ans",
+  "Vetements"="agés plus   ans ou moins",
+  "articles friperie"="articles  friperie",
+  "art  menage"="articlesdeconomie domestiqueen",
+  " bois scies"="autesbois sciés",
+  "bierres"="baiesfraiches" ,
+  "bierres"="baies fraiches",
+  "bierres"="bières malt titrant moins  °",
+  "plantesmédecinales"="plantes",
+  "recervoirs"="reservoirsfuts tambours bidons dune"
+) 
+
+levels(taxe_df$Goods)
+taxe_df$Goods <- taxe_df$Goods %>% fct_recode(
+ "appareil de communication"="appareilspour la receptionla conversion et la transmission" ,
+ "appareil de communication"="accessoires radio diffusion",
+ "viandes et abats"="abats comestibles frais ou refrigérés  chevauxanesmuletsovinscaprins",
+ "viandes et abats"="abatscomestiblescongelesde chevauxanesmuletsovins ou caprins"
+)
+levels(taxe_df$Goods)
+
+taxe_df$Goods <- taxe_df$Goods %>% fct_recode(
+  "cassitérie"="cassitérite",
+  "cassitérie"="cassiterite ",
+"cassitérie"="cassiterite",
+"cassitérie"="cassiterites",
+"cassitérie"="cassiterte",
+"cassitérie"="cassiterte",
+"cassitérie"="cassitterittes",
+"caféarabica"="cefevert arabica"
+
+)
+
+levels(taxe_df$Goods)
+
+taxe_df$Goods <- taxe_df$Goods %>% fct_recode(
+  "salmonides entiers" ="salmonidesentierscongeles" ,
+  "sacs, sachetsn emballages"= "sacset sachets  mballage en  synthétiques ou articles" ,
+  "prepalimentaire"="préparations alimentaires"  ,
+  "prepalimentaire"="preparations alimentaires n d c a" ,
+  "prepalimentaire"="preparations homogenisees", 
+  "pompes"="pompes a dispositif mesureur ou concues pour en comporter un",
+  "pneumatiques"="pneumatiques neuf en  mat que les mat synth  type pour voiture tourisme",
+  "pneumatiques"="pneumat  qua crpna chvn en autr ctc synt",
+  "plantesmédecinales"="plantes parties  plantes" ,
+  "partieset acc machine et vehicule"="partieset accessoires des vehicules des n°  à ",
+  "papiersndnca"="papiersnon denommes ni compris ailleurs",
+  "outils agricoles"="outils",
+  "meubles"="meubles et leurs parties",
+  "meubles"="meubleset leurs parties" ,
+  "mélanges dépices"="melangesdepices",
+  "huilesvegetales"="huile palme brute",
+  "engrais"="engraisdu chapitre en tablettes ou emballages nexcedant pas  kg brut" ,
+  "pierres"="ecaussineet  pierres calcaires  taille ou constructionalbatre"
+  
+
+
+)
+levels(taxe_df$Goods)
+
+taxe_df$Goods <- taxe_df$Goods %>% fct_recode(
+  "instruments et appareils"="instrumentset appareils du n°",
+  "instruments et appareils"="instrument et appareils du n°",
+  "véhicules"="landcruiser",
+  "machines et appareils"="machineet appareil a imprimer",
+  "art  menage" ="fourscuisinièresrechauds" ,
+  "instruments et appareils"="des appareils des n  ou",
+  "minerais"="dechets et debris minerais",
+  "minerais"="dechets et debris daciers alliés" ,
+  "art  menage"="casserolesen aluminium",
+  "caféarabica"="dechetset brisures  cafe vert arabica")
+
+levels(taxe_df$Goods)
+
+```
+
+
+
+```{r echo=FALSE,include=FALSE}
+taxe_df$Goods <- taxe_df$Goods %>% fct_recode(
+  "riz"="rizsemiblanchi ou blanchi meme poli ou" ,
+  "recipient pour gaz"="recipientspour gaz comprimesliquefiésen fontefer ou acier",
+  "art  menage"="refrigerateur",
+  "accessoires vehicules"="partieset acc machine et vehicule",
+  "moteurs"="moteurs diésel",
+  "machines et appareils"="machines",
+  "camion" ="ivecotrakker d occas")
+
+
+levels(taxe_df$Goods)
+taxe_df$Goods <- taxe_df$Goods %>% fct_recode(
+  "papiersndnca" ="papiers non denommés ni compris ailleurs",
+  "Machines et appareils domestique"="limesrapeset outils similaires",
+  "Machines et appareils domestique"="machines electriques a laver la",
+  "Machines et appareils domestique"="chaudières",
+  "Machines et appareils domestique"="conditionneurdair  mur puis  ou "
+)
+levels(taxe_df$Goods)
+```
+
+
+
+```{r echo=FALSE,include=FALSE}
+taxe_df$Goods <- taxe_df$Goods %>% fct_recode(
+ "Machine us Ingsutriel"="machinepour trans  tabac",
+ "Machine us Ingsutriel"="machinesa percer ou mortaiser les matires du n° " ,
+ "Machine us Ingsutriel"="machinesà meulerponcer ou polir les matières du n°",
+ "Machine us Ingsutriel"="maghonyscieslongitudinalementsciages avives",
+ "Machine us Ingsutriel"="machinea scier et accessoires",
+ "accessoires véhicules"="chassisdautres vehicules automobiles des n  à  avec moteur" ,
+ "Machine us Ingsutriel"="mohoganyscies longitudinalement sciages avives dune epaisseur inferieur à mm"
+)
+
+levels(taxe_df$Goods)
+
+taxe_df$Goods <- taxe_df$Goods %>% fct_recode(
+  "instruments et appareils"="instruments  musique a vent",
+  "eaux de table"="eauxconditionnées pour la table")
+levels(taxe_df$Goods)
+
+taxe_df$Goods <- taxe_df$Goods %>% fct_recode(
+ "Machine us Ingsutriel"= "treuilscabestans",
+ "Machine us Ingsutriel"= "appareils elevateurs a action continue pour marchandises" ,
+ "Machine us Ingsutriel"="appareilselectrothermiques pour la", 
+  "minerais"="cassitérie",
+ "equipements sport"="artet materiel dathletisme"
+ 
+)
+
+levels(taxe_df$Goods)
+
+
+table(taxe_df$Goods)
+
+
+```
+
+
+```{r echo=FALSE,include=FALSE}
+taxe_df$Goods <- taxe_df$Goods %>% fct_recode(
+  "wolframite"="tungstene")
+levels(taxe_df$Goods)
+
+taxe_df$Goods <- taxe_df$Goods %>% fct_recode(
+  "engins et tracteurs"="machines et appareils  manutention du n")
+levels(taxe_df$Goods)
+
+taxe_df$Goods <- taxe_df$Goods %>% fct_recode(
+ "engins et tracteurs"="tracteurs",
+  "engins et tracteurs"="engins du n ",
+  "véhicules"="nissanvanette",
+  "minerais"="coltan",
+  "engins et tracteurs"="chariots yc chariots tracteurssans",
+  "engins et tracteurs"="compacteursniveleuses" ,
+  "engins et tracteurs"="chargeursautopropulses a chargement frontal",
+  "véhicules"="ambulancedune cylindree excedant  cm"
+  )
+
+levels(taxe_df$Goods)
+taxe_df$Goods <- taxe_df$Goods %>% fct_recode(
+  "Malles et Valises"="mallesvalisesmallettesà surface exter en plastique",
+  "prepalimentaire"="margarinea lexclusion  la margarine",
+  "art  menage"="brossesa dents y compris les brosses a",
+  "prepalimentaire"="conserves sprats et esprots entiers ou en morceaux non haches",
+  "prepalimentaire"="navetsbetteravescelerisraveset similaires frais refrigeres")
+
+levels(taxe_df$Goods)
+
+
+taxe_df$Goods <- taxe_df$Goods %>% fct_recode(
+  "prepalimentaire"="thenoir fermente en emballage",
+  "prepalimentaire"="sucset extraits végétaux  houblon",
+  "produits beaute"="produits du no contenant " ,
+  "plaques"="plaques feuillesbandes en polymeres",
+  "plaques"="plaquesfeuillesbandesrubanspellicules"  )
+
+levels(taxe_df$Goods)
+taxe_df$Goods <- taxe_df$Goods %>% fct_recode(
+  "prepalimentaire"="babeurrelait et creme" ,
+  "art  menage"="sel",
+  "outils agricoles"="piochespicshouesbinettesrateauxet racloirs",
+  "art  menage"="nattes en matières vegetales", 
+  "engins et tracteurs"="niveleusesautopropulsées",
+  "boissons en limonades"="jus  tout  fruit ou legume" ,
+  "boissons en limonades"="eaux de table",
+  "Machines et appareils domestique"="machines et appareils",
+  "prepalimentaire"="chocolatet préparations alimentaires du cacao",
+  "prepalimentaire"="babeurrelait et creme")
+levels(taxe_df$Goods)
+
+taxe_df$Goods <- taxe_df$Goods %>% fct_recode(
+  "Matériels de construction"="marteauxet masses" ,
+ "Matériels de construction"="pieressynthétiques ou reconstituees",
+ "Matériels de construction"="scorie",
+ "Matériels de construction"="matérieldéchafaudagede coffrage ou détayage",
+ "Matériels de construction"="escaliersmecaniques et trottoirs roulants" , 
+ "Matériels de construction"="articles en toles emailles", 
+ "Matériels de construction"= "accessoires  tuyauterie en fonte")
+
+levels(taxe_df$Goods)
+
+taxe_df$Goods <- taxe_df$Goods %>% fct_recode(
+  "Vetements,tissus et acc"="tissusimprimés",
+  "Vetements,tissus et acc"="slips et calecons",
+  "Vetements,tissus et acc"="Vetements"  )
+levels(taxe_df$Goods)
+
+taxe_df$Goods <- taxe_df$Goods %>% fct_recode(
+  "Vetements,tissus et acc"="articles friperie",
+  "Vetements,tissus et acc"="articlesconfectionnes en textiles",
+  " plantes en medecine"="partie plante",
+  "prepalimentaire"="biscuit",
+  "Matériels de construction"="ciment",
+  "Matériels de construction"="pierres",
+  "poissons et œufs"="tilapias",
+  "poissons et œufs"="scorpiox mihindra",
+  "poissons et œufs"="scorpiox mihindra",
+  "poissons et œufs"="œufs",
+  "minerais"="ora usages non monetaires dexploitation",
+  "minerais"="orartisanal"
+ )
+levels(taxe_df$Goods)
+
+taxe_df$Goods <- taxe_df$Goods %>% fct_recode(
+  "Autres appareils electriques"="accumulateurs electriques" ,
+  "Autres appareils electriques"="appareilsdu n°",
+  "Autres appareils electriques"="aspirateuret accessoires",
+  "Autres appareils electriques"="extincteursmeme charges")
+levels(taxe_df$Goods)
+taxe_df$Goods <- taxe_df$Goods %>% fct_recode(
+  "instruments et appareils"="cuisinieres",
+  "instruments et appareils"="hautparleurs",
+  " bois scies"="dechetset debris  bois",
+  "groupes electrogenes"="demareursmemefonctionnant comme generatrice",
+  "equipements sport"="materielpour la gymnastique",
+  "quinquina"="alcaloidesdu quinquina et leurs derives",
+  "appareil de communication"="recepteurs fixes  radiodiffusion",
+  "plantesmédecinales"=" plantes en medecine",
+  "quinquina"="ecorcequinquina",
+  "appareilsdéclairage"="lampesreclames",
+  "poissons et œufs"="salmonides entiers"
+  )
+
+levels(taxe_df$Goods)
+
+taxe_df$Goods <- taxe_df$Goods %>% fct_recode(
+  "cadreset conteneurs"="container",
+  "photocopie"="en couleurs",
+  "pc et multimedia"="cameras",
+  "pc et multimedia"="pc",
+  "pc et multimedia"="photocopie",
+  "equipements  protection"="equipementconcus pour la protection individuelles",
+  "Poissaons, viande et oeufs"="viandes et abats",
+  "Poissaons, viande et oeufs"="poissons et œufs",
+  "Contenaires et Citernes en acier"= "cadreset conteneurs",
+  "Contenaires et Citernes en acier"="citernesen acier",
+  "Machines et appareils domestique"="machinea melanger",
+  "Baches et tentes"="tentes" ,
+  "Baches et tentes"="baches",
+  "art  menage"="désinfectants",
+  "produits beaute"="parfunset eaux  toillette titrant   ",
+  "Machine us Ingsutriel"="machinea melanger"
+    )
+levels(taxe_df$Goods)
+taxe_df$Goods <- taxe_df$Goods %>% fct_recode(
+  "Vetements,tissus et acc et chaussure"="chaussures",
+  "Vetements,tissus et acc et chaussure"="Vetements,tissus et acc",
+  "Produits alimentaires et céréales"="haricots",
+  "Produits alimentaires et céréales"="riz",
+  "Produits alimentaires et céréales"="cerealesque semences",
+  "Produits alimentaires et céréales"="farines",
+  "minerais"="wolframite")
+
+levels(taxe_df$Goods)
+taxe_df$Goods <- taxe_df$Goods %>% fct_recode(
+  "articles  campement"="Baches et tentes",
+  "sacs, sachetsn emballages"="articles  transport ou demballage",
+  "etuis en plastique ou textile"="etuisecrinset similaires à surface exterieure en plastique ou textile",
+  "engins et tracteurs"="gruessur pneumatique")
+
+levels(taxe_df$Goods)
+
+
+taxe_df$Goods <- taxe_df$Goods %>% fct_recode(
+  "parties machines et appareils"="unites  machines automatiques ",
+  "vices et bolonts filetes"="viset boulons filetes en fontefer ou acier"  )
+levels(taxe_df$Goods)
+```
+
+
+```{r echo=FALSE,include=FALSE}
+freq(taxe_df$Goods)
+```
+
+
+```{r echo=FALSE,include=FALSE,message=FALSE}
+taxe_df$Goods <- taxe_df$Goods %>% fct_recode(
+  "produits beaute"="savons",
+  "art  menage"="insecticides",
+  "reservoirs et recipients pour gaz"="recervoirs",
+  "reservoirs et recipients pour gaz"="recipient pour gaz",
+  "effetspersonnels"="lunettes",
+)
+levels(taxe_df$Goods)
+
+
+taxe_df$Goods <- taxe_df$Goods %>% fct_recode(
+  "mitrailles fer"="plaques",
+  "mitrailles fer"="tourset pylones en fontes",
+  "art  menage"="objet demenagement",
+  "art  menage"="objet demenagement",
+  "Matériels de construction"="bitumes",
+  "pc et multimedia"="photocopie",
+  "Machine us Ingsutriel"="compresseurs")
+
+levels(taxe_df$Goods)
+taxe_df$Goods <- taxe_df$Goods %>% fct_recode(
+  "accessoires véhicules"="vices et bolonts filetes",
+  "Papiers et étiquettes"="etiquettes  tous genres en papier",
+  "Papiers et étiquettes"="papiersndnca",
+  "caféarabica"="nondecafeine",
+  "boiteset cartonnagespliants"="cartonsvide")
+
+levels(taxe_df$Goods)
+taxe_df$Goods <- taxe_df$Goods %>% fct_recode(
+  "Produits alimentaires et céréales"="poivrenon broye ni pulverise",
+  "Autres marchandises  1"="cerceuil",
+  "Autres marchandises  1"="",
+  "Autres marchandises  1"="acideacetique",
+  "Autres marchandises  1"="armes",
+  "Autres marchandises  1"="echantillonsdes materiaux geologiques",
+  "Autres marchandises  1"="oxygene",
+  "Autres marchandises  1"="matièrescolorantes",
+  "Autres marchandises  1"="dispositifs fermeture"
+)
+levels(taxe_df$Goods)
+
+taxe_df$Goods <- taxe_df$Goods %>% fct_recode(
+  "Autres marchandises  1"="couvertures non chauffantes",
+  "véhicules"="ashoklayland",
+  "Produits alimentaires et céréales"="legumes frais ou refrigeres")
+
+levels(taxe_df$Goods)
+taxe_df$Goods <- taxe_df$Goods %>% fct_recode(
+  "Autres marchandises  1"="palettessimples palettescaisses et ")
+levels(taxe_df$Goods)
+
+
+freq(taxe_df$Goods)
+
+taxe_df$Goods <- taxe_df$Goods %>% fct_recode(
+  "huile graissage"="motoset lubrifiant",
+  "art  menage" ="montres yc compteur  temps",
+  "Ordinateur et Materiel Informatique"="pc et multimedia",
+  "Appareil de communication et Antennes"="antenneset refleteurs",
+  "Appareil de communication et Antennes"="appareil de communication",
+  "Lampes et appreil d'éclairage"=" lampes portatives",
+  "Lampes et appreil d'éclairage"="appareilsdéclairage",
+  "Pièces de Réchange appareils"="parties machines et appareils"
+)
+
+levels(taxe_df$Goods)
+taxe_df$Goods <- taxe_df$Goods %>% fct_recode(
+"Moteurs et accessoires Véhicules"="accessoires vehicules",
+"Moteurs et accessoires Véhicules"="accessoires véhicules",
+"Moteurs et accessoires Véhicules"="moteurs",
+"Papiers et fournitures de bureaux"="Papiers et étiquettes",
+"Papiers et fournitures de bureaux"="articles bureau",
+"Produits alimentaires et céréales"="laiten poudre")
+levels(taxe_df$Goods)
+
+taxe_df$Goods <- taxe_df$Goods %>% fct_recode(
+  "Prép.Alimentaire et Sucres"="sucres canne",
+  "Prép.Alimentaire et Sucres"="prepalimentaire",
+  "Autres Marchandises"="engrais",
+  "Autres Marchandises"="Autres marchandises  1",
+  "Autres Marchandises"="ouvrages en plomb",
+  "instruments et appareils"="Autres appareils electriques")
+
+levels(taxe_df$Goods)
+taxe_df$Goods <- taxe_df$Goods %>% fct_recode(
+  "Bois"=" bois scies",
+  "Prép.Alimentaire,Sucres et épices"="Prép.Alimentaire et Sucres",
+  "Prép.Alimentaire,Sucres et épices"="mélanges dépices",
+  "Moteurs et accessoires Véhicules"="pneumatiques",
+  "Moteurs et accessoires Véhicules et pneumatiques"="Moteurs et accessoires Véhicules")
+
+levels(taxe_df$Goods)
+
+
+taxe_df$Goods <- taxe_df$Goods %>% fct_recode(
+  "Autres Marchandises"="trottinetteschukudu",
+  "Générateurs,baterie et piles"  ="piles et batteries",
+  "Générateurs,baterie et piles"  ="groupes electrogenes")
+levels(taxe_df$Goods)
+
+taxe_df$Goods <- taxe_df$Goods %>% fct_recode(
+  "Article Menange et Campement"="art  menage",
+  "Article Menange et Campement"="articles  campement",
+  "Autres Marchandises"="cablescoaxiaux",
+  "boissons, bières et limonades"="boissons en limonades",
+  "boissons, bières et limonades"="bierres",
+  "boissons, bières et limonades"="levuresvivantes",
+  "Autres Marchandises"="filsdacetate" )
+
+freq(taxe_df$Goods)
+
+```
+
+
+```{r echo=FALSE,include=TRUE,message=FALSE}
+taxe_df$Goods <- taxe_df$Goods %>% fct_recode(
+  "Véhicules et Motos"="motocycles",
+  "Véhicules et Motos"="véhicules",
+  "boissons, bières et limonades"="alcooletylique non denature",
+  "Article Menange et Campement"= "Malles et Valises"
+)
+
+taxe_df$Goods <- taxe_df$Goods %>% fct_recode(
+  "Cigarette et papier cigarettes"="papiera cigarettes en rouleaux dune",
+ "Cigarette et papier cigarettes"="cigaresmemea bouts coupes et",
+  "Autres Marchandises"="effetspersonnels",
+  "Autres Marchandises"="equipements protection")
+
+```
+```{r echo=FALSE,include=TRUE,message=FALSE}
+taxe_df$Goods <- taxe_df$Goods %>% fct_recode(
+  "instruments et appareils"="pompes",
+  "Pétrole et dérivées et huile de graissage"="huile graissage" ,
+  "Pétrole et dérivées et huile de graissage"="petrollampant sans biodiesel",
+  "Médicaments et plantes médécinales"="medicaments",
+  "Médicaments et plantes médécinales"="quinquina",
+  "Médicaments et plantes médécinales"="plantesmédecinales",
+  "Véhicules,camions et Motos"="camion",
+  "Véhicules,camions et Motos"="Véhicules et Motos",
+  "Minérais et dérivés"="minerais",
+  "Minérais et dérivés"="mitrailles fer")
+
+taxe_df$Goods <- taxe_df$Goods %>% fct_recode(
+  "Pièces de Réchange appareils"="davions ou dhelicopteres")
+
+taxe_df$Goods <- taxe_df$Goods %>% fct_recode(
+  "Autres Marchandises"= "reservoirs et recipients pour gaz",
+  "Autres Marchandises"="reservoirs et recipients pour gaz",
+  "Autres Marchandises"="boiteset cartonnagespliants",
+  "Autres Marchandises"="equipements sport"
+)
+
+
+
+taxe_df$Goods <- taxe_df$Goods %>% fct_recode(
+  "boissons, bières,liqueurs et limonades"="liqueurstitrant moins  ")
+taxe_df$Goods <- taxe_df$Goods %>% fct_recode(
+  "Autres Marchandises"="equipements  protection",
+  "Autres Marchandises"="meubles",
+  "Autres Marchandises"="outils agricoles")
+
+taxe_df$Goods <- taxe_df$Goods %>% fct_recode(
+  "Produits alimentaires,céréales et huiles"="huilesvegetales" ,
+  "Produits alimentaires,céréales et huiles"="Produits alimentaires et céréales",
+  "Cigarette et papier cigarettes et tabac"="Cigarette et papier cigarettes",
+  "Cigarette et papier cigarettes et tabac"="tabacs"
+)
+
+taxe_df$Goods <- taxe_df$Goods %>% fct_recode(
+  "Autres Marchandises"="Contenaires et Citernes en acier",
+  "Materiel Informatique et Electroniques"= "Appareil de communication et Antennes",
+  "Materiel Informatique et Electroniques"= "Ordinateur et Materiel Informatique",
+  "Materiel Informatique et Electroniques"="instruments et appareils")
+
+taxe_df$Goods <- taxe_df$Goods %>% fct_recode(
+  "Machines et appareils domestique"="Lampes et appreil d'éclairage",
+  "Véhicules,camions,Motos et acc"="Véhicules,camions et Motos",
+  "Véhicules,camions,Motos et acc"="Moteurs et accessoires Véhicules"
+)
+
+taxe_df$Goods <- taxe_df$Goods %>% fct_recode(
+  "Autres Marchandises"="caoutchouc")
+
+taxe_df$Goods <- taxe_df$Goods %>% fct_recode(
+  "Véhicules,camions,Motos et acc"="Moteurs et accessoires Véhicules et pneumatiques",
+  "Produits alimentaires,prep et huiles"="Produits alimentaires,céréales et huiles",
+  "Produits alimentaires,prep et huiles"="Prép.Alimentaire,Sucres et épices")
+
+taxe_df$Goods <- taxe_df$Goods %>% fct_recode(
+  
+)
+
+
+```
+
+
+
+```{r echo=FALSE,include=TRUE,message=FALSE}
+levels(taxe_df$Goods)
+freq(taxe_df$Goods)
+```
+
+netoyyage de la variable country_desti qui est un facteur dans le quel nous retrouvons les niveaux rédondants (sur l'identifiant des pays)
+
+```{r echo=FALSE,include=TRUE,message=FALSE}
+taxe_df <- taxe_df %>% rename(Country_dest=`Country/destination`)
+taxe_df$Country_dest <- factor(taxe_df$Country_dest)
+levels(taxe_df$Country_dest)
+taxe_df$Country_dest <- taxe_df$Country_dest %>% fct_recode(
+  "TANZANIE"="TZ",
+  "SUEDE"="SWEDEN",
+  "RDC"= "RDC/BUNIA",
+  "ROYAUME UNI"="R-U",
+  "PAYS BAS"="NERTHERLAND","ESPAGNE"="MADRID",
+  "GRANDE BRATAGNE"="ROYAUME UNI",
+  "EMIRATES ARABES UNIES"="UAE","GRANDE BRATAGNE"="ANGLETERRE",
+  "SUITZERLAND"="SWITZERLAND",
+  "BELGIQUE"="RDC/BELGIQUE","CHINE"="RDC/CHINE",
+  "USA"="RDC/ETATS UNIS",
+  "FRANCE"="RDC/FRANCE","MALAISIE"="RDC/MALAISIE",
+  "OUGANDA"="RDC/OUGANDA","GRANDE BRATAGNE"="RDC/R-U",
+  "RWANDA"="RDC/RWANDA","SINGAPOUR"="RDC/SINGAPOUR",
+  "SUISSE"="RDC/SUISSE", 
+  "NA"="WALTER MATTER",
+  "NA"="SKN",
+  "NA"="SUCAFINA","NA"="J WOLFF",
+  "NA"="DOMBASI SIMBA")
+taxe_df$Country_dest <- taxe_df$Country_dest %>% fct_recode(
+  "REP TCHEQUE"="CZECH REP",
+  "NA"="TWIN TRADING" ,
+  "Swaziland"="SUITZERLAND",
+  "KP - Corée"="KP - Corée, République Populaire démocra")
+levels(taxe_df$Country_dest)
+
+
+```
+Dans la base des données il y a des entreprises que l'on a enregistré à la place des pays. ces genre des cas ont été traité par remplacement avec le *NA* pour **Not Available** et ces dernier on été élargués de la base des données, car nous avions jugé qu' aucune méthode d'imputation n'est applicable pour ce genre de situation. Nous avions fait la même chose pour les variables tels que **Les marchandises**.
+
+
+### Nouvelle base de données pour les analyses
+
+Regroupement des variables pour la synthèse  pour rendre la base des données simple à exploiter, éliminer les NA dans les observations telsque les pays et les valeurs pour les marchandises et les taxes.
+
+```{r fig.dim=c(5,6)}
+DBase <- taxe_df  %>% 
+  select(Year,Country_dest,Goods,Weight,Taxe) %>% 
+  group_by(Year,Country_dest,Goods) %>% 
+  summarise(Weight=sum(Weight),Taxe=sum(Taxe),.groups = "drop") %>% drop_na() 
+
+correlate(DBase) %>% kable(caption = "Table de corrélation entre les variables quantitatives")
+#plot_correlate(DBase)
+
+```
+
+
+```{r}
+df <- pdata.frame(DBase,index = c("Year","Country_dest"))
+DF <- df %>% pivot_wider(names_from = Goods,values_from = c(Taxe,Weight))
+
+```
+```{r}
+DB <- pdata.frame(DBase,index=c("Year","Goods"))
+```
+
+
+
+
+## Analyse descriptive des Varariales 
+
+Conversion des données en modèle des panels des données

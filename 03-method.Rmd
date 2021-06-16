@@ -1,0 +1,24 @@
+# Methods
+
+We describe our methods in this chapter.
+
+
+Les données de panel, ou données longitudinales possèdent les deux dimensions précédentes (individuelle et temporelle). En effet, il est souvent intéressant d’identifier l’effet associé à chaque individu (un effet qui ne varie pas dans le temps, mais qui varie d’un individu à un autre). Cet effet peut être fixe ou aléatoire.
+
+
+Par conséquent, le modèle en données de panel s’écrit comme un modèle à double indice qui prend la forme suivante :
+
+
+$$ Y_{it}= \alpha_i\sum_{k}\beta_{ki}x_{ki}+ \epsilon_{it} $$
+
+avec 
+$$ i:1 \rightarrow N $$  
+et 
+$$ t:1 \rightarrow T $$ 
+
+La double dimension qu’offrent les données de panel est un atout majeur. En effet, si les données en séries temporelles permettent d’étudier l’évolution des relations dans le temps, elles ne permettent pas de contrôler l’hétérogénéité entre les individus. A l’inverse, les données en coupes transversales permettent d’analyser l’hétérogénéité entre les individus mais elles ne peuvent pas tenir compte des comportements dynamiques, puisque la dimension temporelle est exclue du champ d’analyse.
+
+
+Ainsi, en utilisant des données de panel, on pourra exploiter les deux sources de variation de l’information statistique :
+- Temporelle où variabilité intra-individuelle (within)
+- et individuelle ou variabilité inter-individuelle (Between).

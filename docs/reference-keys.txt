@@ -1,0 +1,16 @@
+fig:nice-fig
+tab:nice-tab
+tab:unnamed-chunk-2
+tab:g
+tab:unnamed-chunk-41
+prerequis
+intro
+literature
+the-one-way-error-component-regression-model
+introduction
+methods
+analyses
+netoyage-de-la-base-des-données
+nouvelle-base-de-données-pour-les-analyses
+analyse-descriptive-des-varariales
+final-words
