@@ -42,4 +42,16 @@ $P^{'} = P$ and \$ P\^2 = P \$. This means that $rank(P) = tr(P) = N$ and $rank(
 
 In this case, the μi are assumed to be fixed parameters to be estimated and the remainder disturbances stochastic with $v_{it}$ independent and identically distributed $IID(0,\sigma_v^2)$. The $X_{it}$ are assumed independent of the $v_{it}$ for all i and t. The fixed effects model is an appropriate specification if we are focusing on a specific set of N firms, say, IBM, GE,Westinghouse, etc. and our inference is restricted to the behavior of these sets of firms. Alternatively, it could be a set of N OECD countries, or N American states. Inference in this case is conditional on the particular N firms, countries or states that are observed. One can substitute the disturbances given by (2.4) into (2.3) to get
 
-$$ y=\alpha i_{IT} + X\beta + Z_\mu \mu +v = Z\delta + Z_\mu \mu +v    $$ (2.5)
+$ y=\alpha i_{IT} + X\beta + Z_\mu \mu +v = Z\delta + Z_\mu \mu +v    $ (2.5)
+
+and then perform ordinary least squares (OLS) on (2.5) to get estimates of 
+$ \alpha,\beta \ and \ µ $ 
+
+Note
+that Z is $ NT \times (K+1)$ and  $Z_µ$ , the matrix of individual dummies, is$NT \times N $ NT × N. If N is large, (2.5) will include too many individual dummies, and the matrix to be inverted by OLS is large
+and of dimension $(N + K)$. In fact, since α and β are the parameters of interest, one can obtain the LSDV (least squares dummy variables) estimator from (2.5), by premultiplying the model by Q and performing OLS on the resulting transformed model:
+
+$ Qy=QX\beta + Qv$  (2.6)
+
+This uses the fact that $QZ_\mu =Qi_{NT}=0$ , since $PZ_\mu =Z_\mu$ the Q matrix
+wipes out the individual effects. This is a regression of $\tilde y =QY$ with element  $(y_{it} - \bar y _{i.} )$ on $\check X=QX$ with typical element
