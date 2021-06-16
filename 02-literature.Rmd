@@ -51,8 +51,16 @@ such that the slower index is over individuals and the faster index is over time
 where IN is an identity matrix of dimension N, ιT is a vector of ones of dimension  T and $ \otimes $ denotes Kronecker product. $ Z_\mu $ is a selector matrix of ones and zeros, or simply the matrix of individual dummies that one may include in the regression to estimate theμi if they are assumed to
 be fixed parameters. $ \mu^{'} = (\mu_1, . . . , \mu_N )$ and $ν^{'} = (ν11, . . . , ν_{1T} , . . . , ν_{N1}, . . . , ν_{NT} )$. Note that
 
-$Z_\mu Z^{'}_\mu = I_N \otimes J_T  $ where $ JT $
-is a matrix of ones of dimension T and $ P = Zμ(Z^{'}_\mu Z_\mu)^{−1} Z^{'}_\mu  $, the projectionmatrix on $ Z_\mu $ , reduces to IN ⊗ J¯T where $J¯T = JT /T $. P is a matrix which averages the observation across time for each individual, and Q = INT − P is a matrix which obtains
+$Z_\mu Z^{'}_\mu = I_N \otimes J_T  $ 
+where
+$ JT $
+is a matrix of ones of dimension T and 
+$ P = Zμ(Z^{'}_\mu Z_\mu)^{−1} Z^{'}_\mu  $
+, the projectionmatrix on $ Z_\mu $ , reduces to 
+$ IN \otimes J_T $
+where 
+$J _T= JT /T $
+. P is a matrix which averages the observation across time for each individual, and Q = INT − P is a matrix which obtains
 the deviations from individual means. For example, regressing y on the matrix of dummy variables
  $Z_μ$ gets the predicted values $ P_y $ which has a typical element 
  
@@ -60,7 +68,15 @@ the deviations from individual means. For example, regressing y on the matrix of
  repeated T times for each individual. The residuals of this regression are given by Qy which has a typical element 
  $$ (y_{it} - \bar y _{i.} ) $$
  P and Q are (i) symmetric idempotent matrices, i.e.
- $ P^{'} = P $ and $P^2 = P $. This means that $ rank(P) = tr(P) = N$ and $ rank(Q) = tr(Q) = N(T − 1) $. This uses the result that the rank of an idempotent matrix is equal to its trace (see Graybill, 1961,theorem 1.63). Also, (ii) P and Q are orthogonal, i.e. PQ = 0 and (iii) they sum to the identity matrix P + Q = INT . In fact, any two of these properties imply the third (see Graybill, 1961, theorem 1.68).
+ 
+ $ P^{'} = P $ 
+ and
+ $ P^2 = P $. 
+ This means that
+ $ rank(P) = tr(P) = N$ 
+ and
+ $ rank(Q) = tr(Q) = N(T − 1) $. 
+ This uses the result that the rank of an idempotent matrix is equal to its trace (see Graybill, 1961,theorem 1.63). Also, (ii) P and Q are orthogonal, i.e. PQ = 0 and (iii) they sum to the identity matrix P + Q = INT . In fact, any two of these properties imply the third (see Graybill, 1961, theorem 1.68).
 
 
 ## THE FIXED EFFECTS MODEL

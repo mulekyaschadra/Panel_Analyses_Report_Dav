@@ -233,15 +233,30 @@ and time and can be thought of as the usual disturbance in the regression. Alter
 such that the slower index is over individuals and the faster index is over time.$ Z_= IN ιT $
 where IN is an identity matrix of dimension N, ιT is a vector of ones of dimension T and $ $ denotes Kronecker product. $ Z_$ is a selector matrix of ones and zeros, or simply the matrix of individual dummies that one may include in the regression to estimate theμi if they are assumed to
 be fixed parameters. $ ^{’} = (_1, . . . , _N )$ and <span class="math inline">\(ν^{&#39;} = (ν11, . . . , ν_{1T} , . . . , ν_{N1}, . . . , ν_{NT} )\)</span>. Note that</p>
-<p>$Z_Z^{’}<em>= I_N J_T $ where $ JT $
-is a matrix of ones of dimension T and $ P = Zμ(Z^{‘}<em>Z</em>)^{−1} Z^{’}</em>$, the projectionmatrix on $ Z_$ , reduces to IN ⊗ J¯T where $J¯T = JT /T $. P is a matrix which averages the observation across time for each individual, and Q = INT − P is a matrix which obtains
+<p>$Z_Z^{’}<em>= I_N J_T $
+where
+$ JT $
+is a matrix of ones of dimension T and
+$ P = Zμ(Z^{‘}<em>Z</em>)^{−1} Z^{’}</em>$
+, the projectionmatrix on $ Z_$ , reduces to
+$ IN J_T $
+where
+$J _T= JT /T $
+. P is a matrix which averages the observation across time for each individual, and Q = INT − P is a matrix which obtains
 the deviations from individual means. For example, regressing y on the matrix of dummy variables
 <span class="math inline">\(Z_μ\)</span> gets the predicted values $ P_y $ which has a typical element</p>
 <p><span class="math display">\[ \bar y_i = \sum_{t=1}^T \frac{y_{it}}{T}  \]</span>
 repeated T times for each individual. The residuals of this regression are given by Qy which has a typical element
 <span class="math display">\[ (y_{it} - \bar y _{i.} ) \]</span>
-P and Q are (i) symmetric idempotent matrices, i.e.
-$ P^{’} = P $ and $P^2 = P $. This means that $ rank(P) = tr(P) = N$ and $ rank(Q) = tr(Q) = N(T − 1) $. This uses the result that the rank of an idempotent matrix is equal to its trace (see Graybill, 1961,theorem 1.63). Also, (ii) P and Q are orthogonal, i.e. PQ = 0 and (iii) they sum to the identity matrix P + Q = INT . In fact, any two of these properties imply the third (see Graybill, 1961, theorem 1.68).</p>
+P and Q are (i) symmetric idempotent matrices, i.e.</p>
+<p>$ P^{’} = P $
+and
+$ P^2 = P $.
+This means that
+$ rank(P) = tr(P) = N$
+and
+$ rank(Q) = tr(Q) = N(T − 1) $.
+This uses the result that the rank of an idempotent matrix is equal to its trace (see Graybill, 1961,theorem 1.63). Also, (ii) P and Q are orthogonal, i.e. PQ = 0 and (iii) they sum to the identity matrix P + Q = INT . In fact, any two of these properties imply the third (see Graybill, 1961, theorem 1.68).</p>
 </div>
 <div id="the-fixed-effects-model" class="section level2" number="4.2">
 <h2><span class="header-section-number">4.2</span> THE FIXED EFFECTS MODEL</h2>
