@@ -24,7 +24,7 @@
 <meta name="author" content="David BYAMUNGU" />
 
 
-<meta name="date" content="2021-06-16" />
+<meta name="date" content="2021-06-17" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -120,28 +120,6 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
-<style type="text/css">
-/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}
-</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -166,6 +144,7 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="4.1" data-path="the-one-way-error-component-regression-model.html"><a href="the-one-way-error-component-regression-model.html#introduction"><i class="fa fa-check"></i><b>4.1</b> INTRODUCTION</a></li>
 <li class="chapter" data-level="4.2" data-path="the-one-way-error-component-regression-model.html"><a href="the-one-way-error-component-regression-model.html#the-fixed-effects-model"><i class="fa fa-check"></i><b>4.2</b> THE FIXED EFFECTS MODEL</a></li>
+<li class="chapter" data-level="4.3" data-path="the-one-way-error-component-regression-model.html"><a href="the-one-way-error-component-regression-model.html#the-random-effects-model"><i class="fa fa-check"></i><b>4.3</b> THE RANDOM EFFECTS MODEL</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="methods.html"><a href="methods.html"><i class="fa fa-check"></i><b>5</b> Methods</a></li>
 <li class="chapter" data-level="6" data-path="analyses.html"><a href="analyses.html"><i class="fa fa-check"></i><b>6</b> Analyses</a>
@@ -4161,7 +4140,7 @@ WOLFRAMITE
 </table>
 <p>La variables <strong>Goods </strong> a 740 modalités</p>
 <p>Faison la cactérisation des niveaux des marchandises dont l’encodage fait défaut</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="analyses.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(taxe_df<span class="sc">$</span>Goods)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="analyses.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(taxe_df<span class="sc">$</span>Goods)</span></code></pre></div>
 <pre><code>## [1] &quot;character&quot;</code></pre>
 <p>Usage de tm et Stringr</p>
 <pre><code>## Warning: Unknown levels in `f`: equipements protection</code></pre>
@@ -4333,12 +4312,12 @@ WOLFRAMITE
 <div id="nouvelle-base-de-données-pour-les-analyses" class="section level3" number="6.1.1">
 <h3><span class="header-section-number">6.1.1</span> Nouvelle base de données pour les analyses</h3>
 <p>Regroupement des variables pour la synthèse pour rendre la base des données simple à exploiter, éliminer les NA dans les observations telsque les pays et les valeurs pour les marchandises et les taxes.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="analyses.html#cb11-1" aria-hidden="true" tabindex="-1"></a>DBase <span class="ot">&lt;-</span> taxe_df  <span class="sc">%&gt;%</span> </span>
-<span id="cb11-2"><a href="analyses.html#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Year,Country_dest,Goods,Weight,Taxe) <span class="sc">%&gt;%</span> </span>
-<span id="cb11-3"><a href="analyses.html#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Year,Country_dest,Goods) <span class="sc">%&gt;%</span> </span>
-<span id="cb11-4"><a href="analyses.html#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">Weight=</span><span class="fu">sum</span>(Weight),<span class="at">Taxe=</span><span class="fu">sum</span>(Taxe),<span class="at">.groups =</span> <span class="st">&quot;drop&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">drop_na</span>() </span>
-<span id="cb11-5"><a href="analyses.html#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-6"><a href="analyses.html#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="fu">correlate</span>(DBase) <span class="sc">%&gt;%</span> <span class="fu">kable</span>(<span class="at">caption =</span> <span class="st">&quot;Table de corrélation entre les variables quantitatives&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="analyses.html#cb9-1" aria-hidden="true" tabindex="-1"></a>DBase <span class="ot">&lt;-</span> taxe_df  <span class="sc">%&gt;%</span> </span>
+<span id="cb9-2"><a href="analyses.html#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Year,Country_dest,Goods,Weight,Taxe) <span class="sc">%&gt;%</span> </span>
+<span id="cb9-3"><a href="analyses.html#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Year,Country_dest,Goods) <span class="sc">%&gt;%</span> </span>
+<span id="cb9-4"><a href="analyses.html#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">Weight=</span><span class="fu">sum</span>(Weight),<span class="at">Taxe=</span><span class="fu">sum</span>(Taxe),<span class="at">.groups =</span> <span class="st">&quot;drop&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">drop_na</span>() </span>
+<span id="cb9-5"><a href="analyses.html#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="analyses.html#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="fu">correlate</span>(DBase) <span class="sc">%&gt;%</span> <span class="fu">kable</span>(<span class="at">caption =</span> <span class="st">&quot;Table de corrélation entre les variables quantitatives&quot;</span>)</span></code></pre></div>
 <table>
 <caption>
 <span id="tab:unnamed-chunk-41">Table 6.3: </span>Table de corrélation entre les variables quantitatives
@@ -4425,12 +4404,12 @@ Taxe
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="analyses.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">#plot_correlate(DBase)</span></span></code></pre></div>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="analyses.html#cb13-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">pdata.frame</span>(DBase,<span class="at">index =</span> <span class="fu">c</span>(<span class="st">&quot;Year&quot;</span>,<span class="st">&quot;Country_dest&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="analyses.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#plot_correlate(DBase)</span></span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="analyses.html#cb11-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">pdata.frame</span>(DBase,<span class="at">index =</span> <span class="fu">c</span>(<span class="st">&quot;Year&quot;</span>,<span class="st">&quot;Country_dest&quot;</span>))</span></code></pre></div>
 <pre><code>## Warning in pdata.frame(DBase, index = c(&quot;Year&quot;, &quot;Country_dest&quot;)): duplicate couples (id-time) in resulting pdata.frame
 ##  to find out which, use, e.g., table(index(your_pdataframe), useNA = &quot;ifany&quot;)</code></pre>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="analyses.html#cb15-1" aria-hidden="true" tabindex="-1"></a>DF <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> Goods,<span class="at">values_from =</span> <span class="fu">c</span>(Taxe,Weight))</span></code></pre></div>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="analyses.html#cb16-1" aria-hidden="true" tabindex="-1"></a>DB <span class="ot">&lt;-</span> <span class="fu">pdata.frame</span>(DBase,<span class="at">index=</span><span class="fu">c</span>(<span class="st">&quot;Year&quot;</span>,<span class="st">&quot;Goods&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="analyses.html#cb13-1" aria-hidden="true" tabindex="-1"></a>DF <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> Goods,<span class="at">values_from =</span> <span class="fu">c</span>(Taxe,Weight))</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="analyses.html#cb14-1" aria-hidden="true" tabindex="-1"></a>DB <span class="ot">&lt;-</span> <span class="fu">pdata.frame</span>(DBase,<span class="at">index=</span><span class="fu">c</span>(<span class="st">&quot;Year&quot;</span>,<span class="st">&quot;Goods&quot;</span>))</span></code></pre></div>
 <pre><code>## Warning in pdata.frame(DBase, index = c(&quot;Year&quot;, &quot;Goods&quot;)): duplicate couples (id-time) in resulting pdata.frame
 ##  to find out which, use, e.g., table(index(your_pdataframe), useNA = &quot;ifany&quot;)</code></pre>
 </div>

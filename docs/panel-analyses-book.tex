@@ -109,6 +109,9 @@
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 \setcounter{secnumdepth}{5}
 \usepackage{booktabs}
+\usepackage{fancyhdr}
+\usepackage[left=3cm, right=2.5cm, bottom=3cm, top=3cm]{geometry}
+\usepackage{titling}
 \usepackage{booktabs}
 \usepackage{longtable}
 \usepackage{array}
@@ -131,7 +134,7 @@
 
 \title{Panel Analyses Report}
 \author{David BYAMUNGU}
-\date{2021-06-16}
+\date{2021-06-17}
 
 \begin{document}
 \maketitle
@@ -154,73 +157,14 @@ Nous avions utilisé XeLaTeX pour compiler ce document en PDF.
 \hypertarget{intro}{%
 \chapter{Introduction}\label{intro}}
 
-You can label chapter and section titles using \texttt{\{\#label\}} after them, e.g., we can reference Chapter \ref{intro}. If you do not manually label them, there will be automatic labels anyway, e.g., Chapter \ref{methods}.
+Dans ce document nous cherchons à modéliser les taxes perçues dans différents pays , formant un panel dont la période est 10 ans.
+Ainsi, nous expliquerons la variable taxe par
+1. Le poids des Marchandises
+2. La qualité des Marchandises
 
-Figures and tables with captions will be placed in \texttt{figure} and \texttt{table} environments, respectively.
+Le but est d'arbitrer entre le \emph{modele à éffet fixe} et le \emph{modèle à éffet aléatoire} et en fin produire un \texttt{modèle\ dynamique}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{par}\NormalTok{(}\AttributeTok{mar =} \FunctionTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{, }\DecValTok{4}\NormalTok{, .}\DecValTok{1}\NormalTok{, .}\DecValTok{1}\NormalTok{))}
-\FunctionTok{plot}\NormalTok{(pressure, }\AttributeTok{type =} \StringTok{\textquotesingle{}b\textquotesingle{}}\NormalTok{, }\AttributeTok{pch =} \DecValTok{19}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{figure}
-
-{\centering \includegraphics[width=0.8\linewidth]{panel-analyses-book_files/figure-latex/nice-fig-1} 
-
-}
-
-\caption{Here is a nice figure!}\label{fig:nice-fig}
-\end{figure}
-
-Reference a figure by its code chunk label with the \texttt{fig:} prefix, e.g., see Figure \ref{fig:nice-fig}. Similarly, you can reference tables generated from \texttt{knitr::kable()}, e.g., see Table \ref{tab:nice-tab}.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{knitr}\SpecialCharTok{::}\FunctionTok{kable}\NormalTok{(}
-  \FunctionTok{head}\NormalTok{(iris, }\DecValTok{20}\NormalTok{), }\AttributeTok{caption =} \StringTok{\textquotesingle{}Here is a nice table!\textquotesingle{}}\NormalTok{,}
-  \AttributeTok{booktabs =} \ConstantTok{TRUE}
-\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{table}
-
-\caption{\label{tab:nice-tab}Here is a nice table!}
-\centering
-\begin{tabular}[t]{rrrrl}
-\toprule
-Sepal.Length & Sepal.Width & Petal.Length & Petal.Width & Species\\
-\midrule
-5.1 & 3.5 & 1.4 & 0.2 & setosa\\
-4.9 & 3.0 & 1.4 & 0.2 & setosa\\
-4.7 & 3.2 & 1.3 & 0.2 & setosa\\
-4.6 & 3.1 & 1.5 & 0.2 & setosa\\
-5.0 & 3.6 & 1.4 & 0.2 & setosa\\
-\addlinespace
-5.4 & 3.9 & 1.7 & 0.4 & setosa\\
-4.6 & 3.4 & 1.4 & 0.3 & setosa\\
-5.0 & 3.4 & 1.5 & 0.2 & setosa\\
-4.4 & 2.9 & 1.4 & 0.2 & setosa\\
-4.9 & 3.1 & 1.5 & 0.1 & setosa\\
-\addlinespace
-5.4 & 3.7 & 1.5 & 0.2 & setosa\\
-4.8 & 3.4 & 1.6 & 0.2 & setosa\\
-4.8 & 3.0 & 1.4 & 0.1 & setosa\\
-4.3 & 3.0 & 1.1 & 0.1 & setosa\\
-5.8 & 4.0 & 1.2 & 0.2 & setosa\\
-\addlinespace
-5.7 & 4.4 & 1.5 & 0.4 & setosa\\
-5.4 & 3.9 & 1.3 & 0.4 & setosa\\
-5.1 & 3.5 & 1.4 & 0.3 & setosa\\
-5.7 & 3.8 & 1.7 & 0.3 & setosa\\
-5.1 & 3.8 & 1.5 & 0.3 & setosa\\
-\bottomrule
-\end{tabular}
-\end{table}
-
-You can write citations, too. For example, we are using the \textbf{bookdown} package \citep{R-bookdown} in this sample book, which was built on top of R Markdown and \textbf{knitr} \citep{xie2015}.
+Nous expliquons Notre méthodologie dans la partie suivante.
 
 \hypertarget{literature}{%
 \chapter{Literature}\label{literature}}
@@ -255,7 +199,7 @@ where μi denotes the unobservable individual-specific effect and \(ν{it}\) den
 
 \[ y= \alpha i_{NT}  + X\beta +u = Z\delta + u \]
 
-where \(y\) is \$ NT × 1\$ , X is \(NT × K\) , \$ Z = {[}i\_\{NT\} , X{]} \$ , \$ \delta\^{}\{`\}=(\^{}\alpha{'},\beta\^{}\{'\}) \$ and \(i_{NT}\) is a vector of ones of dimension \(NT\) . Also, (2.2) can be written as
+where \(y\) is \$ NT × 1\$ , X is \(NT × K\) , \$ Z = {[}i\_\{NT\} , X{]} \$ , \$ \delta\^{}\{`\}=(\^{}\alpha{'},\beta\^{}\{'\})\$ and \(i_{NT}\) is a vector of ones of dimension \(NT\) . Also, (2.2) can be written as
 
 \[ u=Z_\mu \mu  + v\] (2.4)
 
@@ -283,6 +227,117 @@ and of dimension \((N + K)\). In fact, since α and β are the parameters of int
 
 This uses the fact that \(QZ_\mu =Qi_{NT}=0\) , since \(PZ_\mu =Z_\mu\) the Q matrix
 wipes out the individual effects. This is a regression of \(\tilde y =QY\) with element \((y_{it} - \bar y _{i.} )\) on \(\check X=QX\) with typical element
+
+\[
+\widetilde{\beta}=\left(X^{\prime} Q X\right)^{-1} X^{\prime} Q y
+\]\\
+(2.7)
+with \(\operatorname{var}(\widetilde{\beta})=\sigma_{v}^{2}\left(X^{\prime} Q X\right)^{-1}=\sigma_{v}^{2}\left(\widetilde{X}^{\prime} \tilde{X}\right)^{-1}\) .
+\(\widetilde{\beta}\) could have been obtained from (2.5) using results
+on partitioned inverse or the Frisch--Waugh--Lovell theorem discussed in Davidson and MacKinnon (1993, p.~19). This uses the fact that P is the projection matrix on \(Z_{\mu}\) and \(Q = I_{NT} − P\) (see problem 2.1). In addition, generalized least squares (GLS) on (2.6), using
+the generalized inverse, will also yield \(\widetilde{\beta }\) (see problem 2.2).
+
+Note that for the simple regression
+\[y_{it}=\beta x_{it}+ \mu_i+ v_i     \] (2.8)
+
+and averaging over time gives
+\[  \bar {y}_{i.}= \beta \bar{x}_{i.}+ \mu_i+ \bar{v}_i   \] (2.9)
+
+Therefore, subtracting (2.9) from (2.8) gives
+\[y_{it}-\bar{y}_{i.}=\beta (x_{it}-\bar{x}_{i.}) + (v_{it}-\bar{v}_{i.})   \]
+(2.10)
+
+Also, averaging across all observations in (2.8) gives
+\[\bar{y}_{..}=\alpha + \beta \bar{x}_{..} + \bar{v}_{..} \]
+(2.11)i
+=0where we utilized the restriction that \$\sum\emph{\{i=1\}\^{}\{n\} \mu}\{i\}=0 \$ This is an arbitrary restriction on the dummy
+variable coefficients to avoid the dummy variable trap, or perfect multicollinearity; see Suits
+(1984) for alternative formulations of this restriction. In fact only \(\beta\) and \$ (\alpha + \mu\emph{\{i\})\$ are estimable
+from (2.8), and not α and μi separately, unless a restriction like \[\sum_{i=1}^{n} \mu_{i}=0 \] is imposed. In
+this case, \(\widetilde {\beta}\) is obtained from regression (2.10),
+\[\widetilde {\alpha}= \bar {y}_{..}-\widetilde {\beta} \bar{x}_{..} \] can be recovered from (2.11)
+and \[\widetilde {\mu}_{i}=\bar{y}_{i.}- \widetilde {\alpha} - \widetilde {\beta} \bar{X}_{i.} \] from (2.9). For large labor or consumer panels, where N is very large,regressions like (2.5) may not be feasible, since one is including (N − 1) dummies in the regression. This fixed effects (FE) least squares, also known as least squares dummy variables (LSDV), suffers from a large loss of degrees of freedom. We are estimating (N − 1) extra parameters, and too many dummies may aggravate the problem of multicollinearity among
+the regressors. In addition, this FE estimator cannot estimate the effect of any time-invariant variable like sex, race, religion, schooling or union participation. These time-invariant variables are wiped out by the Q transformation, the deviations from means transformation (see (2.10)).
+Alternatively, one can see that these time-invariant variables are spanned by the individual dummies in (2.5) and therefore any regression package attempting (2.5) will fail, signaling perfect multicollinearity. If (2.5) is the true model, LSDV is the best linear unbiased estimator (BLUE)
+as long as \(v_{it}\) is the standard classical disturbance with mean 0 and variance--covariance
+matrix \$\sigma }\{v\}\^{}\{2\} I\_\{NT\} \$ .
+Note that as \(T \rightarrow \infty\)
+the FE estimator is consistent. However, if T is fixed and \(N \rightarrow \infty\) as is typical in short labor panels, then only the FE estimator of β is consistent; the
+FE estimators of the individual effects
+\(\alpha + \mu_{i}\) are not consistent since the number of these
+parameters increases as N increases. This is the incidental parameter problem discussed by
+Neyman and Scott (1948) and reviewed more recently by Lancaster (2000). Note that when the
+true model is fixed effects as in (2.5), OLS on (2.1) yields biased and inconsistent estimates of
+the regression parameters. This is an omission variables bias due to the fact that OLS deletes
+the individual dummies when in fact they are relevant.
+
+\begin{enumerate}
+\def\labelenumi{(\arabic{enumi})}
+\tightlist
+\item
+  \emph{Testing for fixed effects.} One could test the joint significance of these dummies, i.e.
+  H0; \(\mu_{1}=\mu_{2}= ... = \mu_{N-1}=0\) , by performing an F-test. (Testing for individual effects will
+  be treated extensively in Chapter 4.) This is a simple Chow test with the restricted residual
+  sums of squares (RRSS) being that of OLS on the pooled model and the unrestricted residual
+  sums of squares (URSS) being that of the LSDV regression. If N is large, one can perform the
+  Within transformation and use that residual sum of squares as the URSS. In this case
+\end{enumerate}
+
+\[F_{0}=    \frac{ \dfrac{RRSS-URSS}{N-1}}{\dfrac{URSS}{NT-N-K} } \sim  F_{N-1,N(T-1)-K}           \]
+(2.12)
+
+\begin{enumerate}
+\def\labelenumi{(\arabic{enumi})}
+\setcounter{enumi}{1}
+\item
+  \emph{Computational warning.} One computational caution for those using theWithin regression
+  given by (2.10). The \(s^{2}\) f this regression as obtained from a typical regression package divides
+  the residual sums of squares by NT − K since the intercept and the dummies are not included.
+  The proper \(s^{2}\) , say \(s^{*2}\) from the LSDV regression in (2.5), would divide the same residual
+  sums of squares by \(N(T − 1) − K\) . Therefore, one has to adjust the variances obtained from
+  the Within regression (2.10) by multiplying the variance--covariance matrix by \[\frac{s^{2}}{s^{*2}} \] or
+  simply by multiplying by \([NT − K]/[N(T − 1) − K]\)
+\item
+  \emph{Robust estimates of the standard errors.} For the Within estimator, Arellano (1987)
+  suggests a simple method for obtaining robust estimates of the standard errors that allow for a
+  general variance--covariance matrix on the \(v_{it}\) as in White (1980). One would stack the panel
+  as an equation for each individual:
+  \[y_{i}= Z_{i} \delta + \mu i_{it} + v_{i} \] (2.13)
+\end{enumerate}
+
+where \(y_i\) is T × \$Z\_i ={[}l\_T,X\_i{]} \$, \(X_i\) is T × K, \(\mu _i\) is a scalar,
+\(\delta ^{\prime} = (\alpha, \beta^{\prime} )\) , \(i_T\) is a vector of
+ones of dimension T and \(v_i\) is T x 1 .
+In general, \(E(v_i,v_i^{\prime}) = \Omega _ i\) for i = 1, 2, . . . , N, where \(\Omega _i\) is a positive definite matrix of dimension T . We still assume \(E(v_i,v_j^{\prime}) =0\) for \(i \ne j\) T is
+assumed small and N large as in household or company panels, and the asymptotic results
+are performed for \(N \rightarrow \infty\) and T fixed. Performing the Within transformation on this set of
+equations (2.13) one gets
+
+\[  \widetilde {y}_i=\widetilde{X}_{i} \beta + \widetilde{v}_{i}  \]
+(2.14)
+
+where \[\widetilde{y}=Qy \] , \[\widetilde{X}=QX \] and \[\widetilde{v}=Qv \] ,
+with \[\widetilde{y}=(\widetilde{y}_1^{\prime}, ...,\widetilde{y}_N^{\prime} )^{\prime} \] and \[\widetilde{y}_i=(I_T-\bar{J}_T) y_i \] Computing
+robust least squares on this system, as described by White (1980), under the restriction
+that each equation has the same \(\beta\) one gets the Within estimator of β which has the following
+asymptotic distribution:
+
+\[N^{\frac{1}{2} }  (\widetilde{\beta}- \beta ) \sim N(0,M^{-1}VM^{-1} ) \]
+(2.15)
+
+where
+\[M=\frac{ p\lim(\widetilde{X}^{\prime} \widetilde{X})} {N} \]
+Note that \[\widetilde{X}_i=(I_T - \bar{J}_T) X_i  \] and \[\widetilde{X}^{\prime} diag[\Omega_i] Q \widetilde{X} \] (see problem 2.3). In this case, V is estimated by
+\[ \frac{  \widetilde{V}=\sum_{i=1}^{N} \widetilde{X}_i^{\prime}\widetilde{u}_i \widetilde{u}_i^{\prime}\widetilde{X}_i^{\prime} } {N}  \]
+where \[\widetilde{u}_i=\widetilde{y}_i- \widetilde{X}_i \widetilde{\beta}_i\] .
+Therefore, the robust asymptotic variance--
+covariance matrix of \(\beta\) is estimated by
+\[
+\operatorname{var}(\widetilde{\beta})=\left(\widetilde{X}^{\prime} \tilde{X}\right)^{-1}\left[\sum_{i=1}^{N} \widetilde{X}_{i}^{\prime} \tilde{u}_{i} \tilde{u}_{i}^{\prime} \widetilde{X}_{i}\right]\left(\widetilde{X}^{\prime} \tilde{X}\right)^{-1}
+\]
+
+\hypertarget{the-random-effects-model}{%
+\section{THE RANDOM EFFECTS MODEL}\label{the-random-effects-model}}
 
 \hypertarget{methods}{%
 \chapter{Methods}\label{methods}}

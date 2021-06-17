@@ -24,7 +24,7 @@
 <meta name="author" content="David BYAMUNGU" />
 
 
-<meta name="date" content="2021-06-16" />
+<meta name="date" content="2021-06-17" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -120,28 +120,6 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
-<style type="text/css">
-/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}
-</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -166,6 +144,7 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="4.1" data-path="the-one-way-error-component-regression-model.html"><a href="the-one-way-error-component-regression-model.html#introduction"><i class="fa fa-check"></i><b>4.1</b> INTRODUCTION</a></li>
 <li class="chapter" data-level="4.2" data-path="the-one-way-error-component-regression-model.html"><a href="the-one-way-error-component-regression-model.html#the-fixed-effects-model"><i class="fa fa-check"></i><b>4.2</b> THE FIXED EFFECTS MODEL</a></li>
+<li class="chapter" data-level="4.3" data-path="the-one-way-error-component-regression-model.html"><a href="the-one-way-error-component-regression-model.html#the-random-effects-model"><i class="fa fa-check"></i><b>4.3</b> THE RANDOM EFFECTS MODEL</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="methods.html"><a href="methods.html"><i class="fa fa-check"></i><b>5</b> Methods</a></li>
 <li class="chapter" data-level="6" data-path="analyses.html"><a href="analyses.html"><i class="fa fa-check"></i><b>6</b> Analyses</a>
@@ -214,7 +193,7 @@ div.csl-indent {
 <p><span class="math display">\[  y_{it} = \alpha + X_{it}^{&#39;} + U_{it}   \]</span> , $ i=1,…,N ; t=1,…,T $ with i denoting households, individuals, firms, countries, etc. and t denoting time. The i subscript, therefore, denotes the cross-section dimension whereas t denotes the time-series dimension. $ $ is a scalar, $ $ is $ K × 1 $ and $X_{it} $is the $ it^{th} $ observation on K explanatory variables. disturbances, with it <span class="math display">\[ u_{it}=u_i  + v_{it}     \]</span></p>
 <p>where μi denotes the unobservable individual-specific effect and <span class="math inline">\(ν{it}\)</span> denotes the remainder disturbance. For example, in an earnings equation in labor economics, <span class="math inline">\(y_{it}\)</span> will measure earnings of the head of the household, whereas Xi t may contain a set of variables like experience, education, union membership, sex, race, etc. Note that μi is time-invariant and it accounts for any individual-specific effect that is not included in the regression. In this case we could think of it as the individual’s unobserved ability. The remainder disturbance $ ν{it} $ varies with individuals and time and can be thought of as the usual disturbance in the regression. Alternatively, for a production function utilizing data on firms across time, $ y_{it} $ will measure output and $ X_{it} $ will measure inputs. The unobservable firm-specific effects will be captured by the $ _i $ and we can think of these as the unobservable entrepreneurial or managerial skills of the firm’s executives. Early applications of error components in economics include Kuh (1959) on investment, Mundlak (1961) and Hoch (1962) on production functions and Balestra and Nerlove (1966) on demand for natural gas. In vector form (2.1) can be written as</p>
 <p><span class="math display">\[ y= \alpha i_{NT}  + X\beta +u = Z\delta + u \]</span></p>
-<p>where <span class="math inline">\(y\)</span> is $ NT × 1$ , X is <span class="math inline">\(NT × K\)</span> , $ Z = [i_{NT} , X] $ , $ ^{‘}=(^,^{’}) $ and <span class="math inline">\(i_{NT}\)</span> is a vector of ones of dimension <span class="math inline">\(NT\)</span> . Also, (2.2) can be written as</p>
+<p>where <span class="math inline">\(y\)</span> is $ NT × 1$ , X is <span class="math inline">\(NT × K\)</span> , $ Z = [i_{NT} , X] $ , $ ^{‘}=(^,^{’})$ and <span class="math inline">\(i_{NT}\)</span> is a vector of ones of dimension <span class="math inline">\(NT\)</span> . Also, (2.2) can be written as</p>
 <p><span class="math display">\[ u=Z_\mu \mu  + v\]</span> (2.4)</p>
 <p>where $ u^{‘} = (u_{11}, . . . , u_{1T} , u_{21}, . . . , u_{2T}, . . . , u_{N1}, . . . , u_{NT} ) $ with the observations stacked such that the slower index is over individuals and the faster index is over time.$ Z_= IN ιT $ where IN is an identity matrix of dimension N, ιT is a vector of ones of dimension T and $ $ denotes Kronecker product. $ Z_$ is a selector matrix of ones and zeros, or simply the matrix of individual dummies that one may include in the regression to estimate theμi if they are assumed to be fixed parameters. $ ^{’} = (_1, . . . , _N )$ and <span class="math inline">\(ν^{&#39;} = (ν11, . . . , ν_{1T} , . . . , ν_{N1}, . . . , ν_{NT} )\)</span>. Note that $Z_Z^{‘}= I_N J_T $ where <span class="math inline">\(J_T\)</span> is a matrix of ones of dimension T and $ P = Zμ(Z<sup>{’}</sup>Z){−1} Z^{’}$ , the projectionmatrix on $ Z_$ , reduces to $ IN J_T $ where $J _T= JT /T $ . P is a matrix which averages the observation across time for each individual, and Q = INT − P is a matrix which obtains the deviations from individual means. For example, regressing y on the matrix of dummy variables <span class="math inline">\(Z_μ\)</span> gets the predicted values $ P_y $ which has a typical element</p>
 <p><span class="math display">\[ \bar y_i = \sum_{t=1}^T \frac{y_{it}}{T}  \]</span> repeated T times for each individual. The residuals of this regression are given by Qy which has a typical element <span class="math display">\[ (y_{it} - \bar y _{i.} ) \]</span> P and Q are (i) symmetric idempotent matrices, i.e.</p>
@@ -232,6 +211,97 @@ and of dimension <span class="math inline">\((N + K)\)</span>. In fact, since α
 <p>$ Qy=QX+ Qv$ (2.6)</p>
 <p>This uses the fact that <span class="math inline">\(QZ_\mu =Qi_{NT}=0\)</span> , since <span class="math inline">\(PZ_\mu =Z_\mu\)</span> the Q matrix
 wipes out the individual effects. This is a regression of <span class="math inline">\(\tilde y =QY\)</span> with element <span class="math inline">\((y_{it} - \bar y _{i.} )\)</span> on <span class="math inline">\(\check X=QX\)</span> with typical element</p>
+<p><span class="math display">\[
+\widetilde{\beta}=\left(X^{\prime} Q X\right)^{-1} X^{\prime} Q y
+\]</span><br />
+(2.7)
+with <span class="math inline">\(\operatorname{var}(\widetilde{\beta})=\sigma_{v}^{2}\left(X^{\prime} Q X\right)^{-1}=\sigma_{v}^{2}\left(\widetilde{X}^{\prime} \tilde{X}\right)^{-1}\)</span> .
+<span class="math inline">\(\widetilde{\beta}\)</span> could have been obtained from (2.5) using results
+on partitioned inverse or the Frisch–Waugh–Lovell theorem discussed in Davidson and MacKinnon (1993, p. 19). This uses the fact that P is the projection matrix on <span class="math inline">\(Z_{\mu}\)</span> and <span class="math inline">\(Q = I_{NT} − P\)</span> (see problem 2.1). In addition, generalized least squares (GLS) on (2.6), using
+the generalized inverse, will also yield <span class="math inline">\(\widetilde{\beta }\)</span> (see problem 2.2).</p>
+<p>Note that for the simple regression
+<span class="math display">\[y_{it}=\beta x_{it}+ \mu_i+ v_i     \]</span> (2.8)</p>
+<p>and averaging over time gives
+<span class="math display">\[  \bar {y}_{i.}= \beta \bar{x}_{i.}+ \mu_i+ \bar{v}_i   \]</span> (2.9)</p>
+<p>Therefore, subtracting (2.9) from (2.8) gives
+<span class="math display">\[y_{it}-\bar{y}_{i.}=\beta (x_{it}-\bar{x}_{i.}) + (v_{it}-\bar{v}_{i.})   \]</span>
+(2.10)</p>
+<p>Also, averaging across all observations in (2.8) gives
+<span class="math display">\[\bar{y}_{..}=\alpha + \beta \bar{x}_{..} + \bar{v}_{..} \]</span>
+(2.11)i
+=0where we utilized the restriction that $<em>{i=1}^{n} </em>{i}=0 $ This is an arbitrary restriction on the dummy
+variable coefficients to avoid the dummy variable trap, or perfect multicollinearity; see Suits
+(1984) for alternative formulations of this restriction. In fact only <span class="math inline">\(\beta\)</span> and $ (+ <em>{i})$ are estimable
+from (2.8), and not α and μi separately, unless a restriction like <span class="math display">\[\sum_{i=1}^{n} \mu_{i}=0 \]</span> is imposed. In
+this case, <span class="math inline">\(\widetilde {\beta}\)</span> is obtained from regression (2.10),
+<span class="math display">\[\widetilde {\alpha}= \bar {y}_{..}-\widetilde {\beta} \bar{x}_{..} \]</span> can be recovered from (2.11)
+and <span class="math display">\[\widetilde {\mu}_{i}=\bar{y}_{i.}- \widetilde {\alpha} - \widetilde {\beta} \bar{X}_{i.} \]</span> from (2.9). For large labor or consumer panels, where N is very large,regressions like (2.5) may not be feasible, since one is including (N − 1) dummies in the regression. This fixed effects (FE) least squares, also known as least squares dummy variables (LSDV), suffers from a large loss of degrees of freedom. We are estimating (N − 1) extra parameters, and too many dummies may aggravate the problem of multicollinearity among
+the regressors. In addition, this FE estimator cannot estimate the effect of any time-invariant variable like sex, race, religion, schooling or union participation. These time-invariant variables are wiped out by the Q transformation, the deviations from means transformation (see (2.10)).
+Alternatively, one can see that these time-invariant variables are spanned by the individual dummies in (2.5) and therefore any regression package attempting (2.5) will fail, signaling perfect multicollinearity. If (2.5) is the true model, LSDV is the best linear unbiased estimator (BLUE)
+as long as <span class="math inline">\(v_{it}\)</span> is the standard classical disturbance with mean 0 and variance–covariance
+matrix $</em>{v}^{2} I_{NT} $ .
+Note that as <span class="math inline">\(T \rightarrow \infty\)</span>
+the FE estimator is consistent. However, if T is fixed and <span class="math inline">\(N \rightarrow \infty\)</span> as is typical in short labor panels, then only the FE estimator of β is consistent; the
+FE estimators of the individual effects
+<span class="math inline">\(\alpha + \mu_{i}\)</span> are not consistent since the number of these
+parameters increases as N increases. This is the incidental parameter problem discussed by
+Neyman and Scott (1948) and reviewed more recently by Lancaster (2000). Note that when the
+true model is fixed effects as in (2.5), OLS on (2.1) yields biased and inconsistent estimates of
+the regression parameters. This is an omission variables bias due to the fact that OLS deletes
+the individual dummies when in fact they are relevant.</p>
+<ol style="list-style-type: decimal">
+<li><em>Testing for fixed effects.</em> One could test the joint significance of these dummies, i.e.
+H0; <span class="math inline">\(\mu_{1}=\mu_{2}= ... = \mu_{N-1}=0\)</span> , by performing an F-test. (Testing for individual effects will
+be treated extensively in Chapter 4.) This is a simple Chow test with the restricted residual
+sums of squares (RRSS) being that of OLS on the pooled model and the unrestricted residual
+sums of squares (URSS) being that of the LSDV regression. If N is large, one can perform the
+Within transformation and use that residual sum of squares as the URSS. In this case</li>
+</ol>
+<p><span class="math display">\[F_{0}=    \frac{ \dfrac{RRSS-URSS}{N-1}}{\dfrac{URSS}{NT-N-K} } \sim  F_{N-1,N(T-1)-K}           \]</span>
+(2.12)</p>
+<ol start="2" style="list-style-type: decimal">
+<li><p><em>Computational warning.</em> One computational caution for those using theWithin regression
+given by (2.10). The <span class="math inline">\(s^{2}\)</span> f this regression as obtained from a typical regression package divides
+the residual sums of squares by NT − K since the intercept and the dummies are not included.
+The proper <span class="math inline">\(s^{2}\)</span> , say <span class="math inline">\(s^{*2}\)</span> from the LSDV regression in (2.5), would divide the same residual
+sums of squares by <span class="math inline">\(N(T − 1) − K\)</span> . Therefore, one has to adjust the variances obtained from
+the Within regression (2.10) by multiplying the variance–covariance matrix by <span class="math display">\[\frac{s^{2}}{s^{*2}} \]</span> or
+simply by multiplying by <span class="math inline">\([NT − K]/[N(T − 1) − K]\)</span></p></li>
+<li><p><em>Robust estimates of the standard errors.</em> For the Within estimator, Arellano (1987)
+suggests a simple method for obtaining robust estimates of the standard errors that allow for a
+general variance–covariance matrix on the <span class="math inline">\(v_{it}\)</span> as in White (1980). One would stack the panel
+as an equation for each individual:
+<span class="math display">\[y_{i}= Z_{i} \delta + \mu i_{it} + v_{i} \]</span> (2.13)</p></li>
+</ol>
+<p>where <span class="math inline">\(y_i\)</span> is T × $Z_i =[l_T,X_i] $, <span class="math inline">\(X_i\)</span> is T × K, <span class="math inline">\(\mu _i\)</span> is a scalar,
+<span class="math inline">\(\delta ^{\prime} = (\alpha, \beta^{\prime} )\)</span> , <span class="math inline">\(i_T\)</span> is a vector of
+ones of dimension T and <span class="math inline">\(v_i\)</span> is T x 1 .
+In general, <span class="math inline">\(E(v_i,v_i^{\prime}) = \Omega _ i\)</span> for i = 1, 2, . . . , N, where <span class="math inline">\(\Omega _i\)</span> is a positive definite matrix of dimension T . We still assume <span class="math inline">\(E(v_i,v_j^{\prime}) =0\)</span> for <span class="math inline">\(i \ne j\)</span> T is
+assumed small and N large as in household or company panels, and the asymptotic results
+are performed for <span class="math inline">\(N \rightarrow \infty\)</span> and T fixed. Performing the Within transformation on this set of
+equations (2.13) one gets</p>
+<p><span class="math display">\[  \widetilde {y}_i=\widetilde{X}_{i} \beta + \widetilde{v}_{i}  \]</span>
+(2.14)</p>
+<p>where <span class="math display">\[\widetilde{y}=Qy \]</span> , <span class="math display">\[\widetilde{X}=QX \]</span> and <span class="math display">\[\widetilde{v}=Qv \]</span> ,
+with <span class="math display">\[\widetilde{y}=(\widetilde{y}_1^{\prime}, ...,\widetilde{y}_N^{\prime} )^{\prime} \]</span> and <span class="math display">\[\widetilde{y}_i=(I_T-\bar{J}_T) y_i \]</span> Computing
+robust least squares on this system, as described by White (1980), under the restriction
+that each equation has the same <span class="math inline">\(\beta\)</span> one gets the Within estimator of β which has the following
+asymptotic distribution:</p>
+<p><span class="math display">\[N^{\frac{1}{2} }  (\widetilde{\beta}- \beta ) \sim N(0,M^{-1}VM^{-1} ) \]</span>
+(2.15)</p>
+<p>where
+<span class="math display">\[M=\frac{ p\lim(\widetilde{X}^{\prime} \widetilde{X})} {N} \]</span>
+Note that <span class="math display">\[\widetilde{X}_i=(I_T - \bar{J}_T) X_i  \]</span> and <span class="math display">\[\widetilde{X}^{\prime} diag[\Omega_i] Q \widetilde{X} \]</span> (see problem 2.3). In this case, V is estimated by
+<span class="math display">\[ \frac{  \widetilde{V}=\sum_{i=1}^{N} \widetilde{X}_i^{\prime}\widetilde{u}_i \widetilde{u}_i^{\prime}\widetilde{X}_i^{\prime} } {N}  \]</span>
+where <span class="math display">\[\widetilde{u}_i=\widetilde{y}_i- \widetilde{X}_i \widetilde{\beta}_i\]</span> .
+Therefore, the robust asymptotic variance–
+covariance matrix of <span class="math inline">\(\beta\)</span> is estimated by
+<span class="math display">\[
+\operatorname{var}(\widetilde{\beta})=\left(\widetilde{X}^{\prime} \tilde{X}\right)^{-1}\left[\sum_{i=1}^{N} \widetilde{X}_{i}^{\prime} \tilde{u}_{i} \tilde{u}_{i}^{\prime} \widetilde{X}_{i}\right]\left(\widetilde{X}^{\prime} \tilde{X}\right)^{-1}
+\]</span></p>
+</div>
+<div id="the-random-effects-model" class="section level2" number="4.3">
+<h2><span class="header-section-number">4.3</span> THE RANDOM EFFECTS MODEL</h2>
 
 </div>
 </div>

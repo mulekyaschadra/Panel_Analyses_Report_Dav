@@ -28,7 +28,7 @@ where μi denotes the unobservable individual-specific effect and $ν{it}$ denot
 
 $$ y= \alpha i_{NT}  + X\beta +u = Z\delta + u $$
 
-where $y$ is \$ NT × 1\$ , X is $NT × K$ , \$ Z = [i\_{NT} , X] \$ , \$ \delta^{'}=(^\alpha{'},\beta\^{'}) \$ and $i_{NT}$ is a vector of ones of dimension $NT$ . Also, (2.2) can be written as
+where $y$ is \$ NT × 1\$ , X is $NT × K$ , $ Z = [i\_{NT} , X] $ , $ \delta^{'}=(^\alpha{'},\beta\^{'})$ and $i_{NT}$ is a vector of ones of dimension $NT$ . Also, (2.2) can be written as
 
 $$ u=Z_\mu \mu  + v$$ (2.4)
 
@@ -55,3 +55,111 @@ $ Qy=QX\beta + Qv$  (2.6)
 
 This uses the fact that $QZ_\mu =Qi_{NT}=0$ , since $PZ_\mu =Z_\mu$ the Q matrix
 wipes out the individual effects. This is a regression of $\tilde y =QY$ with element  $(y_{it} - \bar y _{i.} )$ on $\check X=QX$ with typical element
+
+
+
+$$
+\widetilde{\beta}=\left(X^{\prime} Q X\right)^{-1} X^{\prime} Q y
+$$     
+(2.7)
+with $\operatorname{var}(\widetilde{\beta})=\sigma_{v}^{2}\left(X^{\prime} Q X\right)^{-1}=\sigma_{v}^{2}\left(\widetilde{X}^{\prime} \tilde{X}\right)^{-1}$  . 
+$\widetilde{\beta}$ could have been obtained from (2.5) using results
+on partitioned inverse or the Frisch–Waugh–Lovell theorem discussed in Davidson and MacKinnon (1993, p. 19). This uses the fact that P is the projection matrix on $Z_{\mu}$ and $Q = I_{NT} − P$ (see problem 2.1). In addition, generalized least squares (GLS) on (2.6), using
+the generalized inverse, will also yield  $\widetilde{\beta }$  (see problem 2.2).
+
+Note that for the simple regression 
+$$y_{it}=\beta x_{it}+ \mu_i+ v_i     $$   (2.8) 
+
+and averaging over time gives 
+$$  \bar {y}_{i.}= \beta \bar{x}_{i.}+ \mu_i+ \bar{v}_i   $$  (2.9)
+
+Therefore, subtracting (2.9) from (2.8) gives
+$$y_{it}-\bar{y}_{i.}=\beta (x_{it}-\bar{x}_{i.}) + (v_{it}-\bar{v}_{i.})   $$
+(2.10)
+
+Also, averaging across all observations in (2.8) gives
+$$\bar{y}_{..}=\alpha + \beta \bar{x}_{..} + \bar{v}_{..} $$ 
+(2.11)i
+=0where we utilized the restriction that $\sum_{i=1}^{n} \mu_{i}=0 $ This is an arbitrary restriction on the dummy
+variable coefficients to avoid the dummy variable trap, or perfect multicollinearity; see Suits
+(1984) for alternative formulations of this restriction. In fact only $\beta$ and $ (\alpha + \mu_{i})$ are estimable
+from (2.8), and not α and μi separately, unless a restriction like $$\sum_{i=1}^{n} \mu_{i}=0 $$ is imposed. In
+this case, $\widetilde {\beta}$ is obtained from regression (2.10),
+$$\widetilde {\alpha}= \bar {y}_{..}-\widetilde {\beta} \bar{x}_{..} $$ can be recovered from (2.11)
+and $$\widetilde {\mu}_{i}=\bar{y}_{i.}- \widetilde {\alpha} - \widetilde {\beta} \bar{X}_{i.} $$ from (2.9). For large labor or consumer panels, where N is very large,regressions like (2.5) may not be feasible, since one is including (N − 1) dummies in the regression. This fixed effects (FE) least squares, also known as least squares dummy variables (LSDV), suffers from a large loss of degrees of freedom. We are estimating (N − 1) extra parameters, and too many dummies may aggravate the problem of multicollinearity among
+the regressors. In addition, this FE estimator cannot estimate the effect of any time-invariant variable like sex, race, religion, schooling or union participation. These time-invariant variables are wiped out by the Q transformation, the deviations from means transformation (see (2.10)).
+Alternatively, one can see that these time-invariant variables are spanned by the individual dummies in (2.5) and therefore any regression package attempting (2.5) will fail, signaling perfect multicollinearity. If (2.5) is the true model, LSDV is the best linear unbiased estimator (BLUE)
+as long as $v_{it}$ is the standard classical disturbance with mean 0 and variance–covariance
+matrix $\sigma _{v}^{2} I_{NT} $ .
+Note that as $T \rightarrow \infty$ 
+the FE estimator is consistent. However, if T is fixed and $N \rightarrow \infty$ as is typical in short labor panels, then only the FE estimator of β is consistent; the
+FE estimators of the individual effects
+$\alpha + \mu_{i}$ are not consistent since the number of these
+parameters increases as N increases. This is the incidental parameter problem discussed by
+Neyman and Scott (1948) and reviewed more recently by Lancaster (2000). Note that when the
+true model is fixed effects as in (2.5), OLS on (2.1) yields biased and inconsistent estimates of
+the regression parameters. This is an omission variables bias due to the fact that OLS deletes
+the individual dummies when in fact they are relevant.
+
+(1) *Testing for fixed effects.* One could test the joint significance of these dummies, i.e.
+H0; $\mu_{1}=\mu_{2}= ... = \mu_{N-1}=0$ , by performing an F-test. (Testing for individual effects will
+be treated extensively in Chapter 4.) This is a simple Chow test with the restricted residual
+sums of squares (RRSS) being that of OLS on the pooled model and the unrestricted residual
+sums of squares (URSS) being that of the LSDV regression. If N is large, one can perform the
+Within transformation and use that residual sum of squares as the URSS. In this case 
+
+$$F_{0}=    \frac{ \dfrac{RRSS-URSS}{N-1}}{\dfrac{URSS}{NT-N-K} } \sim  F_{N-1,N(T-1)-K}           $$
+(2.12)
+
+(2) *Computational warning.*  One computational caution for those using theWithin regression
+given by (2.10). The $s^{2}$ f this regression as obtained from a typical regression package divides
+the residual sums of squares by NT − K since the intercept and the dummies are not included.
+The proper $s^{2}$ , say  $s^{*2}$  from the LSDV regression in (2.5), would divide the same residual
+sums of squares by $N(T − 1) − K$ . Therefore, one has to adjust the variances obtained from
+the Within regression (2.10) by multiplying the variance–covariance matrix by $$\frac{s^{2}}{s^{*2}} $$ or
+simply by multiplying by $[NT − K]/[N(T − 1) − K]$
+
+
+(3) *Robust estimates of the standard errors.* For the Within estimator, Arellano (1987)
+suggests a simple method for obtaining robust estimates of the standard errors that allow for a
+general variance–covariance matrix on the $v_{it}$ as in White (1980). One would stack the panel
+as an equation for each individual:
+$$y_{i}= Z_{i} \delta + \mu i_{it} + v_{i} $$ (2.13)
+
+
+where $y_i$ is T × $Z_i =[l_T,X_i] $, $X_i$ is T × K, $\mu _i$ is a scalar,
+$\delta ^{\prime} = (\alpha, \beta^{\prime}  )$ , $i_T$ is a vector of
+ones of dimension T and $v_i$ is T x 1 . 
+In general, $E(v_i,v_i^{\prime}) = \Omega _ i$ for i = 1, 2, . . . , N, where $\Omega _i$ is a positive definite matrix of dimension T . We still assume  $E(v_i,v_j^{\prime}) =0$  for $i \ne j$ T is
+assumed small and N large as in household or company panels, and the asymptotic results
+are performed for $N \rightarrow \infty$ and T fixed. Performing the Within transformation on this set of
+equations (2.13) one gets 
+
+$$  \widetilde {y}_i=\widetilde{X}_{i} \beta + \widetilde{v}_{i}  $$
+(2.14)
+
+where $$\widetilde{y}=Qy $$ , $$\widetilde{X}=QX $$ and $$\widetilde{v}=Qv $$ ,
+with $$\widetilde{y}=(\widetilde{y}_1^{\prime}, ...,\widetilde{y}_N^{\prime} )^{\prime} $$  and $$\widetilde{y}_i=(I_T-\bar{J}_T) y_i $$  Computing
+robust least squares on this system, as described by White (1980), under the restriction
+that each equation has the same  $\beta$ one gets the Within estimator of β which has the following
+asymptotic distribution: 
+
+$$N^{\frac{1}{2} }  (\widetilde{\beta}- \beta ) \sim N(0,M^{-1}VM^{-1} ) $$
+(2.15)
+
+where
+ $$M=\frac{ p\lim(\widetilde{X}^{\prime} \widetilde{X})} {N} $$
+Note that $$\widetilde{X}_i=(I_T - \bar{J}_T) X_i  $$ and $$\widetilde{X}^{\prime} diag[\Omega_i] Q \widetilde{X} $$ (see problem 2.3). In this case, V is estimated by 
+$$ \frac{  \widetilde{V}=\sum_{i=1}^{N} \widetilde{X}_i^{\prime}\widetilde{u}_i \widetilde{u}_i^{\prime}\widetilde{X}_i^{\prime} } {N}  $$
+where $$\widetilde{u}_i=\widetilde{y}_i- \widetilde{X}_i \widetilde{\beta}_i$$ .
+Therefore, the robust asymptotic variance–
+covariance matrix of $\beta$ is estimated by
+$$
+\operatorname{var}(\widetilde{\beta})=\left(\widetilde{X}^{\prime} \tilde{X}\right)^{-1}\left[\sum_{i=1}^{N} \widetilde{X}_{i}^{\prime} \tilde{u}_{i} \tilde{u}_{i}^{\prime} \widetilde{X}_{i}\right]\left(\widetilde{X}^{\prime} \tilde{X}\right)^{-1}
+$$
+
+
+
+## THE RANDOM EFFECTS MODEL
+
+

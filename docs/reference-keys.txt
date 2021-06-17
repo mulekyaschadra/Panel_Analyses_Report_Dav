@@ -1,5 +1,3 @@
-fig:nice-fig
-tab:nice-tab
 tab:unnamed-chunk-2
 tab:g
 tab:unnamed-chunk-41
@@ -9,6 +7,7 @@ literature
 the-one-way-error-component-regression-model
 introduction
 the-fixed-effects-model
+the-random-effects-model
 methods
 analyses
 netoyage-de-la-base-des-données
