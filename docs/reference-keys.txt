@@ -8,6 +8,7 @@ the-one-way-error-component-regression-model
 introduction
 the-fixed-effects-model
 the-random-effects-model
+fixed-vs-random
 methods
 analyses
 netoyage-de-la-base-des-données

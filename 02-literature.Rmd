@@ -170,5 +170,227 @@ and the $\mu_i$ are independent of the $v_{it}$ . In addition, the $X_{it}$  are
 But what is the population in this case? Nerlove and Balestra (1996) emphasize Haavelmo’s
 (1944) view that the population “consists not of an infinity of individuals, in general, but of an
 infinity of decisions” that each individual might make. This view is consistent with a random
-effects specification. From (2.4), one can compute the variance–covariance matrix
+effects specification. From (2.4), one can compute the variance–covariance matrix 
 
+\begin{equation}
+\begin{aligned}
+\Omega &=E\left(u u^{\prime}\right)=Z_{\mu} E\left(\mu \mu^{\prime}\right) Z_{\mu}^{\prime}+E\left(v v^{\prime}\right) \\
+&=\sigma_{\mu}^{2}\left(I_{N} \otimes J_{T}\right)+\sigma_{v}^{2}\left(I_{N} \otimes I_{T}\right)
+\end{aligned}
+\end{equation}
+
+This implies a homoskedastic variance 
+$\operatorname{var}\left(u_{i t}\right)=\sigma_{\mu}^{2}+\sigma_{v}^{2} \mathrm{f}$
+for all i and t, and an equicorrelated block-diagonal covariance matrix which exhibits serial correlation over time only between the disturbances of the same individual. In fact,
+
+$\begin{aligned} \operatorname{cov}\left(u_{i t}, u_{j s}\right) &=\sigma_{\mu}^{2}+\sigma_{v}^{2} & \text { for } \quad i=j, t=s \\ &=\sigma_{\mu}^{2} & \text { for } i=j, t \neq s \end{aligned}$
+
+and zero otherwise. This also means that the correlation coefficient between $\mu _{it}$ and $\mu _{js}$ is
+$\begin{aligned} \rho=\operatorname{correl}\left(u_{i t}, u_{j s}\right) &=1 & & \text { for } i=j, t=s \\ &=\sigma_{\mu}^{2} /\left(\sigma_{\mu}^{2}+\sigma_{v}^{2}\right) & \text { for } i=j, t \neq s \end{aligned}$
+
+and zero otherwise. In order to obtain the GLS estimator of the regression coefficients, we need $\Omega ^{-1} $.
+This is a huge matrix for typical panels and is of dimension $NT × NT$. No brute
+force inversion should be attempted even if the researcher’s application has a small N and T .1
+We will follow a simple trick devised by Wansbeek and Kapteyn (1982b, 1983) that allows the derivation of $\Omega ^{-1} $ ans $\Omega^{-1 / 2}$ Essentially, one replaces $J_{T}$ by $T \bar{J}_{T}$ and $I_{T}$ by $\left(E_{T}+\bar{J}_{T}\right)$ where $E_T$ is by definition $\left(I_{T}-\bar{J}_{T}\right)$ . In this case
+
+$\Omega=T \sigma_{\mu}^{2}\left(I_{N} \otimes \bar{J}_{T}\right)+\sigma_{v}^{2}\left(I_{N} \otimes E_{T}\right)+\sigma_{v}^{2}\left(I_{N} \otimes \bar{J}_{T}\right)$
+
+Collecting terms with the same matrices, we get 
+\begin{equation}
+\Omega=\left(T \sigma_{\mu}^{2}+\sigma_{v}^{2}\right)\left(I_{N} \otimes \bar{J}_{T}\right)+\sigma_{v}^{2}\left(I_{N} \otimes E_{T}\right)=\sigma_{1}^{2} P+\sigma_{v}^{2} Q
+\end{equation}
+
+where $\sigma_{1}^{2}=T \sigma_{\mu}^{2}+\sigma_{v}^{2}$ . (2.18) is the spectral decomposition representation of $\Omega$, with $\sigma_1^2$
+being the first unique characteristic root of$\Omega$ of multiplicity 
+$N(T − 1)$. It is easy to verify, using the properties of
+P and Q, that
+
+\begin{equation}
+\Omega^{-1}=\frac{1}{\sigma_{1}^{2}} P+\frac{1}{\sigma_{v}^{2}} Q
+\end{equation}
+and
+\begin{equation}
+\Omega^{-1 / 2}=\frac{1}{\sigma_{1}} P+\frac{1}{\sigma_{v}} Q
+\end{equation}
+
+In fact, $\Omega^{r}=\left(\sigma_{1}^{2}\right)^{r} P+\left(\sigma_{v}^{2}\right)^{r} Q$  where r is an arbitrary scalar. Now we can obtain GLS as a
+weighted least squares. Fuller and Battese (1973, 1974) suggested premultiplying the regression
+equation given in (2.3) by $\sigma_{v} \Omega^{-1 / 2}=Q+\left(\sigma_{v} / \sigma_{1}\right) P$  and performing OLS on the resulting
+transformed regression. In this case, $y^{*}=\sigma_{v} \Omega^{-1 / 2} y$ 
+has a typical element $y_{i t}-\theta \bar{y}_{i .}$ where 
+$\theta=1-\left(\sigma_{v} / \sigma_{1}\right)$ (see problem 2.4). This transformed regression inverts a matrix of dimension
+$(K + 1)$ and can easily be implemented using any regression package.
+
+
+The best quadratic unbiased (BQU) estimators of the variance components arise naturally
+from the spectral decomposition of $\Omega$ . In fact, $P u \sim\left(0, \sigma_{1}^{2} P\right)$ and
+$Q u \sim\left(0, \sigma_{v}^{2} Q\right)$  and
+
+\begin{equation}
+\widehat{\sigma}_{1}^{2}=\frac{u^{\prime} P u}{\operatorname{tr}(P)}=T \sum_{i=1}^{N} \bar{u}_{i .}^{2} / N
+\end{equation}
+and
+
+\begin{equation}
+\widehat{\sigma}_{v}^{2}=\frac{u^{\prime} Q u}{\operatorname{tr}(Q)}=\frac{\sum_{i=1}^{N} \sum_{t=1}^{T}\left(u_{i t}-\bar{u}_{i .}\right)^{2}}{N(T-1)}
+\end{equation}
+
+provide the BQU estimators of $\sigma_1^2$ and$\sigma_v^2$ , respectively (see problem 2.5).
+
+These are analyses of variance-type estimators of the variance components and are minimum variance-unbiased under normality of the disturbances (see Graybill, 1961). The true disturbances are not known and therefore (2.21) and (2.22) are not feasible. Wallace and Hussain (1969) suggest substituting OLS residual $\widehat{u}_{\mathrm{OLS}}$ instead of the true u. After all, under
+the random effects model, the OLS estimates are still unbiased and consistent, but no longer efficient. Amemiya (1971) shows that these estimators of the variance components have a different asymptotic distribution from that knowing the true disturbances. He suggests using the LSDV residuals instead of the OLS residuals. In this case 
+$\tilde{u}=y-\tilde{\alpha} \iota_{N T}-X \widetilde{\beta}$ where
+and $\bar{X}_{. .}^{\prime}$ is a $1 \times K$ 
+
+vector of averages of all regressors. Substituting these $\hat{u}$ for
+u in (2.21) and (2.22) we get the Amemiya-type estimators of the variance components. The
+resulting estimates of the variance components have the same asymptotic distribution as that
+knowing the true disturbances:
+
+\begin{equation}
+\left(\begin{array}{c}
+\sqrt{N T}\left(\widehat{\sigma}_{v}^{2}-\sigma_{v}^{2}\right) \\
+\sqrt{N}\left(\widehat{\sigma}_{\mu}^{2}-\sigma_{\mu}^{2}\right)
+\end{array}\right) \sim N\left(0,\left(\begin{array}{cc}
+2 \sigma_{v}^{4} & 0 \\
+0 & 2 \sigma_{\mu}^{4}
+\end{array}\right)\right)
+\end{equation}
+
+where $\widehat{\sigma}_{\mu}^{2}=\left(\widehat{\sigma}_{1}^{2}-\widehat{\sigma}_{v}^{2}\right) / T .^{3}$ 
+
+Swamy and Arora (1972) suggest running two regressions to get estimates of the variance components from the corresponding mean square errors of these regressions. The first regression is the Within regression, given in (2.10), which yields the following $s^2$:
+
+\begin{equation}
+\widehat{\sigma}_{v}^{2}=\left[y^{\prime} Q y-y^{\prime} Q X\left(X^{\prime} Q X\right)^{-1} X^{\prime} Q y\right] /[N(T-1)-K]
+\end{equation}
+
+The second regression is the Between regression which runs the regression of averages across
+time, i.e.
+
+\begin{equation}
+\bar{y}_{i .}=\alpha+\bar{X}_{i .}^{\prime} \beta+\bar{u}_{i .} \quad i=1, \ldots, N
+\end{equation}
+
+(2.25)
+
+This is equivalent to premultiplying the model in (2.5) by P and running OLS. The only caution
+is that the latter regression has NT observations because it repeats the averages T times for
+each individual, while the cross-section regression in (2.25) is based on N observations. To
+remedy this, one can run the cross-section regression 
+
+\begin{equation}
+\sqrt{T} \bar{y}_{i .}=\alpha \sqrt{T}+\sqrt{T} \bar{X}_{i .}^{\prime} \beta+\sqrt{T} \bar{u}_{i .}
+\end{equation}  (2.26)
+
+where one can easily verify that $\operatorname{var}\left(\sqrt{T} \bar{u}_{i .}\right)=\sigma_{1}^{2} .$ This regression will yield an $s^{2}$ given by
+
+\begin{equation}
+\widehat{\sigma}_{1}^{2}=\left(y^{\prime} P y-y^{\prime} P Z\left(Z^{\prime} P Z\right)^{-1} Z^{\prime} P y\right) /(N-K-1)
+\end{equation}  (2.27)
+
+Note that stacking the following two transformed regressions we just performed yields 
+\begin{equation}
+\left(\begin{array}{l}
+Q y \\
+P y
+\end{array}\right)=\left(\begin{array}{l}
+Q Z \\
+P Z
+\end{array}\right) \delta+\left(\begin{array}{c}
+Q u \\
+P u
+\end{array}\right)
+\end{equation}  (2.28)
+
+and the transformed error has mean 0 and variance–covariance matrix given by
+
+$$
+\left(\begin{array}{cc}
+\sigma_{v}^{2} Q & 0 \\
+0 & \sigma_{1}^{2} P
+\end{array}\right)
+$$
+
+Problem 2.7 asks the reader to verify that OLS on this system of 2NT observations yields OLS
+on the pooled model (2.3). Also, GLS on this system yields GLS on (2.3). Alternatively, one
+could get rid of the constant α by running the following stacked regressions:
+
+\begin{equation}
+\left(\begin{array}{c}
+Q y \\
+\left(P-\bar{J}_{N T}\right) y
+\end{array}\right)=\left(\begin{array}{c}
+Q X \\
+\left(P-\bar{J}_{N T}\right) X
+\end{array}\right) \beta+\left(\begin{array}{c}
+Q u \\
+\left(P-\bar{J}_{N T}\right) u
+\end{array}\right)
+\end{equation} (2.29)
+
+This follows from the fact that QιNT = 0 and (P − J¯NT )ιNT = 0. The transformed error has
+zero mean and variance–covariance matrix
+$$
+\left(\begin{array}{cc}
+\sigma_{v}^{2} Q & 0 \\
+0 & \sigma_{1}^{2}\left(P-\bar{J}_{N T}\right)
+\end{array}\right)
+$$
+OLS on this system yields OLS on (2.3) and GLS on (2.29) yields GLS on (2.3). In fact,
+\begin{equation}
+\begin{aligned}
+\widehat{\beta}_{\mathrm{GLS}}=&\left[\left(X^{\prime} Q X / \sigma_{v}^{2}\right)+X^{\prime}\left(P-\bar{J}_{N T}\right) X / \sigma_{1}^{2}\right]^{-1}\left[\left(X^{\prime} Q y / \sigma_{v}^{2}\right)\right.\\
+&\left.+X^{\prime}\left(P-\bar{J}_{N T}\right) y / \sigma_{1}^{2}\right] \\
+=&\left[W_{X X}+\phi^{2} B_{X X}\right]^{-1}\left[W_{X y}+\phi^{2} B_{X y}\right]
+\end{aligned}
+\end{equation} (2.30)
+
+with $\operatorname{var}\left(\widehat{\beta}_{\mathrm{GLS}}\right)=\sigma_{v}^{2}\left[W_{X X}+\phi^{2} B_{X X}\right]^{-1} .$ Note that $W_{X X}=X^{\prime} Q X, B_{X X}=X^{\prime}\left(P-\bar{J}_{N T}\right) X$
+and $\phi^{2}=\sigma_{v}^{2} / \sigma_{1}^{2}$. Also, the Within estimator of $\beta$ is $\underline{\beta}_{\text {Within }}=W_{X X}^{-1} W_{X y}$ and the Between estimator of $\beta$ is $\widehat{\beta}_{\text {Between }}=B_{X X}^{-1} B_{X y} .$ This shows that $\widehat{\beta}_{\mathrm{GLS}}$ is a matrix weighted average of $\widetilde{\beta}_{\text {Within and }} \widehat{\beta}_{\text {Between }}$ weighing each estimate by the inverse of its corresponding variance. In fact
+
+\begin{equation}
+\widehat{\beta}_{\mathrm{GLS}}=W_{1} \widetilde{\beta}_{\mathrm{Within}}+W_{2} \widehat{\beta}_{\mathrm{Between}}
+\end{equation}  (2.31)
+where
+$$
+W_{1}=\left[W_{X X}+\phi^{2} B_{X X}\right]^{-1} W_{X X}
+$$
+and
+$$
+W_{2}=\left[W_{X X}+\phi^{2} B_{X X}\right]^{-1}\left(\phi^{2} B_{X X}\right)=I-W_{1}
+$$
+This was demonstrated by Maddala (1971). Note that (i) if $\sigma_{\mu}^{2}=0$ then $\phi^{2}=1$ and $\widehat{\beta}_{\text {GLS }}$ reduces to $\widehat{\beta}_{\text {OLs. }}$ (ii) If $T \rightarrow \infty$, then $\phi^{2} \rightarrow 0$ and $\widehat{\beta}_{\text {GLS }}$ tends to $\widetilde{\beta}_{\text {Within. }}$ Also, if $W_{X X}$ is huge compared to $B_{X X}$ then $\widehat{\beta}_{\mathrm{GLS}}$ will be close to $\widetilde{\beta}_{\text {Within }}$. However, if $B_{X X}$ dominates $W_{X X}$ then $\widehat{\beta}_{\mathrm{GLS}}$ tends to $\widehat{\beta}_{\text {Between. }}$ In other words, the Within estimator ignores the Between variation, and the Between estimator ignores the Within variation. The OLS estimator gives equal weight to the Between and Within variations. From $(2.30)$, it is clear that $\operatorname{var}\left(\widetilde{\beta}_{\text {Within }}\right)-\operatorname{var}\left(\hat{\beta}_{\mathrm{GLS}}\right)$ is a positive semidefinite matrix, since $\phi^{2}$ is positive. However, as $T \rightarrow \infty$ for any fixed $N, \phi^{2} \rightarrow 0$ and both $\widehat{\beta}_{\mathrm{GLS}}$ and $\widetilde{\beta}_{\text {Within }}$ have the same asymptotic variance.
+
+Another estimator of the variance components was suggested by Nerlove (1971a). His zuggestion is to estimate $\sigma^{2}$ as $\sum^{N} \cdot(\widehat{u} \cdot-\widehat{\pi})^{2} /(N-1)$ where $\widehat{u}$. are the dummv coefficients
+estimates from the LSDV regression. $\sigma_{v}^{2}$ is estimated from the Within residual sums of squares divided by $N T$ without correction for degrees of freedom. ${ }^{4}$
+
+Note that, except for Nerlove's (1971a) method, one has to retrieve $\widehat{\sigma}_{\mu}^{2}$ as $\left(\widehat{\sigma}_{1}^{2}-\widehat{\sigma}_{v}^{2}\right) / T .$ In this case, there is no guarantee that the estimate of $\widehat{\sigma}_{\mu}^{2}$ would be nonnegative. Searle (1971) has an extensive discussion of the problem of negative estimates of the variance components in the biometrics literature. One solution is to replace these negative estimates by zero. This in fact is the suggestion of the Monte Carlo study by Maddala and Mount (1973). This study finds that negative estimates occurred only when the true $\sigma_{\mu}^{2}$ was small and close to zero. In these cases OLS is still a viable estimator. Therefore, replacing negative $\widehat{\sigma}_{\mu}^{2}$ by zero is not a bad sin after all, and the problem is dismissed as not being serious. ${ }^{5}$
+
+How about the properties of the various feasible GLS estimators of $\beta$ 
+Under the random
+effects model, GLS based on the true variance components is BLUE, and all the
+feasible GLS estimators considered are asymptotically efficient as either N or $N \rightarrow \infty $. Maddala and Mount (1973) compared OLS, Within, Between, feasible GLS methods, MINQUE, Henderson’s method III, true GLS and maximum likelihood estimation using their Monte Carlo study. They found little to choose among the various feasible GLS estimators in small samples and argued in favor of methods that were easier to compute. MINQUE was dismissed as more difficult to compute and the applied researcher given one shot at the data was warned to compute at least two methods of estimation, like an ANOVA feasible GLS and maximum likelihood to ensure that they do not yield drastically different results. If they do give different
+results, the authors diagnose misspecification.
+
+Taylor (1980) derived exact finite sample results for the one-way error component model.
+He compared the Within estimator with the Swamy–Arora feasible GLS estimator. He found
+the following important results:
+
+(1) Feasible GLS is more efficient than LSDV for all but the fewest degrees of freedom.
+(2) The variance of feasible GLS is never more than 17% above the Cramer–Rao lower bound.
+(3) More efficient estimators of the variance components do not necessarily yield more efficient
+feasible GLS estimators.
+
+These finite sample results are confirmed by the Monte Carlo experiments carried out by Maddala and Mount (1973) and Baltagi (1981a).
+
+Bellmann, Breitung and Wagner (1989) consider the bias in estimating the variance components using the Wallace and Hussain (1969) method due to the replacement of the true disturbances by OLS residuals, also the bias in the regression coefficients due to the use of estimated variance components rather than the true variance components. The magnitude of this bias is estimated using bootstrap methods for two economic applications. The first application relates product innovations, import pressure and factor inputs using a panel at the industry level. The second application estimates the earnings of 936 full-time working German males based on the first and second wave of the German Socio-Economic Panel. Only the first application revealed considerable bias in estimating $\sigma_\mu^2 $. However, this did not affect the bias
+much in the corresponding regression coefficients
+
+### Fixed vs Random
+
+Having discussed the fixed effects and the random effects models and the assumptions underlying them, the reader is left with the daunting question, which one to choose? This is  not as easy a choice as it might seem. In fact, the fixed versus random effects issue has generated a hot debate in the biometrics and statistics literature which has spilled over into the
+panel data econometrics literature. Mundlak (1961) and Wallace and Hussain (1969) were early proponents of the fixed effects model and Balestra and Nerlove (1966) were advocates of the random error component model. In Chapter 4, we will study a specification test proposed by Hausman (1978) which is based on the difference between the fixed and random effects estimators. Unfortunately, applied researchers have interpreted a rejection as an adoption of the fixed effects model and nonrejection as an adoption of the random effects model.6 Chamberlain (1984) showed that the fixed effects model imposes testable restrictions on the parameters of the reduced form model and one should check the validity of these restrictions before adopting the fixed effects model (see Chapter 4). Mundlak (1978) argued that the random effects model assumes exogeneity of all the regressors with the random individual effects. In contrast, the fixed effects model allows for endogeneity of all the regressors with these individual effects. So, it is an “all” or “nothing” choice of exogeneity of the regressors and the individual effects, see Chapter 7 for a more formal discussion of this subject.
+
+Hausman and Taylor (1981) allowed for some of the regressors to be correlated with the individual effects, as opposed to the all or nothing choice. These over-identification restrictions are testable using a Hausman-type test (see Chapter 7). For the applied researcher, performing fixed effects and random effects and the associated Hausman test reported in standard packages like Stata, LIMDEP, TSP, etc., the message is clear: Do not stop here. Test the restrictions implied by the fixed effects model derived by Chamberlain (1984) (see Chapter 4) and check whether a Hausman and Taylor (1981) specification might be a viable alternative (see
+Chapter 7).
