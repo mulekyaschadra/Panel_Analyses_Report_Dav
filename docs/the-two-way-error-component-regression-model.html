@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Panel Analyses Report</title>
+  <title>Chapter 5 The Two-way Error Component Regression Model | Panel Analyses Report</title>
   <meta name="description" content="dans ce livre nous produisons le rapport complet d’analyses du panel des taxes des pays Africains." />
   <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Panel Analyses Report" />
+  <meta property="og:title" content="Chapter 5 The Two-way Error Component Regression Model | Panel Analyses Report" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Panel Analyses Report" />
+  <meta name="twitter:title" content="Chapter 5 The Two-way Error Component Regression Model | Panel Analyses Report" />
   
   <meta name="twitter:description" content="dans ce livre nous produisons le rapport complet d’analyses du panel des taxes des pays Africains." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-<link rel="next" href="intro.html"/>
+<link rel="prev" href="the-one-way-error-component-regression-model.html"/>
+<link rel="next" href="methods.html"/>
 <script src="libs/header-attrs-2.9/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -186,26 +186,43 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Panel Analyses Report</h1>
-<p class="author"><em>David BYAMUNGU</em></p>
-<p class="date" style="margin-top: 1.5em;"><em>2021-06-18</em></p>
+<div id="the-two-way-error-component-regression-model" class="section level1" number="5">
+<h1><span class="header-section-number">Chapter 5</span> The Two-way Error Component Regression Model</h1>
+<div id="ntroduction" class="section level2" number="5.1">
+<h2><span class="header-section-number">5.1</span> NTRODUCTION</h2>
+<p>Wallace and Hussain (1969), Nerlove (1971b) and Amemiya (1971), among others, the regression model given by (2.1), but with two-way error components disturbances: <span class="math display">\[\begin{equation}
+u_{i t}=\mu_{i}+\lambda_{t}+v_{i t} \quad i=1, \ldots, N ; t=1, \ldots, T
+\end{equation}\]</span> (3.1)</p>
+<p>where <span class="math inline">\(\mu_i\)</span> denotes the unobservable individual effect discussed in Chapter 2, <span class="math inline">\(\lambda_t\)</span> denotes the unobservable time effect and <span class="math inline">\(v_{it}\)</span> is the remainder stochastic disturbance term. Note that <span class="math inline">\(\lambda_t\)</span> is individual-invariant and it accounts for any time-specific effect that is not included in the regression. For example, it could account for strike year effects that disrupt production; oil embargo effects that disrupt the supply of oil and affect its price; Surgeon General reports on the ill-effects of smoking, or government laws restricting smoking in public places, all of which could affect consumption behavior. In vector form, (3.1) can be written as</p>
+<p><span class="math display">\[\begin{equation}
+u=Z_{\mu} \mu+Z_{\lambda} \lambda+v
+\end{equation}\]</span> (3.2)</p>
+<p>where <span class="math inline">\(Z_\mu, \mu\)</span> and <span class="math inline">\(v\)</span> were defined earlier. <span class="math inline">\(Z_\lambda = i_N \otimes I_T\)</span> is the matrix of time dummies that one may include in the regression to estimate the <span class="math inline">\(\lambda_t\)</span> if they are fixed parameters, and <span class="math inline">\(\lambda^{\prime}= (\lambda_1, ..., \lambda_T )\)</span> Note that <span class="math display">\[Z_\lambda Z_\lambda^ {\prime}=J_N \otimes I_T \]</span> and the projection on <span class="math inline">\(Z_{\lambda}\)</span> is <span class="math display">\[Z_{\lambda}\left(Z_{\lambda}^{\prime} Z_{\lambda}\right)^{-1} Z_{\lambda}^{\prime}=\bar{J}_{N} \otimes I_T  \]</span> This last matrix averages the data over individuals, i.e., if we regress y on <span class="math inline">\(Z_\lambda\)</span>, the predicted values are given by <span class="math display">\[ (\bar {J_N} \otimes I_T)y \]</span> which has typical element <span class="math inline">\(\bar{y}_{. t}=\sum_{i=1}^{N} y_{i t} / N\)</span> .</p>
 </div>
-<div id="prerequis" class="section level1" number="1">
-<h1><span class="header-section-number">Chapter 1</span> Prerequis</h1>
-<p>Ceci est <em>une étude</em> des données de panel avec <strong>Markdown</strong>.</p>
-<p>The <strong>bookdown</strong> package can be installed from CRAN or Github:</p>
-<p>La structure de ce rapport est que chaque fichier RMD porte un chapitre et un thème bien spécifique de notre analyse</p>
-<p>Nous avions utilisé XeLaTeX pour compiler ce document en PDF.</p>
+<div id="the-fixed-effects-model-1" class="section level2" number="5.2">
+<h2><span class="header-section-number">5.2</span> THE FIXED EFFECTS MODEL</h2>
+<p>If the <span class="math inline">\(\mu_{i}\)</span> and <span class="math inline">\(\lambda_{t}\)</span> are assumed to be fixed parameters to be estimated and the remainder disturbances stochastic with <span class="math inline">\(v_{i t} \sim \operatorname{IID}\left(0, \sigma_{v}^{2}\right)\)</span>, then (3.1) represents a two-way fixed effects error component model. The <span class="math inline">\(X_{i t}\)</span> are assumed independent of the <span class="math inline">\(v_{i t}\)</span> for all <span class="math inline">\(i\)</span> and <span class="math inline">\(t\)</span>. Inference in this case is conditional on the particular <span class="math inline">\(N\)</span> individuals and over the specific time periods observed. Recall that <span class="math inline">\(Z_{\lambda}\)</span>, the matrix of time dummies, is <span class="math inline">\(N T \times T\)</span>. If <span class="math inline">\(N\)</span> or <span class="math inline">\(T\)</span> is large, there will be too many dummy variables in the regression <span class="math inline">\(\{(N-1)+(T-1)\}\)</span> of them, and this causes an enormous loss in degrees of freedom. In addition, this attenuates the problem of multicollinearity among the regressors. Rather than invert a large <span class="math inline">\((N+T+K-1)\)</span> matrix, one can obtain the fixed effects estimates of <span class="math inline">\(\beta\)</span> by performing the following Within transformation given by Wallace and Hussain (1969):</p>
+<p><span class="math display">\[\begin{equation}
+Q=E_{N} \otimes E_{T}=I_{N} \otimes I_{T}-I_{N} \otimes \bar{J}_{T}-\bar{J}_{N} \otimes I_{T}+\bar{J}_{N} \otimes \bar{J}_{T}
+\end{equation}\]</span> (3.3)</p>
+<p>where <span class="math inline">\(E_{N}=I_{N}-\bar{J}_{N}\)</span> and <span class="math inline">\(E_{T}=I_{T}-\bar{J}_{T}\)</span>. This transformation “sweeps” the <span class="math inline">\(\mu_{i}\)</span> and <span class="math inline">\(\lambda_{t}\)</span> effects. In fact, <span class="math inline">\(\tilde{y}=Q y\)</span> has a typical element <span class="math inline">\(\tilde{y}_{i t}=\left(y_{i t}-\bar{y}_{i .}-\bar{y}_{i t}+\bar{y} . .\right)\)</span> where <span class="math inline">\(\bar{y}_{. .}=\sum_{i} \sum_{t} y_{i t} /\)</span> <span class="math inline">\(N T\)</span>, and one would perform the regression of <span class="math inline">\(\tilde{y}=Q y\)</span> on <span class="math inline">\(\widetilde{X}=Q X\)</span> to get the Within estimator <span class="math inline">\(\widetilde{\beta}=\left(X^{\prime} Q X\right)^{-1} X^{\prime} Q y\)</span></p>
+<p>Note that by averaging the simple regression given in (2.8) over individuals, we get</p>
+<p><span class="math display">\[\begin{equation}
+\bar{y}_{. t}=\alpha+\beta \bar{x}_{. t}+\lambda_{t}+\bar{v}_{. t}
+\end{equation}\]</span> (3.4)</p>
+</div>
+<div id="references" class="section level2" number="5.3">
+<h2><span class="header-section-number">5.3</span> REFERENCES</h2>
 
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="intro.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="the-one-way-error-component-regression-model.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="methods.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

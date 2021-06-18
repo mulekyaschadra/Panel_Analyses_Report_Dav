@@ -240,138 +240,63 @@ In this case, the μi are assumed to be fixed parameters to be estimated and the
 
 \$ y=\alpha i\_\{IT\} + X\beta + Z\_\mu \mu +v = Z\delta + Z\_\mu \mu +v \$ (2.5)
 
-and then perform ordinary least squares (OLS) on (2.5) to get estimates of
-\$ \alpha,\beta ~and ~µ \$
+and then perform ordinary least squares (OLS) on (2.5) to get estimates of \$ \alpha,\beta ~and ~µ \$
 
-Note
-that Z is \$ NT \times (K+1)\$ and \(Z_µ\) , the matrix of individual dummies, is\$NT \times N \$ NT × N. If N is large, (2.5) will include too many individual dummies, and the matrix to be inverted by OLS is large
-and of dimension \((N + K)\). In fact, since α and β are the parameters of interest, one can obtain the LSDV (least squares dummy variables) estimator from (2.5), by premultiplying the model by Q and performing OLS on the resulting transformed model:
+Note that Z is \$ NT \times (K+1)\$ and \(Z_µ\) , the matrix of individual dummies, is\$NT \times N \$ NT × N. If N is large, (2.5) will include too many individual dummies, and the matrix to be inverted by OLS is large and of dimension \((N + K)\). In fact, since α and β are the parameters of interest, one can obtain the LSDV (least squares dummy variables) estimator from (2.5), by premultiplying the model by Q and performing OLS on the resulting transformed model:
 
 \$ Qy=QX\beta + Qv\$ (2.6)
 
-This uses the fact that \(QZ_\mu =Qi_{NT}=0\) , since \(PZ_\mu =Z_\mu\) the Q matrix
-wipes out the individual effects. This is a regression of \(\tilde y =QY\) with element \((y_{it} - \bar y _{i.} )\) on \(\check X=QX\) with typical element
+This uses the fact that \(QZ_\mu =Qi_{NT}=0\) , since \(PZ_\mu =Z_\mu\) the Q matrix wipes out the individual effects. This is a regression of \(\tilde y =QY\) with element \((y_{it} - \bar y _{i.} )\) on \(\check X=QX\) with typical element
 
 \[
 \widetilde{\beta}=\left(X^{\prime} Q X\right)^{-1} X^{\prime} Q y
 \]\\
-(2.7)
-with \(\operatorname{var}(\widetilde{\beta})=\sigma_{v}^{2}\left(X^{\prime} Q X\right)^{-1}=\sigma_{v}^{2}\left(\widetilde{X}^{\prime} \tilde{X}\right)^{-1}\) .
-\(\widetilde{\beta}\) could have been obtained from (2.5) using results
-on partitioned inverse or the Frisch--Waugh--Lovell theorem discussed in Davidson and MacKinnon (1993, p.~19). This uses the fact that P is the projection matrix on \(Z_{\mu}\) and \(Q = I_{NT} − P\) (see problem 2.1). In addition, generalized least squares (GLS) on (2.6), using
-the generalized inverse, will also yield \(\widetilde{\beta }\) (see problem 2.2).
+(2.7) with \(\operatorname{var}(\widetilde{\beta})=\sigma_{v}^{2}\left(X^{\prime} Q X\right)^{-1}=\sigma_{v}^{2}\left(\widetilde{X}^{\prime} \tilde{X}\right)^{-1}\) . \(\widetilde{\beta}\) could have been obtained from (2.5) using results on partitioned inverse or the Frisch--Waugh--Lovell theorem discussed in Davidson and MacKinnon (1993, p.~19). This uses the fact that P is the projection matrix on \(Z_{\mu}\) and \(Q = I_{NT} − P\) (see problem 2.1). In addition, generalized least squares (GLS) on (2.6), using the generalized inverse, will also yield \(\widetilde{\beta }\) (see problem 2.2).
 
-Note that for the simple regression
-\[y_{it}=\beta x_{it}+ \mu_i+ v_i     \] (2.8)
+Note that for the simple regression \[y_{it}=\beta x_{it}+ \mu_i+ v_i     \] (2.8)
 
-and averaging over time gives
-\[  \bar {y}_{i.}= \beta \bar{x}_{i.}+ \mu_i+ \bar{v}_i   \] (2.9)
+and averaging over time gives \[  \bar {y}_{i.}= \beta \bar{x}_{i.}+ \mu_i+ \bar{v}_i   \] (2.9)
 
-Therefore, subtracting (2.9) from (2.8) gives
-\[y_{it}-\bar{y}_{i.}=\beta (x_{it}-\bar{x}_{i.}) + (v_{it}-\bar{v}_{i.})   \]
-(2.10)
+Therefore, subtracting (2.9) from (2.8) gives \[y_{it}-\bar{y}_{i.}=\beta (x_{it}-\bar{x}_{i.}) + (v_{it}-\bar{v}_{i.})   \] (2.10)
 
-Also, averaging across all observations in (2.8) gives
-\[\bar{y}_{..}=\alpha + \beta \bar{x}_{..} + \bar{v}_{..} \]
-(2.11)i
-=0where we utilized the restriction that \$\sum\emph{\{i=1\}\^{}\{n\} \mu}\{i\}=0 \$ This is an arbitrary restriction on the dummy
-variable coefficients to avoid the dummy variable trap, or perfect multicollinearity; see Suits
-(1984) for alternative formulations of this restriction. In fact only \(\beta\) and \$ (\alpha + \mu\emph{\{i\})\$ are estimable
-from (2.8), and not α and μi separately, unless a restriction like \[\sum_{i=1}^{n} \mu_{i}=0 \] is imposed. In
-this case, \(\widetilde {\beta}\) is obtained from regression (2.10),
-\[\widetilde {\alpha}= \bar {y}_{..}-\widetilde {\beta} \bar{x}_{..} \] can be recovered from (2.11)
-and \[\widetilde {\mu}_{i}=\bar{y}_{i.}- \widetilde {\alpha} - \widetilde {\beta} \bar{X}_{i.} \] from (2.9). For large labor or consumer panels, where N is very large,regressions like (2.5) may not be feasible, since one is including (N − 1) dummies in the regression. This fixed effects (FE) least squares, also known as least squares dummy variables (LSDV), suffers from a large loss of degrees of freedom. We are estimating (N − 1) extra parameters, and too many dummies may aggravate the problem of multicollinearity among
-the regressors. In addition, this FE estimator cannot estimate the effect of any time-invariant variable like sex, race, religion, schooling or union participation. These time-invariant variables are wiped out by the Q transformation, the deviations from means transformation (see (2.10)).
-Alternatively, one can see that these time-invariant variables are spanned by the individual dummies in (2.5) and therefore any regression package attempting (2.5) will fail, signaling perfect multicollinearity. If (2.5) is the true model, LSDV is the best linear unbiased estimator (BLUE)
-as long as \(v_{it}\) is the standard classical disturbance with mean 0 and variance--covariance
-matrix \$\sigma }\{v\}\^{}\{2\} I\_\{NT\} \$ .
-Note that as \(T \rightarrow \infty\)
-the FE estimator is consistent. However, if T is fixed and \(N \rightarrow \infty\) as is typical in short labor panels, then only the FE estimator of β is consistent; the
-FE estimators of the individual effects
-\(\alpha + \mu_{i}\) are not consistent since the number of these
-parameters increases as N increases. This is the incidental parameter problem discussed by
-Neyman and Scott (1948) and reviewed more recently by Lancaster (2000). Note that when the
-true model is fixed effects as in (2.5), OLS on (2.1) yields biased and inconsistent estimates of
-the regression parameters. This is an omission variables bias due to the fact that OLS deletes
-the individual dummies when in fact they are relevant.
+Also, averaging across all observations in (2.8) gives \[\bar{y}_{..}=\alpha + \beta \bar{x}_{..} + \bar{v}_{..} \] (2.11)i =0where we utilized the restriction that \$\sum*{i=1}\^{}\{n\}* \mu{i}=0 \$ This is an arbitrary restriction on the dummy variable coefficients to avoid the dummy variable trap, or perfect multicollinearity; see Suits (1984) for alternative formulations of this restriction. In fact only \(\beta\) and \$ (\alpha + \mu*{i})\$ are estimable from (2.8), and not α and μi separately, unless a restriction like* \[\sum_{i=1}^{n} \mu_{i}=0 \] is imposed. In this case, \(\widetilde {\beta}\) is obtained from regression (2.10), \[\widetilde {\alpha}= \bar {y}_{..}-\widetilde {\beta} \bar{x}_{..} \] can be recovered from (2.11) and \[\widetilde {\mu}_{i}=\bar{y}_{i.}- \widetilde {\alpha} - \widetilde {\beta} \bar{X}_{i.} \] from (2.9). For large labor or consumer panels, where N is very large,regressions like (2.5) may not be feasible, since one is including (N − 1) dummies in the regression. This fixed effects (FE) least squares, also known as least squares dummy variables (LSDV), suffers from a large loss of degrees of freedom. We are estimating (N − 1) extra parameters, and too many dummies may aggravate the problem of multicollinearity among the regressors. In addition, this FE estimator cannot estimate the effect of any time-invariant variable like sex, race, religion, schooling or union participation. These time-invariant variables are wiped out by the Q transformation, the deviations from means transformation (see (2.10)). Alternatively, one can see that these time-invariant variables are spanned by the individual dummies in (2.5) and therefore any regression package attempting (2.5) will fail, signaling perfect multicollinearity. If (2.5) is the true model, LSDV is the best linear unbiased estimator (BLUE) as long as \(v_{it}\) is the standard classical disturbance with mean 0 and variance--covariance matrix \$\sigma {v}\^{}\{2\} I\_\{NT\} \$ . Note that as \(T \rightarrow \infty\) the FE estimator is consistent. However, if T is fixed and \(N \rightarrow \infty\) as is typical in short labor panels, then only the FE estimator of β is consistent; the FE estimators of the individual effects \(\alpha + \mu_{i}\) are not consistent since the number of these parameters increases as N increases. This is the incidental parameter problem discussed by Neyman and Scott (1948) and reviewed more recently by Lancaster (2000). Note that when the true model is fixed effects as in (2.5), OLS on (2.1) yields biased and inconsistent estimates of the regression parameters. This is an omission variables bias due to the fact that OLS deletes the individual dummies when in fact they are relevant.
 
 \begin{enumerate}
 \def\labelenumi{(\arabic{enumi})}
 \tightlist
 \item
-  \emph{Testing for fixed effects.} One could test the joint significance of these dummies, i.e.
-  H0; \(\mu_{1}=\mu_{2}= ... = \mu_{N-1}=0\) , by performing an F-test. (Testing for individual effects will
-  be treated extensively in Chapter 4.) This is a simple Chow test with the restricted residual
-  sums of squares (RRSS) being that of OLS on the pooled model and the unrestricted residual
-  sums of squares (URSS) being that of the LSDV regression. If N is large, one can perform the
-  Within transformation and use that residual sum of squares as the URSS. In this case
+  \emph{Testing for fixed effects.} One could test the joint significance of these dummies, i.e.~H0; \(\mu_{1}=\mu_{2}= ... = \mu_{N-1}=0\) , by performing an F-test. (Testing for individual effects will be treated extensively in Chapter 4.) This is a simple Chow test with the restricted residual sums of squares (RRSS) being that of OLS on the pooled model and the unrestricted residual sums of squares (URSS) being that of the LSDV regression. If N is large, one can perform the Within transformation and use that residual sum of squares as the URSS. In this case
 \end{enumerate}
 
-\[F_{0}=    \frac{ \dfrac{RRSS-URSS}{N-1}}{\dfrac{URSS}{NT-N-K} } \sim  F_{N-1,N(T-1)-K}           \]
-(2.12)
+\[F_{0}=    \frac{ \dfrac{RRSS-URSS}{N-1}}{\dfrac{URSS}{NT-N-K} } \sim  F_{N-1,N(T-1)-K}           \] (2.12)
 
 \begin{enumerate}
 \def\labelenumi{(\arabic{enumi})}
 \setcounter{enumi}{1}
 \item
-  \emph{Computational warning.} One computational caution for those using theWithin regression
-  given by (2.10). The \(s^{2}\) f this regression as obtained from a typical regression package divides
-  the residual sums of squares by NT − K since the intercept and the dummies are not included.
-  The proper \(s^{2}\) , say \(s^{*2}\) from the LSDV regression in (2.5), would divide the same residual
-  sums of squares by \(N(T − 1) − K\) . Therefore, one has to adjust the variances obtained from
-  the Within regression (2.10) by multiplying the variance--covariance matrix by \[\frac{s^{2}}{s^{*2}} \] or
-  simply by multiplying by \([NT − K]/[N(T − 1) − K]\)
+  \emph{Computational warning.} One computational caution for those using theWithin regression given by (2.10). The \(s^{2}\) f this regression as obtained from a typical regression package divides the residual sums of squares by NT − K since the intercept and the dummies are not included. The proper \(s^{2}\) , say \(s^{*2}\) from the LSDV regression in (2.5), would divide the same residual sums of squares by \(N(T − 1) − K\) . Therefore, one has to adjust the variances obtained from the Within regression (2.10) by multiplying the variance--covariance matrix by \[\frac{s^{2}}{s^{*2}} \] or simply by multiplying by \([NT − K]/[N(T − 1) − K]\)
 \item
-  \emph{Robust estimates of the standard errors.} For the Within estimator, Arellano (1987)
-  suggests a simple method for obtaining robust estimates of the standard errors that allow for a
-  general variance--covariance matrix on the \(v_{it}\) as in White (1980). One would stack the panel
-  as an equation for each individual:
-  \[y_{i}= Z_{i} \delta + \mu i_{it} + v_{i} \] (2.13)
+  \emph{Robust estimates of the standard errors.} For the Within estimator, Arellano (1987) suggests a simple method for obtaining robust estimates of the standard errors that allow for a general variance--covariance matrix on the \(v_{it}\) as in White (1980). One would stack the panel as an equation for each individual: \[y_{i}= Z_{i} \delta + \mu i_{it} + v_{i} \] (2.13)
 \end{enumerate}
 
-where \(y_i\) is T × \$Z\_i ={[}l\_T,X\_i{]} \$, \(X_i\) is T × K, \(\mu _i\) is a scalar,
-\(\delta ^{\prime} = (\alpha, \beta^{\prime} )\) , \(i_T\) is a vector of
-ones of dimension T and \(v_i\) is T x 1 .
-In general, \(E(v_i,v_i^{\prime}) = \Omega _ i\) for i = 1, 2, . . . , N, where \(\Omega _i\) is a positive definite matrix of dimension T . We still assume \(E(v_i,v_j^{\prime}) =0\) for \(i \ne j\) T is
-assumed small and N large as in household or company panels, and the asymptotic results
-are performed for \(N \rightarrow \infty\) and T fixed. Performing the Within transformation on this set of
-equations (2.13) one gets
+where \(y_i\) is T × \$Z\_i ={[}l\_T,X\_i{]} \$, \(X_i\) is T × K, \(\mu _i\) is a scalar, \(\delta ^{\prime} = (\alpha, \beta^{\prime} )\) , \(i_T\) is a vector of ones of dimension T and \(v_i\) is T x 1 . In general, \(E(v_i,v_i^{\prime}) = \Omega _ i\) for i = 1, 2, . . . , N, where \(\Omega _i\) is a positive definite matrix of dimension T . We still assume \(E(v_i,v_j^{\prime}) =0\) for \(i \ne j\) T is assumed small and N large as in household or company panels, and the asymptotic results are performed for \(N \rightarrow \infty\) and T fixed. Performing the Within transformation on this set of equations (2.13) one gets
 
-\[  \widetilde {y}_i=\widetilde{X}_{i} \beta + \widetilde{v}_{i}  \]
-(2.14)
+\[  \widetilde {y}_i=\widetilde{X}_{i} \beta + \widetilde{v}_{i}  \] (2.14)
 
-where \[\widetilde{y}=Qy \] , \[\widetilde{X}=QX \] and \[\widetilde{v}=Qv \] ,
-with \[\widetilde{y}=(\widetilde{y}_1^{\prime}, ...,\widetilde{y}_N^{\prime} )^{\prime} \] and \[\widetilde{y}_i=(I_T-\bar{J}_T) y_i \] Computing
-robust least squares on this system, as described by White (1980), under the restriction
-that each equation has the same \(\beta\) one gets the Within estimator of β which has the following
-asymptotic distribution:
+where \[\widetilde{y}=Qy \] , \[\widetilde{X}=QX \] and \[\widetilde{v}=Qv \] , with \[\widetilde{y}=(\widetilde{y}_1^{\prime}, ...,\widetilde{y}_N^{\prime} )^{\prime} \] and \[\widetilde{y}_i=(I_T-\bar{J}_T) y_i \] Computing robust least squares on this system, as described by White (1980), under the restriction that each equation has the same \(\beta\) one gets the Within estimator of β which has the following asymptotic distribution:
 
-\[N^{\frac{1}{2} }  (\widetilde{\beta}- \beta ) \sim N(0,M^{-1}VM^{-1} ) \]
-(2.15)
+\[N^{\frac{1}{2} }  (\widetilde{\beta}- \beta ) \sim N(0,M^{-1}VM^{-1} ) \] (2.15)
 
-where
-\[M=\frac{ p\lim(\widetilde{X}^{\prime} \widetilde{X})} {N} \]
-Note that \[\widetilde{X}_i=(I_T - \bar{J}_T) X_i  \] and \[\widetilde{X}^{\prime} diag[\Omega_i] Q \widetilde{X} \] (see problem 2.3). In this case, V is estimated by
-\[ \frac{  \widetilde{V}=\sum_{i=1}^{N} \widetilde{X}_i^{\prime}\widetilde{u}_i \widetilde{u}_i^{\prime}\widetilde{X}_i^{\prime} } {N}  \]
-where \[\widetilde{u}_i=\widetilde{y}_i- \widetilde{X}_i \widetilde{\beta}_i\] .
-Therefore, the robust asymptotic variance--
-covariance matrix of \(\beta\) is estimated by
-\[
+where \[M=\frac{ p\lim(\widetilde{X}^{\prime} \widetilde{X})} {N} \] Note that \[\widetilde{X}_i=(I_T - \bar{J}_T) X_i  \] and \[\widetilde{X}^{\prime} diag[\Omega_i] Q \widetilde{X} \] (see problem 2.3). In this case, V is estimated by \[ \frac{  \widetilde{V}=\sum_{i=1}^{N} \widetilde{X}_i^{\prime}\widetilde{u}_i \widetilde{u}_i^{\prime}\widetilde{X}_i^{\prime} } {N}  \] where \[\widetilde{u}_i=\widetilde{y}_i- \widetilde{X}_i \widetilde{\beta}_i\] . Therefore, the robust asymptotic variance-- covariance matrix of \(\beta\) is estimated by \[
 \operatorname{var}(\widetilde{\beta})=\left(\widetilde{X}^{\prime} \tilde{X}\right)^{-1}\left[\sum_{i=1}^{N} \widetilde{X}_{i}^{\prime} \tilde{u}_{i} \tilde{u}_{i}^{\prime} \widetilde{X}_{i}\right]\left(\widetilde{X}^{\prime} \tilde{X}\right)^{-1}
 \]
 
 \hypertarget{the-random-effects-model}{%
 \section{THE RANDOM EFFECTS MODEL}\label{the-random-effects-model}}
 
-There are too many parameters in the fixed effects model and the loss of degrees of freedom can be avoided if the μi can be assumed random. In this case
-\$ \mu\emph{i \sim IID(0, \sigma}\mu\^{}2)\$,
-\$ν\_\{it\} ∼ IID(0, \sigma\_v\^{}2 ) \$
-and the \(\mu_i\) are independent of the \(v_{it}\) . In addition, the \(X_{it}\) are independent of the \(\mu_i\) and \(v_{it}\),for all i and t. The random effects model is an appropriate specification if we are drawing N individuals randomly from a large population. This is usually the case for household panel studies. Care is taken in the design of the panel to make it ``representative'' of the population we are trying to make inferences about. In this case, N is usually large and a fixed effects model would lead to an enormous loss of degrees of freedom. The individual effect is characterized as random and inference pertains to the population from which this sample was randomly drawn.
+There are too many parameters in the fixed effects model and the loss of degrees of freedom can be avoided if the μi can be assumed random. In this case \$ \mu*i* \sim IID(0, \sigma\mu\^{}2)\$, \$ν\_\{it\} ∼ IID(0, \sigma\_v\^{}2 ) \$ and the \(\mu_i\) are independent of the \(v_{it}\) . In addition, the \(X_{it}\) are independent of the \(\mu_i\) and \(v_{it}\),for all i and t. The random effects model is an appropriate specification if we are drawing N individuals randomly from a large population. This is usually the case for household panel studies. Care is taken in the design of the panel to make it ``representative'' of the population we are trying to make inferences about. In this case, N is usually large and a fixed effects model would lead to an enormous loss of degrees of freedom. The individual effect is characterized as random and inference pertains to the population from which this sample was randomly drawn.
 
-But what is the population in this case? Nerlove and Balestra (1996) emphasize Haavelmo's
-(1944) view that the population ``consists not of an infinity of individuals, in general, but of an
-infinity of decisions'' that each individual might make. This view is consistent with a random
-effects specification. From (2.4), one can compute the variance--covariance matrix
+But what is the population in this case? Nerlove and Balestra (1996) emphasize Haavelmo's (1944) view that the population ``consists not of an infinity of individuals, in general, but of an infinity of decisions'' that each individual might make. This view is consistent with a random effects specification. From (2.4), one can compute the variance--covariance matrix
 
 \begin{equation}
 \begin{aligned}
@@ -380,56 +305,35 @@ effects specification. From (2.4), one can compute the variance--covariance matr
 \end{aligned}
 \end{equation}
 
-This implies a homoskedastic variance
-\(\operatorname{var}\left(u_{i t}\right)=\sigma_{\mu}^{2}+\sigma_{v}^{2} \mathrm{f}\)
-for all i and t, and an equicorrelated block-diagonal covariance matrix which exhibits serial correlation over time only between the disturbances of the same individual. In fact,
+This implies a homoskedastic variance \(\operatorname{var}\left(u_{i t}\right)=\sigma_{\mu}^{2}+\sigma_{v}^{2} \mathrm{f}\) for all i and t, and an equicorrelated block-diagonal covariance matrix which exhibits serial correlation over time only between the disturbances of the same individual. In fact,
 
 \(\begin{aligned} \operatorname{cov}\left(u_{i t}, u_{j s}\right) &=\sigma_{\mu}^{2}+\sigma_{v}^{2} & \text { for } \quad i=j, t=s \\ &=\sigma_{\mu}^{2} & \text { for } i=j, t \neq s \end{aligned}\)
 
-and zero otherwise. This also means that the correlation coefficient between \(\mu _{it}\) and \(\mu _{js}\) is
-\(\begin{aligned} \rho=\operatorname{correl}\left(u_{i t}, u_{j s}\right) &=1 & & \text { for } i=j, t=s \\ &=\sigma_{\mu}^{2} /\left(\sigma_{\mu}^{2}+\sigma_{v}^{2}\right) & \text { for } i=j, t \neq s \end{aligned}\)
+and zero otherwise. This also means that the correlation coefficient between \(\mu _{it}\) and \(\mu _{js}\) is \(\begin{aligned} \rho=\operatorname{correl}\left(u_{i t}, u_{j s}\right) &=1 & & \text { for } i=j, t=s \\ &=\sigma_{\mu}^{2} /\left(\sigma_{\mu}^{2}+\sigma_{v}^{2}\right) & \text { for } i=j, t \neq s \end{aligned}\)
 
-and zero otherwise. In order to obtain the GLS estimator of the regression coefficients, we need \$\Omega \^{}\{-1\} \$.
-This is a huge matrix for typical panels and is of dimension \(NT × NT\). No brute
-force inversion should be attempted even if the researcher's application has a small N and T .1
-We will follow a simple trick devised by Wansbeek and Kapteyn (1982b, 1983) that allows the derivation of \$\Omega \^{}\{-1\} \$ ans \(\Omega^{-1 / 2}\) Essentially, one replaces \(J_{T}\) by \(T \bar{J}_{T}\) and \(I_{T}\) by \(\left(E_{T}+\bar{J}_{T}\right)\) where \(E_T\) is by definition \(\left(I_{T}-\bar{J}_{T}\right)\) . In this case
+and zero otherwise. In order to obtain the GLS estimator of the regression coefficients, we need \$\Omega \^{}\{-1\} \$. This is a huge matrix for typical panels and is of dimension \(NT × NT\). No brute force inversion should be attempted even if the researcher's application has a small N and T .1 We will follow a simple trick devised by Wansbeek and Kapteyn (1982b, 1983) that allows the derivation of \$\Omega \^{}\{-1\} \$ ans \(\Omega^{-1 / 2}\) Essentially, one replaces \(J_{T}\) by \(T \bar{J}_{T}\) and \(I_{T}\) by \(\left(E_{T}+\bar{J}_{T}\right)\) where \(E_T\) is by definition \(\left(I_{T}-\bar{J}_{T}\right)\) . In this case
 
 \(\Omega=T \sigma_{\mu}^{2}\left(I_{N} \otimes \bar{J}_{T}\right)+\sigma_{v}^{2}\left(I_{N} \otimes E_{T}\right)+\sigma_{v}^{2}\left(I_{N} \otimes \bar{J}_{T}\right)\)
 
-Collecting terms with the same matrices, we get
-\begin{equation}
+Collecting terms with the same matrices, we get \begin{equation}
 \Omega=\left(T \sigma_{\mu}^{2}+\sigma_{v}^{2}\right)\left(I_{N} \otimes \bar{J}_{T}\right)+\sigma_{v}^{2}\left(I_{N} \otimes E_{T}\right)=\sigma_{1}^{2} P+\sigma_{v}^{2} Q
 \end{equation}
 
-where \(\sigma_{1}^{2}=T \sigma_{\mu}^{2}+\sigma_{v}^{2}\) . (2.18) is the spectral decomposition representation of \(\Omega\), with \(\sigma_1^2\)
-being the first unique characteristic root of\(\Omega\) of multiplicity
-\(N(T − 1)\). It is easy to verify, using the properties of
-P and Q, that
+where \(\sigma_{1}^{2}=T \sigma_{\mu}^{2}+\sigma_{v}^{2}\) . (2.18) is the spectral decomposition representation of \(\Omega\), with \(\sigma_1^2\) being the first unique characteristic root of\(\Omega\) of multiplicity \(N(T − 1)\). It is easy to verify, using the properties of P and Q, that
 
 \begin{equation}
 \Omega^{-1}=\frac{1}{\sigma_{1}^{2}} P+\frac{1}{\sigma_{v}^{2}} Q
-\end{equation}
-and
-\begin{equation}
+\end{equation} and \begin{equation}
 \Omega^{-1 / 2}=\frac{1}{\sigma_{1}} P+\frac{1}{\sigma_{v}} Q
 \end{equation}
 
-In fact, \(\Omega^{r}=\left(\sigma_{1}^{2}\right)^{r} P+\left(\sigma_{v}^{2}\right)^{r} Q\) where r is an arbitrary scalar. Now we can obtain GLS as a
-weighted least squares. Fuller and Battese (1973, 1974) suggested premultiplying the regression
-equation given in (2.3) by \(\sigma_{v} \Omega^{-1 / 2}=Q+\left(\sigma_{v} / \sigma_{1}\right) P\) and performing OLS on the resulting
-transformed regression. In this case, \(y^{*}=\sigma_{v} \Omega^{-1 / 2} y\)
-has a typical element \(y_{i t}-\theta \bar{y}_{i .}\) where
-\(\theta=1-\left(\sigma_{v} / \sigma_{1}\right)\) (see problem 2.4). This transformed regression inverts a matrix of dimension
-\((K + 1)\) and can easily be implemented using any regression package.
+In fact, \(\Omega^{r}=\left(\sigma_{1}^{2}\right)^{r} P+\left(\sigma_{v}^{2}\right)^{r} Q\) where r is an arbitrary scalar. Now we can obtain GLS as a weighted least squares. Fuller and Battese (1973, 1974) suggested premultiplying the regression equation given in (2.3) by \(\sigma_{v} \Omega^{-1 / 2}=Q+\left(\sigma_{v} / \sigma_{1}\right) P\) and performing OLS on the resulting transformed regression. In this case, \(y^{*}=\sigma_{v} \Omega^{-1 / 2} y\) has a typical element \(y_{i t}-\theta \bar{y}_{i .}\) where \(\theta=1-\left(\sigma_{v} / \sigma_{1}\right)\) (see problem 2.4). This transformed regression inverts a matrix of dimension \((K + 1)\) and can easily be implemented using any regression package.
 
-The best quadratic unbiased (BQU) estimators of the variance components arise naturally
-from the spectral decomposition of \(\Omega\) . In fact, \(P u \sim\left(0, \sigma_{1}^{2} P\right)\) and
-\(Q u \sim\left(0, \sigma_{v}^{2} Q\right)\) and
+The best quadratic unbiased (BQU) estimators of the variance components arise naturally from the spectral decomposition of \(\Omega\) . In fact, \(P u \sim\left(0, \sigma_{1}^{2} P\right)\) and \(Q u \sim\left(0, \sigma_{v}^{2} Q\right)\) and
 
 \begin{equation}
 \widehat{\sigma}_{1}^{2}=\frac{u^{\prime} P u}{\operatorname{tr}(P)}=T \sum_{i=1}^{N} \bar{u}_{i .}^{2} / N
-\end{equation}
-and
+\end{equation} and
 
 \begin{equation}
 \widehat{\sigma}_{v}^{2}=\frac{u^{\prime} Q u}{\operatorname{tr}(Q)}=\frac{\sum_{i=1}^{N} \sum_{t=1}^{T}\left(u_{i t}-\bar{u}_{i .}\right)^{2}}{N(T-1)}
@@ -437,15 +341,9 @@ and
 
 provide the BQU estimators of \(\sigma_1^2\) and\(\sigma_v^2\) , respectively (see problem 2.5).
 
-These are analyses of variance-type estimators of the variance components and are minimum variance-unbiased under normality of the disturbances (see Graybill, 1961). The true disturbances are not known and therefore (2.21) and (2.22) are not feasible. Wallace and Hussain (1969) suggest substituting OLS residual \(\widehat{u}_{\mathrm{OLS}}\) instead of the true u. After all, under
-the random effects model, the OLS estimates are still unbiased and consistent, but no longer efficient. Amemiya (1971) shows that these estimators of the variance components have a different asymptotic distribution from that knowing the true disturbances. He suggests using the LSDV residuals instead of the OLS residuals. In this case
-\(\tilde{u}=y-\tilde{\alpha} \iota_{N T}-X \widetilde{\beta}\) where
-and \(\bar{X}_{. .}^{\prime}\) is a \(1 \times K\)
+These are analyses of variance-type estimators of the variance components and are minimum variance-unbiased under normality of the disturbances (see Graybill, 1961). The true disturbances are not known and therefore (2.21) and (2.22) are not feasible. Wallace and Hussain (1969) suggest substituting OLS residual \(\widehat{u}_{\mathrm{OLS}}\) instead of the true u. After all, under the random effects model, the OLS estimates are still unbiased and consistent, but no longer efficient. Amemiya (1971) shows that these estimators of the variance components have a different asymptotic distribution from that knowing the true disturbances. He suggests using the LSDV residuals instead of the OLS residuals. In this case \(\tilde{u}=y-\tilde{\alpha} \iota_{N T}-X \widetilde{\beta}\) where and \(\bar{X}_{. .}^{\prime}\) is a \(1 \times K\)
 
-vector of averages of all regressors. Substituting these \(\hat{u}\) for
-u in (2.21) and (2.22) we get the Amemiya-type estimators of the variance components. The
-resulting estimates of the variance components have the same asymptotic distribution as that
-knowing the true disturbances:
+vector of averages of all regressors. Substituting these \(\hat{u}\) for u in (2.21) and (2.22) we get the Amemiya-type estimators of the variance components. The resulting estimates of the variance components have the same asymptotic distribution as that knowing the true disturbances:
 
 \begin{equation}
 \left(\begin{array}{c}
@@ -465,8 +363,7 @@ Swamy and Arora (1972) suggest running two regressions to get estimates of the v
 \widehat{\sigma}_{v}^{2}=\left[y^{\prime} Q y-y^{\prime} Q X\left(X^{\prime} Q X\right)^{-1} X^{\prime} Q y\right] /[N(T-1)-K]
 \end{equation}
 
-The second regression is the Between regression which runs the regression of averages across
-time, i.e.
+The second regression is the Between regression which runs the regression of averages across time, i.e.
 
 \begin{equation}
 \bar{y}_{i .}=\alpha+\bar{X}_{i .}^{\prime} \beta+\bar{u}_{i .} \quad i=1, \ldots, N
@@ -474,10 +371,7 @@ time, i.e.
 
 (2.25)
 
-This is equivalent to premultiplying the model in (2.5) by P and running OLS. The only caution
-is that the latter regression has NT observations because it repeats the averages T times for
-each individual, while the cross-section regression in (2.25) is based on N observations. To
-remedy this, one can run the cross-section regression
+This is equivalent to premultiplying the model in (2.5) by P and running OLS. The only caution is that the latter regression has NT observations because it repeats the averages T times for each individual, while the cross-section regression in (2.25) is based on N observations. To remedy this, one can run the cross-section regression
 
 \begin{equation}
 \sqrt{T} \bar{y}_{i .}=\alpha \sqrt{T}+\sqrt{T} \bar{X}_{i .}^{\prime} \beta+\sqrt{T} \bar{u}_{i .}
@@ -489,8 +383,7 @@ where one can easily verify that \(\operatorname{var}\left(\sqrt{T} \bar{u}_{i .
 \widehat{\sigma}_{1}^{2}=\left(y^{\prime} P y-y^{\prime} P Z\left(Z^{\prime} P Z\right)^{-1} Z^{\prime} P y\right) /(N-K-1)
 \end{equation} (2.27)
 
-Note that stacking the following two transformed regressions we just performed yields
-\begin{equation}
+Note that stacking the following two transformed regressions we just performed yields \begin{equation}
 \left(\begin{array}{l}
 Q y \\
 P y
@@ -512,9 +405,7 @@ and the transformed error has mean 0 and variance--covariance matrix given by
 \end{array}\right)
 \]
 
-Problem 2.7 asks the reader to verify that OLS on this system of 2NT observations yields OLS
-on the pooled model (2.3). Also, GLS on this system yields GLS on (2.3). Alternatively, one
-could get rid of the constant α by running the following stacked regressions:
+Problem 2.7 asks the reader to verify that OLS on this system of 2NT observations yields OLS on the pooled model (2.3). Also, GLS on this system yields GLS on (2.3). Alternatively, one could get rid of the constant α by running the following stacked regressions:
 
 \begin{equation}
 \left(\begin{array}{c}
@@ -529,16 +420,12 @@ Q u \\
 \end{array}\right)
 \end{equation} (2.29)
 
-This follows from the fact that QιNT = 0 and (P − J¯NT )ιNT = 0. The transformed error has
-zero mean and variance--covariance matrix
-\[
+This follows from the fact that QιNT = 0 and (P − J¯NT )ιNT = 0. The transformed error has zero mean and variance--covariance matrix \[
 \left(\begin{array}{cc}
 \sigma_{v}^{2} Q & 0 \\
 0 & \sigma_{1}^{2}\left(P-\bar{J}_{N T}\right)
 \end{array}\right)
-\]
-OLS on this system yields OLS on (2.3) and GLS on (2.29) yields GLS on (2.3). In fact,
-\begin{equation}
+\] OLS on this system yields OLS on (2.3) and GLS on (2.29) yields GLS on (2.3). In fact, \begin{equation}
 \begin{aligned}
 \widehat{\beta}_{\mathrm{GLS}}=&\left[\left(X^{\prime} Q X / \sigma_{v}^{2}\right)+X^{\prime}\left(P-\bar{J}_{N T}\right) X / \sigma_{1}^{2}\right]^{-1}\left[\left(X^{\prime} Q y / \sigma_{v}^{2}\right)\right.\\
 &\left.+X^{\prime}\left(P-\bar{J}_{N T}\right) y / \sigma_{1}^{2}\right] \\
@@ -546,36 +433,23 @@ OLS on this system yields OLS on (2.3) and GLS on (2.29) yields GLS on (2.3). In
 \end{aligned}
 \end{equation} (2.30)
 
-with \(\operatorname{var}\left(\widehat{\beta}_{\mathrm{GLS}}\right)=\sigma_{v}^{2}\left[W_{X X}+\phi^{2} B_{X X}\right]^{-1} .\) Note that \(W_{X X}=X^{\prime} Q X, B_{X X}=X^{\prime}\left(P-\bar{J}_{N T}\right) X\)
-and \(\phi^{2}=\sigma_{v}^{2} / \sigma_{1}^{2}\). Also, the Within estimator of \(\beta\) is \(\underline{\beta}_{\text {Within }}=W_{X X}^{-1} W_{X y}\) and the Between estimator of \(\beta\) is \(\widehat{\beta}_{\text {Between }}=B_{X X}^{-1} B_{X y} .\) This shows that \(\widehat{\beta}_{\mathrm{GLS}}\) is a matrix weighted average of \(\widetilde{\beta}_{\text {Within and }} \widehat{\beta}_{\text {Between }}\) weighing each estimate by the inverse of its corresponding variance. In fact
+with \(\operatorname{var}\left(\widehat{\beta}_{\mathrm{GLS}}\right)=\sigma_{v}^{2}\left[W_{X X}+\phi^{2} B_{X X}\right]^{-1} .\) Note that \(W_{X X}=X^{\prime} Q X, B_{X X}=X^{\prime}\left(P-\bar{J}_{N T}\right) X\) and \(\phi^{2}=\sigma_{v}^{2} / \sigma_{1}^{2}\). Also, the Within estimator of \(\beta\) is \(\underline{\beta}_{\text {Within }}=W_{X X}^{-1} W_{X y}\) and the Between estimator of \(\beta\) is \(\widehat{\beta}_{\text {Between }}=B_{X X}^{-1} B_{X y} .\) This shows that \(\widehat{\beta}_{\mathrm{GLS}}\) is a matrix weighted average of \(\widetilde{\beta}_{\text {Within and }} \widehat{\beta}_{\text {Between }}\) weighing each estimate by the inverse of its corresponding variance. In fact
 
 \begin{equation}
 \widehat{\beta}_{\mathrm{GLS}}=W_{1} \widetilde{\beta}_{\mathrm{Within}}+W_{2} \widehat{\beta}_{\mathrm{Between}}
-\end{equation} (2.31)
-where
-\[
+\end{equation} (2.31) where \[
 W_{1}=\left[W_{X X}+\phi^{2} B_{X X}\right]^{-1} W_{X X}
-\]
-and
-\[
+\] and \[
 W_{2}=\left[W_{X X}+\phi^{2} B_{X X}\right]^{-1}\left(\phi^{2} B_{X X}\right)=I-W_{1}
-\]
-This was demonstrated by Maddala (1971). Note that (i) if \(\sigma_{\mu}^{2}=0\) then \(\phi^{2}=1\) and \(\widehat{\beta}_{\text {GLS }}\) reduces to \(\widehat{\beta}_{\text {OLs. }}\) (ii) If \(T \rightarrow \infty\), then \(\phi^{2} \rightarrow 0\) and \(\widehat{\beta}_{\text {GLS }}\) tends to \(\widetilde{\beta}_{\text {Within. }}\) Also, if \(W_{X X}\) is huge compared to \(B_{X X}\) then \(\widehat{\beta}_{\mathrm{GLS}}\) will be close to \(\widetilde{\beta}_{\text {Within }}\). However, if \(B_{X X}\) dominates \(W_{X X}\) then \(\widehat{\beta}_{\mathrm{GLS}}\) tends to \(\widehat{\beta}_{\text {Between. }}\) In other words, the Within estimator ignores the Between variation, and the Between estimator ignores the Within variation. The OLS estimator gives equal weight to the Between and Within variations. From \((2.30)\), it is clear that \(\operatorname{var}\left(\widetilde{\beta}_{\text {Within }}\right)-\operatorname{var}\left(\hat{\beta}_{\mathrm{GLS}}\right)\) is a positive semidefinite matrix, since \(\phi^{2}\) is positive. However, as \(T \rightarrow \infty\) for any fixed \(N, \phi^{2} \rightarrow 0\) and both \(\widehat{\beta}_{\mathrm{GLS}}\) and \(\widetilde{\beta}_{\text {Within }}\) have the same asymptotic variance.
+\] This was demonstrated by Maddala (1971). Note that (i) if \(\sigma_{\mu}^{2}=0\) then \(\phi^{2}=1\) and \(\widehat{\beta}_{\text {GLS }}\) reduces to \(\widehat{\beta}_{\text {OLs. }}\) (ii) If \(T \rightarrow \infty\), then \(\phi^{2} \rightarrow 0\) and \(\widehat{\beta}_{\text {GLS }}\) tends to \(\widetilde{\beta}_{\text {Within. }}\) Also, if \(W_{X X}\) is huge compared to \(B_{X X}\) then \(\widehat{\beta}_{\mathrm{GLS}}\) will be close to \(\widetilde{\beta}_{\text {Within }}\). However, if \(B_{X X}\) dominates \(W_{X X}\) then \(\widehat{\beta}_{\mathrm{GLS}}\) tends to \(\widehat{\beta}_{\text {Between. }}\) In other words, the Within estimator ignores the Between variation, and the Between estimator ignores the Within variation. The OLS estimator gives equal weight to the Between and Within variations. From \((2.30)\), it is clear that \(\operatorname{var}\left(\widetilde{\beta}_{\text {Within }}\right)-\operatorname{var}\left(\hat{\beta}_{\mathrm{GLS}}\right)\) is a positive semidefinite matrix, since \(\phi^{2}\) is positive. However, as \(T \rightarrow \infty\) for any fixed \(N, \phi^{2} \rightarrow 0\) and both \(\widehat{\beta}_{\mathrm{GLS}}\) and \(\widetilde{\beta}_{\text {Within }}\) have the same asymptotic variance.
 
-Another estimator of the variance components was suggested by Nerlove (1971a). His zuggestion is to estimate \(\sigma^{2}\) as \(\sum^{N} \cdot(\widehat{u} \cdot-\widehat{\pi})^{2} /(N-1)\) where \(\widehat{u}\). are the dummv coefficients
-estimates from the LSDV regression. \(\sigma_{v}^{2}\) is estimated from the Within residual sums of squares divided by \(N T\) without correction for degrees of freedom. \({ }^{4}\)
+Another estimator of the variance components was suggested by Nerlove (1971a). His zuggestion is to estimate \(\sigma^{2}\) as \(\sum^{N} \cdot(\widehat{u} \cdot-\widehat{\pi})^{2} /(N-1)\) where \(\widehat{u}\). are the dummv coefficients estimates from the LSDV regression. \(\sigma_{v}^{2}\) is estimated from the Within residual sums of squares divided by \(N T\) without correction for degrees of freedom. \({ }^{4}\)
 
 Note that, except for Nerlove's (1971a) method, one has to retrieve \(\widehat{\sigma}_{\mu}^{2}\) as \(\left(\widehat{\sigma}_{1}^{2}-\widehat{\sigma}_{v}^{2}\right) / T .\) In this case, there is no guarantee that the estimate of \(\widehat{\sigma}_{\mu}^{2}\) would be nonnegative. Searle (1971) has an extensive discussion of the problem of negative estimates of the variance components in the biometrics literature. One solution is to replace these negative estimates by zero. This in fact is the suggestion of the Monte Carlo study by Maddala and Mount (1973). This study finds that negative estimates occurred only when the true \(\sigma_{\mu}^{2}\) was small and close to zero. In these cases OLS is still a viable estimator. Therefore, replacing negative \(\widehat{\sigma}_{\mu}^{2}\) by zero is not a bad sin after all, and the problem is dismissed as not being serious. \({ }^{5}\)
 
-How about the properties of the various feasible GLS estimators of \(\beta\)
-Under the random
-effects model, GLS based on the true variance components is BLUE, and all the
-feasible GLS estimators considered are asymptotically efficient as either N or \$N \rightarrow \infty \$. Maddala and Mount (1973) compared OLS, Within, Between, feasible GLS methods, MINQUE, Henderson's method III, true GLS and maximum likelihood estimation using their Monte Carlo study. They found little to choose among the various feasible GLS estimators in small samples and argued in favor of methods that were easier to compute. MINQUE was dismissed as more difficult to compute and the applied researcher given one shot at the data was warned to compute at least two methods of estimation, like an ANOVA feasible GLS and maximum likelihood to ensure that they do not yield drastically different results. If they do give different
-results, the authors diagnose misspecification.
+How about the properties of the various feasible GLS estimators of \(\beta\) Under the random effects model, GLS based on the true variance components is BLUE, and all the feasible GLS estimators considered are asymptotically efficient as either N or \$N \rightarrow \infty \$. Maddala and Mount (1973) compared OLS, Within, Between, feasible GLS methods, MINQUE, Henderson's method III, true GLS and maximum likelihood estimation using their Monte Carlo study. They found little to choose among the various feasible GLS estimators in small samples and argued in favor of methods that were easier to compute. MINQUE was dismissed as more difficult to compute and the applied researcher given one shot at the data was warned to compute at least two methods of estimation, like an ANOVA feasible GLS and maximum likelihood to ensure that they do not yield drastically different results. If they do give different results, the authors diagnose misspecification.
 
-Taylor (1980) derived exact finite sample results for the one-way error component model.
-He compared the Within estimator with the Swamy--Arora feasible GLS estimator. He found
-the following important results:
+Taylor (1980) derived exact finite sample results for the one-way error component model. He compared the Within estimator with the Swamy--Arora feasible GLS estimator. He found the following important results:
 
 \begin{enumerate}
 \def\labelenumi{(\arabic{enumi})}
@@ -585,23 +459,57 @@ the following important results:
 \item
   The variance of feasible GLS is never more than 17\% above the Cramer--Rao lower bound.
 \item
-  More efficient estimators of the variance components do not necessarily yield more efficient
-  feasible GLS estimators.
+  More efficient estimators of the variance components do not necessarily yield more efficient feasible GLS estimators.
 \end{enumerate}
 
 These finite sample results are confirmed by the Monte Carlo experiments carried out by Maddala and Mount (1973) and Baltagi (1981a).
 
-Bellmann, Breitung and Wagner (1989) consider the bias in estimating the variance components using the Wallace and Hussain (1969) method due to the replacement of the true disturbances by OLS residuals, also the bias in the regression coefficients due to the use of estimated variance components rather than the true variance components. The magnitude of this bias is estimated using bootstrap methods for two economic applications. The first application relates product innovations, import pressure and factor inputs using a panel at the industry level. The second application estimates the earnings of 936 full-time working German males based on the first and second wave of the German Socio-Economic Panel. Only the first application revealed considerable bias in estimating \$\sigma\_\mu\^{}2 \$. However, this did not affect the bias
-much in the corresponding regression coefficients
+Bellmann, Breitung and Wagner (1989) consider the bias in estimating the variance components using the Wallace and Hussain (1969) method due to the replacement of the true disturbances by OLS residuals, also the bias in the regression coefficients due to the use of estimated variance components rather than the true variance components. The magnitude of this bias is estimated using bootstrap methods for two economic applications. The first application relates product innovations, import pressure and factor inputs using a panel at the industry level. The second application estimates the earnings of 936 full-time working German males based on the first and second wave of the German Socio-Economic Panel. Only the first application revealed considerable bias in estimating \$\sigma\_\mu\^{}2 \$. However, this did not affect the bias much in the corresponding regression coefficients
 
 \hypertarget{fixed-vs-random}{%
 \subsection{Fixed vs Random}\label{fixed-vs-random}}
 
-Having discussed the fixed effects and the random effects models and the assumptions underlying them, the reader is left with the daunting question, which one to choose? This is not as easy a choice as it might seem. In fact, the fixed versus random effects issue has generated a hot debate in the biometrics and statistics literature which has spilled over into the
-panel data econometrics literature. Mundlak (1961) and Wallace and Hussain (1969) were early proponents of the fixed effects model and Balestra and Nerlove (1966) were advocates of the random error component model. In Chapter 4, we will study a specification test proposed by Hausman (1978) which is based on the difference between the fixed and random effects estimators. Unfortunately, applied researchers have interpreted a rejection as an adoption of the fixed effects model and nonrejection as an adoption of the random effects model.6 Chamberlain (1984) showed that the fixed effects model imposes testable restrictions on the parameters of the reduced form model and one should check the validity of these restrictions before adopting the fixed effects model (see Chapter 4). Mundlak (1978) argued that the random effects model assumes exogeneity of all the regressors with the random individual effects. In contrast, the fixed effects model allows for endogeneity of all the regressors with these individual effects. So, it is an ``all'' or ``nothing'' choice of exogeneity of the regressors and the individual effects, see Chapter 7 for a more formal discussion of this subject.
+Having discussed the fixed effects and the random effects models and the assumptions underlying them, the reader is left with the daunting question, which one to choose? This is not as easy a choice as it might seem. In fact, the fixed versus random effects issue has generated a hot debate in the biometrics and statistics literature which has spilled over into the panel data econometrics literature. Mundlak (1961) and Wallace and Hussain (1969) were early proponents of the fixed effects model and Balestra and Nerlove (1966) were advocates of the random error component model. In Chapter 4, we will study a specification test proposed by Hausman (1978) which is based on the difference between the fixed and random effects estimators. Unfortunately, applied researchers have interpreted a rejection as an adoption of the fixed effects model and nonrejection as an adoption of the random effects model.6 Chamberlain (1984) showed that the fixed effects model imposes testable restrictions on the parameters of the reduced form model and one should check the validity of these restrictions before adopting the fixed effects model (see Chapter 4). Mundlak (1978) argued that the random effects model assumes exogeneity of all the regressors with the random individual effects. In contrast, the fixed effects model allows for endogeneity of all the regressors with these individual effects. So, it is an ``all'' or ``nothing'' choice of exogeneity of the regressors and the individual effects, see Chapter 7 for a more formal discussion of this subject.
 
-Hausman and Taylor (1981) allowed for some of the regressors to be correlated with the individual effects, as opposed to the all or nothing choice. These over-identification restrictions are testable using a Hausman-type test (see Chapter 7). For the applied researcher, performing fixed effects and random effects and the associated Hausman test reported in standard packages like Stata, LIMDEP, TSP, etc., the message is clear: Do not stop here. Test the restrictions implied by the fixed effects model derived by Chamberlain (1984) (see Chapter 4) and check whether a Hausman and Taylor (1981) specification might be a viable alternative (see
-Chapter 7).
+Hausman and Taylor (1981) allowed for some of the regressors to be correlated with the individual effects, as opposed to the all or nothing choice. These over-identification restrictions are testable using a Hausman-type test (see Chapter 7). For the applied researcher, performing fixed effects and random effects and the associated Hausman test reported in standard packages like Stata, LIMDEP, TSP, etc., the message is clear: Do not stop here. Test the restrictions implied by the fixed effects model derived by Chamberlain (1984) (see Chapter 4) and check whether a Hausman and Taylor (1981) specification might be a viable alternative (see Chapter 7).
+
+\hypertarget{the-two-way-error-component-regression-model}{%
+\chapter{The Two-way Error Component Regression Model}\label{the-two-way-error-component-regression-model}}
+
+\hypertarget{ntroduction}{%
+\section{NTRODUCTION}\label{ntroduction}}
+
+Wallace and Hussain (1969), Nerlove (1971b) and Amemiya (1971), among others, the regression model given by (2.1), but with two-way error components disturbances: \begin{equation}
+u_{i t}=\mu_{i}+\lambda_{t}+v_{i t} \quad i=1, \ldots, N ; t=1, \ldots, T
+\end{equation} (3.1)
+
+where \(\mu_i\) denotes the unobservable individual effect discussed in Chapter 2, \(\lambda_t\) denotes the unobservable time effect and \(v_{it}\) is the remainder stochastic disturbance term. Note that \(\lambda_t\) is individual-invariant and it accounts for any time-specific effect that is not included in the regression. For example, it could account for strike year effects that disrupt production; oil embargo effects that disrupt the supply of oil and affect its price; Surgeon General reports on the ill-effects of smoking, or government laws restricting smoking in public places, all of which could affect consumption behavior. In vector form, (3.1) can be written as
+
+\begin{equation}
+u=Z_{\mu} \mu+Z_{\lambda} \lambda+v
+\end{equation} (3.2)
+
+where \(Z_\mu, \mu\) and \(v\) were defined earlier. \(Z_\lambda = i_N \otimes I_T\) is the matrix of time dummies that one may include in the regression to estimate the \(\lambda_t\) if they are fixed parameters, and \(\lambda^{\prime}= (\lambda_1, ..., \lambda_T )\) Note that \[Z_\lambda Z_\lambda^ {\prime}=J_N \otimes I_T \] and the projection on \(Z_{\lambda}\) is \[Z_{\lambda}\left(Z_{\lambda}^{\prime} Z_{\lambda}\right)^{-1} Z_{\lambda}^{\prime}=\bar{J}_{N} \otimes I_T  \] This last matrix averages the data over individuals, i.e., if we regress y on \(Z_\lambda\), the predicted values are given by \[ (\bar {J_N} \otimes I_T)y \] which has typical element \(\bar{y}_{. t}=\sum_{i=1}^{N} y_{i t} / N\) .
+
+\hypertarget{the-fixed-effects-model-1}{%
+\section{THE FIXED EFFECTS MODEL}\label{the-fixed-effects-model-1}}
+
+If the \(\mu_{i}\) and \(\lambda_{t}\) are assumed to be fixed parameters to be estimated and the remainder disturbances stochastic with \(v_{i t} \sim \operatorname{IID}\left(0, \sigma_{v}^{2}\right)\), then (3.1) represents a two-way fixed effects error component model. The \(X_{i t}\) are assumed independent of the \(v_{i t}\) for all \(i\) and \(t\). Inference in this case is conditional on the particular \(N\) individuals and over the specific time periods observed. Recall that \(Z_{\lambda}\), the matrix of time dummies, is \(N T \times T\). If \(N\) or \(T\) is large, there will be too many dummy variables in the regression \(\{(N-1)+(T-1)\}\) of them, and this causes an enormous loss in degrees of freedom. In addition, this attenuates the problem of multicollinearity among the regressors. Rather than invert a large \((N+T+K-1)\) matrix, one can obtain the fixed effects estimates of \(\beta\) by performing the following Within transformation given by Wallace and Hussain (1969):
+
+\begin{equation}
+Q=E_{N} \otimes E_{T}=I_{N} \otimes I_{T}-I_{N} \otimes \bar{J}_{T}-\bar{J}_{N} \otimes I_{T}+\bar{J}_{N} \otimes \bar{J}_{T}
+\end{equation} (3.3)
+
+where \(E_{N}=I_{N}-\bar{J}_{N}\) and \(E_{T}=I_{T}-\bar{J}_{T}\). This transformation ``sweeps'' the \(\mu_{i}\) and \(\lambda_{t}\) effects. In fact, \(\tilde{y}=Q y\) has a typical element \(\tilde{y}_{i t}=\left(y_{i t}-\bar{y}_{i .}-\bar{y}_{i t}+\bar{y} . .\right)\) where \(\bar{y}_{. .}=\sum_{i} \sum_{t} y_{i t} /\) \(N T\), and one would perform the regression of \(\tilde{y}=Q y\) on \(\widetilde{X}=Q X\) to get the Within estimator \(\widetilde{\beta}=\left(X^{\prime} Q X\right)^{-1} X^{\prime} Q y\)
+
+Note that by averaging the simple regression given in (2.8) over individuals, we get
+
+\begin{equation}
+\bar{y}_{. t}=\alpha+\beta \bar{x}_{. t}+\lambda_{t}+\bar{v}_{. t}
+\end{equation} (3.4)
+
+\hypertarget{references}{%
+\section{REFERENCES}\label{references}}
 
 \hypertarget{methods}{%
 \chapter{Methods}\label{methods}}

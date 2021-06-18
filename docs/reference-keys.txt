@@ -9,6 +9,10 @@ introduction
 the-fixed-effects-model
 the-random-effects-model
 fixed-vs-random
+the-two-way-error-component-regression-model
+ntroduction
+the-fixed-effects-model-1
+references
 methods
 analyses
 netoyage-de-la-base-des-données
