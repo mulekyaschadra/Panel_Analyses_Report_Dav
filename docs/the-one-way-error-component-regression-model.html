@@ -24,7 +24,7 @@
 <meta name="author" content="David BYAMUNGU" />
 
 
-<meta name="date" content="2021-06-17" />
+<meta name="date" content="2021-06-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -302,6 +302,14 @@ covariance matrix of <span class="math inline">\(\beta\)</span> is estimated by
 </div>
 <div id="the-random-effects-model" class="section level2" number="4.3">
 <h2><span class="header-section-number">4.3</span> THE RANDOM EFFECTS MODEL</h2>
+<p>There are too many parameters in the fixed effects model and the loss of degrees of freedom can be avoided if the μi can be assumed random. In this case
+$ <em>i IID(0, </em>^2)$,
+$ν_{it} ∼ IID(0, _v^2 ) $
+and the <span class="math inline">\(\mu_i\)</span> are independent of the <span class="math inline">\(v_{it}\)</span> . In addition, the <span class="math inline">\(X_{it}\)</span> are independent of the <span class="math inline">\(\mu_i\)</span> and <span class="math inline">\(v_{it}\)</span>,for all i and t. The random effects model is an appropriate specification if we are drawing N individuals randomly from a large population. This is usually the case for household panel studies. Care is taken in the design of the panel to make it “representative” of the population we are trying to make inferences about. In this case, N is usually large and a fixed effects model would lead to an enormous loss of degrees of freedom. The individual effect is characterized as random and inference pertains to the population from which this sample was randomly drawn.</p>
+<p>But what is the population in this case? Nerlove and Balestra (1996) emphasize Haavelmo’s
+(1944) view that the population “consists not of an infinity of individuals, in general, but of an
+infinity of decisions” that each individual might make. This view is consistent with a random
+effects specification. From (2.4), one can compute the variance–covariance matrix</p>
 
 </div>
 </div>

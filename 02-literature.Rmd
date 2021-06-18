@@ -162,4 +162,13 @@ $$
 
 ## THE RANDOM EFFECTS MODEL
 
+There are too many parameters in the fixed effects model and the loss of degrees of freedom can be avoided if the μi can be assumed random. In this case
+$ \mu_i \sim IID(0, \sigma_\mu^2)$,
+$ν_{it} ∼ IID(0, \sigma_v^2 ) $
+and the $\mu_i$ are independent of the $v_{it}$ . In addition, the $X_{it}$  are independent of the $\mu_i$ and $v_{it}$,for all i and t. The random effects model is an appropriate specification if we are drawing N individuals randomly from a large population. This is usually the case for household panel studies. Care is taken in the design of the panel to make it “representative” of the population we are trying to make inferences about. In this case, N is usually large and a fixed effects model would lead to an enormous loss of degrees of freedom. The individual effect is characterized as random and inference pertains to the population from which this sample was randomly drawn.
+
+But what is the population in this case? Nerlove and Balestra (1996) emphasize Haavelmo’s
+(1944) view that the population “consists not of an infinity of individuals, in general, but of an
+infinity of decisions” that each individual might make. This view is consistent with a random
+effects specification. From (2.4), one can compute the variance–covariance matrix
 
