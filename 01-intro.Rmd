@@ -1,13 +1,17 @@
 # Introduction {#intro}
 
 Dans ce document nous cherchons à modéliser les taxes perçues dans différents pays , formant un panel dont la période est 10 ans. 
-Ainsi, nous expliquerons la variable taxe par
+Ainsi, nous expliquerons la variable taxe par: 
+
 (1) Le poids des Marchandises
 (2) La qualité des Marchandises
 
 Le but est d'arbitrer entre:
-(1)   le *modele à éffet fixe* et 
-(2) le *modèle à éffet aléatoire*
+
+(1)   le modèle *pooling*
+(2)   le *modele à éffet fixe* et 
+(3)   le *modèle à éffet aléatoire*
+
 et en fin produire un `modèle dynamique` permettant d'expliquer la variation du taxe au cours du temps, avec comme variable dépendante additionnelle le taxe décalé
 
 Nous expliquons Notre méthodologie dans la partie suivante.

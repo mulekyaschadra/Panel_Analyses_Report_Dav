@@ -162,13 +162,30 @@ Nous avions utilisé XeLaTeX pour compiler ce document en PDF.
 \chapter{Introduction}\label{intro}}
 
 Dans ce document nous cherchons à modéliser les taxes perçues dans différents pays , formant un panel dont la période est 10 ans.
-Ainsi, nous expliquerons la variable taxe par
-(1) Le poids des Marchandises
-(2) La qualité des Marchandises
+Ainsi, nous expliquerons la variable taxe par:
+
+\begin{enumerate}
+\def\labelenumi{(\arabic{enumi})}
+\tightlist
+\item
+  Le poids des Marchandises
+\item
+  La qualité des Marchandises
+\end{enumerate}
 
 Le but est d'arbitrer entre:
-(1) le \emph{modele à éffet fixe} et
-(2) le \emph{modèle à éffet aléatoire}
+
+\begin{enumerate}
+\def\labelenumi{(\arabic{enumi})}
+\tightlist
+\item
+  le modèle \emph{pooling}
+\item
+  le \emph{modele à éffet fixe} et
+\item
+  le \emph{modèle à éffet aléatoire}
+\end{enumerate}
+
 et en fin produire un \texttt{modèle\ dynamique} permettant d'expliquer la variation du taxe au cours du temps, avec comme variable dépendante additionnelle le taxe décalé
 
 Nous expliquons Notre méthodologie dans la partie suivante.
