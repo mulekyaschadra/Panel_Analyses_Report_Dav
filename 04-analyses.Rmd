@@ -16,6 +16,7 @@ library(rio)
 library(DT)
 library(readxl)
 library(knitr)
+library(kableExtra)
 library(gtsummary)
 ```
 
@@ -44,11 +45,11 @@ Voici les modalités de la variabme `Goods` qui signifie
 `Marchandises`
 
 ```{r g, echo=FALSE}
-levels(taxe_df$Goods) %>% kable(caption = 'Modalités de la variable Goods à l\'importation des donnees')
+levels(taxe_df$Goods) %>% kbl(caption = 'Modalités de la variable Goods à l\'importation des donnees',booktabs = TRUE,longtable = TRUE) 
 modalites_goods <- length(levels(taxe_df$Goods))
 ```
 
-La variables **Goods ** a `r modalites_goods ` modalités
+La variables **Goods ** a `r modalites_goods` modalités
 
 
 Faison la cactérisation des niveaux des marchandises dont l'encodage fait défaut
