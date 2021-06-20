@@ -14,6 +14,7 @@ ntroduction
 the-fixed-effects-model-1
 testing-for-fixed-effects
 the-random-effects-model-1
+test-of-hypotheses-with-panel-data
 references
 methods
 analyses

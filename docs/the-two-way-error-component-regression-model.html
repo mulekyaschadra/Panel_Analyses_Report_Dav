@@ -159,7 +159,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.2.1" data-path="the-two-way-error-component-regression-model.html"><a href="the-two-way-error-component-regression-model.html#testing-for-fixed-effects"><i class="fa fa-check"></i><b>5.2.1</b> Testing for Fixed Effects</a></li>
 </ul></li>
 <li class="chapter" data-level="5.3" data-path="the-two-way-error-component-regression-model.html"><a href="the-two-way-error-component-regression-model.html#the-random-effects-model-1"><i class="fa fa-check"></i><b>5.3</b> THE RANDOM EFFECTS MODEL</a></li>
-<li class="chapter" data-level="5.4" data-path="the-two-way-error-component-regression-model.html"><a href="the-two-way-error-component-regression-model.html#references"><i class="fa fa-check"></i><b>5.4</b> REFERENCES</a></li>
+<li class="chapter" data-level="5.4" data-path="the-two-way-error-component-regression-model.html"><a href="the-two-way-error-component-regression-model.html#test-of-hypotheses-with-panel-data"><i class="fa fa-check"></i><b>5.4</b> Test of Hypotheses with Panel Data</a></li>
+<li class="chapter" data-level="5.5" data-path="the-two-way-error-component-regression-model.html"><a href="the-two-way-error-component-regression-model.html#references"><i class="fa fa-check"></i><b>5.5</b> REFERENCES</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="methods.html"><a href="methods.html"><i class="fa fa-check"></i><b>6</b> Methods</a></li>
 <li class="chapter" data-level="7" data-path="analyses.html"><a href="analyses.html"><i class="fa fa-check"></i><b>7</b> Analyses</a>
@@ -398,10 +399,36 @@ Wallace and Hussain (1969) compare <span class="math inline">\(\widehat{\beta}_{
 <ol start="3" style="list-style-type: lower-roman">
 <li><span class="math inline">\(\widehat{\beta}_{\mathrm{GLS}}\)</span> has a smaller generalized variance (i.e. more efficient) in finite samples. In the case of nonstochastic (nonrepetitive) <span class="math inline">\(X\)</span> they find that both <span class="math inline">\(\widehat{\beta}_{\mathrm{GLS}}\)</span> and <span class="math inline">\(\widetilde{\beta}_{\text {Within }}\)</span> are consistent, asymptotically unbiased and have equivalent asymptotic variance-covariance matrices, as both <span class="math inline">\(N\)</span> and <span class="math inline">\(T \rightarrow \infty\)</span>. The last statement can be proved as follows: the limiting variance of the GLS estimator is</li>
 </ol>
-<p>(3.25)</p>
+<p><span class="math display">\[\begin{equation}
+\frac{1}{N T} \lim _{N \rightarrow \infty \atop T \rightarrow \infty}\left(X^{\prime} \Omega^{-1} X / N T\right)^{-1}=\frac{1}{N T} \lim _{N \rightarrow \infty \atop T \rightarrow \infty}\left[\sum_{i=1}^{3} \frac{1}{\lambda_{i}}\left(X^{\prime} Q_{i} X / N T\right)\right]^{-1}
+\end{equation}\]</span> (3.25)</p>
+<p>but the limit of the inverse is the inverse of the limit, and</p>
+<p><span class="math display">\[\begin{equation}
+\lim _{N \rightarrow \infty \atop T \rightarrow \infty} \frac{X^{\prime} Q_{i} X}{N T} \quad \text { for } i=1,2,3
+\end{equation}\]</span> (3.26)</p>
+<p>all exist and are positive semidefinite, since <span class="math display">\[\lim _{N \rightarrow \infty \atop T \rightarrow \infty}\left(X^{\prime} X / N T\right)\]</span> is assumed finite and positive definite. Hence</p>
+<p><span class="math display">\[
+\lim _{N \rightarrow \infty \atop T \rightarrow \infty} \frac{1}{\left(N \sigma_{\lambda}^{2}+\sigma_{v}^{2}\right)}\left(\frac{X^{\prime} Q_{3} X}{N T}\right)=0
+\]</span></p>
+<p>and
+<span class="math display">\[
+\lim _{N \rightarrow \infty \atop T \rightarrow \infty} \frac{1}{\left(T \sigma_{\mu}^{2}+\sigma_{v}^{2}\right)}\left(\frac{X^{\prime} Q_{2} X}{N T}\right)=0
+\]</span>
+Therefore the limiting variance of the GLS estimator becomes
+<span class="math display">\[
+\frac{1}{N T} \lim _{N \rightarrow \infty \atop T \rightarrow \infty} \sigma_{v}^{2}\left(\frac{X^{\prime} Q_{1} X}{N T}\right)^{-1}
+\]</span></p>
+<p>which is the limiting variance of the Within estimator. One can extend Nerlove’s (1971a) method for the one-way model, by estimating <span class="math inline">\(\sigma_{\mu}^{2}\)</span> as <span class="math inline">\(\sum_{i=1}^{N}\left(\widehat{\mu}_{i}-\widehat{\mu}\right)^{2} /(N-1)\)</span> and <span class="math inline">\(\sigma_{\lambda}^{2}\)</span> as <span class="math inline">\(\sum_{t=1}^{T}\left(\widehat{\lambda}_{t}-\bar{\lambda}\right)^{2} /(T-1)\)</span> where the <span class="math inline">\(\widehat{\mu}_{i}\)</span> and <span class="math inline">\(\widehat{\lambda}_{t}\)</span> are obtained
+as coefficients from the least squares dummy variables regression (LSDV). <span class="math inline">\(\sigma_{v}^{2}\)</span> is estimated from the Within residual sums of squares divided by <span class="math inline">\(N T\)</span>. Baltagi (1995, appendix 3) develops two other methods of estimating the variance components. The first is Rao’s (1970) minimum norm quadratic unbiased estimation (MINQUE) and the second is Henderson’s method III as described by Fuller and Battese (1973). These methods require more notation and development and may be skipped in a brief course on this subject. Chapter 9 studies these estimation methods in the context of an unbalanced error component model.</p>
+<p>Baltagi (1981a) performed a Monte Carlo study on a simple regression equation with twoway error component disturbances and studied the properties of the following estimators:
+OLS, the Within estimator and six feasible GLS estimators denoted by WALHUS, AMEMIYA, SWAR, MINQUE, FUBA and NERLOVE corresponding to the methods developed by Wallace and Hussain (1969), Amemiya (1971), Swamy and Arora (1972), Rao (1972), Fuller and Battese (1974) and Nerlove (1971a), respectively. The mean square error of these estimators was computed relative to that of true GLS, i.e. GLS knowing the true variance components. To review some of the properties of these estimators: OLS is unbiased, but asymptotically inefficient, and its standard errors are biased; see Moulton (1986) for the extent of this bias in empirical applications. In contrast, the Within estimator is unbiased whether or not prior</p>
+<p>information about the variance components is available. It is also asymptotically equivalent to the GLS estimator in case of weakly nonstochastic exogenous variables. Early in the literature, Wallace and Hussain (1969) recommended the Within estimator for the practical researcher, based on theoretical considerations but more importantly for its ease of computation. In Wallace and Hussain’s (1969, p. 66) words the “covariance estimators come off with a surprisingly clear bill of health.” True GLS is BLUE, but the variance components are usually not known and have to be estimated. All of the feasible GLS estimators considered are asymptotically efficient. In fact, Prucha (1984) showed that as long as the estimate of <span class="math inline">\(\sigma_{v}^{2}\)</span> is consistent, and the probability limits of the estimates <span class="math inline">\(\sigma_{\mu}^{2}\)</span> and <span class="math inline">\(\sigma_{\lambda}^{2}\)</span> are finite, the corresponding feasible GLS estimator is asymptotically efficient. Also, Swamy and Arora (1972) proved the existence of a family of asymptotically efficient two-stage feasible GLS estimators of the regression coefficients. Therefore, based on asymptotics only, one cannot differentiate among these twostage GLS estimators. This leaves undecided the question of which estimator is the best to use. Some analytical results were obtained by Swamy (1971) and Swamy and Arora (1972). These studies derived the relative efficiencies of (i) SWAR with respect to OLS, (ii) SWAR with respect to Within and (iii) Within with respect to OLS. Then, for various values of <span class="math inline">\(N, T\)</span>, the variance components, the Between groups, Between time-periods and Within groups sums of squares of the independent variable, they tabulated these relative efficiency values (see Swamy, 1971 , chapters II and III; Swamy and Arora, 1972, p. 272). Among their basic findings is the fact that, for small samples, SWAR is less efficient than OLS if <span class="math inline">\(\sigma_{\mu}^{2}\)</span> and <span class="math inline">\(\sigma_{\lambda}^{2}\)</span> are small. Also, SWAR is less efficient than Within if <span class="math inline">\(\sigma_{\mu}^{2}\)</span> and <span class="math inline">\(\sigma_{\lambda}^{2}\)</span> are large. The latter result is disconcerting, since Within, which uses only a part of the available data, is more efficient than SWAR, a feasible GLS estimator, which uses all of the available data.</p>
 </div>
-<div id="references" class="section level2" number="5.4">
-<h2><span class="header-section-number">5.4</span> REFERENCES</h2>
+<div id="test-of-hypotheses-with-panel-data" class="section level2" number="5.4">
+<h2><span class="header-section-number">5.4</span> Test of Hypotheses with Panel Data</h2>
+</div>
+<div id="references" class="section level2" number="5.5">
+<h2><span class="header-section-number">5.5</span> REFERENCES</h2>
 
 </div>
 </div>
