@@ -12,6 +12,8 @@ fixed-vs-random
 the-two-way-error-component-regression-model
 ntroduction
 the-fixed-effects-model-1
+testing-for-fixed-effects
+the-random-effects-model-1
 references
 methods
 analyses

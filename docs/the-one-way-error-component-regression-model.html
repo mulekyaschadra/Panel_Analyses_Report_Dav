@@ -24,7 +24,7 @@
 <meta name="author" content="David BYAMUNGU" />
 
 
-<meta name="date" content="2021-06-18" />
+<meta name="date" content="2021-06-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -154,8 +154,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5" data-path="the-two-way-error-component-regression-model.html"><a href="the-two-way-error-component-regression-model.html"><i class="fa fa-check"></i><b>5</b> The Two-way Error Component Regression Model</a>
 <ul>
 <li class="chapter" data-level="5.1" data-path="the-two-way-error-component-regression-model.html"><a href="the-two-way-error-component-regression-model.html#ntroduction"><i class="fa fa-check"></i><b>5.1</b> NTRODUCTION</a></li>
-<li class="chapter" data-level="5.2" data-path="the-two-way-error-component-regression-model.html"><a href="the-two-way-error-component-regression-model.html#the-fixed-effects-model-1"><i class="fa fa-check"></i><b>5.2</b> THE FIXED EFFECTS MODEL</a></li>
-<li class="chapter" data-level="5.3" data-path="the-two-way-error-component-regression-model.html"><a href="the-two-way-error-component-regression-model.html#references"><i class="fa fa-check"></i><b>5.3</b> REFERENCES</a></li>
+<li class="chapter" data-level="5.2" data-path="the-two-way-error-component-regression-model.html"><a href="the-two-way-error-component-regression-model.html#the-fixed-effects-model-1"><i class="fa fa-check"></i><b>5.2</b> THE FIXED EFFECTS MODEL</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="the-two-way-error-component-regression-model.html"><a href="the-two-way-error-component-regression-model.html#testing-for-fixed-effects"><i class="fa fa-check"></i><b>5.2.1</b> Testing for Fixed Effects</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="the-two-way-error-component-regression-model.html"><a href="the-two-way-error-component-regression-model.html#the-random-effects-model-1"><i class="fa fa-check"></i><b>5.3</b> THE RANDOM EFFECTS MODEL</a></li>
+<li class="chapter" data-level="5.4" data-path="the-two-way-error-component-regression-model.html"><a href="the-two-way-error-component-regression-model.html#references"><i class="fa fa-check"></i><b>5.4</b> REFERENCES</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="methods.html"><a href="methods.html"><i class="fa fa-check"></i><b>6</b> Methods</a></li>
 <li class="chapter" data-level="7" data-path="analyses.html"><a href="analyses.html"><i class="fa fa-check"></i><b>7</b> Analyses</a>
@@ -277,7 +281,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>provide the BQU estimators of <span class="math inline">\(\sigma_1^2\)</span> and<span class="math inline">\(\sigma_v^2\)</span> , respectively (see problem 2.5).</p>
 <p>These are analyses of variance-type estimators of the variance components and are minimum variance-unbiased under normality of the disturbances (see Graybill, 1961). The true disturbances are not known and therefore (2.21) and (2.22) are not feasible. Wallace and Hussain (1969) suggest substituting OLS residual <span class="math inline">\(\widehat{u}_{\mathrm{OLS}}\)</span> instead of the true u. After all, under the random effects model, the OLS estimates are still unbiased and consistent, but no longer efficient. Amemiya (1971) shows that these estimators of the variance components have a different asymptotic distribution from that knowing the true disturbances. He suggests using the LSDV residuals instead of the OLS residuals. In this case <span class="math inline">\(\tilde{u}=y-\tilde{\alpha} \iota_{N T}-X \widetilde{\beta}\)</span> where and <span class="math inline">\(\bar{X}_{. .}^{\prime}\)</span> is a <span class="math inline">\(1 \times K\)</span></p>
 <p>vector of averages of all regressors. Substituting these <span class="math inline">\(\hat{u}\)</span> for u in (2.21) and (2.22) we get the Amemiya-type estimators of the variance components. The resulting estimates of the variance components have the same asymptotic distribution as that knowing the true disturbances:</p>
-<span class="math display">\[\begin{equation}
+<p><span class="math display">\[\begin{equation}
 \left(\begin{array}{c}
 \sqrt{N T}\left(\widehat{\sigma}_{v}^{2}-\sigma_{v}^{2}\right) \\
 \sqrt{N}\left(\widehat{\sigma}_{\mu}^{2}-\sigma_{\mu}^{2}\right)
@@ -285,16 +289,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 2 \sigma_{v}^{4} &amp; 0 \\
 0 &amp; 2 \sigma_{\mu}^{4}
 \end{array}\right)\right)
-\end{equation}\]</span>
+\end{equation}\]</span></p>
 <p>where <span class="math inline">\(\widehat{\sigma}_{\mu}^{2}=\left(\widehat{\sigma}_{1}^{2}-\widehat{\sigma}_{v}^{2}\right) / T .^{3}\)</span></p>
 <p>Swamy and Arora (1972) suggest running two regressions to get estimates of the variance components from the corresponding mean square errors of these regressions. The first regression is the Within regression, given in (2.10), which yields the following <span class="math inline">\(s^2\)</span>:</p>
-<span class="math display">\[\begin{equation}
+<p><span class="math display">\[\begin{equation}
 \widehat{\sigma}_{v}^{2}=\left[y^{\prime} Q y-y^{\prime} Q X\left(X^{\prime} Q X\right)^{-1} X^{\prime} Q y\right] /[N(T-1)-K]
-\end{equation}\]</span>
+\end{equation}\]</span></p>
 <p>The second regression is the Between regression which runs the regression of averages across time, i.e.</p>
-<span class="math display">\[\begin{equation}
+<p><span class="math display">\[\begin{equation}
 \bar{y}_{i .}=\alpha+\bar{X}_{i .}^{\prime} \beta+\bar{u}_{i .} \quad i=1, \ldots, N
-\end{equation}\]</span>
+\end{equation}\]</span></p>
 <p>(2.25)</p>
 <p>This is equivalent to premultiplying the model in (2.5) by P and running OLS. The only caution is that the latter regression has NT observations because it repeats the averages T times for each individual, while the cross-section regression in (2.25) is based on N observations. To remedy this, one can run the cross-section regression</p>
 <p><span class="math display">\[\begin{equation}

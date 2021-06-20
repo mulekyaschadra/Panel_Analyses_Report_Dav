@@ -138,7 +138,7 @@ fancyfoot[LE,LO]{Project}
 
 \title{Panel Analyses Report}
 \author{David BYAMUNGU}
-\date{2021-06-18}
+\date{2021-06-20}
 
 \begin{document}
 \maketitle
@@ -507,6 +507,246 @@ Note that by averaging the simple regression given in (2.8) over individuals, we
 \begin{equation}
 \bar{y}_{. t}=\alpha+\beta \bar{x}_{. t}+\lambda_{t}+\bar{v}_{. t}
 \end{equation} (3.4)
+
+where we have utilized the restriction that \(\sum_i \mu_i=0\) to avoid the dummy variable trap.
+Similarly the averages defined in (2.9) and (2.11) still hold using \(\sum_t \lambda_t=0\) and one can deduce that
+
+\begin{equation}
+\left(y_{i t}-\bar{y}_{i .}-\bar{y}_{. t}+\bar{y}_{. .}\right)=\left(x_{i t}-\bar{x}_{i .}-\bar{x}_{. t}+\bar{x}_{. .}\right) \beta+\left(v_{i t}-\bar{v}_{i .}-\bar{v}_{. t}+\bar{v}_{. .}\right)
+\end{equation} (3.5)
+
+OLS on this model gives \(\widetilde {\beta}\) the Within estimator for the two-way model. Once again, the
+Within estimate of the intercept can be deduced from
+\[\widetilde {\alpha}=\bar{y}_..-\widetilde {\beta} \bar{x}  \]
+and those of \(\mu_i\) and \(\lambda_i\) are given by
+
+\begin{equation}
+\tilde{\mu}_{i}=\left(\bar{y}_{i .}-\bar{y}_{. .}\right)-\widetilde{\beta}\left(\bar{x}_{i .}-\bar{x}_{. .}\right)
+\end{equation} (3.6)
+
+\begin{equation}
+\tilde{\lambda}_{t}=\left(\bar{y}_{. t}-\bar{y}_{. .}\right)-\widetilde{\beta}\left(\bar{x}_{. t}-\bar{x}_{. .}\right)
+\end{equation} (3.7)
+
+Note that the Within estimator cannot estimate the effect of time-invariant and individualinvariant variables because the Q transformation wipes out these variables. If the true model
+is a two-way fixed effects model as in (3.2), then OLS on (2.1) yields biased and inconsistent estimates of the regression coefficients. OLS ignores both sets of dummy variables, whereas the one-way fixed effects estimator considered in Chapter 2 ignores only the time dummies. If
+these time dummies are statistically significant, the one-way fixed effects estimator will also
+suffer from omission bias.
+
+\hypertarget{testing-for-fixed-effects}{%
+\subsection{Testing for Fixed Effects}\label{testing-for-fixed-effects}}
+
+As in the one-way error component model case, one can test for joint significance of the dummy
+variables:
+
+\[
+H_{0}: \mu_{1}=\ldots=\mu_{N-1}=0 \quad \text { and } \quad \lambda_{1}=\ldots=\lambda_{T-1}=0
+\]
+The restricted residual sums of squares (RRSS) is that of pooled OLS and the unrestricted residual sums of squares (URSS) is that from the Within regression in (3.5). In this case,
+
+\begin{equation}
+F_{1}=\frac{(\mathrm{RRSS}-\mathrm{URSS}) /(N+T-2)}{\mathrm{URSS} /(N-1)(T-1)-K} \stackrel{H_{0}}{\sim} F_{(N+T-2),(N-1)(T-1)-K}
+\end{equation} (3.8)
+
+Next, one can test for the existence of individual effects allowing for time effects, i.e.
+\(H_{2}: \mu_{1}==u_{N}=0 \quad\) allowing \(\quad \lambda \neq 0\) for \(t=1 \ldots \quad T-1\)
+
+The URSS is still the Within residual sum of squares. However, the RRSS is the regression with time-series dummies only, or the regression based upon
+
+\begin{equation}
+\left(y_{i t}-\bar{y}_{. t}\right)=\left(x_{i t}-\bar{x}_{. t}\right) \beta+\left(u_{i t}-\bar{u}_{. t}\right)
+\end{equation} (3.9)
+
+In this case the resulting \(F\) -statistic is \(F_{2} \stackrel{H_{0}}{\sim} F_{(N-1),(N-1)(T-1)-K}\). Note that \(F_{2}\) differs from \(F_{0}\) in ( \(2.12\) ) in testing for \(\mu_{i}=0\). The latter tests \(H_{0}: \mu_{i}=0\) assuming that \(\lambda_{t}=0\), whereas the former tests \(H_{2}: \mu_{i}=0\) allowing \(\lambda_{t} \neq 0\) for \(t=1, \ldots, T-1\). Similarly, one can test for the existence of time effects allowing for individual effects, i.e.
+
+\begin{equation}
+H_{3}: \lambda_{1}=\ldots=\lambda_{T-1}=0 \quad \text { allowing } \quad \mu_{i} \neq 0 ; i=1, \ldots,(N-1)
+\end{equation}
+
+The RRSS is given by the regression in (2.10), while the URSS is obtained from the regression
+(3.5). In this case, the resulting F-statistic is \(F_{3} \sim^{H_{0}} F_{(T-1),(N-1)(T-1)-K}\) .
+
+\emph{Computational Warning}
+
+As in the one-way model, \(s^2\) from the regression in (3.5) as obtained from any standard regression package has to be adjusted for loss of degrees of freedom. In this case, one divides by\$ (N − 1)(T − 1) − K \$ and multiplies by \$(NT − K) \$to get the proper variance--covariance matrix of the Within estimator.
+
+\hypertarget{the-random-effects-model-1}{%
+\section{THE RANDOM EFFECTS MODEL}\label{the-random-effects-model-1}}
+
+If \(\mu_{i} \sim \operatorname{IID}\left(0, \sigma_{\mu}^{2}\right), \lambda_{t} \sim \operatorname{IID}\left(0, \sigma_{\lambda}^{2}\right)\) and \(v_{i t} \sim \operatorname{IID}\left(0, \sigma_{v}^{2}\right)\) independent of each other, then this
+is the two-way random effects model. In addition, \(X_{i t}\) is independent of \(\mu_{i}, \lambda_{t}\) and \(v_{i t}\) for all \(i\) and \(t\). Inference in this case pertains to the large population from which this sample was randomly drawn. From (3.2), one can compute the variance-covariance matrix
+
+\begin{equation}
+\begin{aligned}
+\Omega &=E\left(u u^{\prime}\right)=Z_{\mu} E\left(\mu \mu^{\prime}\right) Z_{\mu}^{\prime}+Z_{\lambda} E\left(\lambda \lambda^{\prime}\right) Z_{\lambda}^{\prime}+\sigma_{v}^{2} I_{N T} \\
+&=\sigma_{\mu}^{2}\left(I_{N} \otimes J_{T}\right)+\sigma_{\lambda}^{2}\left(J_{N} \otimes I_{T}\right)+\sigma_{v}^{2}\left(I_{N} \otimes I_{T}\right)
+\end{aligned}
+\end{equation} (3.10)
+
+The disturbances are homoskedastic with \(\operatorname{var}\left(u_{i t}\right)=\sigma_{\mu}^{2}+\sigma_{\lambda}^{2}+\sigma_{v}^{2}\) for all \(i\) and \(t\),
+
+\begin{equation}
+\begin{array}{rl}
+\operatorname{cov}\left(u_{i t}, u_{j s}\right)=\sigma_{\mu}^{2} & i=j, t \neq s \\
+=\sigma_{\lambda}^{2} & i \neq j, t=s
+\end{array}
+\end{equation} (3.11)
+
+and zero otherwise. This means that the correlation coefficient
+
+\begin{equation}
+\begin{aligned}
+\operatorname{correl}\left(u_{i t}, u_{j s}\right) &=\sigma_{\mu}^{2} /\left(\sigma_{\mu}^{2}+\sigma_{\lambda}^{2}+\sigma_{v}^{2}\right) & & i=j, t \neq s \\
+&=\sigma_{\lambda}^{2} /\left(\sigma_{\mu}^{2}+\sigma_{\lambda}^{2}+\sigma_{v}^{2}\right) & & i \neq j, t=s \\
+&=1 & & i=j, t=s \\
+&=0 & & i \neq j, t \neq s
+\end{aligned}
+\end{equation} (3.12)
+
+In order to get \(\Omega^{-1}\), we replace \(J_{N}\) by \(N \bar{J}_{N}, I_{N}\) by \(E_{N}+\bar{J}_{N}, J_{T}\) by \(T \bar{J}_{T}\) and \(I_{T}\) by \(E_{T}+\bar{J}_{T}\) and collect terms with the same matrices. This gives
+
+\begin{equation}
+\Omega=\sum_{i=1}^{4} \lambda_{i} Q_{i}
+\end{equation} (3.13)
+
+where \(\lambda_{1}=\sigma_{v}^{2}, \lambda_{2}=T \sigma_{\mu}^{2}+\sigma_{v}^{2}, \lambda_{3}=N \sigma_{\lambda}^{2}+\sigma_{v}^{2}\) and \(\lambda_{4}=T \sigma_{\mu}^{2}+N \sigma_{\lambda}^{2}+\sigma_{v}^{2}\). Correspond-
+ingly, \(Q_{1}=E_{N} \otimes E_{T}, Q_{2}=E_{N} \otimes \bar{J}_{T}, Q_{3}=\bar{J}_{N} \otimes E_{T}\) and \(Q_{4}=\bar{J}_{N} \otimes \bar{J}_{T}\), respectively.
+The \(\lambda_{i}\) are the distinct characteristic roots of \(\Omega\) and the \(Q_{i}\) are the corresponding matrices of eigenprojectors. \(\lambda_{1}\) is of multiplicity \((N-1)(T-1), \lambda_{2}\) is of multiplicity \((N-1), \lambda_{3}\) is of multiplicity \((T-1)\) and \(\lambda_{4}\) is of multiplicity \(1 .{ }^{1}\) Each \(Q_{i}\) is symmetric and idempotent with its rank equal to its trace. Moreover, the \(Q_{i}\) are pairwise orthogonal and sum to the identity matrix. The advantages of this spectral decomposition are that
+
+\begin{equation}
+\Omega^{r} =\sum_{i=1}^{4} \lambda_{i}^{r} Q_{i}
+\end{equation} (3.14)
+
+where \(r\) is an arbitrary scalar so that
+
+\begin{equation}
+\sigma_{v} \Omega^{-1 / 2}=\sum_{i=1}^{4}\left(\sigma_{v} / \lambda_{i}^{1 / 2}\right) Q_{i}
+\end{equation} (3.15)
+
+and the typical element of \(y^{*}=\sigma_{\nu} \Omega^{-1 / 2} y\) is given by
+
+\begin{equation}
+y_{i t}^{*}=y_{i t}-\theta_{1} \bar{y}_{i .}-\theta_{2} \bar{y}_{. t}+\theta_{3} \bar{y}_{. .}
+\end{equation} (3.16)
+
+where \(\theta_{1}=1-\left(\sigma_{v} / \lambda_{2}^{1 / 2}\right), \theta_{2}=1-\left(\sigma_{v} / \lambda_{3}^{1 / 2}\right)\) and \(\theta_{3}=\theta_{1}+\theta_{2}+\left(\sigma_{v} / \lambda_{4}^{1 / 2}\right)-1\). As a result,
+GLS can be obtained as OLS of \(y^{*}\) on \(Z^{*}\), where \(Z^{*}=\sigma_{\nu} \Omega^{-1 / 2} Z\). This transformation was first derived by Fuller and Battese (1974), see also Baltagi (1993).
+
+The best quadratic unbiased (BQU) estimators of the variance components arise naturally from the fact that \(Q_{i} u \sim\left(0, \lambda_{i} Q_{i}\right) .\) Hence,
+
+\begin{equation}
+\widehat{\lambda}_{i}=u^{\prime} Q_{i} u / \operatorname{tr}\left(Q_{i}\right)
+\end{equation} (3.17)
+
+is the BQU estimator of \(\lambda_{i}\) for \(i=1,2,3\). These ANOVA estimators are minimum variance unbiased (MVU) under normality of the disturbances (see Graybill, 1961 ). As in the one-way error component model, one can obtain feasible estimates of the variance components by replacing the true disturbances by OLS residuals (see Wallace and Hussain, 1969 ). OLS is still an unbiased and consistent estimator under the random effects model, but it is inefficient and results in biased standard errors and \(t\) -statistics. Alternatively, one could substitute the Within residuals with \(\tilde{u}=y-\widetilde{\alpha} \iota_{N T}-X \widetilde{\beta}\), where \(\tilde{\alpha}=\bar{y}_{. .}-\bar{X}_{. .}^{\prime} \tilde{\beta}\) and \(\widetilde{\beta}\) is obtained by the regression
+in (3.5). This is the method proposed by Amemiya (1971). In fact, Amemiya (1971) shows that the Wallace and Hussain (1969) estimates of the variance components have a different asymptotic distribution from that knowing the true disturbances, while the Amemiya (1971) estimates of the variance components have the same asymptotic distribution as that knowing the true disturbances:
+
+\begin{equation}
+\left(\begin{array}{c}
+\sqrt{N T}\left(\widehat{\sigma}_{v}^{2}-\sigma_{v}^{2}\right) \\
+\sqrt{N}\left(\widehat{\sigma}_{\mu}^{2}-\sigma_{\mu}^{2}\right) \\
+\sqrt{T}\left(\widehat{\sigma}^{2}-\sigma_{\mu}^{2}\right)
+\end{array}\right) \sim N\left(0,\left(\begin{array}{ccc}
+2 \sigma_{v}^{4} & 0 & 0 \\
+0 & 2 \sigma_{\mu}^{4} & 0 \\
+0 & 0 & 2 \sigma^{4}
+\end{array}\right)\right)
+\end{equation} (3.18)
+
+SubstitutingOLSorWithin residuals instead of the true disturbances in (3.17) introduces bias in
+the corresponding estimates of the variance components. The degrees of freedom corrections
+that make these estimates unbiased depend upon traces of matrices that involve the matrix
+of regressors X. These corrections are given in Wallace and Hussain (1969) and Amemiya
+(1971), respectively. Alternatively, one can infer these correction terms from the more general
+unbalanced error component model considered in Chapter 9.
+Swamy and Arora (1972) suggest running three least squares regressions and estimating
+the variance components from the corresponding mean square errors of these regressions. The
+first regression corresponds to the Within regression which transforms the original model by
+\(Q_1=E_N \otimes E_T\) . This is equivalent to the regression in (3.5), and yields the following estimate
+of \(\sigma_v^2\) :
+
+\begin{equation}
+\widehat{\lambda}_{1}=\widehat{\sigma}_{v}^{2}=\left[y^{\prime} Q_{1} y-y^{\prime} Q_{1} X\left(X^{\prime} Q_{1} X\right)^{-1} X^{\prime} Q_{1} y\right] /[(N-1)(T-1)-K]
+\end{equation} (3.19)\\
+( à arranger)
+
+The second regression is the Between individuals regression which transforms the original
+model by \[Q_2=E_N \otimes \bar{J}_T \] This is equivalent to the regression of \[ (\bar{y}_{i.}- \bar{y}_{i..}) \] on
+\[ (\bar{X}_{i.}- \bar{X}_{i..}) \]
+and yields the following estimate of
+\$ \lambda\_2=T\sigma\_v\^{}2 + \sigma\_v\^{}2 \$:
+
+\begin{equation}
+\widehat{\lambda}_{2}=\left[y^{\prime} Q_{2} y-y^{\prime} Q_{2} X\left(X^{\prime} Q_{2} X\right)^{-1} X^{\prime} Q_{2} y\right] /[(N-1)-K]
+\end{equation} (3.20)
+
+from which one obtains \(\widehat{\sigma}_{\mu}^{2}=\left(\widehat{\lambda}_{2}-\widehat{\sigma}_{v}^{2}\right) / T .\) The third regression is the Between time-periods regression which transforms the original model by \(Q_{3}=\bar{J}_{N} \otimes E_{T}\). This is equivalent to the regression of \(\left(\bar{y}_{. t}-\bar{y}_{. .}\right)\) on \(\left(\bar{X}_{. t}-\bar{X}_{. .}\right)\) and yields the following estimate of \(\lambda_{3}=N \sigma_{\lambda}^{2}+\sigma_{v}^{2}\)
+
+\begin{equation}
+\widehat{\lambda}_{3}=\left[y^{\prime} Q_{3} y-y^{\prime} Q_{3} X\left(X^{\prime} Q_{3} X\right)^{-1} X^{\prime} Q_{3} y\right] /[(T-1)-K]
+\end{equation} (3.21)
+
+from which one obtains
+\[ (\widehat{\widehat {\sigma_\lambda^2} }= \widehat{\widehat {\lambda} }_3 -  \widehat{\widehat {\lambda} }_v)/N \] Stacking the three transformed regressions just
+performed yields
+
+\begin{equation}
+\left(\begin{array}{l}
+Q_{1} y \\
+Q_{2} y \\
+Q_{3} y
+\end{array}\right)=\left(\begin{array}{l}
+Q_{1} X \\
+Q_{2} X \\
+Q_{3} X
+\end{array}\right) \beta+\left(\begin{array}{l}
+Q_{1} u \\
+Q_{2} u \\
+Q_{3} u
+\end{array}\right)
+\end{equation} (3.22)
+
+since \(Q_{i} \iota_{N T}=0\) for \(i=1,2,3\), and the transformed error has mean 0 and variance-covariance matrix given by \(\operatorname{diag}\left[\lambda_{i} Q_{i}\right]\) with \(i=1,2,3 .\) Problem \(3.4\) asks the reader to show that \(\mathrm{OLS}\) on this system of \(3 N T\) observations yields the same estimator of \(\beta\) as OLS on the pooled model (2.3). Also, GLS on this system of equations (3.22) yields the same estimator of \(\beta\) as GLS on (2.3). In fact,
+
+\begin{equation}
+\begin{aligned}
+\widehat{\beta}_{\mathrm{GLS}}=&\left[\left(X^{\prime} Q_{1} X\right) / \sigma_{v}^{2}+\left(X^{\prime} Q_{2} X\right) / \lambda_{2}+\left(X^{\prime} Q_{3} X\right) / \lambda_{3}\right]^{-1} \\
+& \times\left[\left(X^{\prime} Q_{1} y\right) / \sigma_{v}^{2}+\left(X^{\prime} Q_{2} y\right) / \lambda_{2}+\left(X^{\prime} Q_{3} y\right) / \lambda_{3}\right] \\
+=&\left[W_{X X}+\phi_{2}^{2} B_{X X}+\phi_{3}^{2} C_{X X}\right]^{-1}\left[W_{X y}+\phi_{2}^{2} B_{X y}+\phi_{3}^{2} C_{X y}\right]
+\end{aligned}
+\end{equation} (3.23)
+
+with \(\operatorname{var}\left(\widehat{\beta}_{\mathrm{GLS}}\right)=\sigma_{v}^{2}\left[W_{X X}+\phi_{2}^{2} B_{X X}+\phi_{3}^{2} C_{X X}\right]^{-1}\). Note that \(W_{X X}=X^{\prime} Q_{1} X, B_{X X}=X^{\prime} Q_{2} X\)
+and \(C_{X X}=X^{\prime} Q_{3} X\) with \(\phi_{2}^{2}=\sigma_{v}^{2} / \lambda_{2}, \phi_{3}^{2}=\sigma_{v}^{2} / \lambda_{3} .\) Also, the Within estimator of \(\beta\) is \(\widetilde{\beta}_{W}=\)
+\(W_{X X}^{-1} W_{X y}\), the Between individuals estimator of \(\beta\) is \(\widehat{\beta}_{B}=B_{X X}^{-1} B_{X y}\) and the Between timeperiods estimator of \(\beta\) is \(\widehat{\beta}_{C}=C_{X X}^{-1} C_{X y}\). This shows that \(\widehat{\beta}_{\mathrm{GLS}}\) is a matrix-weighted average of \(\widetilde{\beta}_{W}, \widehat{\beta}_{B}\) and \(\widehat{\beta}_{C}\). In fact,
+
+\begin{equation}
+\widehat{\beta}_{\mathrm{GLS}}=W_{1} \widetilde{\beta}_{W}+W_{2} \widehat{\beta}_{B}+W_{3} \widehat{\beta}_{C}
+\end{equation} (3.24)
+
+where
+
+\begin{equation}
+\begin{aligned}
+&W_{1}=\left[W_{X X}+\phi_{2}^{2} B_{X X}+\phi_{3}^{2} C_{X X}\right]^{-1} W_{X X} \\
+&W_{2}=\left[W_{X X}+\phi_{2}^{2} B_{X X}+\phi_{3}^{2} C_{X X}\right]^{-1}\left(\phi_{2}^{2} B_{X X}\right) \\
+&W_{3}=\left[W_{X X}+\phi_{2}^{2} B_{X X}+\phi_{3}^{2} C_{X X}\right]^{-1}\left(\phi_{3}^{2} C_{X X}\right)
+\end{aligned}
+\end{equation}
+
+This was demonstrated by Maddala (1971). Note that (i) if \(\sigma_{\mu}^{2}=\sigma_{\lambda}^{2}=0, \phi_{2}^{2}=\phi_{3}^{2}=1\) and \(\widehat{\beta}_{\mathrm{GLS}}\) reduces to \(\widehat{\beta}_{\mathrm{OLs}}\); (ii) as \(T\) and \(N \rightarrow \infty, \phi_{2}^{2}\) and \(\phi_{3}^{2} \rightarrow 0\) and \(\widehat{\beta}_{\mathrm{GLS}}\) tends to \(\widetilde{\beta}_{W}\); (iii) if
+\(\phi_{2}^{2} \rightarrow \infty\) with \(\phi_{3}^{2}\) finite, then \(\widehat{\beta}_{\mathrm{GLS}}\) tends to \(\widehat{\beta}_{B}\); (iv) if \(\phi_{3}^{2} \rightarrow \infty\) with \(\phi_{2}^{2}\) finite, then \(\widehat{\beta}_{\text {GLS }}\) tends to \(\widehat{\beta}_{C}\).
+Wallace and Hussain (1969) compare \(\widehat{\beta}_{\mathrm{GLS}}\) and \(\widetilde{\beta}_{\text {Within }}\) in the case of nonstochastic (repetitive) \(X\) and find that both are (i) asymptotically normal, (ii) consistent and unbiased and that
+
+\begin{enumerate}
+\def\labelenumi{(\roman{enumi})}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  \(\widehat{\beta}_{\mathrm{GLS}}\) has a smaller generalized variance (i.e.~more efficient) in finite samples. In the case of nonstochastic (nonrepetitive) \(X\) they find that both \(\widehat{\beta}_{\mathrm{GLS}}\) and \(\widetilde{\beta}_{\text {Within }}\) are consistent, asymptotically unbiased and have equivalent asymptotic variance-covariance matrices, as both \(N\) and \(T \rightarrow \infty\). The last statement can be proved as follows: the limiting variance of the GLS estimator is
+\end{enumerate}
+
+(3.25)
 
 \hypertarget{references}{%
 \section{REFERENCES}\label{references}}
