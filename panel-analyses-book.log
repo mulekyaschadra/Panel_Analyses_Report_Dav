@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999993 (MiKTeX 21.6) (preloaded format=xelatex 2021.6.16)  20 JUN 2021 13:03
+This is XeTeX, Version 3.141592653-2.6-0.999993 (MiKTeX 21.6) (preloaded format=xelatex 2021.6.16)  20 JUN 2021 13:09
 entering extended mode
 **./panel-analyses-book.tex
 (panel-analyses-book.tex
@@ -1091,30 +1091,34 @@ Chapter 6.
 
 ]
 Chapter 7.
+[33] [34
+
+]
+Chapter 8.
 
 Overfull \hbox (34.81519pt too wide) in alignment at lines 869--1111
  [] 
  []
 
-[33]
+[35]
 Overfull \hbox (34.81519pt too wide) in alignment at lines 1111--1351
  [] 
  []
 
-[34] [35] [36] [37]
+[36] [37] [38] [39]
 Overfull \hbox (34.81519pt too wide) in alignment at lines 1351--1591
  [] 
  []
 
-[38] [39] [40] [41]
+[40] [41] [42] [43]
 Overfull \hbox (34.81519pt too wide) in alignment at lines 1591--1762
  [] 
  []
 
-[42] [43] [44] [45] [46] [47] [48] [49] [50]
+[44] [45] [46] [47] [48] [49] [50] [51] [52]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[51] [52]
+[53] [54]
 Overfull \hbox (177.44514pt too wide) in paragraph at lines 2017--2017
 []\TU/lmtt/m/n/10 ## Warning in pdata.frame(DBase, index = c("Year", "Country_d
 est")): duplicate couples (id-time) in resulting pdata.frame[] 
@@ -1126,19 +1130,19 @@ Overfull \hbox (140.69514pt too wide) in paragraph at lines 2034--2034
  duplicate couples (id-time) in resulting pdata.frame[] 
  []
 
-[53] [54
+[55] [56
 
 ]
-Chapter 8.
+Chapter 9.
 No file panel-analyses-book.bbl.
-[55] (panel-analyses-book.aux) ) 
+[57] (panel-analyses-book.aux) ) 
 Here is how much of TeX's memory you used:
  20482 strings out of 411239
  348214 string characters out of 2831379
- 914839 words of memory out of 3000000
+ 915835 words of memory out of 3000000
  40639 multiletter control sequences out of 15000+600000
  410019 words of font info for 85 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  87i,10n,120p,2806b,481s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on panel-analyses-book.pdf (55 pages).
+Output written on panel-analyses-book.pdf (57 pages).

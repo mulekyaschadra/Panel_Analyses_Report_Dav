@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="the-one-way-error-component-regression-model.html"/>
-<link rel="next" href="methods.html"/>
+<link rel="next" href="test-of-hypotheses-with-panel-data.html"/>
 <script src="libs/header-attrs-2.9/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -159,19 +159,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.2.1" data-path="the-two-way-error-component-regression-model.html"><a href="the-two-way-error-component-regression-model.html#testing-for-fixed-effects"><i class="fa fa-check"></i><b>5.2.1</b> Testing for Fixed Effects</a></li>
 </ul></li>
 <li class="chapter" data-level="5.3" data-path="the-two-way-error-component-regression-model.html"><a href="the-two-way-error-component-regression-model.html#the-random-effects-model-1"><i class="fa fa-check"></i><b>5.3</b> THE RANDOM EFFECTS MODEL</a></li>
-<li class="chapter" data-level="5.4" data-path="the-two-way-error-component-regression-model.html"><a href="the-two-way-error-component-regression-model.html#test-of-hypotheses-with-panel-data"><i class="fa fa-check"></i><b>5.4</b> Test of Hypotheses with Panel Data</a></li>
-<li class="chapter" data-level="5.5" data-path="the-two-way-error-component-regression-model.html"><a href="the-two-way-error-component-regression-model.html#references"><i class="fa fa-check"></i><b>5.5</b> REFERENCES</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="methods.html"><a href="methods.html"><i class="fa fa-check"></i><b>6</b> Methods</a></li>
-<li class="chapter" data-level="7" data-path="analyses.html"><a href="analyses.html"><i class="fa fa-check"></i><b>7</b> Analyses</a>
+<li class="chapter" data-level="6" data-path="test-of-hypotheses-with-panel-data.html"><a href="test-of-hypotheses-with-panel-data.html"><i class="fa fa-check"></i><b>6</b> Test of Hypotheses with Panel Data</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="analyses.html"><a href="analyses.html#netoyage-de-la-base-des-données"><i class="fa fa-check"></i><b>7.1</b> Netoyage de la base des données</a>
+<li class="chapter" data-level="6.1" data-path="test-of-hypotheses-with-panel-data.html"><a href="test-of-hypotheses-with-panel-data.html#references"><i class="fa fa-check"></i><b>6.1</b> REFERENCES</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="methods.html"><a href="methods.html"><i class="fa fa-check"></i><b>7</b> Methods</a></li>
+<li class="chapter" data-level="8" data-path="analyses.html"><a href="analyses.html"><i class="fa fa-check"></i><b>8</b> Analyses</a>
 <ul>
-<li class="chapter" data-level="7.1.1" data-path="analyses.html"><a href="analyses.html#nouvelle-base-de-données-pour-les-analyses"><i class="fa fa-check"></i><b>7.1.1</b> Nouvelle base de données pour les analyses</a></li>
+<li class="chapter" data-level="8.1" data-path="analyses.html"><a href="analyses.html#netoyage-de-la-base-des-données"><i class="fa fa-check"></i><b>8.1</b> Netoyage de la base des données</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="analyses.html"><a href="analyses.html#nouvelle-base-de-données-pour-les-analyses"><i class="fa fa-check"></i><b>8.1.1</b> Nouvelle base de données pour les analyses</a></li>
 </ul></li>
-<li class="chapter" data-level="7.2" data-path="analyses.html"><a href="analyses.html#analyse-descriptive-des-varariales"><i class="fa fa-check"></i><b>7.2</b> Analyse descriptive des Varariales</a></li>
+<li class="chapter" data-level="8.2" data-path="analyses.html"><a href="analyses.html#analyse-descriptive-des-varariales"><i class="fa fa-check"></i><b>8.2</b> Analyse descriptive des Varariales</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="final-words.html"><a href="final-words.html"><i class="fa fa-check"></i><b>8</b> Final Words</a></li>
+<li class="chapter" data-level="9" data-path="final-words.html"><a href="final-words.html"><i class="fa fa-check"></i><b>9</b> Final Words</a></li>
 <li class="chapter" data-level="" data-path="references-1.html"><a href="references-1.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -424,13 +426,6 @@ as coefficients from the least squares dummy variables regression (LSDV). <span 
 OLS, the Within estimator and six feasible GLS estimators denoted by WALHUS, AMEMIYA, SWAR, MINQUE, FUBA and NERLOVE corresponding to the methods developed by Wallace and Hussain (1969), Amemiya (1971), Swamy and Arora (1972), Rao (1972), Fuller and Battese (1974) and Nerlove (1971a), respectively. The mean square error of these estimators was computed relative to that of true GLS, i.e. GLS knowing the true variance components. To review some of the properties of these estimators: OLS is unbiased, but asymptotically inefficient, and its standard errors are biased; see Moulton (1986) for the extent of this bias in empirical applications. In contrast, the Within estimator is unbiased whether or not prior</p>
 <p>information about the variance components is available. It is also asymptotically equivalent to the GLS estimator in case of weakly nonstochastic exogenous variables. Early in the literature, Wallace and Hussain (1969) recommended the Within estimator for the practical researcher, based on theoretical considerations but more importantly for its ease of computation. In Wallace and Hussain’s (1969, p. 66) words the “covariance estimators come off with a surprisingly clear bill of health.” True GLS is BLUE, but the variance components are usually not known and have to be estimated. All of the feasible GLS estimators considered are asymptotically efficient. In fact, Prucha (1984) showed that as long as the estimate of <span class="math inline">\(\sigma_{v}^{2}\)</span> is consistent, and the probability limits of the estimates <span class="math inline">\(\sigma_{\mu}^{2}\)</span> and <span class="math inline">\(\sigma_{\lambda}^{2}\)</span> are finite, the corresponding feasible GLS estimator is asymptotically efficient. Also, Swamy and Arora (1972) proved the existence of a family of asymptotically efficient two-stage feasible GLS estimators of the regression coefficients. Therefore, based on asymptotics only, one cannot differentiate among these twostage GLS estimators. This leaves undecided the question of which estimator is the best to use. Some analytical results were obtained by Swamy (1971) and Swamy and Arora (1972). These studies derived the relative efficiencies of (i) SWAR with respect to OLS, (ii) SWAR with respect to Within and (iii) Within with respect to OLS. Then, for various values of <span class="math inline">\(N, T\)</span>, the variance components, the Between groups, Between time-periods and Within groups sums of squares of the independent variable, they tabulated these relative efficiency values (see Swamy, 1971 , chapters II and III; Swamy and Arora, 1972, p. 272). Among their basic findings is the fact that, for small samples, SWAR is less efficient than OLS if <span class="math inline">\(\sigma_{\mu}^{2}\)</span> and <span class="math inline">\(\sigma_{\lambda}^{2}\)</span> are small. Also, SWAR is less efficient than Within if <span class="math inline">\(\sigma_{\mu}^{2}\)</span> and <span class="math inline">\(\sigma_{\lambda}^{2}\)</span> are large. The latter result is disconcerting, since Within, which uses only a part of the available data, is more efficient than SWAR, a feasible GLS estimator, which uses all of the available data.</p>
 </div>
-<div id="test-of-hypotheses-with-panel-data" class="section level2" number="5.4">
-<h2><span class="header-section-number">5.4</span> Test of Hypotheses with Panel Data</h2>
-</div>
-<div id="references" class="section level2" number="5.5">
-<h2><span class="header-section-number">5.5</span> REFERENCES</h2>
-
-</div>
 </div>
             </section>
 
@@ -438,7 +433,7 @@ OLS, the Within estimator and six feasible GLS estimators denoted by WALHUS, AME
         </div>
       </div>
 <a href="the-one-way-error-component-regression-model.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="methods.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="test-of-hypotheses-with-panel-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
