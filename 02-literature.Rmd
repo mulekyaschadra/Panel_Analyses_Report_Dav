@@ -1,12 +1,12 @@
-# Literature
-
 # The One-way Error Component Regression Model
 
 ## INTRODUCTION
 
 A panel data regression differs from a regular time-series or cross-section regression in that it has a double subscript on its variables, i.e.
 
-$$  y_{it}= \alpha + X_{it}^{'} \beta + u_{it}                      $$ $$ i=1, ... , N  ; t=1, ... ,T  $$ (2.1)
+\begin{equation}
+ y_{it}= \alpha + X_{it}^{'} \beta + u_{it}                      $$ $$ i=1, ... , N  ; t=1, ... ,T 
+ \end{equation}(2.1)
 
 with \$ i \$ denoting households, individuals, firms, countries, etc. and t denoting time. The i subscript, therefore, denotes the cross-section dimension whereas t denotes the time-series dimension. $$ \alpha  $$ is a scalar, $$ \beta $$ is $$ K × 1 $$ and Xi t is the \$ it\_{th} \$ observation on K explanatory variables. Most of the panel data applications utilize a one-way error component model for the disturbances, with
 
@@ -14,13 +14,13 @@ $$ u_{it}= \mu_i +  v_{it}      $$ (2.2)
 
 where μi denotes the unobservable individual-specific effect and νi t denotes the remainder disturbance. For example, in an earnings equation in labor economics, yi t will measure earnings of the head of the household, whereas $$ X_{it} $$ may contain a set of variables like experience, education, union membership, sex, race, etc. Note that μi is time-invariant and it accounts for any individual-specific effect that is not included in the regression. In this case we could think of it as the individual's unobserved ability. The remainder disturbance $$ v_{it} $$ varies with individuals and time and can be thought of as the usual disturbance in the regression. Alternatively, for a production function utilizing data on firms across time, $$ y_{it} $$ will measure output and $$ X_{it} $$ will measure inputs. The unobservable firm-specific effects will be captured by the $$ \mu_i $$ and we can think of these as the unobservable entrepreneurial or managerial skills of the firm's executives. Early applications of error components in economics include Kuh (1959) on investment, Mundlak (1961) and Hoch (1962) on production functions and Balestra and Nerlove (1966) on demand for natural gas. In vector form (2.1) can be written as
 
-$$ y= \alpha i_{NT} + X \beta + u = Z \delta + u      $$ (2.3)
+\begin{equation} y= \alpha i_{NT} + X \beta + u = Z \delta + u     \end{equation} (2.3)
 
-$$ y= \alpha i_{NT} + X \beta + u = Z \delta + u      $$ (2.3)
+\begin{equation} y= \alpha i_{NT} + X \beta + u = Z \delta + u      \end{equation} (2.3)
 
 where \$ y \$ is \$ NT × 1 \$, \$ X \$ is \$ NT × K \$, \$ Z = [ι\_{NT} , X] \$, \$ \delta\^{'} = (α^{'},^\beta{'}) \$ and $ι_NT$ is a vector of ones of dimension NT. Also, (2.2) can be written as
 
-$$ u=Z_\mu \mu +v  $$ (2.4)
+\begin{equation} u=Z_\mu \mu +v  \end{equation} (2.4)
 
 $$  y_{it} = \alpha + X_{it}^{'} + U_{it}   $$ , \$ i=1,...,N ; t=1,...,T \$ with i denoting households, individuals, firms, countries, etc. and t denoting time. The i subscript, therefore, denotes the cross-section dimension whereas t denotes the time-series dimension. \$ \alpha \$ is a scalar, \$ \beta \$ is \$ K × 1 \$ and \$X\_{it} \$is the \$ it\^{th} \$ observation on K explanatory variables. disturbances, with it $$ u_{it}=u_i  + v_{it}     $$
 
@@ -30,40 +30,44 @@ $$ y= \alpha i_{NT}  + X\beta +u = Z\delta + u $$
 
 where $y$ is \$ NT × 1\$ , X is $NT × K$ , \$ Z = [i\_{NT} , X] \$ , \$ \delta^{'}=(^\alpha{'},\beta\^{'})\$ and $i_{NT}$ is a vector of ones of dimension $NT$ . Also, (2.2) can be written as
 
-$$ u=Z_\mu \mu  + v$$ (2.4)
+\begin{equation} u=Z_\mu \mu  + v\end{equation} (2.4)
 
 where \$ u\^{'} = (u\_{11}, . . . , u\_{1T} , u\_{21}, . . . , u\_{2T}, . . . , u\_{N1}, . . . , u\_{NT} ) \$ with the observations stacked such that the slower index is over individuals and the faster index is over time.\$ Z\_\mu = IN \otimes ιT \$ where IN is an identity matrix of dimension N, ιT is a vector of ones of dimension T and \$ \otimes \$ denotes Kronecker product. \$ Z\_\mu \$ is a selector matrix of ones and zeros, or simply the matrix of individual dummies that one may include in the regression to estimate theμi if they are assumed to be fixed parameters. \$ \mu\^{'} = (\mu\_1, . . . , \mu\_N )\$ and $ν^{'} = (ν11, . . . , ν_{1T} , . . . , ν_{N1}, . . . , ν_{NT} )$. Note that \$Z\_\mu Z\^{'}\mu = I_N \otimes J_T \$ where $J_T$ is a matrix of ones of dimension T and \$ P = Zμ(Z^{'}^\mu Z\mu){−1} Z\^{'}\mu \$ , the projectionmatrix on \$ Z\_\mu \$ , reduces to \$ IN \otimes J_T \$ where \$J \_T= JT /T \$ . P is a matrix which averages the observation across time for each individual, and Q = INT − P is a matrix which obtains the deviations from individual means. For example, regressing y on the matrix of dummy variables $Z_μ$ gets the predicted values \$ P_y \$ which has a typical element
 
 $$ \bar y_i = \sum_{t=1}^T \frac{y_{it}}{T}  $$ repeated T times for each individual. The residuals of this regression are given by Qy which has a typical element $$ (y_{it} - \bar y _{i.} ) $$ P and Q are (i) symmetric idempotent matrices, i.e.
 
-$P^{'} = P$ and \$ P\^2 = P \$. This means that $rank(P) = tr(P) = N$ and $rank(Q) = tr(Q) = N(T − 1)$ . This uses the result that the rank of an idempotent matrix is equal to its trace (see Graybill, 1961,theorem 1.63). Also, (ii) P and Q are orthogonal, i.e. \$PQ=0 \$ and (iii) they sum to the identity matrix $P + Q = I_{NT}$. In fact, any two of these properties imply the third (see Graybill, 1961, theorem 1.68).
+$P^{'} = P$ and $ P\^2 = P $. This means that $rank(P) = tr(P) = N$ and $rank(Q) = tr(Q) = N(T − 1)$ . This uses the result that the rank of an idempotent matrix is equal to its trace (see Graybill, 1961,theorem 1.63). Also, (ii) P and Q are orthogonal, i.e. \$PQ=0 \$ and (iii) they sum to the identity matrix $P + Q = I_{NT}$. In fact, any two of these properties imply the third (see Graybill, 1961, theorem 1.68).
 
 ## THE FIXED EFFECTS MODEL
 
 In this case, the μi are assumed to be fixed parameters to be estimated and the remainder disturbances stochastic with $v_{it}$ independent and identically distributed $IID(0,\sigma_v^2)$. The $X_{it}$ are assumed independent of the $v_{it}$ for all i and t. The fixed effects model is an appropriate specification if we are focusing on a specific set of N firms, say, IBM, GE,Westinghouse, etc. and our inference is restricted to the behavior of these sets of firms. Alternatively, it could be a set of N OECD countries, or N American states. Inference in this case is conditional on the particular N firms, countries or states that are observed. One can substitute the disturbances given by (2.4) into (2.3) to get
 
-\$ y=\alpha i\_{IT} + X\beta + Z\_\mu \mu +v = Z\delta + Z\_\mu \mu +v \$ (2.5)
+\begin{equation} 
+y=\alpha i\_{IT} + X\beta + Z\_\mu \mu +v = Z\delta + Z\_\mu \mu +v 
+\end{equation} (2.5)
 
 and then perform ordinary least squares (OLS) on (2.5) to get estimates of \$ \alpha,\beta  and  µ \$
 
 Note that Z is \$ NT \times (K+1)\$ and $Z_µ$ , the matrix of individual dummies, is\$NT \times N \$ NT × N. If N is large, (2.5) will include too many individual dummies, and the matrix to be inverted by OLS is large and of dimension $(N + K)$. In fact, since α and β are the parameters of interest, one can obtain the LSDV (least squares dummy variables) estimator from (2.5), by premultiplying the model by Q and performing OLS on the resulting transformed model:
 
-\$ Qy=QX\beta + Qv\$ (2.6)
+\begin{equation} Qy=QX\beta + Qv\end{equation} (2.6)
 
 This uses the fact that $QZ_\mu =Qi_{NT}=0$ , since $PZ_\mu =Z_\mu$ the Q matrix wipes out the individual effects. This is a regression of $\tilde y =QY$ with element $(y_{it} - \bar y _{i.} )$ on $\check X=QX$ with typical element
 
-$$
+\begin{equation}
 \widetilde{\beta}=\left(X^{\prime} Q X\right)^{-1} X^{\prime} Q y
-$$\
+\end{equation}  (2.7)
 (2.7) with $\operatorname{var}(\widetilde{\beta})=\sigma_{v}^{2}\left(X^{\prime} Q X\right)^{-1}=\sigma_{v}^{2}\left(\widetilde{X}^{\prime} \tilde{X}\right)^{-1}$ . $\widetilde{\beta}$ could have been obtained from (2.5) using results on partitioned inverse or the Frisch--Waugh--Lovell theorem discussed in Davidson and MacKinnon (1993, p. 19). This uses the fact that P is the projection matrix on $Z_{\mu}$ and $Q = I_{NT} − P$ (see problem 2.1). In addition, generalized least squares (GLS) on (2.6), using the generalized inverse, will also yield $\widetilde{\beta }$ (see problem 2.2).
 
-Note that for the simple regression $$y_{it}=\beta x_{it}+ \mu_i+ v_i     $$ (2.8)
+Note that for the simple regression 
+\begin{equation}y_{it}=\beta x_{it}+ \mu_i+ v_i     \end{equation} (2.8)
 
-and averaging over time gives $$  \bar {y}_{i.}= \beta \bar{x}_{i.}+ \mu_i+ \bar{v}_i   $$ (2.9)
+and averaging over time gives
+\begin{equation}  \bar {y}_{i.}= \beta \bar{x}_{i.}+ \mu_i+ \bar{v}_i   \end{equation} (2.9)
 
 Therefore, subtracting (2.9) from (2.8) gives $$y_{it}-\bar{y}_{i.}=\beta (x_{it}-\bar{x}_{i.}) + (v_{it}-\bar{v}_{i.})   $$ (2.10)
 
-Also, averaging across all observations in (2.8) gives $$\bar{y}_{..}=\alpha + \beta \bar{x}_{..} + \bar{v}_{..} $$ (2.11)i =0where we utilized the restriction that \$\sum*{i=1}\^{n}* \mu{i}=0 \$ This is an arbitrary restriction on the dummy variable coefficients to avoid the dummy variable trap, or perfect multicollinearity; see Suits (1984) for alternative formulations of this restriction. In fact only $\beta$ and \$ (\alpha + \mu*{i})\$ are estimable from (2.8), and not α and μi separately, unless a restriction like* $$\sum_{i=1}^{n} \mu_{i}=0 $$ is imposed. In this case, $\widetilde {\beta}$ is obtained from regression (2.10), $$\widetilde {\alpha}= \bar {y}_{..}-\widetilde {\beta} \bar{x}_{..} $$ can be recovered from (2.11) and $$\widetilde {\mu}_{i}=\bar{y}_{i.}- \widetilde {\alpha} - \widetilde {\beta} \bar{X}_{i.} $$ from (2.9). For large labor or consumer panels, where N is very large,regressions like (2.5) may not be feasible, since one is including (N − 1) dummies in the regression. This fixed effects (FE) least squares, also known as least squares dummy variables (LSDV), suffers from a large loss of degrees of freedom. We are estimating (N − 1) extra parameters, and too many dummies may aggravate the problem of multicollinearity among the regressors. In addition, this FE estimator cannot estimate the effect of any time-invariant variable like sex, race, religion, schooling or union participation. These time-invariant variables are wiped out by the Q transformation, the deviations from means transformation (see (2.10)). Alternatively, one can see that these time-invariant variables are spanned by the individual dummies in (2.5) and therefore any regression package attempting (2.5) will fail, signaling perfect multicollinearity. If (2.5) is the true model, LSDV is the best linear unbiased estimator (BLUE) as long as $v_{it}$ is the standard classical disturbance with mean 0 and variance--covariance matrix \$\sigma {v}\^{2} I\_{NT} \$ . Note that as $T \rightarrow \infty$ the FE estimator is consistent. However, if T is fixed and $N \rightarrow \infty$ as is typical in short labor panels, then only the FE estimator of β is consistent; the FE estimators of the individual effects $\alpha + \mu_{i}$ are not consistent since the number of these parameters increases as N increases. This is the incidental parameter problem discussed by Neyman and Scott (1948) and reviewed more recently by Lancaster (2000). Note that when the true model is fixed effects as in (2.5), OLS on (2.1) yields biased and inconsistent estimates of the regression parameters. This is an omission variables bias due to the fact that OLS deletes the individual dummies when in fact they are relevant.
+Also, averaging across all observations in (2.8) gives $$\bar{y}_{..}=\alpha + \beta \bar{x}_{..} + \bar{v}_{..} $$ (2.11)i =0 where we utilized the restriction that $\sum_{i=1}\^{n} \mu{i}=0 $ This is an arbitrary restriction on the dummy variable coefficients to avoid the dummy variable trap, or perfect multicollinearity; see Suits (1984) for alternative formulations of this restriction. In fact only $\beta$ and \$ (\alpha + \mu_{i})\$ are estimable from (2.8), and not α and μi separately, unless a restriction like* $$\sum_{i=1}^{n} \mu_{i}=0 $$ is imposed. In this case, $\widetilde {\beta}$ is obtained from regression (2.10), $$\widetilde {\alpha}= \bar {y}_{..}-\widetilde {\beta} \bar{x}_{..} $$ can be recovered from (2.11) and $$\widetilde {\mu}_{i}=\bar{y}_{i.}- \widetilde {\alpha} - \widetilde {\beta} \bar{X}_{i.} $$ from (2.9). For large labor or consumer panels, where N is very large,regressions like (2.5) may not be feasible, since one is including (N − 1) dummies in the regression. This fixed effects (FE) least squares, also known as least squares dummy variables (LSDV), suffers from a large loss of degrees of freedom. We are estimating (N − 1) extra parameters, and too many dummies may aggravate the problem of multicollinearity among the regressors. In addition, this FE estimator cannot estimate the effect of any time-invariant variable like sex, race, religion, schooling or union participation. These time-invariant variables are wiped out by the Q transformation, the deviations from means transformation (see (2.10)). Alternatively, one can see that these time-invariant variables are spanned by the individual dummies in (2.5) and therefore any regression package attempting (2.5) will fail, signaling perfect multicollinearity. If (2.5) is the true model, LSDV is the best linear unbiased estimator (BLUE) as long as $v_{it}$ is the standard classical disturbance with mean 0 and variance--covariance matrix $\sigma {v}\^{2} I\_{NT} $ . Note that as $T \rightarrow \infty$ the FE estimator is consistent. However, if T is fixed and $N \rightarrow \infty$ as is typical in short labor panels, then only the FE estimator of β is consistent; the FE estimators of the individual effects $\alpha + \mu_{i}$ are not consistent since the number of these parameters increases as N increases. This is the incidental parameter problem discussed by Neyman and Scott (1948) and reviewed more recently by Lancaster (2000). Note that when the true model is fixed effects as in (2.5), OLS on (2.1) yields biased and inconsistent estimates of the regression parameters. This is an omission variables bias due to the fact that OLS deletes the individual dummies when in fact they are relevant.
 
 (1) *Testing for fixed effects.* One could test the joint significance of these dummies, i.e. H0; $\mu_{1}=\mu_{2}= ... = \mu_{N-1}=0$ , by performing an F-test. (Testing for individual effects will be treated extensively in Chapter 4.) This is a simple Chow test with the restricted residual sums of squares (RRSS) being that of OLS on the pooled model and the unrestricted residual sums of squares (URSS) being that of the LSDV regression. If N is large, one can perform the Within transformation and use that residual sum of squares as the URSS. In this case
 
@@ -556,13 +560,6 @@ Baltagi (1981a) performed a Monte Carlo study on a simple regression equation wi
 OLS, the Within estimator and six feasible GLS estimators denoted by WALHUS, AMEMIYA, SWAR, MINQUE, FUBA and NERLOVE corresponding to the methods developed by Wallace and Hussain (1969), Amemiya (1971), Swamy and Arora (1972), Rao (1972), Fuller and Battese (1974) and Nerlove (1971a), respectively. The mean square error of these estimators was computed relative to that of true GLS, i.e. GLS knowing the true variance components. To review some of the properties of these estimators: OLS is unbiased, but asymptotically inefficient, and its standard errors are biased; see Moulton (1986) for the extent of this bias in empirical applications. In contrast, the Within estimator is unbiased whether or not prior
 
 information about the variance components is available. It is also asymptotically equivalent to the GLS estimator in case of weakly nonstochastic exogenous variables. Early in the literature, Wallace and Hussain (1969) recommended the Within estimator for the practical researcher, based on theoretical considerations but more importantly for its ease of computation. In Wallace and Hussain's (1969, p. 66) words the "covariance estimators come off with a surprisingly clear bill of health". True GLS is BLUE, but the variance components are usually not known and have to be estimated. All of the feasible GLS estimators considered are asymptotically efficient. In fact, Prucha (1984) showed that as long as the estimate of $\sigma_{v}^{2}$ is consistent, and the probability limits of the estimates $\sigma_{\mu}^{2}$ and $\sigma_{\lambda}^{2}$ are finite, the corresponding feasible GLS estimator is asymptotically efficient. Also, Swamy and Arora (1972) proved the existence of a family of asymptotically efficient two-stage feasible GLS estimators of the regression coefficients. Therefore, based on asymptotics only, one cannot differentiate among these twostage GLS estimators. This leaves undecided the question of which estimator is the best to use. Some analytical results were obtained by Swamy (1971) and Swamy and Arora (1972). These studies derived the relative efficiencies of (i) SWAR with respect to OLS, (ii) SWAR with respect to Within and (iii) Within with respect to OLS. Then, for various values of $N, T$, the variance components, the Between groups, Between time-periods and Within groups sums of squares of the independent variable, they tabulated these relative efficiency values (see Swamy, 1971 , chapters II and III; Swamy and Arora, 1972, p. 272). Among their basic findings is the fact that, for small samples, SWAR is less efficient than OLS if $\sigma_{\mu}^{2}$ and $\sigma_{\lambda}^{2}$ are small. Also, SWAR is less efficient than Within if $\sigma_{\mu}^{2}$ and $\sigma_{\lambda}^{2}$ are large. The latter result is disconcerting, since Within, which uses only a part of the available data, is more efficient than SWAR, a feasible GLS estimator, which uses all of the available data.
-
-# Test of Hypotheses with Panel Data
-
-
-
-
-
 
 
 ## REFERENCES 

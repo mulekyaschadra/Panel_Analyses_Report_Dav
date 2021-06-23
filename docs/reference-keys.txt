@@ -1,9 +1,7 @@
 tab:unnamed-chunk-2
 tab:g
 tab:unnamed-chunk-41
-prerequis
 intro
-literature
 the-one-way-error-component-regression-model
 introduction
 the-fixed-effects-model
@@ -14,8 +12,11 @@ ntroduction
 the-fixed-effects-model-1
 testing-for-fixed-effects
 the-random-effects-model-1
-test-of-hypotheses-with-panel-data
 references
+test-of-hypotheses-with-panel-data
+tests-for-poolability-of-the-data
+tests-for-individual-and-time-effects
+hausmans-specification-test
 methods
 analyses
 netoyage-de-la-base-des-données

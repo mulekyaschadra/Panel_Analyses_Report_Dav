@@ -10,14 +10,4 @@ link-citations: yes
 description: "dans ce livre nous produisons le rapport complet d'analyses du panel des taxes des pays Africains."
 ---
 
-# Prerequis
-
-Ceci est  _une étude_ des données de panel avec **Markdown**. 
-
-The **bookdown** package can be installed from CRAN or Github:
-
-La structure de ce rapport est que chaque fichier RMD porte un chapitre et un thème bien spécifique de notre analyse
-
-Nous avions utilisé XeLaTeX pour compiler ce document en PDF. 
-
 

@@ -1,0 +1,18 @@
+# Test of Hypotheses with Panel Data
+
+## TESTS FOR POOLABILITY OF THE DATA
+
+The question of whether to pool the data or not naturally arises with panel data. The restricted model is the pooled model given by (2.3) representing a behavioral equation with the same parameters over time and across regions. The unrestricted model, however, is the same behavioral equation but with different parameters across time or across regions. For example, Balestra and Nerlove (1966) considered a dynamic demand equation for natural gas across 36 states over six years. In this case, the question of whether to pool or not to pool boils down to the question of whether the parameters of this demand equation vary from one year to the other over the six years of available data. One can have a behavioral equation whose parameters may vary across regions. For example, Baltagi and Griffin (1983) considered panel data on motor gasoline demand for 18 OECD countries. In this case, one is interested in testing whether the behavioral relationship predicting demand is the same across the 18 OECD countries, i.e. the parameters of the prediction equation do not vary from one country to the other.
+
+These are but two examples of many economic applications where time-series and crosssection data may be pooled. Generally, most economic applications tend to be of the first type, i.e. with a large number of observations on individuals, firms, economic sectors, regions, industries and countries but only over a few time periods. In what follows, we study the tests for the poolability of the data for the case of pooling across regions keeping in mind that the other case of pooling over time can be obtained in a similar fashion.
+For the unrestricted model, we have a regression equation for each region given by
+
+\begin{equation}
+  y_i=Z_i \delta _i + \mu_i \text{i=1,2,...,N}
+\end{equation}   (4.1)
+
+where $$ y^{\prime}=(y_i1,...,y_{iT}) $$, $Z_i=[i_T,X_i]$ ans $X_i$ is $T \times K $ .
+
+## TESTS FOR INDIVIDUAL AND TIME EFFECTS
+
+## HAUSMAN’S SPECIFICATION TEST
