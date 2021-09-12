@@ -59,7 +59,7 @@ Faison la cactérisation des niveaux des marchandises dont l'encodage fait défa
 taxe_df$Goods <- taxe_df$Goods %>% fct_recode("WOLFRAM" ="WOLFRAMI",
                                               "WOLFRAM"="Wolframite"
                                               )
-levels(Goods)
+
 taxe_df$Goods <- taxe_df$Goods %>% fct_recode("Wolframite"="WOLFRAMITE")
 
 taxe_df$Goods <- taxe_df$Goods %>% fct_recode("Wolframite"="WOLFRAM" ,
@@ -1331,34 +1331,32 @@ freq(taxe_df$Goods)
 netoyyage de la variable country_desti qui est un facteur dans le quel nous retrouvons les niveaux rédondants (sur l'identifiant des pays)
 
 ```{r echo=FALSE,include=TRUE,message=FALSE}
-taxe_df <- taxe_df %>% rename(Country_dest=`Country/destination`)
-taxe_df$Country_dest <- factor(taxe_df$Country_dest)
-levels(taxe_df$Country_dest)
-taxe_df$Country_dest <- taxe_df$Country_dest %>% fct_recode(
-  "TANZANIE"="TZ",
-  "SUEDE"="SWEDEN",
+
+taxe_df$`Country/destination` <- taxe_df$`Country/destination` %>% fct_recode(
+   "TANZANIE"="TZ",
+ "SUEDE"="SWEDEN",
   "RDC"= "RDC/BUNIA",
-  "ROYAUME UNI"="R-U",
-  "PAYS BAS"="NERTHERLAND","ESPAGNE"="MADRID",
-  "GRANDE BRATAGNE"="ROYAUME UNI",
+   "ROYAUME UNI"="R-U",
+   "PAYS BAS"="NERTHERLAND","ESPAGNE"="MADRID",
+   "GRANDE BRATAGNE"="ROYAUME UNI",
   "EMIRATES ARABES UNIES"="UAE","GRANDE BRATAGNE"="ANGLETERRE",
-  "SUITZERLAND"="SWITZERLAND",
-  "BELGIQUE"="RDC/BELGIQUE","CHINE"="RDC/CHINE",
+   "SUITZERLAND"="SWITZERLAND",
+   "BELGIQUE"="RDC/BELGIQUE","CHINE"="RDC/CHINE",
   "USA"="RDC/ETATS UNIS",
   "FRANCE"="RDC/FRANCE","MALAISIE"="RDC/MALAISIE",
-  "OUGANDA"="RDC/OUGANDA","GRANDE BRATAGNE"="RDC/R-U",
+   "OUGANDA"="RDC/OUGANDA","GRANDE BRATAGNE"="RDC/R-U",
   "RWANDA"="RDC/RWANDA","SINGAPOUR"="RDC/SINGAPOUR",
-  "SUISSE"="RDC/SUISSE", 
-  "NA"="WALTER MATTER",
+   "SUISSE"="RDC/SUISSE", 
+   "NA"="WALTER MATTER",
   "NA"="SKN",
   "NA"="SUCAFINA","NA"="J WOLFF",
-  "NA"="DOMBASI SIMBA")
-taxe_df$Country_dest <- taxe_df$Country_dest %>% fct_recode(
+ "NA"="DOMBASI SIMBA")
+ taxe_df$`Country/destination` <- taxe_df$`Country/destination` %>% fct_recode(
   "REP TCHEQUE"="CZECH REP",
   "NA"="TWIN TRADING" ,
   "Swaziland"="SUITZERLAND",
-  "KP - Corée"="KP - Corée, République Populaire démocra")
-levels(taxe_df$Country_dest)
+  "KP - Corée"="République Populaire démocra" )
+ levels(taxe_df$`Country/destination`)
 
 
 ```
@@ -1370,9 +1368,12 @@ Dans la base des données il y a des entreprises que l'on a enregistré à la pl
 Regroupement des variables pour la synthèse  pour rendre la base des données simple à exploiter, éliminer les NA dans les observations telsque les pays et les valeurs pour les marchandises et les taxes.
 
 ```{r fig.dim=c(5,6)}
-DBase <- taxe_df  %>% 
-  select(Year,Country_dest,Goods,Weight,Taxe) %>% 
-  group_by(Year,Country_dest,Goods) %>% 
+DBase <- taxe_df %>% rename("Destination_Country"=`Country/destination`)
+
+
+DBase <- DBase  %>% 
+  select(Year,Destination_Country,Goods,Weight,Taxe) %>% 
+  group_by(Year,Destination_Country,Goods) %>% 
   summarise(Weight=sum(Weight),Taxe=sum(Taxe),.groups = "drop") %>% drop_na() 
 
 correlate(DBase) %>% kable(caption = "Table de corrélation entre les variables quantitatives")
@@ -1380,19 +1381,20 @@ correlate(DBase) %>% kable(caption = "Table de corrélation entre les variables 
 
 ```
 
-
 ```{r}
-df <- pdata.frame(DBase,index = c("Year","Country_dest"))
+df <- pdata.frame(DBase,index = c("Year","Destination_Country"))
 DF <- df %>% pivot_wider(names_from = Goods,values_from = c(Taxe,Weight))
 
 ```
+
 ```{r}
 DB <- pdata.frame(DBase,index=c("Year","Goods"))
 ```
 
 
-
-
 ## Analyse descriptive des Varariales 
 
 Conversion des données en modèle des panels des données
+
+
+# Modele poooling

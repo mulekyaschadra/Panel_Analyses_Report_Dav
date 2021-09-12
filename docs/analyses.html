@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 6 Analyses | Panel Analyses Report</title>
   <meta name="description" content="dans ce livre nous produisons le rapport complet d’analyses du panel des taxes des pays Africains." />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 6 Analyses | Panel Analyses Report" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="David BYAMUNGU" />
 
 
-<meta name="date" content="2021-06-22" />
+<meta name="date" content="2021-09-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,9 +32,9 @@
   
   
 <link rel="prev" href="methods.html"/>
-<link rel="next" href="references-1.html"/>
+<link rel="next" href="modele-poooling.html"/>
 <script src="libs/header-attrs-2.9/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -161,7 +161,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="4" data-path="test-of-hypotheses-with-panel-data.html"><a href="test-of-hypotheses-with-panel-data.html"><i class="fa fa-check"></i><b>4</b> Test of Hypotheses with Panel Data</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="test-of-hypotheses-with-panel-data.html"><a href="test-of-hypotheses-with-panel-data.html#tests-for-poolability-of-the-data"><i class="fa fa-check"></i><b>4.1</b> TESTS FOR POOLABILITY OF THE DATA</a></li>
+<li class="chapter" data-level="4.1" data-path="test-of-hypotheses-with-panel-data.html"><a href="test-of-hypotheses-with-panel-data.html#tests-for-poolability-of-the-data"><i class="fa fa-check"></i><b>4.1</b> TESTS FOR POOLABILITY OF THE DATA</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="test-of-hypotheses-with-panel-data.html"><a href="test-of-hypotheses-with-panel-data.html#test-for-poolability-under"><i class="fa fa-check"></i><b>4.1.1</b> Test for Poolability under</a></li>
+<li class="chapter" data-level="4.1.2" data-path="test-of-hypotheses-with-panel-data.html"><a href="test-of-hypotheses-with-panel-data.html#test-for-poolability-under-the-general-assumption"><i class="fa fa-check"></i><b>4.1.2</b> Test for Poolability under the General Assumption</a></li>
+</ul></li>
 <li class="chapter" data-level="4.2" data-path="test-of-hypotheses-with-panel-data.html"><a href="test-of-hypotheses-with-panel-data.html#tests-for-individual-and-time-effects"><i class="fa fa-check"></i><b>4.2</b> TESTS FOR INDIVIDUAL AND TIME EFFECTS</a></li>
 <li class="chapter" data-level="4.3" data-path="test-of-hypotheses-with-panel-data.html"><a href="test-of-hypotheses-with-panel-data.html#hausmans-specification-test"><i class="fa fa-check"></i><b>4.3</b> HAUSMAN’S SPECIFICATION TEST</a></li>
 </ul></li>
@@ -174,8 +178,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="6.2" data-path="analyses.html"><a href="analyses.html#analyse-descriptive-des-varariales"><i class="fa fa-check"></i><b>6.2</b> Analyse descriptive des Varariales</a></li>
 </ul></li>
+<li class="chapter" data-level="7" data-path="modele-poooling.html"><a href="modele-poooling.html"><i class="fa fa-check"></i><b>7</b> Modele poooling</a></li>
 <li class="chapter" data-level="" data-path="references-1.html"><a href="references-1.html"><i class="fa fa-check"></i>References</a></li>
-<li class="chapter" data-level="7" data-path="final-words.html"><a href="final-words.html"><i class="fa fa-check"></i><b>7</b> Final Words</a></li>
+<li class="chapter" data-level="8" data-path="final-words.html"><a href="final-words.html"><i class="fa fa-check"></i><b>8</b> Final Words</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -4222,11 +4227,12 @@ WOLFRAMITE
 ## peauxdes betes                              14  0.4  0.4
 ## NA                                          10  0.3   NA</code></pre>
 <p>netoyyage de la variable country_desti qui est un facteur dans le quel nous retrouvons les niveaux rédondants (sur l’identifiant des pays)</p>
+<pre><code>## Warning: Unknown levels in `f`: République Populaire démocra</code></pre>
 <pre><code>##  [1] &quot;AFRIQUE DU SUD&quot;                          
 ##  [2] &quot;ALGERIE&quot;                                 
 ##  [3] &quot;ALLEMAGNE&quot;                               
 ##  [4] &quot;AMERIQUE LATINE&quot;                         
-##  [5] &quot;ANGLETERRE&quot;                              
+##  [5] &quot;GRANDE BRATAGNE&quot;                         
 ##  [6] &quot;ANGOLA&quot;                                  
 ##  [7] &quot;ARABIE&quot;                                  
 ##  [8] &quot;ASIE&quot;                                    
@@ -4237,106 +4243,63 @@ WOLFRAMITE
 ## [13] &quot;CHINE&quot;                                   
 ## [14] &quot;CHYPRE&quot;                                  
 ## [15] &quot;CONGO BRAZA&quot;                             
-## [16] &quot;CZECH REP&quot;                               
-## [17] &quot;DOMBASI SIMBA&quot;                           
+## [16] &quot;REP TCHEQUE&quot;                             
+## [17] &quot;NA&quot;                                      
 ## [18] &quot;EMIRATES ARABES UNIES&quot;                   
 ## [19] &quot;ESPAGNE&quot;                                 
 ## [20] &quot;FRANCE&quot;                                  
 ## [21] &quot;GABON&quot;                                   
-## [22] &quot;GRANDE BRATAGNE&quot;                         
-## [23] &quot;GRECE&quot;                                   
-## [24] &quot;HONG KONG&quot;                               
-## [25] &quot;ILE MAURICE&quot;                             
-## [26] &quot;INDE&quot;                                    
-## [27] &quot;ITALIE&quot;                                  
-## [28] &quot;J WOLFF&quot;                                 
-## [29] &quot;JAPON&quot;                                   
-## [30] &quot;KENYA&quot;                                   
-## [31] &quot;KP - Corée, République Populaire démocra&quot;
-## [32] &quot;LIBAN&quot;                                   
-## [33] &quot;LUXEMBOURG&quot;                              
-## [34] &quot;MADRID&quot;                                  
-## [35] &quot;MALAISIE&quot;                                
-## [36] &quot;MAROC&quot;                                   
-## [37] &quot;NERLAND&quot;                                 
-## [38] &quot;NERTHERLAND&quot;                             
-## [39] &quot;NIGERIA&quot;                                 
-## [40] &quot;NOUVELLE ZELANDE&quot;                        
-## [41] &quot;OUGANDA&quot;                                 
-## [42] &quot;PANAMA&quot;                                  
-## [43] &quot;PAYS BAS&quot;                                
-## [44] &quot;PHILLIPINE&quot;                              
-## [45] &quot;POLOGNE&quot;                                 
-## [46] &quot;PORTUGAL&quot;                                
-## [47] &quot;R-U&quot;                                     
-## [48] &quot;RDC&quot;                                     
-## [49] &quot;RDC/BELGIQUE&quot;                            
-## [50] &quot;RDC/BUNIA&quot;                               
-## [51] &quot;RDC/CHINE&quot;                               
-## [52] &quot;RDC/ETATS UNIS&quot;                          
-## [53] &quot;RDC/FRANCE&quot;                              
-## [54] &quot;RDC/MALAISIE&quot;                            
-## [55] &quot;RDC/OUGANDA&quot;                             
-## [56] &quot;RDC/R-U&quot;                                 
-## [57] &quot;RDC/RWANDA&quot;                              
-## [58] &quot;RDC/SINGAPOUR&quot;                           
-## [59] &quot;RDC/SUISSE&quot;                              
-## [60] &quot;REP TCHEQUE&quot;                             
-## [61] &quot;ROYAUME UNI&quot;                             
-## [62] &quot;RWANDA&quot;                                  
-## [63] &quot;SENEGAL&quot;                                 
-## [64] &quot;SINGAPOUR&quot;                               
-## [65] &quot;SKN&quot;                                     
-## [66] &quot;SOMALIE&quot;                                 
-## [67] &quot;SOUDAN&quot;                                  
-## [68] &quot;SUCAFINA&quot;                                
-## [69] &quot;SUD SOUDAN&quot;                              
-## [70] &quot;SUEDE&quot;                                   
-## [71] &quot;SUISSE&quot;                                  
-## [72] &quot;SUITZERLAND&quot;                             
-## [73] &quot;Swaziland&quot;                               
-## [74] &quot;SWEDEN&quot;                                  
-## [75] &quot;SWITZERLAND&quot;                             
-## [76] &quot;TANZANIE&quot;                                
-## [77] &quot;TCHAD&quot;                                   
-## [78] &quot;THAILANDE&quot;                               
-## [79] &quot;TWIN TRADING&quot;                            
-## [80] &quot;TZ&quot;                                      
-## [81] &quot;UAE&quot;                                     
-## [82] &quot;UNION EUROPEENNE&quot;                        
-## [83] &quot;USA&quot;                                     
-## [84] &quot;WALTER MATTER&quot;                           
-## [85] &quot;ZAMBIE&quot;</code></pre>
-<pre><code>##  [1] &quot;AFRIQUE DU SUD&quot;        &quot;ALGERIE&quot;               &quot;ALLEMAGNE&quot;            
-##  [4] &quot;AMERIQUE LATINE&quot;       &quot;GRANDE BRATAGNE&quot;       &quot;ANGOLA&quot;               
-##  [7] &quot;ARABIE&quot;                &quot;ASIE&quot;                  &quot;AUSTRALIE&quot;            
-## [10] &quot;BELGIQUE&quot;              &quot;BURUNDI&quot;               &quot;CANADA&quot;               
-## [13] &quot;CHINE&quot;                 &quot;CHYPRE&quot;                &quot;CONGO BRAZA&quot;          
-## [16] &quot;REP TCHEQUE&quot;           &quot;NA&quot;                    &quot;EMIRATES ARABES UNIES&quot;
-## [19] &quot;ESPAGNE&quot;               &quot;FRANCE&quot;                &quot;GABON&quot;                
-## [22] &quot;GRECE&quot;                 &quot;HONG KONG&quot;             &quot;ILE MAURICE&quot;          
-## [25] &quot;INDE&quot;                  &quot;ITALIE&quot;                &quot;JAPON&quot;                
-## [28] &quot;KENYA&quot;                 &quot;KP - Corée&quot;            &quot;LIBAN&quot;                
-## [31] &quot;LUXEMBOURG&quot;            &quot;MALAISIE&quot;              &quot;MAROC&quot;                
-## [34] &quot;NERLAND&quot;               &quot;PAYS BAS&quot;              &quot;NIGERIA&quot;              
-## [37] &quot;NOUVELLE ZELANDE&quot;      &quot;OUGANDA&quot;               &quot;PANAMA&quot;               
-## [40] &quot;PHILLIPINE&quot;            &quot;POLOGNE&quot;               &quot;PORTUGAL&quot;             
-## [43] &quot;ROYAUME UNI&quot;           &quot;RDC&quot;                   &quot;USA&quot;                  
-## [46] &quot;RWANDA&quot;                &quot;SINGAPOUR&quot;             &quot;SUISSE&quot;               
-## [49] &quot;SENEGAL&quot;               &quot;SOMALIE&quot;               &quot;SOUDAN&quot;               
-## [52] &quot;SUD SOUDAN&quot;            &quot;SUEDE&quot;                 &quot;Swaziland&quot;            
-## [55] &quot;TANZANIE&quot;              &quot;TCHAD&quot;                 &quot;THAILANDE&quot;            
-## [58] &quot;UNION EUROPEENNE&quot;      &quot;ZAMBIE&quot;</code></pre>
+## [22] &quot;GRECE&quot;                                   
+## [23] &quot;HONG KONG&quot;                               
+## [24] &quot;ILE MAURICE&quot;                             
+## [25] &quot;INDE&quot;                                    
+## [26] &quot;ITALIE&quot;                                  
+## [27] &quot;JAPON&quot;                                   
+## [28] &quot;KENYA&quot;                                   
+## [29] &quot;KP - Corée, République Populaire démocra&quot;
+## [30] &quot;LIBAN&quot;                                   
+## [31] &quot;LUXEMBOURG&quot;                              
+## [32] &quot;MALAISIE&quot;                                
+## [33] &quot;MAROC&quot;                                   
+## [34] &quot;NERLAND&quot;                                 
+## [35] &quot;PAYS BAS&quot;                                
+## [36] &quot;NIGERIA&quot;                                 
+## [37] &quot;NOUVELLE ZELANDE&quot;                        
+## [38] &quot;OUGANDA&quot;                                 
+## [39] &quot;PANAMA&quot;                                  
+## [40] &quot;PHILLIPINE&quot;                              
+## [41] &quot;POLOGNE&quot;                                 
+## [42] &quot;PORTUGAL&quot;                                
+## [43] &quot;ROYAUME UNI&quot;                             
+## [44] &quot;RDC&quot;                                     
+## [45] &quot;USA&quot;                                     
+## [46] &quot;RWANDA&quot;                                  
+## [47] &quot;SINGAPOUR&quot;                               
+## [48] &quot;SUISSE&quot;                                  
+## [49] &quot;SENEGAL&quot;                                 
+## [50] &quot;SOMALIE&quot;                                 
+## [51] &quot;SOUDAN&quot;                                  
+## [52] &quot;SUD SOUDAN&quot;                              
+## [53] &quot;SUEDE&quot;                                   
+## [54] &quot;Swaziland&quot;                               
+## [55] &quot;TANZANIE&quot;                                
+## [56] &quot;TCHAD&quot;                                   
+## [57] &quot;THAILANDE&quot;                               
+## [58] &quot;UNION EUROPEENNE&quot;                        
+## [59] &quot;ZAMBIE&quot;</code></pre>
 <p>Dans la base des données il y a des entreprises que l’on a enregistré à la place des pays. ces genre des cas ont été traité par remplacement avec le <em>NA</em> pour <strong>Not Available</strong> et ces dernier on été élargués de la base des données, car nous avions jugé qu’ aucune méthode d’imputation n’est applicable pour ce genre de situation. Nous avions fait la même chose pour les variables tels que <strong>Les marchandises</strong>.</p>
 <div id="nouvelle-base-de-données-pour-les-analyses" class="section level3" number="6.1.1">
 <h3><span class="header-section-number">6.1.1</span> Nouvelle base de données pour les analyses</h3>
 <p>Regroupement des variables pour la synthèse pour rendre la base des données simple à exploiter, éliminer les NA dans les observations telsque les pays et les valeurs pour les marchandises et les taxes.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="analyses.html#cb9-1" aria-hidden="true" tabindex="-1"></a>DBase <span class="ot">&lt;-</span> taxe_df  <span class="sc">%&gt;%</span> </span>
-<span id="cb9-2"><a href="analyses.html#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Year,Country_dest,Goods,Weight,Taxe) <span class="sc">%&gt;%</span> </span>
-<span id="cb9-3"><a href="analyses.html#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Year,Country_dest,Goods) <span class="sc">%&gt;%</span> </span>
-<span id="cb9-4"><a href="analyses.html#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">Weight=</span><span class="fu">sum</span>(Weight),<span class="at">Taxe=</span><span class="fu">sum</span>(Taxe),<span class="at">.groups =</span> <span class="st">&quot;drop&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">drop_na</span>() </span>
-<span id="cb9-5"><a href="analyses.html#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-6"><a href="analyses.html#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="fu">correlate</span>(DBase) <span class="sc">%&gt;%</span> <span class="fu">kable</span>(<span class="at">caption =</span> <span class="st">&quot;Table de corrélation entre les variables quantitatives&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="analyses.html#cb9-1" aria-hidden="true" tabindex="-1"></a>DBase <span class="ot">&lt;-</span> taxe_df <span class="sc">%&gt;%</span> <span class="fu">rename</span>(<span class="st">&quot;Destination_Country&quot;</span><span class="ot">=</span><span class="st">`</span><span class="at">Country/destination</span><span class="st">`</span>)</span>
+<span id="cb9-2"><a href="analyses.html#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="analyses.html#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="analyses.html#cb9-4" aria-hidden="true" tabindex="-1"></a>DBase <span class="ot">&lt;-</span> DBase  <span class="sc">%&gt;%</span> </span>
+<span id="cb9-5"><a href="analyses.html#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Year,Destination_Country,Goods,Weight,Taxe) <span class="sc">%&gt;%</span> </span>
+<span id="cb9-6"><a href="analyses.html#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Year,Destination_Country,Goods) <span class="sc">%&gt;%</span> </span>
+<span id="cb9-7"><a href="analyses.html#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">Weight=</span><span class="fu">sum</span>(Weight),<span class="at">Taxe=</span><span class="fu">sum</span>(Taxe),<span class="at">.groups =</span> <span class="st">&quot;drop&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">drop_na</span>() </span>
+<span id="cb9-8"><a href="analyses.html#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="analyses.html#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="fu">correlate</span>(DBase) <span class="sc">%&gt;%</span> <span class="fu">kable</span>(<span class="at">caption =</span> <span class="st">&quot;Table de corrélation entre les variables quantitatives&quot;</span>)</span></code></pre></div>
 <table>
 <caption>
 <span id="tab:unnamed-chunk-41">Table 6.3: </span>Table de corrélation entre les variables quantitatives
@@ -4424,8 +4387,8 @@ Taxe
 </tbody>
 </table>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="analyses.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#plot_correlate(DBase)</span></span></code></pre></div>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="analyses.html#cb11-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">pdata.frame</span>(DBase,<span class="at">index =</span> <span class="fu">c</span>(<span class="st">&quot;Year&quot;</span>,<span class="st">&quot;Country_dest&quot;</span>))</span></code></pre></div>
-<pre><code>## Warning in pdata.frame(DBase, index = c(&quot;Year&quot;, &quot;Country_dest&quot;)): duplicate couples (id-time) in resulting pdata.frame
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="analyses.html#cb11-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">pdata.frame</span>(DBase,<span class="at">index =</span> <span class="fu">c</span>(<span class="st">&quot;Year&quot;</span>,<span class="st">&quot;Destination_Country&quot;</span>))</span></code></pre></div>
+<pre><code>## Warning in pdata.frame(DBase, index = c(&quot;Year&quot;, &quot;Destination_Country&quot;)): duplicate couples (id-time) in resulting pdata.frame
 ##  to find out which, use, e.g., table(index(your_pdataframe), useNA = &quot;ifany&quot;)</code></pre>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="analyses.html#cb13-1" aria-hidden="true" tabindex="-1"></a>DF <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> Goods,<span class="at">values_from =</span> <span class="fu">c</span>(Taxe,Weight))</span></code></pre></div>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="analyses.html#cb14-1" aria-hidden="true" tabindex="-1"></a>DB <span class="ot">&lt;-</span> <span class="fu">pdata.frame</span>(DBase,<span class="at">index=</span><span class="fu">c</span>(<span class="st">&quot;Year&quot;</span>,<span class="st">&quot;Goods&quot;</span>))</span></code></pre></div>
@@ -4436,7 +4399,6 @@ Taxe
 <div id="analyse-descriptive-des-varariales" class="section level2" number="6.2">
 <h2><span class="header-section-number">6.2</span> Analyse descriptive des Varariales</h2>
 <p>Conversion des données en modèle des panels des données</p>
-
 </div>
 </div>
             </section>
@@ -4445,7 +4407,7 @@ Taxe
         </div>
       </div>
 <a href="methods.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="references-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="modele-poooling.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -4489,6 +4451,10 @@ gitbook.start({
 "text": null
 },
 "download": ["panel analyses book.pdf", "panel analyses book.epub"],
+"search": {
+"engine": "lunr",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 }

@@ -13,6 +13,188 @@ For the unrestricted model, we have a regression equation for each region given 
 
 where $$ y^{\prime}=(y_i1,...,y_{iT}) $$, $Z_i=[i_T,X_i]$ ans $X_i$ is $T \times K $ .
 
+The important thing to notice is that $\delta_{1}$ is different for every regional equation. We want to test the hypothesis $H_{0}: \delta_{l}=\delta$ for all $i$, so that undcr $H_{0}$ we can write the restricted model given in $(4.1)$ as
+
+\begin{equation}
+y= Z \delta + \mu
+\end{equation}
+
+
+
+ where $$ Z^{\prime}=\left(Z_{1}^{\prime} , Z_{2}^{\prime}, \ldots, Z_{N}^{\prime}\right) $$ and $$ u^{\prime}=\left(u_{1}^{\prime}, u_{2}^{\prime}, \ldots, u_{N}^{\prime}\right) $$ . The unrestricted model can also be written as 
+ 
+ \begin{equation}
+y=\left(\begin{array}{cccc}
+Z_{1} & 0 & \ldots & 0 \\
+0 & Z_{2} & \ldots & 0 \\
+\vdots & & \ddots & \vdots \\
+0 & 0 & \ldots & Z_{N}
+\end{array}\right)\left(\begin{array}{c}
+\delta_{1} \\
+\delta_{2} \\
+\vdots \\
+\delta_{N}
+\end{array}\right)+u=Z^{*} \delta^{*}+u
+\end{equation}
+
+where $$\delta^{* \prime}=\left(\delta_{1}^{\prime}, \delta_{2}^{\prime}, \ldots, \delta_{N}^{\prime}\right)$$  and $$ Z=Z^{*} I^{*} $$  with $$ I^{*}=\left(\iota_{N} \otimes I_{K^{\prime}}\right)$$, an $$ N K^{\prime} \times K^{\prime}$$  matrix, with 
+$$K^{\prime}=K+1 $$ . Hence the variables in  Z  are all linear combinations of the variables in $$ Z^{*}$$ .
+
+### Test for Poolability under
+$$ u \sim N\left(0, \sigma^{2} I_{N T}\right)$$
+
+Assumption 4. 1  $$\mu   \sim N\left(0, \sigma^{2} I_{N T}\right)$$
+
+Under assumption 4.1, the minimum variance unbiased estimator for $\delta$ in equation (4.2) is
+
+\begin{equation}
+\widehat{\delta}_{\mathrm{OLS}}=\widehat{\delta}_{m l e}=\left(Z^{\prime} Z\right)^{-1} Z^{\prime} y
+\end{equation}
+
+and therefore
+
+\begin{equation}
+y=Z \widehat{\delta}_{\mathrm{OLS}}+e
+\end{equation}
+
+implying that $$e=\left(I_{NT}-Z \left(Z Z^{\prime}\right)^{-1}Z^{\prime}\right)y =My=M\left(Z\delta +\mu \right)= M \mu $$  since $MZ=0$. Similarly,
+under assumption 4.1, the MVU for $\delta_i$ is given by 
+
+\begin{equation}
+\widehat{\delta}_{i, \mathrm{OLS}}=\widehat{\delta}_{i, m l e}=\left(Z_{i}^{\prime} Z_{i}\right)^{-1} Z_{i}^{\prime} y_{i}
+\end{equation}
+
+therefore 
+
+\begin{equation}
+y_{i}=Z_{i} \widehat{\delta}_{i, \mathrm{OLS}}+e_{i}
+\end{equation}
+
+
+ implying that $$ e_{i}=\left(I_{T}-Z_{i}\left(Z_{i}^{\prime} Z_{i}\right)^{-1} Z_{i}^{\prime}\right) y_{i}=M_{i} y_{i}=M_{i}\left(Z_{i} \delta_{i}+u_{i}\right)=M_{i} u_{i}$$  since  $M_{i} Z_{i}=0 $ and this is true for $i=1,2, \ldots, N$ . Also, let 
+
+$$
+M^{*}=I_{N T}-Z^{*}\left(Z^{* \prime} Z^{*}\right)^{-1} Z^{* \prime}=\left(\begin{array}{cccc}
+M_{1} & 0 & \ldots & 0 \\
+0 & M_{2} & \ldots & 0 \\
+\vdots & & \ddots & \vdots \\
+0 & 0 & \ldots & M_{N}
+\end{array}\right)
+$$
+
+One can easily deduce that $y=Z^{*} \widehat{\delta}^{*}+e^{*}$ with $e^{*}=M^{*} y=M^{*} u$ and $\widehat{\delta}^{*}=\left(Z^{* \prime} Z^{*}\right)^{-1} Z^{* \prime} y$.
+Note that both $M$ and $M^{*}$ are symmetric and idempotent with $M M^{*}=M^{*}$. This easily follows since
+
+\begin{equation}
+\begin{aligned}
+Z\left(Z^{\prime} Z\right)^{-1} Z^{\prime} Z^{*}\left(Z^{* \prime} Z^{*}\right)^{-1} Z^{* \prime} &=Z\left(Z^{\prime} Z\right)^{-1} I^{* \prime} Z^{* \prime} Z^{*}\left(Z^{* \prime} Z^{*}\right)^{-1} Z^{* \prime} \\
+&=Z\left(Z^{\prime} Z\right)^{-1} Z^{\prime}
+\end{aligned}
+\end{equation}  (Non Numéroté)
+
+This uses the fact that $Z=Z^{*} I^{*} .$ Under assumption 4.1, $e^{\prime} e-e^{* \prime} e^{*}=u^{\prime}\left(M-M^{*}\right) u$ and $e^{* \prime} e^{*}=u^{\prime} M^{*} u$ are independent since $\left(M-M^{*}\right) M^{*}=0 .$ Also, both quadratic forms when divided by $\sigma^{2}$ are distributed as $\chi^{2}$ since $\left(M-M^{*}\right)$ and $M^{*}$ are idempotent. Dividing these quadratic forms by their respective degrees of freedom and taking their ratio leads to the following test statistic: ${ }^{1}$
+
+$$F_{obs}=\frac{\left(e^{\prime}e-e^{* \prime} \right) / \left( \operatorname{tr}\left(M\right)-\operatorname{tr}\left(M^*\right) \right)}
+{e^{* \prime}e^* / \operatorname{tr}\left(M\right) }  $$
+
+\begin{equation}
+F_{obs}=\frac{\left(e_1^{\prime}e-e_2^{\prime}e_1 -e^{\prime}e_2 -\ldots -e_N^{\prime}e \right)/ \left(N-1 \right) K^{\prime}  }
+{\left(e_1^{\prime}e-e_2^{\prime}e_1 -e^{\prime}e_2 -\ldots -e_N^{\prime}e \right)/ N \left(T-K^{\prime} \right) } 
+\end{equation}
+
+Under $H_0,F_{obs}$ is distributed as an $$F \left(\left(N-1 \right)K^{\prime}, N\left(T-K^{\prime}\right)\right) $$ Hence the critical region for this test is defined as
+   
+$$\brace  F_{obs}> \left(\left(N-1 \right)K^{\prime}, NT-NK^{\prime} ,\alpha_0 \right)      $$
+where $\alpha_0$ denotes the level of significance of the test. This is exactly the Chow test presented by Chow (1960) extended to the case of $N$ linear regressions. Therefore if an economist has reason to believe that assumption 4.1 is true, and wants to pool his data across regions, then it is recommended that he or she test for the poolability of the data using the Chow test given in (4.8). However, for the variance component model $\mu \sim \left(0,\Omega \right)$ and not $\left(0,\sigma^2 I_{NT} \right)$ Therefore, even if we assume normality on the disturbances two questions remain: (1) is the Chow test still the right test to perform when $\mu \sim N\left(0,\Omega \right)$ ? and (2) does the Chow statistic still have an
+F-distribution when  $\mu \sim N\left(0,\Omega \right)$ ?  The answer to the first question is no, the Chow test given
+in (4.8) is not the right test to perform. However, as will be shown later, a generalized Chow
+test will be the right test to perform. As for the second question, it is still relevant to ask because
+it highlights the problem of economists using the Chow test assuming erroneously that $\mu$ is  $N\left(0,\sigma^2 I_{NT} \right)$ when in fact it is not. For example, Toyoda (1974), in treating the case where
+the $\mu_i$ are heteroskedastic, found that the Chow statistic given by (4.8) has an approximate $F-\text{Distribution}$ where the degree of freedom of the denominator depends upon the true variances.
+Hence for specific values of these variances, Toyoda demonstrates how wrong it is to apply the Chow test in case of heteroskedastic  variances.
+
+Having posed the two questions above, we can proceed along two lines: the first is to find the approximate distribution of the Chow statistic (4.8) in case $\mu \sim N \left(0,\Omega \right)$ and therefore show
+how erroneous it is to use the Chow test in this case (this is not pursued in this book). The second route, and the more fruitful, is to derive the right test to perform for pooling the data in case $\mu \sim N \left(0,\Omega \right)$  This is done in the next subsection.
+
+### Test for Poolability under the General Assumption
+$$ u \sim N\left(0, \Omega\right)$$
+*Assumption* 4.2  $$ u \sim N\left(0, \Omega\right)$$ 
+
+In case $\Omega$ is known up to a scalar factor, the test statistic employed for the poolability of
+the data would be simple to derive. All we need to do is transform our model (under both
+the null and alternative hypotheses) such that the transformed disturbances have a variance of $\sigma^2 I_{NT}$ , then apply the Chow test on the transformed model. The later step is legitimate because
+the transformed disturbances have homoskedastic variances and the analysis of the previous
+subsection applies in full. Given $\Omega =\sigma^2 \sum $ , we premultiply the restricted model given in (4.2)
+by $\sum^{-1/2}$  and we call $\sum^{-1/2}y=\dot{y}$ , $\sum^{-1/2}Z=\dot{Z}$  and $\sum^{-1/2} \mu=\dot{\mu}$ Hence 
+
+\begin{equation}
+\dot{y}=\dot{Z}\delta + \dot{u}
+\end{equation}
+
+
+with $$E\left(\dot{u}\dot{u^{\prime}}\right) =\sum^{-1/2} E\left(u,u^{\prime}\right) \sum^{-1/2  \prime} =\sigma^2 I_{NT} $$.
+Similarly, we premultiply the unrestricted model
+given in (4.3) by $\sum^{-1/2}$ and we call  $\sum^{-1/2} Z^*=Z^*$. 
+Therefore
+
+\begin{equation}
+\dot{y}=\dot{Z}^{*} \delta ^{*} + \dot{u}
+\end{equation}
+
+with $E\left(\dot{u}\dot{u}^{\prime}\right)=\sigma^2 I_{NT}$ .
+
+At this stage, we can test $H_0:\delta_i =\delta$ for every $i=1,2,\ldots, N$ , simply by using the Chow statistic, only nowon the transformed models (4.9) and (4.10) since they satisfy assumption 4.1
+of homoskedasticity of the normal disturbances. Note that $$\dot{Z}=\dot{Z^*}I^* $$ , which is simply obtained
+from $Z=Z^* I^* $ by premultiplying by $\sum^{-1/2}$.
+
+Defining $$\dot{M}=I_{NT}-\dot{Z}\left(\dot{Z^{\prime}}\dot{Z} \right)^{-1} \dot{Z^{\prime}}   $$ and  $$\dot{M^*}=I_{NT}-\dot{Z^*}\left(\dot{Z^{* \prime}}\dot{Z^*} \right)^{-1} \dot{Z^{* \prime}}   $$ it is easy to show that $\dot{M}$ and $\dot{M^*}$ are both symmetric, idempotent and such that $$\dot{M} \dot{M^*}=\dot{M^*}  $$  Once again the conditions for lemma 2.2 of Fisher (1970) are satisfied, and the test statistic
+
+\begin{equation}
+\dot{F}_{obs}=\frac{\left(\dot{e}^{\prime} \dot{e}-\dot{e}^{* \prime}    \dot{e}^* \right)  /  \left(\operatorname{tr}\left(\dot{M}\right)-\operatorname{tr}\left(\dot{M^*}  \right) \right)  } 
+{\dot{e}^{* \prime}    \dot{e}^* / \operatorname{tr}\left( \dot{M^*} \right) } 
+\sim
+F \left(\left( N-1 \right)K^{\prime} , N \left( T- K^{\prime} \right)          \right)
+\end{equation}
+
+$$
+\begin{aligned}
+\text{where  } \dot{e}=\dot{y}-\dot{Z} \widehat{\dot{\delta}}_{OLS}  
+ \text{ and } \widehat{\dot{\delta}}_{OLS} =\left(\dot{Z^{\prime}\dot{Z}} \right)^{-1} \dot{Z^{\prime}} \dot{y}  \text{ implying that } \dot{e}=\dot{M}\dot{y}=\dot{M}\dot{u} \text{.   Similarly,}   \dot{e^*}= \\ \dot{y}-\dot{Z^*}\widehat{\dot{\delta}_{OLS}^*} \text{ and } \widehat{\dot{\delta}_{OLS}^*}=\left(\dot{Z^{* \prime}} \dot{Z} \right)^{-1} \dot{Z^{* \prime}} \dot{y} \text{ implying that }  \dot{e^*}=\dot{M^*}\dot{y}= \dot{M^*} \dot{u} \text{. Using the fact that } \\ \dot{M} \text{ and } \dot{M^*} \text{ are symmetric and idempotent, we can rewrite (4.11) as } 
+ \end{aligned}
+ $$
+ 
+ 
+$$
+\dot{F}_{obs}=  \frac{\left(\dot{y}^{\prime}\dot{M}\dot{y}-\dot{y}^{\prime}\dot{M^*} \dot{y} \right) / \left(N-1\right) K^{\prime} } 
+ {\dot{y}^{\prime}\dot{M}\dot{y} / N \left( T-K^{\prime} \right)    }$$
+
+
+\begin{equation}
+ \dot{F}_{obs}=\frac{   \left(y^{\prime} \sum^{-1/2}\dot{M} \sum^{-1/2}y -\sum^{-1/2}\dot{M^*} \sum^{-1/2}y \right) / \left(N-1\right) K^{\prime}  }
+{ \sum^{-1/2}\dot{M^*} \sum^{-1/2}y  / N \left(T-K^{\prime} \right)  }
+\end{equation}
+
+But
+
+$$ \dot{M}=I_{NT}-\sum^{-1/2} Z\left(Z^{\prime } \sum^{-1} Z \right)^{-1} Z^{\prime} \sum^{-1/2^{\prime}} $$
+And 
+
+$$ \dot{M^*}=I_{NT}-\sum^{-1/2} Z^{*}\left(Z^{*} \sum^{-1} Z \right)^{-1} Z^{* \prime} \sum^{-1/2^{\prime}} $$
+so that
+$$\sum^{-1/2}\dot{M}\sum_{-1/2} =\sum^{-1}-\sum^{-1} Z \left(Z^{\prime}\sum^{-1}Z  \right)^{-1} Z^{\prime} $$
+
+and
+
+$$\sum^{-1/2}\dot{M^*}\sum_{-1/2} =\sum^{-1}-\sum^{-1} Z^* \left(Z^{*\prime}\sum^{-1}Z^*  \right)^{-1} Z^{*\prime} \sum^{-1} $$
+Hence we can write (4.12) in the form
+
+
+
+
+
+
+
+
 ## TESTS FOR INDIVIDUAL AND TIME EFFECTS
 
 ## HAUSMAN’S SPECIFICATION TEST

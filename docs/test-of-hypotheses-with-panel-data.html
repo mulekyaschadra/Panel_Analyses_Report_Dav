@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 4 Test of Hypotheses with Panel Data | Panel Analyses Report</title>
   <meta name="description" content="dans ce livre nous produisons le rapport complet d’analyses du panel des taxes des pays Africains." />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 4 Test of Hypotheses with Panel Data | Panel Analyses Report" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="David BYAMUNGU" />
 
 
-<meta name="date" content="2021-06-22" />
+<meta name="date" content="2021-09-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -34,7 +34,7 @@
 <link rel="prev" href="the-two-way-error-component-regression-model.html"/>
 <link rel="next" href="methods.html"/>
 <script src="libs/header-attrs-2.9/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -161,7 +161,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="4" data-path="test-of-hypotheses-with-panel-data.html"><a href="test-of-hypotheses-with-panel-data.html"><i class="fa fa-check"></i><b>4</b> Test of Hypotheses with Panel Data</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="test-of-hypotheses-with-panel-data.html"><a href="test-of-hypotheses-with-panel-data.html#tests-for-poolability-of-the-data"><i class="fa fa-check"></i><b>4.1</b> TESTS FOR POOLABILITY OF THE DATA</a></li>
+<li class="chapter" data-level="4.1" data-path="test-of-hypotheses-with-panel-data.html"><a href="test-of-hypotheses-with-panel-data.html#tests-for-poolability-of-the-data"><i class="fa fa-check"></i><b>4.1</b> TESTS FOR POOLABILITY OF THE DATA</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="test-of-hypotheses-with-panel-data.html"><a href="test-of-hypotheses-with-panel-data.html#test-for-poolability-under"><i class="fa fa-check"></i><b>4.1.1</b> Test for Poolability under</a></li>
+<li class="chapter" data-level="4.1.2" data-path="test-of-hypotheses-with-panel-data.html"><a href="test-of-hypotheses-with-panel-data.html#test-for-poolability-under-the-general-assumption"><i class="fa fa-check"></i><b>4.1.2</b> Test for Poolability under the General Assumption</a></li>
+</ul></li>
 <li class="chapter" data-level="4.2" data-path="test-of-hypotheses-with-panel-data.html"><a href="test-of-hypotheses-with-panel-data.html#tests-for-individual-and-time-effects"><i class="fa fa-check"></i><b>4.2</b> TESTS FOR INDIVIDUAL AND TIME EFFECTS</a></li>
 <li class="chapter" data-level="4.3" data-path="test-of-hypotheses-with-panel-data.html"><a href="test-of-hypotheses-with-panel-data.html#hausmans-specification-test"><i class="fa fa-check"></i><b>4.3</b> HAUSMAN’S SPECIFICATION TEST</a></li>
 </ul></li>
@@ -174,8 +178,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="6.2" data-path="analyses.html"><a href="analyses.html#analyse-descriptive-des-varariales"><i class="fa fa-check"></i><b>6.2</b> Analyse descriptive des Varariales</a></li>
 </ul></li>
+<li class="chapter" data-level="7" data-path="modele-poooling.html"><a href="modele-poooling.html"><i class="fa fa-check"></i><b>7</b> Modele poooling</a></li>
 <li class="chapter" data-level="" data-path="references-1.html"><a href="references-1.html"><i class="fa fa-check"></i>References</a></li>
-<li class="chapter" data-level="7" data-path="final-words.html"><a href="final-words.html"><i class="fa fa-check"></i><b>7</b> Final Words</a></li>
+<li class="chapter" data-level="8" data-path="final-words.html"><a href="final-words.html"><i class="fa fa-check"></i><b>8</b> Final Words</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -207,6 +212,137 @@ For the unrestricted model, we have a regression equation for each region given 
   y_i=Z_i \delta _i + \mu_i \text{i=1,2,...,N}
 \end{equation}\]</span> (4.1)</p>
 <p>where <span class="math display">\[ y^{\prime}=(y_i1,...,y_{iT}) \]</span>, <span class="math inline">\(Z_i=[i_T,X_i]\)</span> ans <span class="math inline">\(X_i\)</span> is $T K $ .</p>
+<p>The important thing to notice is that <span class="math inline">\(\delta_{1}\)</span> is different for every regional equation. We want to test the hypothesis <span class="math inline">\(H_{0}: \delta_{l}=\delta\)</span> for all <span class="math inline">\(i\)</span>, so that undcr <span class="math inline">\(H_{0}\)</span> we can write the restricted model given in <span class="math inline">\((4.1)\)</span> as</p>
+<p><span class="math display">\[\begin{equation}
+y= Z \delta + \mu
+\end{equation}\]</span></p>
+<p>where <span class="math display">\[ Z^{\prime}=\left(Z_{1}^{\prime} , Z_{2}^{\prime}, \ldots, Z_{N}^{\prime}\right) \]</span> and <span class="math display">\[ u^{\prime}=\left(u_{1}^{\prime}, u_{2}^{\prime}, \ldots, u_{N}^{\prime}\right) \]</span> . The unrestricted model can also be written as</p>
+<p><span class="math display">\[\begin{equation}
+y=\left(\begin{array}{cccc}
+Z_{1} &amp; 0 &amp; \ldots &amp; 0 \\
+0 &amp; Z_{2} &amp; \ldots &amp; 0 \\
+\vdots &amp; &amp; \ddots &amp; \vdots \\
+0 &amp; 0 &amp; \ldots &amp; Z_{N}
+\end{array}\right)\left(\begin{array}{c}
+\delta_{1} \\
+\delta_{2} \\
+\vdots \\
+\delta_{N}
+\end{array}\right)+u=Z^{*} \delta^{*}+u
+\end{equation}\]</span></p>
+<p>where <span class="math display">\[\delta^{* \prime}=\left(\delta_{1}^{\prime}, \delta_{2}^{\prime}, \ldots, \delta_{N}^{\prime}\right)\]</span> and <span class="math display">\[ Z=Z^{*} I^{*} \]</span> with <span class="math display">\[ I^{*}=\left(\iota_{N} \otimes I_{K^{\prime}}\right)\]</span>, an <span class="math display">\[ N K^{\prime} \times K^{\prime}\]</span> matrix, with
+<span class="math display">\[K^{\prime}=K+1 \]</span> . Hence the variables in Z are all linear combinations of the variables in <span class="math display">\[ Z^{*}\]</span> .</p>
+<div id="test-for-poolability-under" class="section level3" number="4.1.1">
+<h3><span class="header-section-number">4.1.1</span> Test for Poolability under</h3>
+<p><span class="math display">\[ u \sim N\left(0, \sigma^{2} I_{N T}\right)\]</span></p>
+<p>Assumption 4. 1 <span class="math display">\[\mu   \sim N\left(0, \sigma^{2} I_{N T}\right)\]</span></p>
+<p>Under assumption 4.1, the minimum variance unbiased estimator for <span class="math inline">\(\delta\)</span> in equation (4.2) is</p>
+<p><span class="math display">\[\begin{equation}
+\widehat{\delta}_{\mathrm{OLS}}=\widehat{\delta}_{m l e}=\left(Z^{\prime} Z\right)^{-1} Z^{\prime} y
+\end{equation}\]</span></p>
+<p>and therefore</p>
+<p><span class="math display">\[\begin{equation}
+y=Z \widehat{\delta}_{\mathrm{OLS}}+e
+\end{equation}\]</span></p>
+<p>implying that <span class="math display">\[e=\left(I_{NT}-Z \left(Z Z^{\prime}\right)^{-1}Z^{\prime}\right)y =My=M\left(Z\delta +\mu \right)= M \mu \]</span> since <span class="math inline">\(MZ=0\)</span>. Similarly,
+under assumption 4.1, the MVU for <span class="math inline">\(\delta_i\)</span> is given by</p>
+<p><span class="math display">\[\begin{equation}
+\widehat{\delta}_{i, \mathrm{OLS}}=\widehat{\delta}_{i, m l e}=\left(Z_{i}^{\prime} Z_{i}\right)^{-1} Z_{i}^{\prime} y_{i}
+\end{equation}\]</span></p>
+<p>therefore</p>
+<p><span class="math display">\[\begin{equation}
+y_{i}=Z_{i} \widehat{\delta}_{i, \mathrm{OLS}}+e_{i}
+\end{equation}\]</span></p>
+<p>implying that <span class="math display">\[ e_{i}=\left(I_{T}-Z_{i}\left(Z_{i}^{\prime} Z_{i}\right)^{-1} Z_{i}^{\prime}\right) y_{i}=M_{i} y_{i}=M_{i}\left(Z_{i} \delta_{i}+u_{i}\right)=M_{i} u_{i}\]</span> since $M_{i} Z_{i}=0 $ and this is true for <span class="math inline">\(i=1,2, \ldots, N\)</span> . Also, let</p>
+<p><span class="math display">\[
+M^{*}=I_{N T}-Z^{*}\left(Z^{* \prime} Z^{*}\right)^{-1} Z^{* \prime}=\left(\begin{array}{cccc}
+M_{1} &amp; 0 &amp; \ldots &amp; 0 \\
+0 &amp; M_{2} &amp; \ldots &amp; 0 \\
+\vdots &amp; &amp; \ddots &amp; \vdots \\
+0 &amp; 0 &amp; \ldots &amp; M_{N}
+\end{array}\right)
+\]</span></p>
+<p>One can easily deduce that <span class="math inline">\(y=Z^{*} \widehat{\delta}^{*}+e^{*}\)</span> with <span class="math inline">\(e^{*}=M^{*} y=M^{*} u\)</span> and <span class="math inline">\(\widehat{\delta}^{*}=\left(Z^{* \prime} Z^{*}\right)^{-1} Z^{* \prime} y\)</span>.
+Note that both <span class="math inline">\(M\)</span> and <span class="math inline">\(M^{*}\)</span> are symmetric and idempotent with <span class="math inline">\(M M^{*}=M^{*}\)</span>. This easily follows since</p>
+<p><span class="math display">\[\begin{equation}
+\begin{aligned}
+Z\left(Z^{\prime} Z\right)^{-1} Z^{\prime} Z^{*}\left(Z^{* \prime} Z^{*}\right)^{-1} Z^{* \prime} &amp;=Z\left(Z^{\prime} Z\right)^{-1} I^{* \prime} Z^{* \prime} Z^{*}\left(Z^{* \prime} Z^{*}\right)^{-1} Z^{* \prime} \\
+&amp;=Z\left(Z^{\prime} Z\right)^{-1} Z^{\prime}
+\end{aligned}
+\end{equation}\]</span> (Non Numéroté)</p>
+<p>This uses the fact that <span class="math inline">\(Z=Z^{*} I^{*} .\)</span> Under assumption 4.1, <span class="math inline">\(e^{\prime} e-e^{* \prime} e^{*}=u^{\prime}\left(M-M^{*}\right) u\)</span> and <span class="math inline">\(e^{* \prime} e^{*}=u^{\prime} M^{*} u\)</span> are independent since <span class="math inline">\(\left(M-M^{*}\right) M^{*}=0 .\)</span> Also, both quadratic forms when divided by <span class="math inline">\(\sigma^{2}\)</span> are distributed as <span class="math inline">\(\chi^{2}\)</span> since <span class="math inline">\(\left(M-M^{*}\right)\)</span> and <span class="math inline">\(M^{*}\)</span> are idempotent. Dividing these quadratic forms by their respective degrees of freedom and taking their ratio leads to the following test statistic: <span class="math inline">\({ }^{1}\)</span></p>
+<p><span class="math display">\[F_{obs}=\frac{\left(e^{\prime}e-e^{* \prime} \right) / \left( \operatorname{tr}\left(M\right)-\operatorname{tr}\left(M^*\right) \right)}
+{e^{* \prime}e^* / \operatorname{tr}\left(M\right) }  \]</span></p>
+<p><span class="math display">\[\begin{equation}
+F_{obs}=\frac{\left(e_1^{\prime}e-e_2^{\prime}e_1 -e^{\prime}e_2 -\ldots -e_N^{\prime}e \right)/ \left(N-1 \right) K^{\prime}  }
+{\left(e_1^{\prime}e-e_2^{\prime}e_1 -e^{\prime}e_2 -\ldots -e_N^{\prime}e \right)/ N \left(T-K^{\prime} \right) } 
+\end{equation}\]</span></p>
+<p>Under <span class="math inline">\(H_0,F_{obs}\)</span> is distributed as an <span class="math display">\[F \left(\left(N-1 \right)K^{\prime}, N\left(T-K^{\prime}\right)\right) \]</span> Hence the critical region for this test is defined as</p>
+<p><span class="math display">\[\brace  F_{obs}&gt; \left(\left(N-1 \right)K^{\prime}, NT-NK^{\prime} ,\alpha_0 \right)      \]</span>
+where <span class="math inline">\(\alpha_0\)</span> denotes the level of significance of the test. This is exactly the Chow test presented by Chow (1960) extended to the case of <span class="math inline">\(N\)</span> linear regressions. Therefore if an economist has reason to believe that assumption 4.1 is true, and wants to pool his data across regions, then it is recommended that he or she test for the poolability of the data using the Chow test given in (4.8). However, for the variance component model <span class="math inline">\(\mu \sim \left(0,\Omega \right)\)</span> and not <span class="math inline">\(\left(0,\sigma^2 I_{NT} \right)\)</span> Therefore, even if we assume normality on the disturbances two questions remain: (1) is the Chow test still the right test to perform when <span class="math inline">\(\mu \sim N\left(0,\Omega \right)\)</span> ? and (2) does the Chow statistic still have an
+F-distribution when <span class="math inline">\(\mu \sim N\left(0,\Omega \right)\)</span> ? The answer to the first question is no, the Chow test given
+in (4.8) is not the right test to perform. However, as will be shown later, a generalized Chow
+test will be the right test to perform. As for the second question, it is still relevant to ask because
+it highlights the problem of economists using the Chow test assuming erroneously that <span class="math inline">\(\mu\)</span> is <span class="math inline">\(N\left(0,\sigma^2 I_{NT} \right)\)</span> when in fact it is not. For example, Toyoda (1974), in treating the case where
+the <span class="math inline">\(\mu_i\)</span> are heteroskedastic, found that the Chow statistic given by (4.8) has an approximate <span class="math inline">\(F-\text{Distribution}\)</span> where the degree of freedom of the denominator depends upon the true variances.
+Hence for specific values of these variances, Toyoda demonstrates how wrong it is to apply the Chow test in case of heteroskedastic variances.</p>
+<p>Having posed the two questions above, we can proceed along two lines: the first is to find the approximate distribution of the Chow statistic (4.8) in case <span class="math inline">\(\mu \sim N \left(0,\Omega \right)\)</span> and therefore show
+how erroneous it is to use the Chow test in this case (this is not pursued in this book). The second route, and the more fruitful, is to derive the right test to perform for pooling the data in case <span class="math inline">\(\mu \sim N \left(0,\Omega \right)\)</span> This is done in the next subsection.</p>
+</div>
+<div id="test-for-poolability-under-the-general-assumption" class="section level3" number="4.1.2">
+<h3><span class="header-section-number">4.1.2</span> Test for Poolability under the General Assumption</h3>
+<p><span class="math display">\[ u \sim N\left(0, \Omega\right)\]</span>
+<em>Assumption</em> 4.2 <span class="math display">\[ u \sim N\left(0, \Omega\right)\]</span></p>
+<p>In case <span class="math inline">\(\Omega\)</span> is known up to a scalar factor, the test statistic employed for the poolability of
+the data would be simple to derive. All we need to do is transform our model (under both
+the null and alternative hypotheses) such that the transformed disturbances have a variance of <span class="math inline">\(\sigma^2 I_{NT}\)</span> , then apply the Chow test on the transformed model. The later step is legitimate because
+the transformed disturbances have homoskedastic variances and the analysis of the previous
+subsection applies in full. Given $=^2 $ , we premultiply the restricted model given in (4.2)
+by <span class="math inline">\(\sum^{-1/2}\)</span> and we call <span class="math inline">\(\sum^{-1/2}y=\dot{y}\)</span> , <span class="math inline">\(\sum^{-1/2}Z=\dot{Z}\)</span> and <span class="math inline">\(\sum^{-1/2} \mu=\dot{\mu}\)</span> Hence</p>
+<p><span class="math display">\[\begin{equation}
+\dot{y}=\dot{Z}\delta + \dot{u}
+\end{equation}\]</span></p>
+<p>with <span class="math display">\[E\left(\dot{u}\dot{u^{\prime}}\right) =\sum^{-1/2} E\left(u,u^{\prime}\right) \sum^{-1/2  \prime} =\sigma^2 I_{NT} \]</span>.
+Similarly, we premultiply the unrestricted model
+given in (4.3) by <span class="math inline">\(\sum^{-1/2}\)</span> and we call <span class="math inline">\(\sum^{-1/2} Z^*=Z^*\)</span>.
+Therefore</p>
+<p><span class="math display">\[\begin{equation}
+\dot{y}=\dot{Z}^{*} \delta ^{*} + \dot{u}
+\end{equation}\]</span></p>
+<p>with <span class="math inline">\(E\left(\dot{u}\dot{u}^{\prime}\right)=\sigma^2 I_{NT}\)</span> .</p>
+<p>At this stage, we can test <span class="math inline">\(H_0:\delta_i =\delta\)</span> for every <span class="math inline">\(i=1,2,\ldots, N\)</span> , simply by using the Chow statistic, only nowon the transformed models (4.9) and (4.10) since they satisfy assumption 4.1
+of homoskedasticity of the normal disturbances. Note that <span class="math display">\[\dot{Z}=\dot{Z^*}I^* \]</span> , which is simply obtained
+from $Z=Z<sup>* I</sup>* $ by premultiplying by <span class="math inline">\(\sum^{-1/2}\)</span>.</p>
+<p>Defining <span class="math display">\[\dot{M}=I_{NT}-\dot{Z}\left(\dot{Z^{\prime}}\dot{Z} \right)^{-1} \dot{Z^{\prime}}   \]</span> and <span class="math display">\[\dot{M^*}=I_{NT}-\dot{Z^*}\left(\dot{Z^{* \prime}}\dot{Z^*} \right)^{-1} \dot{Z^{* \prime}}   \]</span> it is easy to show that <span class="math inline">\(\dot{M}\)</span> and <span class="math inline">\(\dot{M^*}\)</span> are both symmetric, idempotent and such that <span class="math display">\[\dot{M} \dot{M^*}=\dot{M^*}  \]</span> Once again the conditions for lemma 2.2 of Fisher (1970) are satisfied, and the test statistic</p>
+<p><span class="math display">\[\begin{equation}
+\dot{F}_{obs}=\frac{\left(\dot{e}^{\prime} \dot{e}-\dot{e}^{* \prime}    \dot{e}^* \right)  /  \left(\operatorname{tr}\left(\dot{M}\right)-\operatorname{tr}\left(\dot{M^*}  \right) \right)  } 
+{\dot{e}^{* \prime}    \dot{e}^* / \operatorname{tr}\left( \dot{M^*} \right) } 
+\sim
+F \left(\left( N-1 \right)K^{\prime} , N \left( T- K^{\prime} \right)          \right)
+\end{equation}\]</span></p>
+<p><span class="math display">\[
+\begin{aligned}
+\text{where  } \dot{e}=\dot{y}-\dot{Z} \widehat{\dot{\delta}}_{OLS}  
+ \text{ and } \widehat{\dot{\delta}}_{OLS} =\left(\dot{Z^{\prime}\dot{Z}} \right)^{-1} \dot{Z^{\prime}} \dot{y}  \text{ implying that } \dot{e}=\dot{M}\dot{y}=\dot{M}\dot{u} \text{.   Similarly,}   \dot{e^*}= \\ \dot{y}-\dot{Z^*}\widehat{\dot{\delta}_{OLS}^*} \text{ and } \widehat{\dot{\delta}_{OLS}^*}=\left(\dot{Z^{* \prime}} \dot{Z} \right)^{-1} \dot{Z^{* \prime}} \dot{y} \text{ implying that }  \dot{e^*}=\dot{M^*}\dot{y}= \dot{M^*} \dot{u} \text{. Using the fact that } \\ \dot{M} \text{ and } \dot{M^*} \text{ are symmetric and idempotent, we can rewrite (4.11) as } 
+ \end{aligned}
+ \]</span></p>
+<p><span class="math display">\[
+\dot{F}_{obs}=  \frac{\left(\dot{y}^{\prime}\dot{M}\dot{y}-\dot{y}^{\prime}\dot{M^*} \dot{y} \right) / \left(N-1\right) K^{\prime} } 
+ {\dot{y}^{\prime}\dot{M}\dot{y} / N \left( T-K^{\prime} \right)    }\]</span></p>
+<p><span class="math display">\[\begin{equation}
+ \dot{F}_{obs}=\frac{   \left(y^{\prime} \sum^{-1/2}\dot{M} \sum^{-1/2}y -\sum^{-1/2}\dot{M^*} \sum^{-1/2}y \right) / \left(N-1\right) K^{\prime}  }
+{ \sum^{-1/2}\dot{M^*} \sum^{-1/2}y  / N \left(T-K^{\prime} \right)  }
+\end{equation}\]</span></p>
+<p>But</p>
+<p><span class="math display">\[ \dot{M}=I_{NT}-\sum^{-1/2} Z\left(Z^{\prime } \sum^{-1} Z \right)^{-1} Z^{\prime} \sum^{-1/2^{\prime}} \]</span>
+And</p>
+<p><span class="math display">\[ \dot{M^*}=I_{NT}-\sum^{-1/2} Z^{*}\left(Z^{*} \sum^{-1} Z \right)^{-1} Z^{* \prime} \sum^{-1/2^{\prime}} \]</span>
+so that
+<span class="math display">\[\sum^{-1/2}\dot{M}\sum_{-1/2} =\sum^{-1}-\sum^{-1} Z \left(Z^{\prime}\sum^{-1}Z  \right)^{-1} Z^{\prime} \]</span></p>
+<p>and</p>
+<p><span class="math display">\[\sum^{-1/2}\dot{M^*}\sum_{-1/2} =\sum^{-1}-\sum^{-1} Z^* \left(Z^{*\prime}\sum^{-1}Z^*  \right)^{-1} Z^{*\prime} \sum^{-1} \]</span>
+Hence we can write (4.12) in the form</p>
+</div>
 </div>
 <div id="tests-for-individual-and-time-effects" class="section level2" number="4.2">
 <h2><span class="header-section-number">4.2</span> TESTS FOR INDIVIDUAL AND TIME EFFECTS</h2>
@@ -266,6 +402,10 @@ gitbook.start({
 "text": null
 },
 "download": ["panel analyses book.pdf", "panel analyses book.epub"],
+"search": {
+"engine": "lunr",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 }
