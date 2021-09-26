@@ -1417,16 +1417,18 @@ DBase$Destination_Country %>% levels()
 
 
 # Modele poooling
-```{r}
+Modèle à polaire, considérant les deux éffets
+```{r echo=FALSE}
 pooling_model <- plm(Taxes~Weight,model = "pooling",data = p_DF_aggreg)
 summary(pooling_model)
 ```
-```{r}
+Modele à éffet aléatoire
+```{r echo=FALSE}
 within_model <- update(pooling_model,model="within")
 summary(within_model)
 ```
-
-```{r}
+Le modèle à éffets aléatoire
+```{r echo=FALSE}
 between_model <- pooling_model %>% update(model="between")
 summary(between_model)
 ```
