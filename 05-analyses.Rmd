@@ -1383,18 +1383,51 @@ correlate(DBase) %>% kable(caption = "Table de corrélation entre les variables 
 
 ```{r}
 df <- pdata.frame(DBase,index = c("Year","Destination_Country"))
-DF <- df %>% pivot_wider(names_from = Goods,values_from = c(Taxe,Weight))
+DF <- df %>% pivot_wider(names_from = Goods, values_from = c(Taxe,Weight))
+DF <- DF %>% mutate_all(~replace(.,is.na(.),0))
 
+
+
+
+View(DF)
 ```
+## Agregation des données avec la méthode reduce
+                        
 
 ```{r}
-DB <- pdata.frame(DBase,index=c("Year","Goods"))
+DF_aggreg <- DF %>% mutate(Tax=reduce(select(.,starts_with("Taxe")),`+`))
+DF_aggreg <- DF_aggreg  %>% mutate(W=reduce(select(.,starts_with("Weight")),`+`))
+DF_aggreg <- DF_aggreg %>% select(-starts_with("Taxe"),-starts_with("Weight"))
+DF_aggreg <- DF_aggreg %>% 
+  rename("Taxes"="Tax","Weight"="W")
+
+p_DF_aggreg <- DF_aggreg %>% pdata.frame(index = c("Destination_Country","Year"))
 ```
+
 
 
 ## Analyse descriptive des Varariales 
 
 Conversion des données en modèle des panels des données
 
+```{r}
+DBase$Destination_Country <- DBase$Destination_Country %>% factor()
+DBase$Destination_Country %>% levels()
+```
+
 
 # Modele poooling
+```{r}
+pooling_model <- plm(Taxes~Weight,model = "pooling",data = p_DF_aggreg)
+summary(pooling_model)
+```
+```{r}
+within_model <- update(pooling_model,model="within")
+summary(within_model)
+```
+
+```{r}
+between_model <- pooling_model %>% update(model="between")
+summary(between_model)
+```
+

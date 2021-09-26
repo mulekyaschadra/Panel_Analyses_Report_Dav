@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 7 Modele poooling | Panel Analyses Report</title>
   <meta name="description" content="dans ce livre nous produisons le rapport complet d’analyses du panel des taxes des pays Africains." />
-  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 7 Modele poooling | Panel Analyses Report" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="David BYAMUNGU" />
 
 
-<meta name="date" content="2021-09-12" />
+<meta name="date" content="2021-09-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,8 +33,9 @@
   
 <link rel="prev" href="analyses.html"/>
 <link rel="next" href="references-1.html"/>
-<script src="libs/header-attrs-2.9/header-attrs.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -42,7 +43,6 @@
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
 
 
 
@@ -176,7 +176,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="6.1.1" data-path="analyses.html"><a href="analyses.html#nouvelle-base-de-données-pour-les-analyses"><i class="fa fa-check"></i><b>6.1.1</b> Nouvelle base de données pour les analyses</a></li>
 </ul></li>
-<li class="chapter" data-level="6.2" data-path="analyses.html"><a href="analyses.html#analyse-descriptive-des-varariales"><i class="fa fa-check"></i><b>6.2</b> Analyse descriptive des Varariales</a></li>
+<li class="chapter" data-level="6.2" data-path="analyses.html"><a href="analyses.html#agregation-des-données-avec-la-méthode-reduce"><i class="fa fa-check"></i><b>6.2</b> Agregation des données avec la méthode reduce</a></li>
+<li class="chapter" data-level="6.3" data-path="analyses.html"><a href="analyses.html#analyse-descriptive-des-varariales"><i class="fa fa-check"></i><b>6.3</b> Analyse descriptive des Varariales</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="modele-poooling.html"><a href="modele-poooling.html"><i class="fa fa-check"></i><b>7</b> Modele poooling</a></li>
 <li class="chapter" data-level="" data-path="references-1.html"><a href="references-1.html"><i class="fa fa-check"></i>References</a></li>
@@ -203,6 +204,81 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="modele-poooling" class="section level1" number="7">
 <h1><span class="header-section-number">Chapter 7</span> Modele poooling</h1>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="modele-poooling.html#cb20-1" aria-hidden="true" tabindex="-1"></a>pooling_model <span class="ot">&lt;-</span> <span class="fu">plm</span>(Taxes<span class="sc">~</span>Weight,<span class="at">model =</span> <span class="st">&quot;pooling&quot;</span>,<span class="at">data =</span> p_DF_aggreg)</span>
+<span id="cb20-2"><a href="modele-poooling.html#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(pooling_model)</span></code></pre></div>
+<pre><code>## Pooling Model
+## 
+## Call:
+## plm(formula = Taxes ~ Weight, data = p_DF_aggreg, model = &quot;pooling&quot;)
+## 
+## Unbalanced Panel: n = 58, T = 1-10, N = 228
+## 
+## Residuals:
+##      Min.   1st Qu.    Median      Mean   3rd Qu.      Max. 
+## -76127299  -3525554    -38253         0    822609 135485918 
+## 
+## Coefficients:
+##                Estimate  Std. Error t-value Pr(&gt;|t|)    
+## (Intercept) -8.7251e+05  1.3302e+06 -0.6559   0.5125    
+## Weight       4.1859e+01  2.8796e+00 14.5367   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Total Sum of Squares:    1.37e+17
+## Residual Sum of Squares: 7.0803e+16
+## R-Squared:      0.48321
+## Adj. R-Squared: 0.48092
+## F-statistic: 211.315 on 1 and 226 DF, p-value: &lt; 2.22e-16</code></pre>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="modele-poooling.html#cb22-1" aria-hidden="true" tabindex="-1"></a>within_model <span class="ot">&lt;-</span> <span class="fu">update</span>(pooling_model,<span class="at">model=</span><span class="st">&quot;within&quot;</span>)</span>
+<span id="cb22-2"><a href="modele-poooling.html#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(within_model)</span></code></pre></div>
+<pre><code>## Oneway (individual) effect Within Model
+## 
+## Call:
+## plm(formula = Taxes ~ Weight, data = p_DF_aggreg, model = &quot;within&quot;)
+## 
+## Unbalanced Panel: n = 58, T = 1-10, N = 228
+## 
+## Residuals:
+##      Min.   1st Qu.    Median      Mean   3rd Qu.      Max. 
+## -69551626  -1715042         0         0   1537006 114103679 
+## 
+## Coefficients:
+##        Estimate Std. Error t-value  Pr(&gt;|t|)    
+## Weight  39.6087     3.8914  10.178 &lt; 2.2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Total Sum of Squares:    9.7404e+16
+## Residual Sum of Squares: 6.0386e+16
+## R-Squared:      0.38005
+## Adj. R-Squared: 0.16728
+## F-statistic: 103.601 on 1 and 169 DF, p-value: &lt; 2.22e-16</code></pre>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="modele-poooling.html#cb24-1" aria-hidden="true" tabindex="-1"></a>between_model <span class="ot">&lt;-</span> pooling_model <span class="sc">%&gt;%</span> <span class="fu">update</span>(<span class="at">model=</span><span class="st">&quot;between&quot;</span>)</span>
+<span id="cb24-2"><a href="modele-poooling.html#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(between_model)</span></code></pre></div>
+<pre><code>## Oneway (individual) effect Between Model
+## 
+## Call:
+## plm(formula = Taxes ~ Weight, data = p_DF_aggreg, model = &quot;between&quot;)
+## 
+## Unbalanced Panel: n = 58, T = 1-10, N = 228
+## Observations used in estimation: 58
+## 
+## Residuals:
+##      Min.   1st Qu.    Median      Mean   3rd Qu.      Max. 
+## -17710356  -1366186    300948         0    907729  22825793 
+## 
+## Coefficients:
+##                Estimate  Std. Error t-value  Pr(&gt;|t|)    
+## (Intercept) -9.2150e+05  9.0924e+05 -1.0135    0.3152    
+## Weight       3.8816e+01  3.8643e+00 10.0449 3.886e-14 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Total Sum of Squares:    5.1437e+15
+## Residual Sum of Squares: 1.8358e+15
+## R-Squared:      0.64309
+## Adj. R-Squared: 0.63671
+## F-statistic: 100.9 on 1 and 56 DF, p-value: 3.886e-14</code></pre>
 
 </div>
             </section>
@@ -215,7 +291,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -256,7 +331,7 @@ gitbook.start({
 },
 "download": ["panel analyses book.pdf", "panel analyses book.epub"],
 "search": {
-"engine": "lunr",
+"engine": "fuse",
 "options": null
 },
 "toc": {

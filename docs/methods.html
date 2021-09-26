@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 5 Methods | Panel Analyses Report</title>
   <meta name="description" content="dans ce livre nous produisons le rapport complet d’analyses du panel des taxes des pays Africains." />
-  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 5 Methods | Panel Analyses Report" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="David BYAMUNGU" />
 
 
-<meta name="date" content="2021-09-12" />
+<meta name="date" content="2021-09-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,8 +33,9 @@
   
 <link rel="prev" href="test-of-hypotheses-with-panel-data.html"/>
 <link rel="next" href="analyses.html"/>
-<script src="libs/header-attrs-2.9/header-attrs.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -42,7 +43,6 @@
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
 
 
 
@@ -176,7 +176,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="6.1.1" data-path="analyses.html"><a href="analyses.html#nouvelle-base-de-données-pour-les-analyses"><i class="fa fa-check"></i><b>6.1.1</b> Nouvelle base de données pour les analyses</a></li>
 </ul></li>
-<li class="chapter" data-level="6.2" data-path="analyses.html"><a href="analyses.html#analyse-descriptive-des-varariales"><i class="fa fa-check"></i><b>6.2</b> Analyse descriptive des Varariales</a></li>
+<li class="chapter" data-level="6.2" data-path="analyses.html"><a href="analyses.html#agregation-des-données-avec-la-méthode-reduce"><i class="fa fa-check"></i><b>6.2</b> Agregation des données avec la méthode reduce</a></li>
+<li class="chapter" data-level="6.3" data-path="analyses.html"><a href="analyses.html#analyse-descriptive-des-varariales"><i class="fa fa-check"></i><b>6.3</b> Analyse descriptive des Varariales</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="modele-poooling.html"><a href="modele-poooling.html"><i class="fa fa-check"></i><b>7</b> Modele poooling</a></li>
 <li class="chapter" data-level="" data-path="references-1.html"><a href="references-1.html"><i class="fa fa-check"></i>References</a></li>
@@ -227,7 +228,6 @@ et
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -268,7 +268,7 @@ gitbook.start({
 },
 "download": ["panel analyses book.pdf", "panel analyses book.epub"],
 "search": {
-"engine": "lunr",
+"engine": "fuse",
 "options": null
 },
 "toc": {
