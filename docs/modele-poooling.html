@@ -204,8 +204,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="modele-poooling" class="section level1" number="7">
 <h1><span class="header-section-number">Chapter 7</span> Modele poooling</h1>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="modele-poooling.html#cb20-1" aria-hidden="true" tabindex="-1"></a>pooling_model <span class="ot">&lt;-</span> <span class="fu">plm</span>(Taxes<span class="sc">~</span>Weight,<span class="at">model =</span> <span class="st">&quot;pooling&quot;</span>,<span class="at">data =</span> p_DF_aggreg)</span>
-<span id="cb20-2"><a href="modele-poooling.html#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(pooling_model)</span></code></pre></div>
+<p>Modèle à polaire, considérant les deux éffets</p>
 <pre><code>## Pooling Model
 ## 
 ## Call:
@@ -229,8 +228,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## R-Squared:      0.48321
 ## Adj. R-Squared: 0.48092
 ## F-statistic: 211.315 on 1 and 226 DF, p-value: &lt; 2.22e-16</code></pre>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="modele-poooling.html#cb22-1" aria-hidden="true" tabindex="-1"></a>within_model <span class="ot">&lt;-</span> <span class="fu">update</span>(pooling_model,<span class="at">model=</span><span class="st">&quot;within&quot;</span>)</span>
-<span id="cb22-2"><a href="modele-poooling.html#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(within_model)</span></code></pre></div>
+<p>Modele à éffet aléatoire</p>
 <pre><code>## Oneway (individual) effect Within Model
 ## 
 ## Call:
@@ -253,8 +251,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## R-Squared:      0.38005
 ## Adj. R-Squared: 0.16728
 ## F-statistic: 103.601 on 1 and 169 DF, p-value: &lt; 2.22e-16</code></pre>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="modele-poooling.html#cb24-1" aria-hidden="true" tabindex="-1"></a>between_model <span class="ot">&lt;-</span> pooling_model <span class="sc">%&gt;%</span> <span class="fu">update</span>(<span class="at">model=</span><span class="st">&quot;between&quot;</span>)</span>
-<span id="cb24-2"><a href="modele-poooling.html#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(between_model)</span></code></pre></div>
+<p>Le modèle à éffets aléatoire</p>
 <pre><code>## Oneway (individual) effect Between Model
 ## 
 ## Call:
