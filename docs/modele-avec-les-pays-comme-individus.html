@@ -1,0 +1,1579 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 7 Modele avec les pays comme individus | Panel Analyses Report</title>
+  <meta name="description" content="dans ce livre nous produisons le rapport complet d’analyses du panel des taxes des pays Africains." />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 7 Modele avec les pays comme individus | Panel Analyses Report" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="dans ce livre nous produisons le rapport complet d’analyses du panel des taxes des pays Africains." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 7 Modele avec les pays comme individus | Panel Analyses Report" />
+  
+  <meta name="twitter:description" content="dans ce livre nous produisons le rapport complet d’analyses du panel des taxes des pays Africains." />
+  
+
+<meta name="author" content="David BYAMUNGU" />
+
+
+<meta name="date" content="2021-10-16" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="analyses.html"/>
+<link rel="next" href="modèle-avec-les-marchandises-comme-individus.html"/>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="the-one-way-error-component-regression-model.html"><a href="the-one-way-error-component-regression-model.html"><i class="fa fa-check"></i><b>2</b> The One-way Error Component Regression Model</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="the-one-way-error-component-regression-model.html"><a href="the-one-way-error-component-regression-model.html#introduction"><i class="fa fa-check"></i><b>2.1</b> INTRODUCTION</a></li>
+<li class="chapter" data-level="2.2" data-path="the-one-way-error-component-regression-model.html"><a href="the-one-way-error-component-regression-model.html#the-fixed-effects-model"><i class="fa fa-check"></i><b>2.2</b> THE FIXED EFFECTS MODEL</a></li>
+<li class="chapter" data-level="2.3" data-path="the-one-way-error-component-regression-model.html"><a href="the-one-way-error-component-regression-model.html#the-random-effects-model"><i class="fa fa-check"></i><b>2.3</b> THE RANDOM EFFECTS MODEL</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="the-one-way-error-component-regression-model.html"><a href="the-one-way-error-component-regression-model.html#fixed-vs-random"><i class="fa fa-check"></i><b>2.3.1</b> Fixed vs Random</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="the-two-way-error-component-regression-model.html"><a href="the-two-way-error-component-regression-model.html"><i class="fa fa-check"></i><b>3</b> The Two-way Error Component Regression Model</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="the-two-way-error-component-regression-model.html"><a href="the-two-way-error-component-regression-model.html#ntroduction"><i class="fa fa-check"></i><b>3.1</b> NTRODUCTION</a></li>
+<li class="chapter" data-level="3.2" data-path="the-two-way-error-component-regression-model.html"><a href="the-two-way-error-component-regression-model.html#the-fixed-effects-model-1"><i class="fa fa-check"></i><b>3.2</b> THE FIXED EFFECTS MODEL</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="the-two-way-error-component-regression-model.html"><a href="the-two-way-error-component-regression-model.html#testing-for-fixed-effects"><i class="fa fa-check"></i><b>3.2.1</b> Testing for Fixed Effects</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="the-two-way-error-component-regression-model.html"><a href="the-two-way-error-component-regression-model.html#the-random-effects-model-1"><i class="fa fa-check"></i><b>3.3</b> THE RANDOM EFFECTS MODEL</a></li>
+<li class="chapter" data-level="3.4" data-path="the-two-way-error-component-regression-model.html"><a href="the-two-way-error-component-regression-model.html#references"><i class="fa fa-check"></i><b>3.4</b> REFERENCES</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="test-of-hypotheses-with-panel-data.html"><a href="test-of-hypotheses-with-panel-data.html"><i class="fa fa-check"></i><b>4</b> Test of Hypotheses with Panel Data</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="test-of-hypotheses-with-panel-data.html"><a href="test-of-hypotheses-with-panel-data.html#tests-for-poolability-of-the-data"><i class="fa fa-check"></i><b>4.1</b> TESTS FOR POOLABILITY OF THE DATA</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="test-of-hypotheses-with-panel-data.html"><a href="test-of-hypotheses-with-panel-data.html#test-for-poolability-under"><i class="fa fa-check"></i><b>4.1.1</b> Test for Poolability under</a></li>
+<li class="chapter" data-level="4.1.2" data-path="test-of-hypotheses-with-panel-data.html"><a href="test-of-hypotheses-with-panel-data.html#test-for-poolability-under-the-general-assumption"><i class="fa fa-check"></i><b>4.1.2</b> Test for Poolability under the General Assumption</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="test-of-hypotheses-with-panel-data.html"><a href="test-of-hypotheses-with-panel-data.html#tests-for-individual-and-time-effects"><i class="fa fa-check"></i><b>4.2</b> TESTS FOR INDIVIDUAL AND TIME EFFECTS</a></li>
+<li class="chapter" data-level="4.3" data-path="test-of-hypotheses-with-panel-data.html"><a href="test-of-hypotheses-with-panel-data.html#hausmans-specification-test"><i class="fa fa-check"></i><b>4.3</b> HAUSMAN’S SPECIFICATION TEST</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="methods.html"><a href="methods.html"><i class="fa fa-check"></i><b>5</b> Methods</a></li>
+<li class="chapter" data-level="6" data-path="analyses.html"><a href="analyses.html"><i class="fa fa-check"></i><b>6</b> Analyses</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="analyses.html"><a href="analyses.html#netoyage-de-la-base-des-données"><i class="fa fa-check"></i><b>6.1</b> Netoyage de la base des données</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="analyses.html"><a href="analyses.html#nouvelle-base-de-données-pour-les-analyses"><i class="fa fa-check"></i><b>6.1.1</b> Nouvelle base de données pour les analyses</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="modele-avec-les-pays-comme-individus.html"><a href="modele-avec-les-pays-comme-individus.html"><i class="fa fa-check"></i><b>7</b> Modele avec les pays comme individus</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="modele-avec-les-pays-comme-individus.html"><a href="modele-avec-les-pays-comme-individus.html#agregation-des-données-avec-la-méthode-reduce"><i class="fa fa-check"></i><b>7.1</b> Agregation des données avec la méthode reduce</a></li>
+<li class="chapter" data-level="7.2" data-path="modele-avec-les-pays-comme-individus.html"><a href="modele-avec-les-pays-comme-individus.html#analyse-descriptive-des-varariales"><i class="fa fa-check"></i><b>7.2</b> Analyse descriptive des Varariales</a></li>
+<li class="chapter" data-level="7.3" data-path="modele-avec-les-pays-comme-individus.html"><a href="modele-avec-les-pays-comme-individus.html#overall-variations"><i class="fa fa-check"></i><b>7.3</b> Overall Variations</a></li>
+<li class="chapter" data-level="7.4" data-path="modele-avec-les-pays-comme-individus.html"><a href="modele-avec-les-pays-comme-individus.html#between-variations"><i class="fa fa-check"></i><b>7.4</b> Between Variations</a></li>
+<li class="chapter" data-level="7.5" data-path="modele-avec-les-pays-comme-individus.html"><a href="modele-avec-les-pays-comme-individus.html#within-variations"><i class="fa fa-check"></i><b>7.5</b> Within variations</a></li>
+<li class="chapter" data-level="7.6" data-path="modele-avec-les-pays-comme-individus.html"><a href="modele-avec-les-pays-comme-individus.html#modélisation"><i class="fa fa-check"></i><b>7.6</b> Modélisation</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="modèle-avec-les-marchandises-comme-individus.html"><a href="modèle-avec-les-marchandises-comme-individus.html"><i class="fa fa-check"></i><b>8</b> Modèle avec les marchandises comme individus</a></li>
+<li class="chapter" data-level="" data-path="references-1.html"><a href="references-1.html"><i class="fa fa-check"></i>References</a></li>
+<li class="chapter" data-level="9" data-path="final-words.html"><a href="final-words.html"><i class="fa fa-check"></i><b>9</b> Final Words</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Panel Analyses Report</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="modele-avec-les-pays-comme-individus" class="section level1" number="7">
+<h1><span class="header-section-number">Chapter 7</span> Modele avec les pays comme individus</h1>
+<pre><code>## Warning in pdata.frame(DBase, index = c(&quot;Year&quot;, &quot;Destination_Country&quot;)): duplicate couples (id-time) in resulting pdata.frame
+##  to find out which, use, e.g., table(index(your_pdataframe), useNA = &quot;ifany&quot;)</code></pre>
+<pre><code>## Warning in `[&lt;-.factor`(`*tmp*`, list, value = 0): invalid factor level, NA
+## generated
+
+## Warning in `[&lt;-.factor`(`*tmp*`, list, value = 0): invalid factor level, NA
+## generated</code></pre>
+<div id="agregation-des-données-avec-la-méthode-reduce" class="section level2" number="7.1">
+<h2><span class="header-section-number">7.1</span> Agregation des données avec la méthode reduce</h2>
+</div>
+<div id="analyse-descriptive-des-varariales" class="section level2" number="7.2">
+<h2><span class="header-section-number">7.2</span> Analyse descriptive des Varariales</h2>
+<p>Conversion des données en modèle des panels des données</p>
+<pre><code>##  [1] &quot;AFRIQUE DU SUD&quot;                          
+##  [2] &quot;ALGERIE&quot;                                 
+##  [3] &quot;ALLEMAGNE&quot;                               
+##  [4] &quot;AMERIQUE LATINE&quot;                         
+##  [5] &quot;GRANDE BRATAGNE&quot;                         
+##  [6] &quot;ANGOLA&quot;                                  
+##  [7] &quot;ARABIE&quot;                                  
+##  [8] &quot;ASIE&quot;                                    
+##  [9] &quot;AUSTRALIE&quot;                               
+## [10] &quot;BELGIQUE&quot;                                
+## [11] &quot;BURUNDI&quot;                                 
+## [12] &quot;CANADA&quot;                                  
+## [13] &quot;CHINE&quot;                                   
+## [14] &quot;CHYPRE&quot;                                  
+## [15] &quot;CONGO BRAZA&quot;                             
+## [16] &quot;REP TCHEQUE&quot;                             
+## [17] &quot;NA&quot;                                      
+## [18] &quot;EMIRATES ARABES UNIES&quot;                   
+## [19] &quot;ESPAGNE&quot;                                 
+## [20] &quot;FRANCE&quot;                                  
+## [21] &quot;GABON&quot;                                   
+## [22] &quot;GRECE&quot;                                   
+## [23] &quot;HONG KONG&quot;                               
+## [24] &quot;ILE MAURICE&quot;                             
+## [25] &quot;INDE&quot;                                    
+## [26] &quot;ITALIE&quot;                                  
+## [27] &quot;JAPON&quot;                                   
+## [28] &quot;KENYA&quot;                                   
+## [29] &quot;KP - Corée, République Populaire démocra&quot;
+## [30] &quot;LUXEMBOURG&quot;                              
+## [31] &quot;MALAISIE&quot;                                
+## [32] &quot;MAROC&quot;                                   
+## [33] &quot;NERLAND&quot;                                 
+## [34] &quot;PAYS BAS&quot;                                
+## [35] &quot;NIGERIA&quot;                                 
+## [36] &quot;NOUVELLE ZELANDE&quot;                        
+## [37] &quot;OUGANDA&quot;                                 
+## [38] &quot;PANAMA&quot;                                  
+## [39] &quot;PHILLIPINE&quot;                              
+## [40] &quot;POLOGNE&quot;                                 
+## [41] &quot;PORTUGAL&quot;                                
+## [42] &quot;ROYAUME UNI&quot;                             
+## [43] &quot;RDC&quot;                                     
+## [44] &quot;USA&quot;                                     
+## [45] &quot;RWANDA&quot;                                  
+## [46] &quot;SINGAPOUR&quot;                               
+## [47] &quot;SUISSE&quot;                                  
+## [48] &quot;SENEGAL&quot;                                 
+## [49] &quot;SOMALIE&quot;                                 
+## [50] &quot;SOUDAN&quot;                                  
+## [51] &quot;SUD SOUDAN&quot;                              
+## [52] &quot;SUEDE&quot;                                   
+## [53] &quot;Swaziland&quot;                               
+## [54] &quot;TANZANIE&quot;                                
+## [55] &quot;TCHAD&quot;                                   
+## [56] &quot;THAILANDE&quot;                               
+## [57] &quot;UNION EUROPEENNE&quot;                        
+## [58] &quot;ZAMBIE&quot;</code></pre>
+</div>
+<div id="overall-variations" class="section level2" number="7.3">
+<h2><span class="header-section-number">7.3</span> Overall Variations</h2>
+<pre><code>## 
+## ====================================================================================
+## Statistic  N    St. Dev.         Min        Pctl(25)      Pctl(75)         Max      
+## ------------------------------------------------------------------------------------
+## Taxes     228 24,567,143.00 -8,268,474.00 -8,268,474.00 -5,225,015.00 153,754,050.00
+## Weight    228  407,973.40    -218,369.60   -196,559.50    -7,893.40    2,883,127.00 
+## ------------------------------------------------------------------------------------</code></pre>
+<p>L’écart-type des taxes pour les individus à travars le temps est 24,567,143.00 et celle des poids des marchandises est de 407,973.40 Kg .</p>
+</div>
+<div id="between-variations" class="section level2" number="7.4">
+<h2><span class="header-section-number">7.4</span> Between Variations</h2>
+<pre><code>## Adding missing grouping variables: `Destination_Country`</code></pre>
+<pre><code>## 
+## ==========================================================================
+## Statistic N      Mean       St. Dev.   Min Pctl(25)  Pctl(75)      Max    
+## --------------------------------------------------------------------------
+## Taxes     58 4,215,140.00 9,499,457.00  0     0     3,345,864.0 47,724,880
+## Weight    58  132,331.80   196,253.90  100  19,665   120,394.6   940,804  
+## --------------------------------------------------------------------------</code></pre>
+<p>De ce tableau, on peut lire que:</p>
+<ul>
+<li>Les taxes varient de varient de 4,215,140.00 en moyenne d’un individu à un autre</li>
+<li>Les poids des marchandises varient de 132,331.80 dollars d’un pays à un autre.</li>
+</ul>
+</div>
+<div id="within-variations" class="section level2" number="7.5">
+<h2><span class="header-section-number">7.5</span> Within variations</h2>
+<pre><code>## Adding missing grouping variables: `Destination_Country`</code></pre>
+<pre><code>## `mutate_all()` ignored the following grouping variables:
+## Column `Destination_Country`
+## Use `mutate_at(df, vars(-group_cols()), myoperation)` to silence the message.</code></pre>
+<pre><code>## 
+## ==========================================================================
+## Statistic  N    St. Dev.        Min       Pctl(25)   Pctl(75)      Max    
+## --------------------------------------------------------------------------
+## Taxes     228 20,714,497.00 -47,724,880 -3,291,776.0 175,658.1 133,691,390
+## Weight    228  322,405.60    -870,261    -63,771.4   29,042.9   2,624,477 
+## --------------------------------------------------------------------------</code></pre>
+<p>De ce tableau, on peut lire que :</p>
+<ul>
+<li>L’écart moyen des taxes dans un pays, d’une année à une autre est de 20,714,497.00 dollars.</li>
+<li>L’écart moyen des poids des marchandises est de 322,405.60 kg d’une année à une autre, pour un pays.</li>
+</ul>
+</div>
+<div id="modélisation" class="section level2" number="7.6">
+<h2><span class="header-section-number">7.6</span> Modélisation</h2>
+<p>Modèle à polaire, considérant les deux éffets</p>
+<pre><code>## Pooling Model
+## 
+## Call:
+## plm(formula = Taxes ~ Weight, data = p_DF_aggreg, model = &quot;pooling&quot;)
+## 
+## Unbalanced Panel: n = 58, T = 1-10, N = 228
+## 
+## Residuals:
+##      Min.   1st Qu.    Median      Mean   3rd Qu.      Max. 
+## -76127299  -3525554    -38253         0    822609 135485918 
+## 
+## Coefficients:
+##                Estimate  Std. Error t-value Pr(&gt;|t|)    
+## (Intercept) -8.7251e+05  1.3302e+06 -0.6559   0.5125    
+## Weight       4.1859e+01  2.8796e+00 14.5367   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Total Sum of Squares:    1.37e+17
+## Residual Sum of Squares: 7.0803e+16
+## R-Squared:      0.48321
+## Adj. R-Squared: 0.48092
+## F-statistic: 211.315 on 1 and 226 DF, p-value: &lt; 2.22e-16</code></pre>
+<p>Le modèle s’écrit:
+<span class="math display">\[Y= 4.1859e^{01} X - 8.7251e^{05}  \]</span>
+Avec:</p>
+<ul>
+<li>Y : Les taxes recoltées pour les différentes marchandises dans tout les pays</li>
+<li>X : Le poids globales des toutes les marchandises ayant traversé la douane pour chaque période concernant notre étude, et pour chaque individus</li>
+</ul>
+<p>Notons que, pour ce type de panel, nos individus sont les pays et le temps est mésuré en année , à partir de l’année 2010 jusqu’en 2020.</p>
+<p>La variable poids, dans les données des bases a été agrées, en calculant la somme de tous les poids pour pour les différentes marchandises n pour une année
+Ainsi, nous avions:</p>
+<p><span class="math display">\[ P_{i.t}=\sum_{j=1}^{n} P{i..} \]</span>
+i indiquant les marchandises , de la prémière à la n-ième marchandise. Ainsi donc, nous avions somme les poids de chaque marchandise pour trouver le poids annuel des marchanides ayant traversé la douane d’un pays. Il en est de même pour les taxes.</p>
+<p>Le coefficient associé au poids des marchandises est significatif car le p-value associé est inférieur à 0,05. Tansdis que le terme indépendant n’est pas significativement différent de 0 vu que le p-value associé est supérieur au seuil.</p>
+<p>Ainsi donc, quand le poids augmente d’une unité, les taxes augmentent de 4,185 unités, pour tous les pays, et à travers le temps. Cette augmentation est significativement différent de 0.</p>
+<p>En testant la significativité globale du modèle, nous utilisant le Langranhe Multiplier test.</p>
+<pre><code>## 
+##  Lagrange Multiplier Test - (Honda) for unbalanced panels
+## 
+## data:  Taxes ~ Weight
+## normal = 0.89501, p-value = 0.1854
+## alternative hypothesis: significant effects</code></pre>
+<p>Le test pour le modèle <code>pooling</code> est non significatif vu que le p-value associé au test est suupérieur au seuil de 5% (0,05). Ainsi donc, npos adoptons l’hupothèse nulle du test selon laquelle le modèle polaire n’est pas significatif.</p>
+<p>Modele à éffet fixes.
+Nous produisons ce modèle en utilisant la methode <code>Within</code> qui traduit les variations de la variables dependante en fonction des variables dépendantes, mais pour un individus à travers le temps.</p>
+<pre><code>## Oneway (individual) effect Within Model
+## 
+## Call:
+## plm(formula = Taxes ~ Weight, data = p_DF_aggreg, effect = &quot;individual&quot;, 
+##     model = &quot;within&quot;)
+## 
+## Unbalanced Panel: n = 58, T = 1-10, N = 228
+## 
+## Residuals:
+##      Min.   1st Qu.    Median      Mean   3rd Qu.      Max. 
+## -69551626  -1715042         0         0   1537006 114103679 
+## 
+## Coefficients:
+##        Estimate Std. Error t-value  Pr(&gt;|t|)    
+## Weight  39.6087     3.8914  10.178 &lt; 2.2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Total Sum of Squares:    9.7404e+16
+## Residual Sum of Squares: 6.0386e+16
+## R-Squared:      0.38005
+## Adj. R-Squared: 0.16728
+## F-statistic: 103.601 on 1 and 169 DF, p-value: &lt; 2.22e-16</code></pre>
+<p>ici, nous modélisons les éffets individuels.
+Le coefficient des taxes signifie, que les pays augmentaient leurs importations d’une unitées, chacune, nous aurions une augmentation de 39,6087 dollars pour ce pays.</p>
+<p>EXtraction des effets fixes
+Ce sont les effects individuels spécifiques pour chaque pays.</p>
+<p>On remarque que:</p>
+<ul>
+<li>La chine a 21758301 dollars de taxe de plus que la moyenne des taxes de tous les pays, et ce, d’une manière significative.</li>
+<li>HONG KONG 21758301 dollars de plus que la moyenne des pays, et ce, significativement.</li>
+<li>Les effets individuels de tous les autres pays ne sont pas significativement différents de 0 vu que les p-values associées, respectivement pour chaque pays sont de loin supérieur au seuil chacune.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+Estimate
+</th>
+<th style="text-align:right;">
+Std. Error
+</th>
+<th style="text-align:right;">
+t-value
+</th>
+<th style="text-align:right;">
+Pr(&gt;|t|)
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+AFRIQUE DU SUD
+</td>
+<td style="text-align:right;">
+-2984326.03
+</td>
+<td style="text-align:right;">
+8460861
+</td>
+<td style="text-align:right;">
+-0.3527213
+</td>
+<td style="text-align:right;">
+0.7247369
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ALGERIE
+</td>
+<td style="text-align:right;">
+-1165271.62
+</td>
+<td style="text-align:right;">
+18903294
+</td>
+<td style="text-align:right;">
+-0.0616438
+</td>
+<td style="text-align:right;">
+0.9509193
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ALLEMAGNE
+</td>
+<td style="text-align:right;">
+-1632580.61
+</td>
+<td style="text-align:right;">
+7723181
+</td>
+<td style="text-align:right;">
+-0.2113871
+</td>
+<td style="text-align:right;">
+0.8328399
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+AMERIQUE LATINE
+</td>
+<td style="text-align:right;">
+2202439.71
+</td>
+<td style="text-align:right;">
+13368089
+</td>
+<td style="text-align:right;">
+0.1647535
+</td>
+<td style="text-align:right;">
+0.8693349
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GRANDE BRATAGNE
+</td>
+<td style="text-align:right;">
+-3470934.54
+</td>
+<td style="text-align:right;">
+6056452
+</td>
+<td style="text-align:right;">
+-0.5730970
+</td>
+<td style="text-align:right;">
+0.5673408
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ANGOLA
+</td>
+<td style="text-align:right;">
+-15589167.27
+</td>
+<td style="text-align:right;">
+18967690
+</td>
+<td style="text-align:right;">
+-0.8218801
+</td>
+<td style="text-align:right;">
+0.4123031
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ARABIE
+</td>
+<td style="text-align:right;">
+-142028.25
+</td>
+<td style="text-align:right;">
+18902837
+</td>
+<td style="text-align:right;">
+-0.0075136
+</td>
+<td style="text-align:right;">
+0.9940139
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ASIE
+</td>
+<td style="text-align:right;">
+38936.72
+</td>
+<td style="text-align:right;">
+18902846
+</td>
+<td style="text-align:right;">
+0.0020598
+</td>
+<td style="text-align:right;">
+0.9983589
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+AUSTRALIE
+</td>
+<td style="text-align:right;">
+285990.29
+</td>
+<td style="text-align:right;">
+18902686
+</td>
+<td style="text-align:right;">
+0.0151296
+</td>
+<td style="text-align:right;">
+0.9879466
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+BELGIQUE
+</td>
+<td style="text-align:right;">
+3926237.34
+</td>
+<td style="text-align:right;">
+7009603
+</td>
+<td style="text-align:right;">
+0.5601226
+</td>
+<td style="text-align:right;">
+0.5761375
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+BURUNDI
+</td>
+<td style="text-align:right;">
+-315018.56
+</td>
+<td style="text-align:right;">
+6301266
+</td>
+<td style="text-align:right;">
+-0.0499929
+</td>
+<td style="text-align:right;">
+0.9601871
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CANADA
+</td>
+<td style="text-align:right;">
+6630399.23
+</td>
+<td style="text-align:right;">
+10924084
+</td>
+<td style="text-align:right;">
+0.6069524
+</td>
+<td style="text-align:right;">
+0.5446970
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CHINE
+</td>
+<td style="text-align:right;">
+21758300.68
+</td>
+<td style="text-align:right;">
+6513971
+</td>
+<td style="text-align:right;">
+3.3402513
+</td>
+<td style="text-align:right;">
+0.0010301
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CHYPRE
+</td>
+<td style="text-align:right;">
+2015623.85
+</td>
+<td style="text-align:right;">
+18902888
+</td>
+<td style="text-align:right;">
+0.1066305
+</td>
+<td style="text-align:right;">
+0.9152086
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CONGO BRAZA
+</td>
+<td style="text-align:right;">
+355028.22
+</td>
+<td style="text-align:right;">
+18902684
+</td>
+<td style="text-align:right;">
+0.0187819
+</td>
+<td style="text-align:right;">
+0.9850373
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+REP TCHEQUE
+</td>
+<td style="text-align:right;">
+1577815.74
+</td>
+<td style="text-align:right;">
+18903000
+</td>
+<td style="text-align:right;">
+0.0834691
+</td>
+<td style="text-align:right;">
+0.9335774
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:right;">
+-1030865.82
+</td>
+<td style="text-align:right;">
+13367444
+</td>
+<td style="text-align:right;">
+-0.0771176
+</td>
+<td style="text-align:right;">
+0.9386212
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+EMIRATES ARABES UNIES
+</td>
+<td style="text-align:right;">
+1635013.00
+</td>
+<td style="text-align:right;">
+7146910
+</td>
+<td style="text-align:right;">
+0.2287720
+</td>
+<td style="text-align:right;">
+0.8193227
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ESPAGNE
+</td>
+<td style="text-align:right;">
+358452.36
+</td>
+<td style="text-align:right;">
+9451857
+</td>
+<td style="text-align:right;">
+0.0379240
+</td>
+<td style="text-align:right;">
+0.9697930
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+FRANCE
+</td>
+<td style="text-align:right;">
+-3760302.34
+</td>
+<td style="text-align:right;">
+6321394
+</td>
+<td style="text-align:right;">
+-0.5948533
+</td>
+<td style="text-align:right;">
+0.5527371
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GABON
+</td>
+<td style="text-align:right;">
+270146.82
+</td>
+<td style="text-align:right;">
+18902687
+</td>
+<td style="text-align:right;">
+0.0142915
+</td>
+<td style="text-align:right;">
+0.9886143
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GRECE
+</td>
+<td style="text-align:right;">
+-167122.77
+</td>
+<td style="text-align:right;">
+13366412
+</td>
+<td style="text-align:right;">
+-0.0125032
+</td>
+<td style="text-align:right;">
+0.9900389
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+HONG KONG
+</td>
+<td style="text-align:right;">
+14181338.15
+</td>
+<td style="text-align:right;">
+6715252
+</td>
+<td style="text-align:right;">
+2.1118103
+</td>
+<td style="text-align:right;">
+0.0361728
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ILE MAURICE
+</td>
+<td style="text-align:right;">
+-18631113.63
+</td>
+<td style="text-align:right;">
+18994748
+</td>
+<td style="text-align:right;">
+-0.9808561
+</td>
+<td style="text-align:right;">
+0.3280658
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+INDE
+</td>
+<td style="text-align:right;">
+2932397.32
+</td>
+<td style="text-align:right;">
+9457208
+</td>
+<td style="text-align:right;">
+0.3100701
+</td>
+<td style="text-align:right;">
+0.7568897
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ITALIE
+</td>
+<td style="text-align:right;">
+-3579816.54
+</td>
+<td style="text-align:right;">
+13371879
+</td>
+<td style="text-align:right;">
+-0.2677123
+</td>
+<td style="text-align:right;">
+0.7892472
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+JAPON
+</td>
+<td style="text-align:right;">
+-11074.78
+</td>
+<td style="text-align:right;">
+10913538
+</td>
+<td style="text-align:right;">
+-0.0010148
+</td>
+<td style="text-align:right;">
+0.9991915
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+KENYA
+</td>
+<td style="text-align:right;">
+-367019.02
+</td>
+<td style="text-align:right;">
+6683619
+</td>
+<td style="text-align:right;">
+-0.0549132
+</td>
+<td style="text-align:right;">
+0.9562725
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+KP - Corée, République Populaire démocra
+</td>
+<td style="text-align:right;">
+218970.88
+</td>
+<td style="text-align:right;">
+18902915
+</td>
+<td style="text-align:right;">
+0.0115840
+</td>
+<td style="text-align:right;">
+0.9907712
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+LUXEMBOURG
+</td>
+<td style="text-align:right;">
+3908067.60
+</td>
+<td style="text-align:right;">
+9453578
+</td>
+<td style="text-align:right;">
+0.4133956
+</td>
+<td style="text-align:right;">
+0.6798409
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+MALAISIE
+</td>
+<td style="text-align:right;">
+9323874.62
+</td>
+<td style="text-align:right;">
+7990237
+</td>
+<td style="text-align:right;">
+1.1669084
+</td>
+<td style="text-align:right;">
+0.2448913
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+MAROC
+</td>
+<td style="text-align:right;">
+-3041138.54
+</td>
+<td style="text-align:right;">
+13370444
+</td>
+<td style="text-align:right;">
+-0.2274523
+</td>
+<td style="text-align:right;">
+0.8203470
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NERLAND
+</td>
+<td style="text-align:right;">
+-1458943.80
+</td>
+<td style="text-align:right;">
+18905086
+</td>
+<td style="text-align:right;">
+-0.0771720
+</td>
+<td style="text-align:right;">
+0.9385780
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PAYS BAS
+</td>
+<td style="text-align:right;">
+-2135869.03
+</td>
+<td style="text-align:right;">
+6707725
+</td>
+<td style="text-align:right;">
+-0.3184193
+</td>
+<td style="text-align:right;">
+0.7505601
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NIGERIA
+</td>
+<td style="text-align:right;">
+69469.46
+</td>
+<td style="text-align:right;">
+13366251
+</td>
+<td style="text-align:right;">
+0.0051974
+</td>
+<td style="text-align:right;">
+0.9958592
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NOUVELLE ZELANDE
+</td>
+<td style="text-align:right;">
+-964653.67
+</td>
+<td style="text-align:right;">
+9452267
+</td>
+<td style="text-align:right;">
+-0.1020553
+</td>
+<td style="text-align:right;">
+0.9188338
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OUGANDA
+</td>
+<td style="text-align:right;">
+-9660163.23
+</td>
+<td style="text-align:right;">
+6259154
+</td>
+<td style="text-align:right;">
+-1.5433657
+</td>
+<td style="text-align:right;">
+0.1246125
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PANAMA
+</td>
+<td style="text-align:right;">
+1902251.68
+</td>
+<td style="text-align:right;">
+13367426
+</td>
+<td style="text-align:right;">
+0.1423050
+</td>
+<td style="text-align:right;">
+0.8870086
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PHILLIPINE
+</td>
+<td style="text-align:right;">
+377090.25
+</td>
+<td style="text-align:right;">
+18902684
+</td>
+<td style="text-align:right;">
+0.0199490
+</td>
+<td style="text-align:right;">
+0.9841076
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+POLOGNE
+</td>
+<td style="text-align:right;">
+-189313.83
+</td>
+<td style="text-align:right;">
+13366333
+</td>
+<td style="text-align:right;">
+-0.0141635
+</td>
+<td style="text-align:right;">
+0.9887163
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PORTUGAL
+</td>
+<td style="text-align:right;">
+-1520165.36
+</td>
+<td style="text-align:right;">
+9453188
+</td>
+<td style="text-align:right;">
+-0.1608098
+</td>
+<td style="text-align:right;">
+0.8724353
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ROYAUME UNI
+</td>
+<td style="text-align:right;">
+-1520165.36
+</td>
+<td style="text-align:right;">
+13367521
+</td>
+<td style="text-align:right;">
+-0.1137208
+</td>
+<td style="text-align:right;">
+0.9095941
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+RDC
+</td>
+<td style="text-align:right;">
+-10887866.60
+</td>
+<td style="text-align:right;">
+8575838
+</td>
+<td style="text-align:right;">
+-1.2695980
+</td>
+<td style="text-align:right;">
+0.2059733
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+USA
+</td>
+<td style="text-align:right;">
+-3702024.25
+</td>
+<td style="text-align:right;">
+7157453
+</td>
+<td style="text-align:right;">
+-0.5172265
+</td>
+<td style="text-align:right;">
+0.6056744
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+RWANDA
+</td>
+<td style="text-align:right;">
+-2745202.66
+</td>
+<td style="text-align:right;">
+6429503
+</td>
+<td style="text-align:right;">
+-0.4269697
+</td>
+<td style="text-align:right;">
+0.6699449
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SINGAPOUR
+</td>
+<td style="text-align:right;">
+-1271537.64
+</td>
+<td style="text-align:right;">
+7722149
+</td>
+<td style="text-align:right;">
+-0.1646611
+</td>
+<td style="text-align:right;">
+0.8694075
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SUISSE
+</td>
+<td style="text-align:right;">
+-6428958.73
+</td>
+<td style="text-align:right;">
+6084800
+</td>
+<td style="text-align:right;">
+-1.0565604
+</td>
+<td style="text-align:right;">
+0.2922202
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SENEGAL
+</td>
+<td style="text-align:right;">
+-164360.36
+</td>
+<td style="text-align:right;">
+18902760
+</td>
+<td style="text-align:right;">
+-0.0086950
+</td>
+<td style="text-align:right;">
+0.9930727
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SOMALIE
+</td>
+<td style="text-align:right;">
+182031.20
+</td>
+<td style="text-align:right;">
+18902817
+</td>
+<td style="text-align:right;">
+0.0096298
+</td>
+<td style="text-align:right;">
+0.9923280
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SOUDAN
+</td>
+<td style="text-align:right;">
+370990.51
+</td>
+<td style="text-align:right;">
+18902684
+</td>
+<td style="text-align:right;">
+0.0196263
+</td>
+<td style="text-align:right;">
+0.9843646
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SUD SOUDAN
+</td>
+<td style="text-align:right;">
+-3003470.69
+</td>
+<td style="text-align:right;">
+18905608
+</td>
+<td style="text-align:right;">
+-0.1588667
+</td>
+<td style="text-align:right;">
+0.8739636
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SUEDE
+</td>
+<td style="text-align:right;">
+-1129587.86
+</td>
+<td style="text-align:right;">
+13367521
+</td>
+<td style="text-align:right;">
+-0.0845024
+</td>
+<td style="text-align:right;">
+0.9327570
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Swaziland
+</td>
+<td style="text-align:right;">
+-975538.34
+</td>
+<td style="text-align:right;">
+7726665
+</td>
+<td style="text-align:right;">
+-0.1262561
+</td>
+<td style="text-align:right;">
+0.8996793
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+TANZANIE
+</td>
+<td style="text-align:right;">
+-373840.11
+</td>
+<td style="text-align:right;">
+6683928
+</td>
+<td style="text-align:right;">
+-0.0559312
+</td>
+<td style="text-align:right;">
+0.9554627
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+TCHAD
+</td>
+<td style="text-align:right;">
+127674.41
+</td>
+<td style="text-align:right;">
+18902700
+</td>
+<td style="text-align:right;">
+0.0067543
+</td>
+<td style="text-align:right;">
+0.9946189
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+THAILANDE
+</td>
+<td style="text-align:right;">
+-6581130.20
+</td>
+<td style="text-align:right;">
+9554902
+</td>
+<td style="text-align:right;">
+-0.6887700
+</td>
+<td style="text-align:right;">
+0.4919125
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+UNION EUROPEENNE
+</td>
+<td style="text-align:right;">
+86341.53
+</td>
+<td style="text-align:right;">
+18902832
+</td>
+<td style="text-align:right;">
+0.0045677
+</td>
+<td style="text-align:right;">
+0.9963609
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ZAMBIE
+</td>
+<td style="text-align:right;">
+-1561477.21
+</td>
+<td style="text-align:right;">
+18903647
+</td>
+<td style="text-align:right;">
+-0.0826019
+</td>
+<td style="text-align:right;">
+0.9342658
+</td>
+</tr>
+</tbody>
+</table>
+<p>Le modèle à éffets aléatoire</p>
+<pre><code>## Oneway (individual) effect Between Model
+## 
+## Call:
+## plm(formula = Taxes ~ Weight, data = p_DF_aggreg, model = &quot;between&quot;)
+## 
+## Unbalanced Panel: n = 58, T = 1-10, N = 228
+## Observations used in estimation: 58
+## 
+## Residuals:
+##      Min.   1st Qu.    Median      Mean   3rd Qu.      Max. 
+## -17710356  -1366186    300948         0    907729  22825793 
+## 
+## Coefficients:
+##                Estimate  Std. Error t-value  Pr(&gt;|t|)    
+## (Intercept) -9.2150e+05  9.0924e+05 -1.0135    0.3152    
+## Weight       3.8816e+01  3.8643e+00 10.0449 3.886e-14 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Total Sum of Squares:    5.1437e+15
+## Residual Sum of Squares: 1.8358e+15
+## R-Squared:      0.64309
+## Adj. R-Squared: 0.63671
+## F-statistic: 100.9 on 1 and 56 DF, p-value: 3.886e-14</code></pre>
+<p>Ainsi donc, le modèle within s’écrit:</p>
+<p><span class="math display">\[ Y = + 3.8816e^{01}X - 9.2150e^{05} \]</span>
+Pour l’agmentation d’une unité pour le poids des marchandises, on observe une augmentation des taxes de 38,81 unitées d’un pays à un autre. cela signifie que, si un pays à importé un 1Kg plus qu’un autre, nous observerons une différence de 38,82 dollars pour les taxes.</p>
+<pre><code>## 
+##  F test for individual effects
+## 
+## data:  Taxes ~ Weight
+## F = 0.51147, df1 = 57, df2 = 169, p-value = 0.998
+## alternative hypothesis: significant effects</code></pre>
+<p>Le choix du modèle en utlisant le test d’Hausman</p>
+<p>Ce test consiste à comparer les coefficients de ce s deux modèles, pour en fint chhoisir le modèle qui est consistant entre les modèle à éffet individuel et le modèle à éffet aléatoire.</p>
+<pre><code>## 
+##  Hausman Test
+## 
+## data:  Taxes ~ Weight
+## chisq = 0.020872, df = 1, p-value = 0.8851
+## alternative hypothesis: one model is inconsistent</code></pre>
+<p>Ce test étant non qignificatif, c’est-à-dire , nous adoptons l’hypothèse nulle : les coefficients du modèle à éffet fixe et ceux du modèle à éffet aléatoire ne sont pas significativement différents. Ainsi donc, nous utiliserons les modèle à éffets aléatoire car celui ci est éfficient.(éficace)</p>
+<p>Effet aleatoire</p>
+<pre><code>## Oneway (individual) effect Random Effect Model 
+##    (Wallace-Hussain&#39;s transformation)
+## 
+## Call:
+## plm(formula = Taxes ~ Weight, data = p_DF_aggreg, model = &quot;random&quot;, 
+##     random.method = &quot;walhus&quot;)
+## 
+## Unbalanced Panel: n = 58, T = 1-10, N = 228
+## 
+## Effects:
+##                     var   std.dev share
+## idiosyncratic 3.578e+14 1.891e+07     1
+## individual    0.000e+00 0.000e+00     0
+## theta:
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##       0       0       0       0       0       0 
+## 
+## Residuals:
+##      Min.   1st Qu.    Median      Mean   3rd Qu.      Max. 
+## -76127299  -3525554    -38253         0    822609 135485918 
+## 
+## Coefficients:
+##                Estimate  Std. Error z-value Pr(&gt;|z|)    
+## (Intercept) -8.7251e+05  1.3302e+06 -0.6559   0.5119    
+## Weight       4.1859e+01  2.8796e+00 14.5367   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Total Sum of Squares:    1.37e+17
+## Residual Sum of Squares: 7.0803e+16
+## R-Squared:      0.48321
+## Adj. R-Squared: 0.48092
+## Chisq: 211.315 on 1 DF, p-value: &lt; 2.22e-16</code></pre>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="analyses.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="modèle-avec-les-marchandises-comme-individus.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["panel analyses book.pdf", "panel analyses book.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

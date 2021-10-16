@@ -1,0 +1,77 @@
+```{r}
+library(plm)
+library(tidyverse)
+library(broom)
+```
+
+# Modèle avec les marchandises comme individus
+
+
+```{r setup1, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+Gbase <- df %>% pivot_wider(names_from = Destination_Country, values_from = c(Taxe,Weight))
+Gbase <-  Gbase %>%  mutate_all(~replace(.,is.na(.),0))
+
+```
+
+
+
+
+```{r}
+Gbase  <- Gbase  %>% mutate(Tax=reduce(select(.,starts_with("Taxe")),`+`))
+Gbase  <- Gbase  %>% mutate(W=reduce(select(.,starts_with("Weight")),`+`))
+Gbase <- Gbase %>% select(-starts_with("Taxe"),-starts_with("Weight"))
+Gbase <- Gbase %>% 
+  rename("Taxes"="Tax","Weight"="W")
+
+Gbase <- Gbase %>% pdata.frame(index = c("Goods","Year"))
+```
+
+
+
+Modèle à polaire, considérant les deux effets
+```{r echo=FALSE}
+pooling_model1 <- plm(Taxes~Weight,model = "pooling",data = Gbase)
+summary(pooling_model)
+```
+
+
+
+Modele à éffet aléatoire
+
+```{r echo=FALSE}
+within_model1 <- update(pooling_model1,model="within")
+summary(within_model)
+```
+l'expression du modèle est : $  Y=39,6087 X$
+
+Ainsi donc, ce coefficient étant significatif,  traduit que l'augmentation du poids des marchnise de une unité entrainte une augmentation des taxes perçues de 39,6087 dollars, pour la même marchandise
+
+
+Le modèle à éffets aléatoire
+
+```{r echo=FALSE}
+between_model1 <- pooling_model1 %>% update(model="between")
+summary(between_model)
+```
+Le modèle s'écrit de la manière suivante:
+
+$$Y= 3.8816e^{01}X -9.2150e^{05}$$
+Le coefficient associé au poids étant significatif, on trouve que: si une marchandise dépassait en poids une autre de 1Kg, les taxes perçues pour cette marchandises dépasseraient cette autre de 38,8 dollars.
+
+Condidérant le R-Carré ajutsté, Ce modèle explique à 63,7% les variations des taxes en fonction des poids des marchandises.
+
+Pour arbitrer le choix entre le modèle à effet fixe et le modèle à éffet aléatoire, nous allons utiliser le test d'Hausman qui consite à comprer les coefficients de ces deux modèles
+
+```{r}
+phtest(between_model1,within_model1) %>% tidy()
+``` 
+Le test d'Hausman étant significatif pour ces données, nous optons donc le modèle à éffet à éffet fixe pour estimer les taxes sachant que les individus sont les marchandises car celui-ci est consistant. 
+
+On suppose donc une variation significative entre les marchandises.
+
+
+

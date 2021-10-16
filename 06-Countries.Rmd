@@ -1,0 +1,191 @@
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+```{r}
+library(plm)
+library(tidyverse)
+library(broom)
+```
+
+# Modele avec les pays comme individus
+
+
+```{r}
+df <- pdata.frame(DBase,index = c("Year","Destination_Country"))
+DF <- df %>% pivot_wider(names_from = Goods, values_from = c(Taxe,Weight))
+DF <- DF %>% mutate_all(~replace(.,is.na(.),0))
+
+```
+## Agregation des données avec la méthode reduce
+                        
+
+```{r}
+DF_aggreg <- DF %>% mutate(Tax=reduce(select(.,starts_with("Taxe")),`+`))
+DF_aggreg <- DF_aggreg  %>% mutate(W=reduce(select(.,starts_with("Weight")),`+`))
+DF_aggreg <- DF_aggreg %>% select(-starts_with("Taxe"),-starts_with("Weight"))
+DF_aggreg <- DF_aggreg %>% 
+  rename("Taxes"="Tax","Weight"="W")
+
+p_DF_aggreg <- DF_aggreg %>% pdata.frame(index = c("Destination_Country","Year"))
+```
+
+
+## Analyse descriptive des Varariales 
+
+Conversion des données en modèle des panels des données
+
+```{r}
+DBase$Destination_Country <- DBase$Destination_Country %>% factor()
+DBase$Destination_Country %>% levels()
+```
+
+
+
+## Overall Variations
+
+```{r}
+p_DF_aggreg %>% mutate_all(function(x) {x-mean(x,na.rm=T)}) %>% as.data.frame() %>%
+  as.data.frame() %>% 
+  stargazer(type = "text",omit.summary.stat = "mean",digits = 2)
+```
+L'écart-type des taxes pour les individus à travars le temps est 24,567,143.00 et celle des poids des marchandises est de 407,973.40 Kg .
+
+## Between Variations
+
+```{r}
+p_DF_aggreg %>% group_by(Destination_Country) %>% 
+  select(Taxes,Weight) %>% 
+  summarise_all(mean) %>% as.data.frame() %>% 
+  select(-Destination_Country) %>% 
+  stargazer(type="text",digits = 2) 
+```
+De ce tableau, on peut lire que: 
+
+- Les taxes varient de varient de 4,215,140.00 en moyenne d'un individu à un autre
+- Les poids des marchandises varient de 132,331.80 dollars d'un pays à un autre. 
+
+## Within variations
+
+```{r}
+p_DF_aggreg %>% 
+  group_by(Destination_Country) %>% 
+  select(Taxes,Weight) %>% 
+  mutate_all(function(x) {x-mean(x)}) %>% 
+  as.data.frame() %>% 
+  select(-Destination_Country) %>% 
+  stargazer(type = "text",omit.summary.stat = "mean",digits = 2)
+```
+De ce tableau, on peut lire que : 
+
+- L'écart moyen des taxes dans un pays, d'une année à une autre est de 20,714,497.00 dollars.
+- L'écart moyen des poids des marchandises est de 322,405.60 kg d'une année à une autre, pour un pays.
+
+
+## Modélisation
+
+
+Modèle à polaire, considérant les deux éffets
+```{r echo=FALSE}
+pooling_model <- plm(Taxes~Weight,model = "pooling",data = p_DF_aggreg)
+summary(pooling_model)
+```
+Le modèle s'écrit:
+$$Y= 4.1859e^{01} X - 8.7251e^{05}  $$
+Avec: 
+
+- Y : Les taxes recoltées pour les différentes marchandises dans tout les pays
+- X : Le poids globales des toutes les marchandises ayant traversé la douane  pour chaque période concernant notre étude, et pour chaque individus
+
+Notons que, pour ce type de panel, nos individus sont les pays et le temps est mésuré en année , à partir de l'année 2010 jusqu'en 2020. 
+
+La variable poids, dans les données des bases a été agrées, en calculant la somme de tous les poids pour pour les différentes marchandises n pour une année
+Ainsi, nous avions: 
+
+$$ P_{i.t}=\sum_{j=1}^{n} P{i..} $$
+i indiquant les marchandises , de la prémière à la n-ième marchandise. Ainsi donc, nous avions somme les poids de chaque marchandise pour trouver le poids annuel des marchanides ayant traversé la douane d'un pays. Il en est de même pour les taxes. 
+
+Le coefficient associé au poids des marchandises est significatif car le p-value associé est inférieur à 0,05. Tansdis que le terme indépendant n'est pas significativement différent de 0 vu que le p-value associé est supérieur au seuil.
+
+Ainsi donc, quand le poids augmente d'une unité, les taxes augmentent de 4,185 unités, pour tous les pays, et à travers le temps. Cette augmentation est significativement différent de 0.
+
+En testant la significativité globale du modèle, nous utilisant le Langranhe Multiplier test.
+
+```{r}
+plmtest(pooling_model)
+```
+Le test pour le modèle `pooling` est non significatif vu que le p-value associé au test est suupérieur au seuil de 5% (0,05).  Ainsi donc, npos adoptons l'hupothèse nulle du test selon laquelle le modèle polaire n'est pas significatif.
+
+
+Modele à éffet fixes. 
+Nous produisons ce modèle en utilisant la methode `Within` qui traduit les variations de la variables dependante en fonction des variables dépendantes, mais pour un individus à travers le temps.
+
+```{r echo=FALSE}
+within_model <- update(pooling_model,model="within",effect="individual")
+summary(within_model)
+```
+ici, nous modélisons les éffets individuels.
+Le coefficient des taxes signifie, que les pays augmentaient leurs importations d'une unitées, chacune, nous aurions une augmentation de 39,6087 dollars pour ce pays.
+
+
+
+EXtraction des effets fixes 
+Ce sont les effects individuels spécifiques pour chaque pays.
+
+On remarque que: 
+
+- La chine a 21758301 dollars de taxe de plus que la moyenne des taxes de tous les pays, et ce, d'une manière significative.
+- HONG KONG  21758301 dollars de plus que la moyenne des pays, et ce, significativement.
+- Les effets individuels de tous les autres pays ne sont pas significativement différents de 0 vu que les p-values associées, respectivement pour chaque pays sont de loin supérieur au seuil chacune.
+
+```{r}
+ai <- fixef(within_model,type = "dmean")
+summary(ai) %>% kable()
+```
+
+
+
+Le modèle à éffets aléatoire
+
+```{r echo=FALSE}
+between_model <- pooling_model %>% update(model="between")
+summary(between_model)
+```
+Ainsi donc, le modèle within s'écrit: 
+
+
+
+
+$$ Y = + 3.8816e^{01}X - 9.2150e^{05} $$
+Pour l'agmentation d'une unité pour le poids des marchandises, on observe une augmentation des taxes de 38,81 unitées d'un pays à un autre. cela signifie que, si un pays à importé un 1Kg plus qu'un autre, nous observerons une différence de 38,82 dollars pour les taxes.
+
+
+
+```{r}
+pFtest(within_model,pooling_model)
+```
+
+
+Le choix du modèle en utlisant le test d'Hausman
+
+Ce test consiste à comparer les coefficients de ce s deux modèles, pour en fint chhoisir le modèle qui est consistant entre les modèle à éffet individuel et le modèle à éffet aléatoire.
+
+```{r}
+phtest(between_model,within_model)
+```
+
+Ce test étant non qignificatif, c'est-à-dire , nous adoptons l'hypothèse nulle : les coefficients du modèle à éffet fixe et ceux du modèle à éffet aléatoire ne sont pas significativement différents.  Ainsi donc, nous utiliserons les modèle à éffets aléatoire car celui ci est éfficient.(éficace)
+
+
+
+
+
+
+
+Effet aleatoire
+```{r}
+re <- update(pooling_model,model="random",random.method="walhus")
+summary(re)
+```
+

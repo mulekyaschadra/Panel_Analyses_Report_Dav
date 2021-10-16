@@ -1,6 +1,6 @@
-tab:unnamed-chunk-2
+tab:unnamed-chunk-3
 tab:g
-tab:unnamed-chunk-41
+tab:unnamed-chunk-42
 intro
 the-one-way-error-component-regression-model
 introduction
@@ -23,7 +23,12 @@ methods
 analyses
 netoyage-de-la-base-des-données
 nouvelle-base-de-données-pour-les-analyses
+modele-avec-les-pays-comme-individus
 agregation-des-données-avec-la-méthode-reduce
 analyse-descriptive-des-varariales
-modele-poooling
+overall-variations
+between-variations
+within-variations
+modélisation
+modèle-avec-les-marchandises-comme-individus
 final-words

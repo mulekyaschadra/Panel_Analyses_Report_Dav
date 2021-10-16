@@ -138,7 +138,7 @@ fancyfoot[LE,LO]{Project}
 
 \title{Panel Analyses Report}
 \author{David BYAMUNGU}
-\date{2021-09-26}
+\date{2021-10-16}
 
 \begin{document}
 \maketitle
@@ -992,6 +992,48 @@ Ainsi, en utilisant des données de panel, on pourra exploiter les deux sources 
 - Temporelle où variabilité intra-individuelle (within)
 - et individuelle ou variabilité inter-individuelle (Between).
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(tidyverse)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## -- Attaching packages --------------------------------------- tidyverse 1.3.1 --
+\end{verbatim}
+
+\begin{verbatim}
+## v ggplot2 3.3.5     v purrr   0.3.4
+## v tibble  3.1.4     v dplyr   1.0.7
+## v tidyr   1.1.3     v stringr 1.4.0
+## v readr   2.0.1     v forcats 0.5.1
+\end{verbatim}
+
+\begin{verbatim}
+## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(stargazer)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Please cite as:
+\end{verbatim}
+
+\begin{verbatim}
+##  Hlavac, Marek (2018). stargazer: Well-Formatted Regression and Summary Statistics Tables.
+\end{verbatim}
+
+\begin{verbatim}
+##  R package version 5.2.2. https://CRAN.R-project.org/package=stargazer
+\end{verbatim}
+
 \hypertarget{analyses}{%
 \chapter{Analyses}\label{analyses}}
 
@@ -1006,7 +1048,7 @@ Apperçue globale des données
 
 \begin{table}
 
-\caption{\label{tab:unnamed-chunk-2}Echantillon de la base des données}
+\caption{\label{tab:unnamed-chunk-3}Echantillon de la base des données}
 \centering
 \begin{tabular}[t]{r|l|r|l|r|r}
 \hline
@@ -2121,7 +2163,7 @@ Regroupement des variables pour la synthèse pour rendre la base des données si
 
 \begin{table}
 
-\caption{\label{tab:unnamed-chunk-41}Table de corrélation entre les variables quantitatives}
+\caption{\label{tab:unnamed-chunk-42}Table de corrélation entre les variables quantitatives}
 \centering
 \begin{tabular}[t]{l|l|r}
 \hline
@@ -2150,6 +2192,17 @@ Weight & Taxe & 0.6699457\\
 
 \begin{Shaded}
 \begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(plm)}
+\FunctionTok{library}\NormalTok{(tidyverse)}
+\FunctionTok{library}\NormalTok{(broom)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{modele-avec-les-pays-comme-individus}{%
+\chapter{Modele avec les pays comme individus}\label{modele-avec-les-pays-comme-individus}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \NormalTok{df }\OtherTok{\textless{}{-}} \FunctionTok{pdata.frame}\NormalTok{(DBase,}\AttributeTok{index =} \FunctionTok{c}\NormalTok{(}\StringTok{"Year"}\NormalTok{,}\StringTok{"Destination\_Country"}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
@@ -2167,20 +2220,14 @@ Weight & Taxe & 0.6699457\\
 \end{Shaded}
 
 \begin{verbatim}
-## Warning in `[<-.factor`(`*tmp*`, list, value = 0): niveau de facteur incorrect,
-## NAs générés
+## Warning in `[<-.factor`(`*tmp*`, list, value = 0): invalid factor level, NA
+## generated
 \end{verbatim}
 
 \begin{verbatim}
-## Warning in `[<-.factor`(`*tmp*`, list, value = 0): niveau de facteur incorrect,
-## NAs générés
+## Warning in `[<-.factor`(`*tmp*`, list, value = 0): invalid factor level, NA
+## generated
 \end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{View}\NormalTok{(DF)}
-\end{Highlighting}
-\end{Shaded}
 
 \hypertarget{agregation-des-donnuxe9es-avec-la-muxe9thode-reduce}{%
 \section{Agregation des données avec la méthode reduce}\label{agregation-des-donnuxe9es-avec-la-muxe9thode-reduce}}
@@ -2270,15 +2317,101 @@ Conversion des données en modèle des panels des données
 ## [58] "ZAMBIE"
 \end{verbatim}
 
-\hypertarget{modele-poooling}{%
-\chapter{Modele poooling}\label{modele-poooling}}
+\hypertarget{overall-variations}{%
+\section{Overall Variations}\label{overall-variations}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{pooling\_model }\OtherTok{\textless{}{-}} \FunctionTok{plm}\NormalTok{(Taxes}\SpecialCharTok{\textasciitilde{}}\NormalTok{Weight,}\AttributeTok{model =} \StringTok{"pooling"}\NormalTok{,}\AttributeTok{data =}\NormalTok{ p\_DF\_aggreg)}
-\FunctionTok{summary}\NormalTok{(pooling\_model)}
+\NormalTok{p\_DF\_aggreg }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate\_all}\NormalTok{(}\ControlFlowTok{function}\NormalTok{(x) \{x}\SpecialCharTok{{-}}\FunctionTok{mean}\NormalTok{(x,}\AttributeTok{na.rm=}\NormalTok{T)\}) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{as.data.frame}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{as.data.frame}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{stargazer}\NormalTok{(}\AttributeTok{type =} \StringTok{"text"}\NormalTok{,}\AttributeTok{omit.summary.stat =} \StringTok{"mean"}\NormalTok{,}\AttributeTok{digits =} \DecValTok{2}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+## 
+## ====================================================================================
+## Statistic  N    St. Dev.         Min        Pctl(25)      Pctl(75)         Max      
+## ------------------------------------------------------------------------------------
+## Taxes     228 24,567,143.00 -8,268,474.00 -8,268,474.00 -5,225,015.00 153,754,050.00
+## Weight    228  407,973.40    -218,369.60   -196,559.50    -7,893.40    2,883,127.00 
+## ------------------------------------------------------------------------------------
+\end{verbatim}
+
+\hypertarget{between-variations}{%
+\section{Between Variations}\label{between-variations}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{p\_DF\_aggreg }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{group\_by}\NormalTok{(Destination\_Country) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{select}\NormalTok{(Taxes,Weight) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{summarise\_all}\NormalTok{(mean) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{as.data.frame}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{select}\NormalTok{(}\SpecialCharTok{{-}}\NormalTok{Destination\_Country) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{stargazer}\NormalTok{(}\AttributeTok{type=}\StringTok{"text"}\NormalTok{,}\AttributeTok{digits =} \DecValTok{2}\NormalTok{) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Adding missing grouping variables: `Destination_Country`
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## ==========================================================================
+## Statistic N      Mean       St. Dev.   Min Pctl(25)  Pctl(75)      Max    
+## --------------------------------------------------------------------------
+## Taxes     58 4,215,140.00 9,499,457.00  0     0     3,345,864.0 47,724,880
+## Weight    58  132,331.80   196,253.90  100  19,665   120,394.6   940,804  
+## --------------------------------------------------------------------------
+\end{verbatim}
+
+De ce tableau, on peut lire que:
+
+\begin{itemize}
+\tightlist
+\item
+  Les taxes varient de
+\end{itemize}
+
+\hypertarget{within-variations}{%
+\section{Within variations}\label{within-variations}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{p\_DF\_aggreg }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{group\_by}\NormalTok{(Destination\_Country) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{select}\NormalTok{(Taxes,Weight) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{mutate\_all}\NormalTok{(}\ControlFlowTok{function}\NormalTok{(x) \{x}\SpecialCharTok{{-}}\FunctionTok{mean}\NormalTok{(x)\}) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{as.data.frame}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{select}\NormalTok{(}\SpecialCharTok{{-}}\NormalTok{Destination\_Country) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{stargazer}\NormalTok{(}\AttributeTok{type =} \StringTok{"text"}\NormalTok{,}\AttributeTok{omit.summary.stat =} \StringTok{"mean"}\NormalTok{,}\AttributeTok{digits =} \DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Adding missing grouping variables: `Destination_Country`
+\end{verbatim}
+
+\begin{verbatim}
+## `mutate_all()` ignored the following grouping variables:
+## Column `Destination_Country`
+## Use `mutate_at(df, vars(-group_cols()), myoperation)` to silence the message.
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## ==========================================================================
+## Statistic  N    St. Dev.        Min       Pctl(25)   Pctl(75)      Max    
+## --------------------------------------------------------------------------
+## Taxes     228 20,714,497.00 -47,724,880 -3,291,776.0 175,658.1 133,691,390
+## Weight    228  322,405.60    -870,261    -63,771.4   29,042.9   2,624,477 
+## --------------------------------------------------------------------------
+\end{verbatim}
+
+\hypertarget{moduxe9lisation}{%
+\section{Modélisation}\label{moduxe9lisation}}
+
+Modèle à polaire, considérant les deux éffets
 
 \begin{verbatim}
 ## Pooling Model
@@ -2306,18 +2439,58 @@ Conversion des données en modèle des panels des données
 ## F-statistic: 211.315 on 1 and 226 DF, p-value: < 2.22e-16
 \end{verbatim}
 
+Le modèle s'écrit:
+\[Y= 4.1859e^{01} - 8.7251e^{05}  \]
+Avec:
+
+\begin{itemize}
+\tightlist
+\item
+  Y : Les taxes recoltées pour les différentes marchandises dans tout les pays
+\item
+  X : Le poids globales des toutes les marchandises ayant traversé la douane pour chaque période concernant notre étude, et pour chaque individus
+\end{itemize}
+
+Notons que, pour ce type de panel, nos individus sont les pays et le temps est mésuré en année , à partir de l'année 2010 jusqu'en 2020.
+
+La variable poids, dans les données des bases a été agrées, en calculant la somme de tous les poids pour pour les différentes marchandises n pour une année
+Ainsi, nous avions:
+
+\[ P_{i.t}=\sum_{j=1}^{n} P{i..} \]
+i indiquant les marchandises , de la prémière à la n-ième marchandise. Ainsi donc, nous avions somme les poids de chaque marchandise pour trouver le poids annuel des marchanides ayant traversé la douane d'un pays. Il en est de même pour les taxes.
+
+Le coefficient associé au poids des marchandises est significatif car le p-value associé est inférieur à 0,05. Tansdis que le terme indépendant n'est pas significativement différent de 0 vu que le p-value associé est supérieur au seuil.
+
+Ainsi donc, quand le poids augmente d'une unité, les taxes augmentent de 41,85 unités, pout tous les pays, et à travers le temps. cette augmentation est significativement firrérent de 0
+
+En testant la significativité globale du modèle,
+
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{within\_model }\OtherTok{\textless{}{-}} \FunctionTok{update}\NormalTok{(pooling\_model,}\AttributeTok{model=}\StringTok{"within"}\NormalTok{)}
-\FunctionTok{summary}\NormalTok{(within\_model)}
+\FunctionTok{plmtest}\NormalTok{(pooling\_model)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+## 
+##  Lagrange Multiplier Test - (Honda) for unbalanced panels
+## 
+## data:  Taxes ~ Weight
+## normal = 0.89501, p-value = 0.1854
+## alternative hypothesis: significant effects
+\end{verbatim}
+
+Le test pour le modèle \texttt{pooling} est non significatif vu que le p-value associé au test est suupérieur au seuil de 5\% (0,05). Ainsi donc, npos adoptons l'hupothèse nulle du test selon laquelle le modèle polaire n'est pas significatif.
+
+Modele à éffet fixes.
+Nous produisons ce modèle en utilisant la methode \texttt{Within} qui traduit les variations de la variables dependante en fonction des variables dépendantes, mais pour un individus à travers le temps.
 
 \begin{verbatim}
 ## Oneway (individual) effect Within Model
 ## 
 ## Call:
-## plm(formula = Taxes ~ Weight, data = p_DF_aggreg, model = "within")
+## plm(formula = Taxes ~ Weight, data = p_DF_aggreg, effect = "individual", 
+##     model = "within")
 ## 
 ## Unbalanced Panel: n = 58, T = 1-10, N = 228
 ## 
@@ -2338,12 +2511,221 @@ Conversion des données en modèle des panels des données
 ## F-statistic: 103.601 on 1 and 169 DF, p-value: < 2.22e-16
 \end{verbatim}
 
+ici, nous modélisons les éffets individuels.
+Le coefficient des taxes signifie, que les pays augmentaient leurs importations d'une unitées, chacune, nous aurions une agmentation de 39,687 dollars pour ce pays.
+
+EXtraction des effets fixes
+Ce sont les effects individuels spécifiques pour chaque pays.
+
+On remarque que:
+
+\begin{itemize}
+\tightlist
+\item
+  La chine a 21758301 dollars de taxe de plus que la moyenne des taxes de tous les pays, et ce, d'une manière significative.
+\item
+  HONG KONG 21758301 dollars de plus
+\end{itemize}
+
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{between\_model }\OtherTok{\textless{}{-}}\NormalTok{ pooling\_model }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{update}\NormalTok{(}\AttributeTok{model=}\StringTok{"between"}\NormalTok{)}
-\FunctionTok{summary}\NormalTok{(between\_model)}
+\NormalTok{ai }\OtherTok{\textless{}{-}} \FunctionTok{fixef}\NormalTok{(within\_model,}\AttributeTok{type =} \StringTok{"dmean"}\NormalTok{)}
+
+\NormalTok{ai }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{as.data.frame}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+##                                                     .
+## AFRIQUE DU SUD                            -2984326.03
+## ALGERIE                                   -1165271.62
+## ALLEMAGNE                                 -1632580.61
+## AMERIQUE LATINE                            2202439.71
+## GRANDE BRATAGNE                           -3470934.54
+## ANGOLA                                   -15589167.27
+## ARABIE                                     -142028.25
+## ASIE                                         38936.72
+## AUSTRALIE                                   285990.29
+## BELGIQUE                                   3926237.34
+## BURUNDI                                    -315018.56
+## CANADA                                     6630399.23
+## CHINE                                     21758300.68
+## CHYPRE                                     2015623.85
+## CONGO BRAZA                                 355028.22
+## REP TCHEQUE                                1577815.74
+## NA                                        -1030865.82
+## EMIRATES ARABES UNIES                      1635013.00
+## ESPAGNE                                     358452.36
+## FRANCE                                    -3760302.34
+## GABON                                       270146.82
+## GRECE                                      -167122.77
+## HONG KONG                                 14181338.15
+## ILE MAURICE                              -18631113.63
+## INDE                                       2932397.32
+## ITALIE                                    -3579816.54
+## JAPON                                       -11074.78
+## KENYA                                      -367019.02
+## KP - Corée, République Populaire démocra    218970.88
+## LUXEMBOURG                                 3908067.60
+## MALAISIE                                   9323874.62
+## MAROC                                     -3041138.54
+## NERLAND                                   -1458943.80
+## PAYS BAS                                  -2135869.03
+## NIGERIA                                      69469.46
+## NOUVELLE ZELANDE                           -964653.67
+## OUGANDA                                   -9660163.23
+## PANAMA                                     1902251.68
+## PHILLIPINE                                  377090.25
+## POLOGNE                                    -189313.83
+## PORTUGAL                                  -1520165.36
+## ROYAUME UNI                               -1520165.36
+## RDC                                      -10887866.60
+## USA                                       -3702024.25
+## RWANDA                                    -2745202.66
+## SINGAPOUR                                 -1271537.64
+## SUISSE                                    -6428958.73
+## SENEGAL                                    -164360.36
+## SOMALIE                                     182031.20
+## SOUDAN                                      370990.51
+## SUD SOUDAN                                -3003470.69
+## SUEDE                                     -1129587.86
+## Swaziland                                  -975538.34
+## TANZANIE                                   -373840.11
+## TCHAD                                       127674.41
+## THAILANDE                                 -6581130.20
+## UNION EUROPEENNE                             86341.53
+## ZAMBIE                                    -1561477.21
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{(ai) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{kable}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{tabular}{l|r|r|r|r}
+\hline
+  & Estimate & Std. Error & t-value & Pr(>|t|)\\
+\hline
+AFRIQUE DU SUD & -2984326.03 & 8460861 & -0.3527213 & 0.7247369\\
+\hline
+ALGERIE & -1165271.62 & 18903294 & -0.0616438 & 0.9509193\\
+\hline
+ALLEMAGNE & -1632580.61 & 7723181 & -0.2113871 & 0.8328399\\
+\hline
+AMERIQUE LATINE & 2202439.71 & 13368089 & 0.1647535 & 0.8693349\\
+\hline
+GRANDE BRATAGNE & -3470934.54 & 6056452 & -0.5730970 & 0.5673408\\
+\hline
+ANGOLA & -15589167.27 & 18967690 & -0.8218801 & 0.4123031\\
+\hline
+ARABIE & -142028.25 & 18902837 & -0.0075136 & 0.9940139\\
+\hline
+ASIE & 38936.72 & 18902846 & 0.0020598 & 0.9983589\\
+\hline
+AUSTRALIE & 285990.29 & 18902686 & 0.0151296 & 0.9879466\\
+\hline
+BELGIQUE & 3926237.34 & 7009603 & 0.5601226 & 0.5761375\\
+\hline
+BURUNDI & -315018.56 & 6301266 & -0.0499929 & 0.9601871\\
+\hline
+CANADA & 6630399.23 & 10924084 & 0.6069524 & 0.5446970\\
+\hline
+CHINE & 21758300.68 & 6513971 & 3.3402513 & 0.0010301\\
+\hline
+CHYPRE & 2015623.85 & 18902888 & 0.1066305 & 0.9152086\\
+\hline
+CONGO BRAZA & 355028.22 & 18902684 & 0.0187819 & 0.9850373\\
+\hline
+REP TCHEQUE & 1577815.74 & 18903000 & 0.0834691 & 0.9335774\\
+\hline
+NA & -1030865.82 & 13367444 & -0.0771176 & 0.9386212\\
+\hline
+EMIRATES ARABES UNIES & 1635013.00 & 7146910 & 0.2287720 & 0.8193227\\
+\hline
+ESPAGNE & 358452.36 & 9451857 & 0.0379240 & 0.9697930\\
+\hline
+FRANCE & -3760302.34 & 6321394 & -0.5948533 & 0.5527371\\
+\hline
+GABON & 270146.82 & 18902687 & 0.0142915 & 0.9886143\\
+\hline
+GRECE & -167122.77 & 13366412 & -0.0125032 & 0.9900389\\
+\hline
+HONG KONG & 14181338.15 & 6715252 & 2.1118103 & 0.0361728\\
+\hline
+ILE MAURICE & -18631113.63 & 18994748 & -0.9808561 & 0.3280658\\
+\hline
+INDE & 2932397.32 & 9457208 & 0.3100701 & 0.7568897\\
+\hline
+ITALIE & -3579816.54 & 13371879 & -0.2677123 & 0.7892472\\
+\hline
+JAPON & -11074.78 & 10913538 & -0.0010148 & 0.9991915\\
+\hline
+KENYA & -367019.02 & 6683619 & -0.0549132 & 0.9562725\\
+\hline
+KP - Corée, République Populaire démocra & 218970.88 & 18902915 & 0.0115840 & 0.9907712\\
+\hline
+LUXEMBOURG & 3908067.60 & 9453578 & 0.4133956 & 0.6798409\\
+\hline
+MALAISIE & 9323874.62 & 7990237 & 1.1669084 & 0.2448913\\
+\hline
+MAROC & -3041138.54 & 13370444 & -0.2274523 & 0.8203470\\
+\hline
+NERLAND & -1458943.80 & 18905086 & -0.0771720 & 0.9385780\\
+\hline
+PAYS BAS & -2135869.03 & 6707725 & -0.3184193 & 0.7505601\\
+\hline
+NIGERIA & 69469.46 & 13366251 & 0.0051974 & 0.9958592\\
+\hline
+NOUVELLE ZELANDE & -964653.67 & 9452267 & -0.1020553 & 0.9188338\\
+\hline
+OUGANDA & -9660163.23 & 6259154 & -1.5433657 & 0.1246125\\
+\hline
+PANAMA & 1902251.68 & 13367426 & 0.1423050 & 0.8870086\\
+\hline
+PHILLIPINE & 377090.25 & 18902684 & 0.0199490 & 0.9841076\\
+\hline
+POLOGNE & -189313.83 & 13366333 & -0.0141635 & 0.9887163\\
+\hline
+PORTUGAL & -1520165.36 & 9453188 & -0.1608098 & 0.8724353\\
+\hline
+ROYAUME UNI & -1520165.36 & 13367521 & -0.1137208 & 0.9095941\\
+\hline
+RDC & -10887866.60 & 8575838 & -1.2695980 & 0.2059733\\
+\hline
+USA & -3702024.25 & 7157453 & -0.5172265 & 0.6056744\\
+\hline
+RWANDA & -2745202.66 & 6429503 & -0.4269697 & 0.6699449\\
+\hline
+SINGAPOUR & -1271537.64 & 7722149 & -0.1646611 & 0.8694075\\
+\hline
+SUISSE & -6428958.73 & 6084800 & -1.0565604 & 0.2922202\\
+\hline
+SENEGAL & -164360.36 & 18902760 & -0.0086950 & 0.9930727\\
+\hline
+SOMALIE & 182031.20 & 18902817 & 0.0096298 & 0.9923280\\
+\hline
+SOUDAN & 370990.51 & 18902684 & 0.0196263 & 0.9843646\\
+\hline
+SUD SOUDAN & -3003470.69 & 18905608 & -0.1588667 & 0.8739636\\
+\hline
+SUEDE & -1129587.86 & 13367521 & -0.0845024 & 0.9327570\\
+\hline
+Swaziland & -975538.34 & 7726665 & -0.1262561 & 0.8996793\\
+\hline
+TANZANIE & -373840.11 & 6683928 & -0.0559312 & 0.9554627\\
+\hline
+TCHAD & 127674.41 & 18902700 & 0.0067543 & 0.9946189\\
+\hline
+THAILANDE & -6581130.20 & 9554902 & -0.6887700 & 0.4919125\\
+\hline
+UNION EUROPEENNE & 86341.53 & 18902832 & 0.0045677 & 0.9963609\\
+\hline
+ZAMBIE & -1561477.21 & 18903647 & -0.0826019 & 0.9342658\\
+\hline
+\end{tabular}
+
+Le modèle à éffets aléatoire
 
 \begin{verbatim}
 ## Oneway (individual) effect Between Model
@@ -2370,6 +2752,251 @@ Conversion des données en modèle des panels des données
 ## R-Squared:      0.64309
 ## Adj. R-Squared: 0.63671
 ## F-statistic: 100.9 on 1 and 56 DF, p-value: 3.886e-14
+\end{verbatim}
+
+Ainsi donc, le modèle within s'écrit:
+
+\[ Y = + 3.8816e^{01}X - 9.2150e^{05} \]
+Pour l'agmentation d'une unité pour le poids des marchandises, ont observe une augmentation des taxes de 38,81 unitées d'un pays à un autre. cela signifie que, si un pays à importé un 1Kg plus qu'un autre, nous observerons une différence de 38,82 dollars pour les taxes.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{pFtest}\NormalTok{(within\_model,pooling\_model)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  F test for individual effects
+## 
+## data:  Taxes ~ Weight
+## F = 0.51147, df1 = 57, df2 = 169, p-value = 0.998
+## alternative hypothesis: significant effects
+\end{verbatim}
+
+Le choix du modèle en utlisant le test d'Hausman
+
+Ce test consiste à comparer les coefficients de ce s deux modèles, pour en fint chhoisir le modèle qui est consistant entre les modèle à éffet individuel et le modèle à éffet aléatoire.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{phtest}\NormalTok{(between\_model,within\_model)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Hausman Test
+## 
+## data:  Taxes ~ Weight
+## chisq = 0.020872, df = 1, p-value = 0.8851
+## alternative hypothesis: one model is inconsistent
+\end{verbatim}
+
+Ce test étant non qignificatif, c'est-à-dire , nous adoptons l'hypothèse nulle : les coefficients du modèle à éffet fixe et ceux du modèle à éffet aléatoire ne sont pas significativement différents. Ainsi donc, nous utiliserons les modèle à éffets aléatoire car celui ci est éfficient.(éficace)
+
+Effet aleatoire
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{re }\OtherTok{\textless{}{-}} \FunctionTok{update}\NormalTok{(pooling\_model,}\AttributeTok{model=}\StringTok{"random"}\NormalTok{,}\AttributeTok{random.method=}\StringTok{"walhus"}\NormalTok{)}
+\FunctionTok{summary}\NormalTok{(re)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Oneway (individual) effect Random Effect Model 
+##    (Wallace-Hussain's transformation)
+## 
+## Call:
+## plm(formula = Taxes ~ Weight, data = p_DF_aggreg, model = "random", 
+##     random.method = "walhus")
+## 
+## Unbalanced Panel: n = 58, T = 1-10, N = 228
+## 
+## Effects:
+##                     var   std.dev share
+## idiosyncratic 3.578e+14 1.891e+07     1
+## individual    0.000e+00 0.000e+00     0
+## theta:
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##       0       0       0       0       0       0 
+## 
+## Residuals:
+##      Min.   1st Qu.    Median      Mean   3rd Qu.      Max. 
+## -76127299  -3525554    -38253         0    822609 135485918 
+## 
+## Coefficients:
+##                Estimate  Std. Error z-value Pr(>|z|)    
+## (Intercept) -8.7251e+05  1.3302e+06 -0.6559   0.5119    
+## Weight       4.1859e+01  2.8796e+00 14.5367   <2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Total Sum of Squares:    1.37e+17
+## Residual Sum of Squares: 7.0803e+16
+## R-Squared:      0.48321
+## Adj. R-Squared: 0.48092
+## Chisq: 211.315 on 1 DF, p-value: < 2.22e-16
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(plm)}
+\FunctionTok{library}\NormalTok{(tidyverse)}
+\FunctionTok{library}\NormalTok{(broom)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{moduxe8le-avec-les-marchandises-comme-individus}{%
+\chapter{Modèle avec les marchandises comme individus}\label{moduxe8le-avec-les-marchandises-comme-individus}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DBase}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 439 x 5
+##     Year Destination_Country Goods                              Weight      Taxe
+##    <dbl> <fct>               <fct>                               <dbl>     <dbl>
+##  1  2010 ALLEMAGNE           caféarabica                        1.73e5    3.70e6
+##  2  2010 ALLEMAGNE           Minérais et dérivés                1.1 e1    0     
+##  3  2010 GRANDE BRATAGNE     caféarabica                        2.58e5    5.91e6
+##  4  2010 GRANDE BRATAGNE     Minérais et dérivés                2.06e5    1.75e7
+##  5  2010 ANGOLA              Cigarette et papier cigarettes e~  4.03e5    0     
+##  6  2010 BELGIQUE            Autres Marchandises                1.75e3    0     
+##  7  2010 BELGIQUE            Médicaments et plantes médécinal~  4.60e5    0     
+##  8  2010 BELGIQUE            caféarabica                        3.42e5    7.86e6
+##  9  2010 BELGIQUE            Minérais et dérivés                1.72e6    1.54e8
+## 10  2010 BURUNDI             Autres Marchandises                3.49e3    0     
+## # ... with 429 more rows
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Gbase }\OtherTok{\textless{}{-}}\NormalTok{ df }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{pivot\_wider}\NormalTok{(}\AttributeTok{names\_from =}\NormalTok{ Destination\_Country, }\AttributeTok{values\_from =} \FunctionTok{c}\NormalTok{(Taxe,Weight))}
+\NormalTok{Gbase }\OtherTok{\textless{}{-}}\NormalTok{  Gbase }\SpecialCharTok{\%\textgreater{}\%}  \FunctionTok{mutate\_all}\NormalTok{(}\SpecialCharTok{\textasciitilde{}}\FunctionTok{replace}\NormalTok{(.,}\FunctionTok{is.na}\NormalTok{(.),}\DecValTok{0}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning in `[<-.factor`(`*tmp*`, list, value = 0): invalid factor level, NA
+## generated
+
+## Warning in `[<-.factor`(`*tmp*`, list, value = 0): invalid factor level, NA
+## generated
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Gbase  }\OtherTok{\textless{}{-}}\NormalTok{ Gbase  }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{Tax=}\FunctionTok{reduce}\NormalTok{(}\FunctionTok{select}\NormalTok{(.,}\FunctionTok{starts\_with}\NormalTok{(}\StringTok{"Taxe"}\NormalTok{)),}\StringTok{\textasciigrave{}}\AttributeTok{+}\StringTok{\textasciigrave{}}\NormalTok{))}
+\NormalTok{Gbase  }\OtherTok{\textless{}{-}}\NormalTok{ Gbase  }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{W=}\FunctionTok{reduce}\NormalTok{(}\FunctionTok{select}\NormalTok{(.,}\FunctionTok{starts\_with}\NormalTok{(}\StringTok{"Weight"}\NormalTok{)),}\StringTok{\textasciigrave{}}\AttributeTok{+}\StringTok{\textasciigrave{}}\NormalTok{))}
+\NormalTok{Gbase }\OtherTok{\textless{}{-}}\NormalTok{ Gbase }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{select}\NormalTok{(}\SpecialCharTok{{-}}\FunctionTok{starts\_with}\NormalTok{(}\StringTok{"Taxe"}\NormalTok{),}\SpecialCharTok{{-}}\FunctionTok{starts\_with}\NormalTok{(}\StringTok{"Weight"}\NormalTok{))}
+\NormalTok{Gbase }\OtherTok{\textless{}{-}}\NormalTok{ Gbase }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{rename}\NormalTok{(}\StringTok{"Taxes"}\OtherTok{=}\StringTok{"Tax"}\NormalTok{,}\StringTok{"Weight"}\OtherTok{=}\StringTok{"W"}\NormalTok{)}
+
+\NormalTok{Gbase }\OtherTok{\textless{}{-}}\NormalTok{ Gbase }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{pdata.frame}\NormalTok{(}\AttributeTok{index =} \FunctionTok{c}\NormalTok{(}\StringTok{"Goods"}\NormalTok{,}\StringTok{"Year"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+Modèle à polaire, considérant les deux éffets
+
+\begin{verbatim}
+## Pooling Model
+## 
+## Call:
+## plm(formula = Taxes ~ Weight, data = p_DF_aggreg, model = "pooling")
+## 
+## Unbalanced Panel: n = 58, T = 1-10, N = 228
+## 
+## Residuals:
+##      Min.   1st Qu.    Median      Mean   3rd Qu.      Max. 
+## -76127299  -3525554    -38253         0    822609 135485918 
+## 
+## Coefficients:
+##                Estimate  Std. Error t-value Pr(>|t|)    
+## (Intercept) -8.7251e+05  1.3302e+06 -0.6559   0.5125    
+## Weight       4.1859e+01  2.8796e+00 14.5367   <2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Total Sum of Squares:    1.37e+17
+## Residual Sum of Squares: 7.0803e+16
+## R-Squared:      0.48321
+## Adj. R-Squared: 0.48092
+## F-statistic: 211.315 on 1 and 226 DF, p-value: < 2.22e-16
+\end{verbatim}
+
+Modele à éffet aléatoire
+
+\begin{verbatim}
+## Oneway (individual) effect Within Model
+## 
+## Call:
+## plm(formula = Taxes ~ Weight, data = p_DF_aggreg, effect = "individual", 
+##     model = "within")
+## 
+## Unbalanced Panel: n = 58, T = 1-10, N = 228
+## 
+## Residuals:
+##      Min.   1st Qu.    Median      Mean   3rd Qu.      Max. 
+## -69551626  -1715042         0         0   1537006 114103679 
+## 
+## Coefficients:
+##        Estimate Std. Error t-value  Pr(>|t|)    
+## Weight  39.6087     3.8914  10.178 < 2.2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Total Sum of Squares:    9.7404e+16
+## Residual Sum of Squares: 6.0386e+16
+## R-Squared:      0.38005
+## Adj. R-Squared: 0.16728
+## F-statistic: 103.601 on 1 and 169 DF, p-value: < 2.22e-16
+\end{verbatim}
+
+Le modèle à éffets aléatoire
+
+\begin{verbatim}
+## Oneway (individual) effect Between Model
+## 
+## Call:
+## plm(formula = Taxes ~ Weight, data = p_DF_aggreg, model = "between")
+## 
+## Unbalanced Panel: n = 58, T = 1-10, N = 228
+## Observations used in estimation: 58
+## 
+## Residuals:
+##      Min.   1st Qu.    Median      Mean   3rd Qu.      Max. 
+## -17710356  -1366186    300948         0    907729  22825793 
+## 
+## Coefficients:
+##                Estimate  Std. Error t-value  Pr(>|t|)    
+## (Intercept) -9.2150e+05  9.0924e+05 -1.0135    0.3152    
+## Weight       3.8816e+01  3.8643e+00 10.0449 3.886e-14 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Total Sum of Squares:    5.1437e+15
+## Residual Sum of Squares: 1.8358e+15
+## R-Squared:      0.64309
+## Adj. R-Squared: 0.63671
+## F-statistic: 100.9 on 1 and 56 DF, p-value: 3.886e-14
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{phtest}\NormalTok{(between\_model1,within\_model1) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{tidy}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 1 x 5
+##   statistic p.value parameter method       alternative              
+##       <dbl>   <dbl>     <int> <chr>        <chr>                    
+## 1      9.03 0.00265         1 Hausman Test one model is inconsistent
 \end{verbatim}
 
 \hypertarget{final-words}{%

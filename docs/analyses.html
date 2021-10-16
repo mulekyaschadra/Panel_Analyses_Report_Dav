@@ -24,7 +24,7 @@
 <meta name="author" content="David BYAMUNGU" />
 
 
-<meta name="date" content="2021-09-26" />
+<meta name="date" content="2021-10-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="methods.html"/>
-<link rel="next" href="modele-poooling.html"/>
+<link rel="next" href="modele-avec-les-pays-comme-individus.html"/>
 <script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -176,12 +176,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="6.1.1" data-path="analyses.html"><a href="analyses.html#nouvelle-base-de-données-pour-les-analyses"><i class="fa fa-check"></i><b>6.1.1</b> Nouvelle base de données pour les analyses</a></li>
 </ul></li>
-<li class="chapter" data-level="6.2" data-path="analyses.html"><a href="analyses.html#agregation-des-données-avec-la-méthode-reduce"><i class="fa fa-check"></i><b>6.2</b> Agregation des données avec la méthode reduce</a></li>
-<li class="chapter" data-level="6.3" data-path="analyses.html"><a href="analyses.html#analyse-descriptive-des-varariales"><i class="fa fa-check"></i><b>6.3</b> Analyse descriptive des Varariales</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="modele-poooling.html"><a href="modele-poooling.html"><i class="fa fa-check"></i><b>7</b> Modele poooling</a></li>
+<li class="chapter" data-level="7" data-path="modele-avec-les-pays-comme-individus.html"><a href="modele-avec-les-pays-comme-individus.html"><i class="fa fa-check"></i><b>7</b> Modele avec les pays comme individus</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="modele-avec-les-pays-comme-individus.html"><a href="modele-avec-les-pays-comme-individus.html#agregation-des-données-avec-la-méthode-reduce"><i class="fa fa-check"></i><b>7.1</b> Agregation des données avec la méthode reduce</a></li>
+<li class="chapter" data-level="7.2" data-path="modele-avec-les-pays-comme-individus.html"><a href="modele-avec-les-pays-comme-individus.html#analyse-descriptive-des-varariales"><i class="fa fa-check"></i><b>7.2</b> Analyse descriptive des Varariales</a></li>
+<li class="chapter" data-level="7.3" data-path="modele-avec-les-pays-comme-individus.html"><a href="modele-avec-les-pays-comme-individus.html#overall-variations"><i class="fa fa-check"></i><b>7.3</b> Overall Variations</a></li>
+<li class="chapter" data-level="7.4" data-path="modele-avec-les-pays-comme-individus.html"><a href="modele-avec-les-pays-comme-individus.html#between-variations"><i class="fa fa-check"></i><b>7.4</b> Between Variations</a></li>
+<li class="chapter" data-level="7.5" data-path="modele-avec-les-pays-comme-individus.html"><a href="modele-avec-les-pays-comme-individus.html#within-variations"><i class="fa fa-check"></i><b>7.5</b> Within variations</a></li>
+<li class="chapter" data-level="7.6" data-path="modele-avec-les-pays-comme-individus.html"><a href="modele-avec-les-pays-comme-individus.html#modélisation"><i class="fa fa-check"></i><b>7.6</b> Modélisation</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="modèle-avec-les-marchandises-comme-individus.html"><a href="modèle-avec-les-marchandises-comme-individus.html"><i class="fa fa-check"></i><b>8</b> Modèle avec les marchandises comme individus</a></li>
 <li class="chapter" data-level="" data-path="references-1.html"><a href="references-1.html"><i class="fa fa-check"></i>References</a></li>
-<li class="chapter" data-level="8" data-path="final-words.html"><a href="final-words.html"><i class="fa fa-check"></i><b>8</b> Final Words</a></li>
+<li class="chapter" data-level="9" data-path="final-words.html"><a href="final-words.html"><i class="fa fa-check"></i><b>9</b> Final Words</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -211,7 +218,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Apperçue globale des données</p>
 <table>
 <caption>
-<span id="tab:unnamed-chunk-2">Table 6.1: </span>Echantillon de la base des données
+<span id="tab:unnamed-chunk-3">Table 6.1: </span>Echantillon de la base des données
 </caption>
 <thead>
 <tr>
@@ -4165,7 +4172,7 @@ WOLFRAMITE
 </table>
 <p>La variables <strong>Goods </strong> a 740 modalités</p>
 <p>Faison la cactérisation des niveaux des marchandises dont l’encodage fait défaut</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="analyses.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(taxe_df<span class="sc">$</span>Goods)</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="analyses.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(taxe_df<span class="sc">$</span>Goods)</span></code></pre></div>
 <pre><code>## [1] &quot;character&quot;</code></pre>
 <p>Usage de tm et Stringr</p>
 <pre><code>## Warning: Unknown levels in `f`: equipements protection</code></pre>
@@ -4292,18 +4299,18 @@ WOLFRAMITE
 <div id="nouvelle-base-de-données-pour-les-analyses" class="section level3" number="6.1.1">
 <h3><span class="header-section-number">6.1.1</span> Nouvelle base de données pour les analyses</h3>
 <p>Regroupement des variables pour la synthèse pour rendre la base des données simple à exploiter, éliminer les NA dans les observations telsque les pays et les valeurs pour les marchandises et les taxes.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="analyses.html#cb9-1" aria-hidden="true" tabindex="-1"></a>DBase <span class="ot">&lt;-</span> taxe_df <span class="sc">%&gt;%</span> <span class="fu">rename</span>(<span class="st">&quot;Destination_Country&quot;</span><span class="ot">=</span><span class="st">`</span><span class="at">Country/destination</span><span class="st">`</span>)</span>
-<span id="cb9-2"><a href="analyses.html#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-3"><a href="analyses.html#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-4"><a href="analyses.html#cb9-4" aria-hidden="true" tabindex="-1"></a>DBase <span class="ot">&lt;-</span> DBase  <span class="sc">%&gt;%</span> </span>
-<span id="cb9-5"><a href="analyses.html#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Year,Destination_Country,Goods,Weight,Taxe) <span class="sc">%&gt;%</span> </span>
-<span id="cb9-6"><a href="analyses.html#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Year,Destination_Country,Goods) <span class="sc">%&gt;%</span> </span>
-<span id="cb9-7"><a href="analyses.html#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">Weight=</span><span class="fu">sum</span>(Weight),<span class="at">Taxe=</span><span class="fu">sum</span>(Taxe),<span class="at">.groups =</span> <span class="st">&quot;drop&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">drop_na</span>() </span>
-<span id="cb9-8"><a href="analyses.html#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-9"><a href="analyses.html#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="fu">correlate</span>(DBase) <span class="sc">%&gt;%</span> <span class="fu">kable</span>(<span class="at">caption =</span> <span class="st">&quot;Table de corrélation entre les variables quantitatives&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="analyses.html#cb17-1" aria-hidden="true" tabindex="-1"></a>DBase <span class="ot">&lt;-</span> taxe_df <span class="sc">%&gt;%</span> <span class="fu">rename</span>(<span class="st">&quot;Destination_Country&quot;</span><span class="ot">=</span><span class="st">`</span><span class="at">Country/destination</span><span class="st">`</span>)</span>
+<span id="cb17-2"><a href="analyses.html#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="analyses.html#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="analyses.html#cb17-4" aria-hidden="true" tabindex="-1"></a>DBase <span class="ot">&lt;-</span> DBase  <span class="sc">%&gt;%</span> </span>
+<span id="cb17-5"><a href="analyses.html#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Year,Destination_Country,Goods,Weight,Taxe) <span class="sc">%&gt;%</span> </span>
+<span id="cb17-6"><a href="analyses.html#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Year,Destination_Country,Goods) <span class="sc">%&gt;%</span> </span>
+<span id="cb17-7"><a href="analyses.html#cb17-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">Weight=</span><span class="fu">sum</span>(Weight),<span class="at">Taxe=</span><span class="fu">sum</span>(Taxe),<span class="at">.groups =</span> <span class="st">&quot;drop&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">drop_na</span>() </span>
+<span id="cb17-8"><a href="analyses.html#cb17-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-9"><a href="analyses.html#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="fu">correlate</span>(DBase) <span class="sc">%&gt;%</span> <span class="fu">kable</span>(<span class="at">caption =</span> <span class="st">&quot;Table de corrélation entre les variables quantitatives&quot;</span>)</span></code></pre></div>
 <table>
 <caption>
-<span id="tab:unnamed-chunk-41">Table 6.3: </span>Table de corrélation entre les variables quantitatives
+<span id="tab:unnamed-chunk-42">Table 6.3: </span>Table de corrélation entre les variables quantitatives
 </caption>
 <thead>
 <tr>
@@ -4387,92 +4394,9 @@ Taxe
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="analyses.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#plot_correlate(DBase)</span></span></code></pre></div>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="analyses.html#cb11-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">pdata.frame</span>(DBase,<span class="at">index =</span> <span class="fu">c</span>(<span class="st">&quot;Year&quot;</span>,<span class="st">&quot;Destination_Country&quot;</span>))</span></code></pre></div>
-<pre><code>## Warning in pdata.frame(DBase, index = c(&quot;Year&quot;, &quot;Destination_Country&quot;)): duplicate couples (id-time) in resulting pdata.frame
-##  to find out which, use, e.g., table(index(your_pdataframe), useNA = &quot;ifany&quot;)</code></pre>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="analyses.html#cb13-1" aria-hidden="true" tabindex="-1"></a>DF <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> Goods, <span class="at">values_from =</span> <span class="fu">c</span>(Taxe,Weight))</span>
-<span id="cb13-2"><a href="analyses.html#cb13-2" aria-hidden="true" tabindex="-1"></a>DF <span class="ot">&lt;-</span> DF <span class="sc">%&gt;%</span> <span class="fu">mutate_all</span>(<span class="sc">~</span><span class="fu">replace</span>(.,<span class="fu">is.na</span>(.),<span class="dv">0</span>))</span></code></pre></div>
-<pre><code>## Warning in `[&lt;-.factor`(`*tmp*`, list, value = 0): invalid factor level, NA
-## generated</code></pre>
-<pre><code>## Warning in `[&lt;-.factor`(`*tmp*`, list, value = 0): invalid factor level, NA
-## generated</code></pre>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="analyses.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(DF)</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="analyses.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co">#plot_correlate(DBase)</span></span></code></pre></div>
+
 </div>
-</div>
-<div id="agregation-des-données-avec-la-méthode-reduce" class="section level2" number="6.2">
-<h2><span class="header-section-number">6.2</span> Agregation des données avec la méthode reduce</h2>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="analyses.html#cb17-1" aria-hidden="true" tabindex="-1"></a>DF_aggreg <span class="ot">&lt;-</span> DF <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">Tax=</span><span class="fu">reduce</span>(<span class="fu">select</span>(.,<span class="fu">starts_with</span>(<span class="st">&quot;Taxe&quot;</span>)),<span class="st">`</span><span class="at">+</span><span class="st">`</span>))</span>
-<span id="cb17-2"><a href="analyses.html#cb17-2" aria-hidden="true" tabindex="-1"></a>DF_aggreg <span class="ot">&lt;-</span> DF_aggreg  <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">W=</span><span class="fu">reduce</span>(<span class="fu">select</span>(.,<span class="fu">starts_with</span>(<span class="st">&quot;Weight&quot;</span>)),<span class="st">`</span><span class="at">+</span><span class="st">`</span>))</span>
-<span id="cb17-3"><a href="analyses.html#cb17-3" aria-hidden="true" tabindex="-1"></a>DF_aggreg <span class="ot">&lt;-</span> DF_aggreg <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span><span class="fu">starts_with</span>(<span class="st">&quot;Taxe&quot;</span>),<span class="sc">-</span><span class="fu">starts_with</span>(<span class="st">&quot;Weight&quot;</span>))</span>
-<span id="cb17-4"><a href="analyses.html#cb17-4" aria-hidden="true" tabindex="-1"></a>DF_aggreg <span class="ot">&lt;-</span> DF_aggreg <span class="sc">%&gt;%</span> </span>
-<span id="cb17-5"><a href="analyses.html#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="st">&quot;Taxes&quot;</span><span class="ot">=</span><span class="st">&quot;Tax&quot;</span>,<span class="st">&quot;Weight&quot;</span><span class="ot">=</span><span class="st">&quot;W&quot;</span>)</span>
-<span id="cb17-6"><a href="analyses.html#cb17-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-7"><a href="analyses.html#cb17-7" aria-hidden="true" tabindex="-1"></a>p_DF_aggreg <span class="ot">&lt;-</span> DF_aggreg <span class="sc">%&gt;%</span> <span class="fu">pdata.frame</span>(<span class="at">index =</span> <span class="fu">c</span>(<span class="st">&quot;Destination_Country&quot;</span>,<span class="st">&quot;Year&quot;</span>))</span></code></pre></div>
-</div>
-<div id="analyse-descriptive-des-varariales" class="section level2" number="6.3">
-<h2><span class="header-section-number">6.3</span> Analyse descriptive des Varariales</h2>
-<p>Conversion des données en modèle des panels des données</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="analyses.html#cb18-1" aria-hidden="true" tabindex="-1"></a>DBase<span class="sc">$</span>Destination_Country <span class="ot">&lt;-</span> DBase<span class="sc">$</span>Destination_Country <span class="sc">%&gt;%</span> <span class="fu">factor</span>()</span>
-<span id="cb18-2"><a href="analyses.html#cb18-2" aria-hidden="true" tabindex="-1"></a>DBase<span class="sc">$</span>Destination_Country <span class="sc">%&gt;%</span> <span class="fu">levels</span>()</span></code></pre></div>
-<pre><code>##  [1] &quot;AFRIQUE DU SUD&quot;                          
-##  [2] &quot;ALGERIE&quot;                                 
-##  [3] &quot;ALLEMAGNE&quot;                               
-##  [4] &quot;AMERIQUE LATINE&quot;                         
-##  [5] &quot;GRANDE BRATAGNE&quot;                         
-##  [6] &quot;ANGOLA&quot;                                  
-##  [7] &quot;ARABIE&quot;                                  
-##  [8] &quot;ASIE&quot;                                    
-##  [9] &quot;AUSTRALIE&quot;                               
-## [10] &quot;BELGIQUE&quot;                                
-## [11] &quot;BURUNDI&quot;                                 
-## [12] &quot;CANADA&quot;                                  
-## [13] &quot;CHINE&quot;                                   
-## [14] &quot;CHYPRE&quot;                                  
-## [15] &quot;CONGO BRAZA&quot;                             
-## [16] &quot;REP TCHEQUE&quot;                             
-## [17] &quot;NA&quot;                                      
-## [18] &quot;EMIRATES ARABES UNIES&quot;                   
-## [19] &quot;ESPAGNE&quot;                                 
-## [20] &quot;FRANCE&quot;                                  
-## [21] &quot;GABON&quot;                                   
-## [22] &quot;GRECE&quot;                                   
-## [23] &quot;HONG KONG&quot;                               
-## [24] &quot;ILE MAURICE&quot;                             
-## [25] &quot;INDE&quot;                                    
-## [26] &quot;ITALIE&quot;                                  
-## [27] &quot;JAPON&quot;                                   
-## [28] &quot;KENYA&quot;                                   
-## [29] &quot;KP - Corée, République Populaire démocra&quot;
-## [30] &quot;LUXEMBOURG&quot;                              
-## [31] &quot;MALAISIE&quot;                                
-## [32] &quot;MAROC&quot;                                   
-## [33] &quot;NERLAND&quot;                                 
-## [34] &quot;PAYS BAS&quot;                                
-## [35] &quot;NIGERIA&quot;                                 
-## [36] &quot;NOUVELLE ZELANDE&quot;                        
-## [37] &quot;OUGANDA&quot;                                 
-## [38] &quot;PANAMA&quot;                                  
-## [39] &quot;PHILLIPINE&quot;                              
-## [40] &quot;POLOGNE&quot;                                 
-## [41] &quot;PORTUGAL&quot;                                
-## [42] &quot;ROYAUME UNI&quot;                             
-## [43] &quot;RDC&quot;                                     
-## [44] &quot;USA&quot;                                     
-## [45] &quot;RWANDA&quot;                                  
-## [46] &quot;SINGAPOUR&quot;                               
-## [47] &quot;SUISSE&quot;                                  
-## [48] &quot;SENEGAL&quot;                                 
-## [49] &quot;SOMALIE&quot;                                 
-## [50] &quot;SOUDAN&quot;                                  
-## [51] &quot;SUD SOUDAN&quot;                              
-## [52] &quot;SUEDE&quot;                                   
-## [53] &quot;Swaziland&quot;                               
-## [54] &quot;TANZANIE&quot;                                
-## [55] &quot;TCHAD&quot;                                   
-## [56] &quot;THAILANDE&quot;                               
-## [57] &quot;UNION EUROPEENNE&quot;                        
-## [58] &quot;ZAMBIE&quot;</code></pre>
 </div>
 </div>
             </section>
@@ -4481,7 +4405,7 @@ Taxe
         </div>
       </div>
 <a href="methods.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="modele-poooling.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="modele-avec-les-pays-comme-individus.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

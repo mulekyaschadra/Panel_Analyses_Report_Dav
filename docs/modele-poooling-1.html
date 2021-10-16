@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Panel Analyses Report</title>
+  <title>Chapter 9 Modele poooling | Panel Analyses Report</title>
   <meta name="description" content="dans ce livre nous produisons le rapport complet d’analyses du panel des taxes des pays Africains." />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Panel Analyses Report" />
+  <meta property="og:title" content="Chapter 9 Modele poooling | Panel Analyses Report" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Panel Analyses Report" />
+  <meta name="twitter:title" content="Chapter 9 Modele poooling | Panel Analyses Report" />
   
   <meta name="twitter:description" content="dans ce livre nous produisons le rapport complet d’analyses du panel des taxes des pays Africains." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-<link rel="next" href="the-one-way-error-component-regression-model.html"/>
+<link rel="prev" href="modele-poooling.html"/>
+<link rel="next" href="references-1.html"/>
 <script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -181,14 +181,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="7.1" data-path="modele-avec-les-pays-comme-individus.html"><a href="modele-avec-les-pays-comme-individus.html#agregation-des-données-avec-la-méthode-reduce"><i class="fa fa-check"></i><b>7.1</b> Agregation des données avec la méthode reduce</a></li>
 <li class="chapter" data-level="7.2" data-path="modele-avec-les-pays-comme-individus.html"><a href="modele-avec-les-pays-comme-individus.html#analyse-descriptive-des-varariales"><i class="fa fa-check"></i><b>7.2</b> Analyse descriptive des Varariales</a></li>
-<li class="chapter" data-level="7.3" data-path="modele-avec-les-pays-comme-individus.html"><a href="modele-avec-les-pays-comme-individus.html#overall-variations"><i class="fa fa-check"></i><b>7.3</b> Overall Variations</a></li>
-<li class="chapter" data-level="7.4" data-path="modele-avec-les-pays-comme-individus.html"><a href="modele-avec-les-pays-comme-individus.html#between-variations"><i class="fa fa-check"></i><b>7.4</b> Between Variations</a></li>
-<li class="chapter" data-level="7.5" data-path="modele-avec-les-pays-comme-individus.html"><a href="modele-avec-les-pays-comme-individus.html#within-variations"><i class="fa fa-check"></i><b>7.5</b> Within variations</a></li>
-<li class="chapter" data-level="7.6" data-path="modele-avec-les-pays-comme-individus.html"><a href="modele-avec-les-pays-comme-individus.html#modélisation"><i class="fa fa-check"></i><b>7.6</b> Modélisation</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="modèle-avec-les-marchandises-comme-individus.html"><a href="modèle-avec-les-marchandises-comme-individus.html"><i class="fa fa-check"></i><b>8</b> Modèle avec les marchandises comme individus</a></li>
+<li class="chapter" data-level="8" data-path="modele-poooling.html"><a href="modele-poooling.html"><i class="fa fa-check"></i><b>8</b> Modele poooling</a></li>
+<li class="chapter" data-level="9" data-path="modele-poooling-1.html"><a href="modele-poooling-1.html"><i class="fa fa-check"></i><b>9</b> Modele poooling</a></li>
 <li class="chapter" data-level="" data-path="references-1.html"><a href="references-1.html"><i class="fa fa-check"></i>References</a></li>
-<li class="chapter" data-level="9" data-path="final-words.html"><a href="final-words.html"><i class="fa fa-check"></i><b>9</b> Final Words</a></li>
+<li class="chapter" data-level="10" data-path="final-words.html"><a href="final-words.html"><i class="fa fa-check"></i><b>10</b> Final Words</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -209,27 +206,85 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Panel Analyses Report</h1>
-<p class="author"><em>David BYAMUNGU</em></p>
-<p class="date"><em>2021-10-16</em></p>
-</div>
-<div id="intro" class="section level1" number="1">
-<h1><span class="header-section-number">Chapter 1</span> Introduction</h1>
-<p>Dans ce document nous cherchons à modéliser les taxes perçues dans différents pays , formant un panel dont la période est 10 ans.
-Ainsi, nous expliquerons la variable taxe par:</p>
-<ol style="list-style-type: decimal">
-<li>Le poids des Marchandises</li>
-<li>La qualité des Marchandises</li>
-</ol>
-<p>Le but est d’arbitrer entre:</p>
-<ol style="list-style-type: decimal">
-<li>le modèle <em>pooling</em></li>
-<li>le <em>modele à éffet fixe</em> et</li>
-<li>le <em>modèle à éffet aléatoire</em></li>
-</ol>
-<p>et en fin produire un <code>modèle dynamique</code> permettant d’expliquer la variation du taxe au cours du temps, avec comme variable dépendante additionnelle le taxe décalé</p>
-<p>Nous expliquons Notre méthodologie dans la partie suivante.</p>
+<div id="modele-poooling-1" class="section level1" number="9">
+<h1><span class="header-section-number">Chapter 9</span> Modele poooling</h1>
+<p>Modèle à polaire, considérant les deux éffets</p>
+<pre><code>## Pooling Model
+## 
+## Call:
+## plm(formula = Taxes ~ Weight, data = p_DF_aggreg, model = &quot;pooling&quot;)
+## 
+## Unbalanced Panel: n = 58, T = 1-10, N = 228
+## 
+## Residuals:
+##      Min.   1st Qu.    Median      Mean   3rd Qu.      Max. 
+## -76127299  -3525554    -38253         0    822609 135485918 
+## 
+## Coefficients:
+##                Estimate  Std. Error t-value Pr(&gt;|t|)    
+## (Intercept) -8.7251e+05  1.3302e+06 -0.6559   0.5125    
+## Weight       4.1859e+01  2.8796e+00 14.5367   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Total Sum of Squares:    1.37e+17
+## Residual Sum of Squares: 7.0803e+16
+## R-Squared:      0.48321
+## Adj. R-Squared: 0.48092
+## F-statistic: 211.315 on 1 and 226 DF, p-value: &lt; 2.22e-16</code></pre>
+<p>Modele à éffet aléatoire</p>
+<pre><code>## Oneway (individual) effect Within Model
+## 
+## Call:
+## plm(formula = Taxes ~ Weight, data = p_DF_aggreg, model = &quot;within&quot;)
+## 
+## Unbalanced Panel: n = 58, T = 1-10, N = 228
+## 
+## Residuals:
+##      Min.   1st Qu.    Median      Mean   3rd Qu.      Max. 
+## -69551626  -1715042         0         0   1537006 114103679 
+## 
+## Coefficients:
+##        Estimate Std. Error t-value  Pr(&gt;|t|)    
+## Weight  39.6087     3.8914  10.178 &lt; 2.2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Total Sum of Squares:    9.7404e+16
+## Residual Sum of Squares: 6.0386e+16
+## R-Squared:      0.38005
+## Adj. R-Squared: 0.16728
+## F-statistic: 103.601 on 1 and 169 DF, p-value: &lt; 2.22e-16</code></pre>
+<p>Le modèle à éffets aléatoire</p>
+<pre><code>## Oneway (individual) effect Between Model
+## 
+## Call:
+## plm(formula = Taxes ~ Weight, data = p_DF_aggreg, model = &quot;between&quot;)
+## 
+## Unbalanced Panel: n = 58, T = 1-10, N = 228
+## Observations used in estimation: 58
+## 
+## Residuals:
+##      Min.   1st Qu.    Median      Mean   3rd Qu.      Max. 
+## -17710356  -1366186    300948         0    907729  22825793 
+## 
+## Coefficients:
+##                Estimate  Std. Error t-value  Pr(&gt;|t|)    
+## (Intercept) -9.2150e+05  9.0924e+05 -1.0135    0.3152    
+## Weight       3.8816e+01  3.8643e+00 10.0449 3.886e-14 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Total Sum of Squares:    5.1437e+15
+## Residual Sum of Squares: 1.8358e+15
+## R-Squared:      0.64309
+## Adj. R-Squared: 0.63671
+## F-statistic: 100.9 on 1 and 56 DF, p-value: 3.886e-14</code></pre>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="modele-poooling-1.html#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">phtest</span>(between_model1,within_model1) <span class="sc">%&gt;%</span> <span class="fu">tidy</span>()</span></code></pre></div>
+<pre><code>## # A tibble: 1 x 5
+##   statistic p.value parameter method       alternative              
+##       &lt;dbl&gt;   &lt;dbl&gt;     &lt;int&gt; &lt;chr&gt;        &lt;chr&gt;                    
+## 1      9.03 0.00265         1 Hausman Test one model is inconsistent</code></pre>
 
 </div>
             </section>
@@ -237,8 +292,8 @@ Ainsi, nous expliquerons la variable taxe par:</p>
           </div>
         </div>
       </div>
-
-<a href="the-one-way-error-component-regression-model.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="modele-poooling.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
