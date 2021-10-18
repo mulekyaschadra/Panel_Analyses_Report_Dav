@@ -8,7 +8,8 @@ library(broom)
 
 
 ```{r setup1, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(warning =  FALSE)
 ```
 
 ```{r}

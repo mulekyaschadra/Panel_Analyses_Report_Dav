@@ -1,3 +1,20 @@
-# Final Words
+# Conclusion
 
-We have finished a nice book.
+Dans ce document nous venons de modeliser les taxes perçues dans les différents pays sur les marchandises à leurs destinations. Le modèle a pour variable exogène les **taxes** et comme variable endogène **les poids des marchandises**  . 
+
+Nous avions manipulé ces données de manière à en extraire deux bases pour les données de panel: 
+
+- une base des données dans laquelle les individus sont les pays. 
+*dans cette base, nous avions aggrégé les poids des tous les marchandises en une seul variable `weight` en faisant leur somme.il en est de même pour les variables taxes*
+- une base des données dans laquelle les individus sont les marchandises.
+*dans cette base, nous avions utlisé un format large de notre dataframe. nous avions agrégé la variable poids et la variable taille en faisant la sommes, pour chaque ligne, pour tous les pays.
+
+La modélisation a donc consister à estimer : 
+
+- Le modèle **pooling**
+- Le modèle **within**
+- le modèle **between**
+
+Pour chaque estimation, nous avions fait les test de spécification du modèle pour identifier , le quel de ces trois modèles sus indiqués represente au mieux nos données. Nous avions possédé au test de **Langrade Multiplier**, et au test d'**Hausman**.
+
+

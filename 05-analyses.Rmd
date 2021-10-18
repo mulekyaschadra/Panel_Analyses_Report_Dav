@@ -27,6 +27,13 @@ library(gtsummary)
 ```
 
 
+```{r setup0}
+knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(warning =  FALSE)
+```
+
+
+
 ```{r message=FALSE,echo=FALSE,warning=FALSE}
 # import des données
 
@@ -35,7 +42,7 @@ taxe_df <- readxl::read_xlsx("DATA  ARRANGED PANEL 2.xlsx")
 attach(taxe_df)
 ```
 
-Apperçue globale des données 
+Aperçue globale des données 
 
 ```{r echo=FALSE}
 head(taxe_df,10) %>% kable(caption = "Echantillon de la base des données")
@@ -43,22 +50,19 @@ head(taxe_df,10) %>% kable(caption = "Echantillon de la base des données")
 Voici la structure de la base des données
 ```{r echo=FALSE}
 taxe_df <- taxe_df %>% mutate(Goods =factor(Goods))
-glimpse(taxe_df) 
+# glimpse(taxe_df) 
 # taxe_df %>% attach()
 ```
 
-Voici les modalités de la variabme `Goods` qui signifie 
-`Marchandises`
 
 ```{r g, echo=FALSE}
-levels(taxe_df$Goods) %>% kbl(caption = 'Modalités de la variable Goods à l\'importation des donnees',booktabs = TRUE,longtable = TRUE) 
-modalites_goods <- length(levels(taxe_df$Goods))
+# levels(taxe_df$Goods) %>% kbl(caption = 'Modalités de la variable Goods à l\'importation des donnees',booktabs = TRUE,longtable = TRUE) 
+ modalites_goods <- length(levels(taxe_df$Goods))
 ```
 
-La variables **Goods ** a `r modalites_goods` modalités
+La variables **Goods ** a `r modalites_goods` modalités. En observant de près les modalités, on trouve que ces modalités sont rédondantes.Pour cela, il faudra une récodification des cettes variales. 
 
-
-Faison la cactérisation des niveaux des marchandises dont l'encodage fait défaut
+Ainsi,  donc les modalités representant la même marchandise seront groupées ensemble , pour des raisons de simplification.
 
 ```{r include=FALSE,echo=FALSE}
 # taxe_df <- taxe_df %>% select(-`Goods <- factor(Goods)`)
@@ -149,11 +153,6 @@ taxe_df$Goods <- taxe_df$Goods %>% fct_recode("Peaux des betes"="PEAUX",
                "PARTIES ET ACC MACHINE ET VEHICULE"="PARTIES RECONNAISSABLES DES MACHINES DES N°85.01 OU 85.02",
                "PARTIES ET ACC MACHINE ET VEHICULE"="Parties et accessoires")
 
-
-
-levels(taxe_df$Goods)
-
-
 ```
 
 
@@ -176,8 +175,6 @@ taxe_df$Goods <- taxe_df$Goods %>% fct_recode(
   "Machines et appareil"="Machines qui assurent au moins deux des fonctions suivantes impression,copie ou transm"
   
 )
-
-levels(taxe_df$Goods)
 
 ```
 
@@ -616,20 +613,19 @@ taxe_df$Goods <- taxe_df$Goods %>% fct_recode(
 
 levels(taxe_df$Goods)
 ```
+
 ```{r echo=FALSE,include=FALSE}
 taxe_df$Goods <- stringr::str_to_lower(taxe_df$Goods)
-
-```
-
-```{r}
 class(taxe_df$Goods)
 ```
+
+
 
 ```{r echo=FALSE,include=FALSE}
 glimpse(taxe_df)
 ```
 
-Usage de tm et Stringr
+Usage de tm et Stringr pour manipuler les chaines des caractères
 
 ```{r echo=FALSE,include=FALSE}
 taxe_df$Goods <- tm::removeNumbers(taxe_df$Goods)
@@ -642,11 +638,6 @@ taxe_df$Goods <- factor(taxe_df$Goods)
 
 ```
 
-
-
-```{r echo=FALSE,include=FALSE}
-levels(taxe_df$Goods)
-```
 
 
 ```{r echo=FALSE,include=FALSE}
@@ -706,12 +697,7 @@ taxe_df$Goods <- taxe_df$Goods %>% fct_recode(
 "produits beaute"="produits  beaute",
 "mineraiset leurs concentres"="mineraisdetain et leurs concentré",
 "minerais  tantale"="minérais tantale"
-
-
-
 )
-
-levels(taxe_df$Goods)
 
 taxe_df$Goods <- taxe_df$Goods %>% fct_recode(
   "accumulateurs electriques"="accumulateurselectriques",
@@ -811,8 +797,6 @@ taxe_df$Goods <- taxe_df$Goods %>% fct_recode(
   "huilesvegetales"="huile palme brute"
 )
 
-levels(taxe_df$Goods)
-
 taxe_df$Goods <- taxe_df$Goods %>%  fct_recode(
   "tissusimprimés"="tissus  coton imprimé gm et",
   "art  menage"="vaisselleet art  tables et  cuisine en mat plastiques",
@@ -824,11 +808,6 @@ taxe_df$Goods <- taxe_df$Goods %>%  fct_recode(
   'farines'="farines mais" ,
   "accessoires véhicules"="et accessoires  vehicules des n a " ,
   "accessoires véhicules"="charset automobiles blindees  combat et")
-
-
-levels(taxe_df$Goods)
-
-
 
 ```
 
@@ -890,10 +869,8 @@ taxe_df$Goods <- taxe_df$Goods %>% fct_recode(
   "huilesvegetales"="huile palme brute",
   "engrais"="engraisdu chapitre en tablettes ou emballages nexcedant pas  kg brut" ,
   "pierres"="ecaussineet  pierres calcaires  taille ou constructionalbatre"
-  
+ )
 
-
-)
 levels(taxe_df$Goods)
 
 taxe_df$Goods <- taxe_df$Goods %>% fct_recode(
@@ -924,8 +901,6 @@ taxe_df$Goods <- taxe_df$Goods %>% fct_recode(
   "machines et appareils"="machines",
   "camion" ="ivecotrakker d occas")
 
-
-levels(taxe_df$Goods)
 taxe_df$Goods <- taxe_df$Goods %>% fct_recode(
   "papiersndnca" ="papiers non denommés ni compris ailleurs",
   "Machines et appareils domestique"="limesrapeset outils similaires",
@@ -933,7 +908,7 @@ taxe_df$Goods <- taxe_df$Goods %>% fct_recode(
   "Machines et appareils domestique"="chaudières",
   "Machines et appareils domestique"="conditionneurdair  mur puis  ou "
 )
-levels(taxe_df$Goods)
+
 ```
 
 
@@ -964,12 +939,6 @@ taxe_df$Goods <- taxe_df$Goods %>% fct_recode(
  "equipements sport"="artet materiel dathletisme"
  
 )
-
-levels(taxe_df$Goods)
-
-
-table(taxe_df$Goods)
-
 
 ```
 
@@ -1223,14 +1192,10 @@ taxe_df$Goods <- taxe_df$Goods %>% fct_recode(
   "Moteurs et accessoires Véhicules"="pneumatiques",
   "Moteurs et accessoires Véhicules et pneumatiques"="Moteurs et accessoires Véhicules")
 
-levels(taxe_df$Goods)
-
-
 taxe_df$Goods <- taxe_df$Goods %>% fct_recode(
   "Autres Marchandises"="trottinetteschukudu",
   "Générateurs,baterie et piles"  ="piles et batteries",
   "Générateurs,baterie et piles"  ="groupes electrogenes")
-levels(taxe_df$Goods)
 
 taxe_df$Goods <- taxe_df$Goods %>% fct_recode(
   "Article Menange et Campement"="art  menage",
@@ -1240,8 +1205,6 @@ taxe_df$Goods <- taxe_df$Goods %>% fct_recode(
   "boissons, bières et limonades"="bierres",
   "boissons, bières et limonades"="levuresvivantes",
   "Autres Marchandises"="filsdacetate" )
-
-freq(taxe_df$Goods)
 
 ```
 
@@ -1366,7 +1329,7 @@ taxe_df$`Country/destination` <- taxe_df$`Country/destination` %>% fct_recode(
 
 
 ```
-Dans la base des données il y a des entreprises que l'on a enregistré à la place des pays. ces genre des cas ont été traité par remplacement avec le *NA* pour **Not Available** et ces dernier on été élargués de la base des données, car nous avions jugé qu' aucune méthode d'imputation n'est applicable pour ce genre de situation. Nous avions fait la même chose pour les variables tels que **Les marchandises**.
+Dans la base des données il y a des entreprises que l'on a enregistré à la place des pays. ces genre des cas ont été traité par remplacement avec le *NA* pour **Not Available** et ces dernier on été élagués de la base des données, car nous avions jugé qu' aucune méthode d'imputation n'est applicable pour ce genre de situation. Nous avions fait la même chose pour les variables telles que **Les marchandises**.
 
 
 ### Nouvelle base de données pour les analyses
@@ -1382,12 +1345,9 @@ DBase <- DBase  %>%
   group_by(Year,Destination_Country,Goods) %>% 
   summarise(Weight=sum(Weight),Taxe=sum(Taxe),.groups = "drop") %>% drop_na() 
 
-correlate(DBase) %>% kable(caption = "Table de corrélation entre les variables quantitatives")
+correlate(DBase) %>% kable(caption = "Table de corrélation entre les variables quantitatives",format = "latex")
 #plot_correlate(DBase)
 
 ```
-
-
-
 
 

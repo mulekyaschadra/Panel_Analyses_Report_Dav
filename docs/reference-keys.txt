@@ -1,6 +1,4 @@
 tab:unnamed-chunk-3
-tab:g
-tab:unnamed-chunk-42
 intro
 the-one-way-error-component-regression-model
 introduction
@@ -31,4 +29,4 @@ between-variations
 within-variations
 modélisation
 modèle-avec-les-marchandises-comme-individus
-final-words
+conclusion

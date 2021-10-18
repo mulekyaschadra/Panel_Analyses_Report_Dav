@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 5 Methods | Panel Analyses Report</title>
+  <title>Chapter 9 Conclusion | Panel Analyses Report</title>
   <meta name="description" content="dans ce livre nous produisons le rapport complet d’analyses du panel des taxes des pays Africains." />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 5 Methods | Panel Analyses Report" />
+  <meta property="og:title" content="Chapter 9 Conclusion | Panel Analyses Report" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 5 Methods | Panel Analyses Report" />
+  <meta name="twitter:title" content="Chapter 9 Conclusion | Panel Analyses Report" />
   
   <meta name="twitter:description" content="dans ce livre nous produisons le rapport complet d’analyses du panel des taxes des pays Africains." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="test-of-hypotheses-with-panel-data.html"/>
-<link rel="next" href="analyses.html"/>
+<link rel="prev" href="references-1.html"/>
+
 <script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -207,43 +207,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="methods" class="section level1" number="5">
-<h1><span class="header-section-number">Chapter 5</span> Methods</h1>
-<p>We describe our methods in this chapter.</p>
-<p>Les données de panel, ou données longitudinales possèdent les deux dimensions précédentes (individuelle et temporelle). En effet, il est souvent intéressant d’identifier l’effet associé à chaque individu (un effet qui ne varie pas dans le temps, mais qui varie d’un individu à un autre). Cet effet peut être fixe ou aléatoire.</p>
-<p>Par conséquent, le modèle en données de panel s’écrit comme un modèle à double indice qui prend la forme suivante :</p>
-<p><span class="math display">\[ Y_{it}= \alpha_i\sum_{k}\beta_{ki}x_{ki}+ \epsilon_{it} \]</span></p>
-<p>avec
-<span class="math display">\[ i:1 \rightarrow N \]</span><br />
-et
-<span class="math display">\[ t:1 \rightarrow T \]</span></p>
-<p>La double dimension qu’offrent les données de panel est un atout majeur. En effet, si les données en séries temporelles permettent d’étudier l’évolution des relations dans le temps, elles ne permettent pas de contrôler l’hétérogénéité entre les individus. A l’inverse, les données en coupes transversales permettent d’analyser l’hétérogénéité entre les individus mais elles ne peuvent pas tenir compte des comportements dynamiques, puisque la dimension temporelle est exclue du champ d’analyse.</p>
-<p>Ainsi, en utilisant des données de panel, on pourra exploiter les deux sources de variation de l’information statistique :
-- Temporelle où variabilité intra-individuelle (within)
-- et individuelle ou variabilité inter-individuelle (Between).</p>
+<div id="conclusion" class="section level1" number="9">
+<h1><span class="header-section-number">Chapter 9</span> Conclusion</h1>
+<p>Dans ce document nous venons de modeliser les taxes perçues dans les différents pays sur les marchandises à leurs destinations. Le modèle a pour variable exogène les <strong>taxes</strong> et comme variable endogène <strong>les poids des marchandises</strong> .</p>
+<p>Nous avions manipulé ces données de manière à en extraire deux bases pour les données de panel:</p>
+<ul>
+<li>une base des données dans laquelle les individus sont les pays.
+<em>dans cette base, nous avions aggrégé les poids des tous les marchandises en une seul variable <code>weight</code> en faisant leur somme.il en est de même pour les variables taxes</em></li>
+<li>une base des données dans laquelle les individus sont les marchandises.
+*dans cette base, nous avions utlisé un format large de notre dataframe. nous avions agrégé la variable poids et la variable taille en faisant la sommes, pour chaque ligne, pour tous les pays.</li>
+</ul>
+<p>La modélisation a donc consister à estimer :</p>
+<ul>
+<li>Le modèle <strong>pooling</strong></li>
+<li>Le modèle <strong>within</strong></li>
+<li>le modèle <strong>between</strong></li>
+</ul>
+<p>Pour chaque estimation, nous avions fait les test de spécification du modèle pour identifier , le quel de ces trois modèles sus indiqués represente au mieux nos données. Nous avions possédé au test de <strong>Langrade Multiplier</strong>, et au test d’<strong>Hausman</strong>.</p>
 
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="methods.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
-<pre><code>## -- Attaching packages --------------------------------------- tidyverse 1.3.1 --</code></pre>
-<pre><code>## v ggplot2 3.3.5     v purrr   0.3.4
-## v tibble  3.1.4     v dplyr   1.0.7
-## v tidyr   1.1.3     v stringr 1.4.0
-## v readr   2.0.1     v forcats 0.5.1</code></pre>
-<pre><code>## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
-## x dplyr::filter() masks stats::filter()
-## x dplyr::lag()    masks stats::lag()</code></pre>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="methods.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stargazer)</span></code></pre></div>
-<pre><code>## 
-## Please cite as:</code></pre>
-<pre><code>##  Hlavac, Marek (2018). stargazer: Well-Formatted Regression and Summary Statistics Tables.</code></pre>
-<pre><code>##  R package version 5.2.2. https://CRAN.R-project.org/package=stargazer</code></pre>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="test-of-hypotheses-with-panel-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="analyses.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="references-1.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

@@ -24,7 +24,7 @@
 <meta name="author" content="David BYAMUNGU" />
 
 
-<meta name="date" content="2021-10-16" />
+<meta name="date" content="2021-10-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -53,8 +53,6 @@
 
 <link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
-<script src="libs/kePrint-0.0.1/kePrint.js"></script>
-<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
 
 <style type="text/css">
@@ -188,7 +186,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="8" data-path="modèle-avec-les-marchandises-comme-individus.html"><a href="modèle-avec-les-marchandises-comme-individus.html"><i class="fa fa-check"></i><b>8</b> Modèle avec les marchandises comme individus</a></li>
 <li class="chapter" data-level="" data-path="references-1.html"><a href="references-1.html"><i class="fa fa-check"></i>References</a></li>
-<li class="chapter" data-level="9" data-path="final-words.html"><a href="final-words.html"><i class="fa fa-check"></i><b>9</b> Final Words</a></li>
+<li class="chapter" data-level="9" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i><b>9</b> Conclusion</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -211,20 +209,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="modèle-avec-les-marchandises-comme-individus" class="section level1" number="8">
 <h1><span class="header-section-number">Chapter 8</span> Modèle avec les marchandises comme individus</h1>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="modèle-avec-les-marchandises-comme-individus.html#cb35-1" aria-hidden="true" tabindex="-1"></a>Gbase <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> Destination_Country, <span class="at">values_from =</span> <span class="fu">c</span>(Taxe,Weight))</span>
-<span id="cb35-2"><a href="modèle-avec-les-marchandises-comme-individus.html#cb35-2" aria-hidden="true" tabindex="-1"></a>Gbase <span class="ot">&lt;-</span>  Gbase <span class="sc">%&gt;%</span>  <span class="fu">mutate_all</span>(<span class="sc">~</span><span class="fu">replace</span>(.,<span class="fu">is.na</span>(.),<span class="dv">0</span>))</span></code></pre></div>
-<pre><code>## Warning in `[&lt;-.factor`(`*tmp*`, list, value = 0): invalid factor level, NA
-## generated
-
-## Warning in `[&lt;-.factor`(`*tmp*`, list, value = 0): invalid factor level, NA
-## generated</code></pre>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="modèle-avec-les-marchandises-comme-individus.html#cb37-1" aria-hidden="true" tabindex="-1"></a>Gbase  <span class="ot">&lt;-</span> Gbase  <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">Tax=</span><span class="fu">reduce</span>(<span class="fu">select</span>(.,<span class="fu">starts_with</span>(<span class="st">&quot;Taxe&quot;</span>)),<span class="st">`</span><span class="at">+</span><span class="st">`</span>))</span>
-<span id="cb37-2"><a href="modèle-avec-les-marchandises-comme-individus.html#cb37-2" aria-hidden="true" tabindex="-1"></a>Gbase  <span class="ot">&lt;-</span> Gbase  <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">W=</span><span class="fu">reduce</span>(<span class="fu">select</span>(.,<span class="fu">starts_with</span>(<span class="st">&quot;Weight&quot;</span>)),<span class="st">`</span><span class="at">+</span><span class="st">`</span>))</span>
-<span id="cb37-3"><a href="modèle-avec-les-marchandises-comme-individus.html#cb37-3" aria-hidden="true" tabindex="-1"></a>Gbase <span class="ot">&lt;-</span> Gbase <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span><span class="fu">starts_with</span>(<span class="st">&quot;Taxe&quot;</span>),<span class="sc">-</span><span class="fu">starts_with</span>(<span class="st">&quot;Weight&quot;</span>))</span>
-<span id="cb37-4"><a href="modèle-avec-les-marchandises-comme-individus.html#cb37-4" aria-hidden="true" tabindex="-1"></a>Gbase <span class="ot">&lt;-</span> Gbase <span class="sc">%&gt;%</span> </span>
-<span id="cb37-5"><a href="modèle-avec-les-marchandises-comme-individus.html#cb37-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="st">&quot;Taxes&quot;</span><span class="ot">=</span><span class="st">&quot;Tax&quot;</span>,<span class="st">&quot;Weight&quot;</span><span class="ot">=</span><span class="st">&quot;W&quot;</span>)</span>
-<span id="cb37-6"><a href="modèle-avec-les-marchandises-comme-individus.html#cb37-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-7"><a href="modèle-avec-les-marchandises-comme-individus.html#cb37-7" aria-hidden="true" tabindex="-1"></a>Gbase <span class="ot">&lt;-</span> Gbase <span class="sc">%&gt;%</span> <span class="fu">pdata.frame</span>(<span class="at">index =</span> <span class="fu">c</span>(<span class="st">&quot;Goods&quot;</span>,<span class="st">&quot;Year&quot;</span>))</span></code></pre></div>
 <p>Modèle à polaire, considérant les deux effets</p>
 <pre><code>## Pooling Model
 ## 
@@ -305,7 +289,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 Le coefficient associé au poids étant significatif, on trouve que: si une marchandise dépassait en poids une autre de 1Kg, les taxes perçues pour cette marchandises dépasseraient cette autre de 38,8 dollars.</p>
 <p>Condidérant le R-Carré ajutsté, Ce modèle explique à 63,7% les variations des taxes en fonction des poids des marchandises.</p>
 <p>Pour arbitrer le choix entre le modèle à effet fixe et le modèle à éffet aléatoire, nous allons utiliser le test d’Hausman qui consite à comprer les coefficients de ces deux modèles</p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="modèle-avec-les-marchandises-comme-individus.html#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">phtest</span>(between_model1,within_model1) <span class="sc">%&gt;%</span> <span class="fu">tidy</span>()</span></code></pre></div>
 <pre><code>## # A tibble: 1 x 5
 ##   statistic p.value parameter method       alternative              
 ##       &lt;dbl&gt;   &lt;dbl&gt;     &lt;int&gt; &lt;chr&gt;        &lt;chr&gt;                    
