@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2021/W32TeX) (preloaded format=xelatex 2021.10.18)  18 OCT 2021 13:38
+This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2021/W32TeX) (preloaded format=xelatex 2021.10.18)  18 OCT 2021 14:45
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1302,16 +1302,16 @@ n and Summary Statistics Tables.[]
 Chapter 6.
 [35
 
-] [36] [37] [38]
-Chapter 7.
-[39
+] [36] [37] [38
 
 ]
+Chapter 7.
+[39]
 Underfull \vbox (badness 4726) has occurred while \output is active []
 
 [40] [41] [42]
 
-LaTeX Warning: Float too large for page by 136.39618pt on input line 1640.
+LaTeX Warning: Float too large for page by 136.39618pt on input line 1544.
 
 [43] [44] [45] [46]
 Chapter 8.
@@ -1327,10 +1327,10 @@ Package rerunfilecheck Info: File `panel-analyses-book.out' has not changed.
 (rerunfilecheck)             Checksum: 21077749AD09A0F36DE57C7BD01BB873;4730.
  ) 
 Here is how much of TeX's memory you used:
- 18883 strings out of 478492
- 331621 string characters out of 5859604
- 845262 words of memory out of 5000000
- 38876 multiletter control sequences out of 15000+600000
+ 18882 strings out of 478492
+ 331574 string characters out of 5859604
+ 845185 words of memory out of 5000000
+ 38875 multiletter control sequences out of 15000+600000
  410019 words of font info for 85 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  87i,10n,120p,2813b,481s stack positions out of 5000i,500n,10000p,200000b,80000s

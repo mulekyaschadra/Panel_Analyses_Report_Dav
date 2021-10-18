@@ -1123,107 +1123,11 @@ Usage de tm et Stringr pour manipuler les chaines des caractères
 ## [28] "peauxdes betes"
 \end{verbatim}
 
-\begin{verbatim}
-##                                              n    % val%
-## Autres Marchandises                        160  4.8  4.8
-## Bois                                       140  4.2  4.2
-## Machines et appareils domestique            30  0.9  0.9
-## Médicaments et plantes médécinales          34  1.0  1.0
-## Poissaons, viande et oeufs                  12  0.4  0.4
-## Matériels de construction                   27  0.8  0.8
-## Materiel Informatique et Electroniques      32  1.0  1.0
-## Véhicules,camions,Motos et acc             113  3.4  3.4
-## Vetements,tissus et acc et chaussure       100  3.0  3.0
-## boissons, bières et limonades               15  0.5  0.5
-## Machine us Ingsutriel                       54  1.6  1.6
-## Article Menange et Campement                37  1.1  1.1
-## sacs, sachetsn emballages                    6  0.2  0.2
-## Papiers et fournitures de bureaux           24  0.7  0.7
-## Produits alimentaires,prep et huiles        68  2.1  2.1
-## caféarabica                               1303 39.4 39.5
-## Minérais et dérivés                       1053 31.8 31.9
-## engins et tracteurs                         18  0.5  0.5
-## Cigarette et papier cigarettes et tabac     14  0.4  0.4
-## constructionprefabriquees                    7  0.2  0.2
-## cadreset conteneurs                          1  0.0  0.0
-## Pièces de Réchange appareils                 6  0.2  0.2
-## Générateurs,baterie et piles                15  0.5  0.5
-## etuis en plastique ou textile                1  0.0  0.0
-## Pétrole et dérivées et huile de graissage    4  0.1  0.1
-## boissons, bières,liqueurs et limonades       2  0.1  0.1
-## produits beaute                             10  0.3  0.3
-## peauxdes betes                              14  0.4  0.4
-## NA                                          10  0.3   NA
-\end{verbatim}
-
 netoyyage de la variable country\_desti qui est un facteur dans le quel nous retrouvons les niveaux rédondants (sur l'identifiant des pays)
-
-\begin{verbatim}
-##  [1] "AFRIQUE DU SUD"                          
-##  [2] "ALGERIE"                                 
-##  [3] "ALLEMAGNE"                               
-##  [4] "AMERIQUE LATINE"                         
-##  [5] "GRANDE BRATAGNE"                         
-##  [6] "ANGOLA"                                  
-##  [7] "ARABIE"                                  
-##  [8] "ASIE"                                    
-##  [9] "AUSTRALIE"                               
-## [10] "BELGIQUE"                                
-## [11] "BURUNDI"                                 
-## [12] "CANADA"                                  
-## [13] "CHINE"                                   
-## [14] "CHYPRE"                                  
-## [15] "CONGO BRAZA"                             
-## [16] "REP TCHEQUE"                             
-## [17] "NA"                                      
-## [18] "EMIRATES ARABES UNIES"                   
-## [19] "ESPAGNE"                                 
-## [20] "FRANCE"                                  
-## [21] "GABON"                                   
-## [22] "GRECE"                                   
-## [23] "HONG KONG"                               
-## [24] "ILE MAURICE"                             
-## [25] "INDE"                                    
-## [26] "ITALIE"                                  
-## [27] "JAPON"                                   
-## [28] "KENYA"                                   
-## [29] "KP - Corée, République Populaire démocra"
-## [30] "LIBAN"                                   
-## [31] "LUXEMBOURG"                              
-## [32] "MALAISIE"                                
-## [33] "MAROC"                                   
-## [34] "NERLAND"                                 
-## [35] "PAYS BAS"                                
-## [36] "NIGERIA"                                 
-## [37] "NOUVELLE ZELANDE"                        
-## [38] "OUGANDA"                                 
-## [39] "PANAMA"                                  
-## [40] "PHILLIPINE"                              
-## [41] "POLOGNE"                                 
-## [42] "PORTUGAL"                                
-## [43] "ROYAUME UNI"                             
-## [44] "RDC"                                     
-## [45] "USA"                                     
-## [46] "RWANDA"                                  
-## [47] "SINGAPOUR"                               
-## [48] "SUISSE"                                  
-## [49] "SENEGAL"                                 
-## [50] "SOMALIE"                                 
-## [51] "SOUDAN"                                  
-## [52] "SUD SOUDAN"                              
-## [53] "SUEDE"                                   
-## [54] "Swaziland"                               
-## [55] "TANZANIE"                                
-## [56] "TCHAD"                                   
-## [57] "THAILANDE"                               
-## [58] "UNION EUROPEENNE"                        
-## [59] "ZAMBIE"
-\end{verbatim}
 
 Dans la base des données il y a des entreprises que l'on a enregistré à la place des pays. ces genre des cas ont été traité par remplacement avec le \emph{NA} pour \textbf{Not Available} et ces dernier on été élagués de la base des données, car nous avions jugé qu' aucune méthode d'imputation n'est applicable pour ce genre de situation. Nous avions fait la même chose pour les variables telles que \textbf{Les marchandises}.
 
-\hypertarget{nouvelle-base-de-donnuxe9es-pour-les-analyses}{%
-\subsection{Nouvelle base de données pour les analyses}\label{nouvelle-base-de-donnuxe9es-pour-les-analyses}}
+\textbf{Nouvelle base de données pour les analyses}
 
 Regroupement des variables pour la synthèse pour rendre la base des données simple à exploiter, éliminer les NA dans les observations telsque les pays et les valeurs pour les marchandises et les taxes.
 

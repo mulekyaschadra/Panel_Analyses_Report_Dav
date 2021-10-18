@@ -20,7 +20,6 @@ hausmans-specification-test
 methods
 analyses
 netoyage-de-la-base-des-données
-nouvelle-base-de-données-pour-les-analyses
 modele-avec-les-pays-comme-individus
 agregation-des-données-avec-la-méthode-reduce
 analyse-descriptive-des-varariales

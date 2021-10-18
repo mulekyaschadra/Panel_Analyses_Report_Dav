@@ -1247,8 +1247,6 @@ taxe_df$Goods <- taxe_df$Goods %>% fct_recode(
   "Autres Marchandises"="equipements sport"
 )
 
-
-
 taxe_df$Goods <- taxe_df$Goods %>% fct_recode(
   "boissons, bières,liqueurs et limonades"="liqueurstitrant moins  ")
 taxe_df$Goods <- taxe_df$Goods %>% fct_recode(
@@ -1283,10 +1281,6 @@ taxe_df$Goods <- taxe_df$Goods %>% fct_recode(
   "Produits alimentaires,prep et huiles"="Produits alimentaires,céréales et huiles",
   "Produits alimentaires,prep et huiles"="Prép.Alimentaire,Sucres et épices")
 
-taxe_df$Goods <- taxe_df$Goods %>% fct_recode(
-  
-)
-
 
 ```
 
@@ -1294,13 +1288,12 @@ taxe_df$Goods <- taxe_df$Goods %>% fct_recode(
 
 ```{r echo=FALSE,include=TRUE,message=FALSE}
 levels(taxe_df$Goods)
-freq(taxe_df$Goods)
+# freq(taxe_df$Goods)
 ```
 
 netoyyage de la variable country_desti qui est un facteur dans le quel nous retrouvons les niveaux rédondants (sur l'identifiant des pays)
 
 ```{r echo=FALSE,include=TRUE,message=FALSE}
-
 taxe_df$`Country/destination` <- taxe_df$`Country/destination` %>% fct_recode(
    "TANZANIE"="TZ",
  "SUEDE"="SWEDEN",
@@ -1325,14 +1318,12 @@ taxe_df$`Country/destination` <- taxe_df$`Country/destination` %>% fct_recode(
   "NA"="TWIN TRADING" ,
   "Swaziland"="SUITZERLAND",
   "KP - Corée"="République Populaire démocra" )
- levels(taxe_df$`Country/destination`)
-
 
 ```
 Dans la base des données il y a des entreprises que l'on a enregistré à la place des pays. ces genre des cas ont été traité par remplacement avec le *NA* pour **Not Available** et ces dernier on été élagués de la base des données, car nous avions jugé qu' aucune méthode d'imputation n'est applicable pour ce genre de situation. Nous avions fait la même chose pour les variables telles que **Les marchandises**.
 
 
-### Nouvelle base de données pour les analyses
+**Nouvelle base de données pour les analyses**
 
 Regroupement des variables pour la synthèse  pour rendre la base des données simple à exploiter, éliminer les NA dans les observations telsque les pays et les valeurs pour les marchandises et les taxes.
 

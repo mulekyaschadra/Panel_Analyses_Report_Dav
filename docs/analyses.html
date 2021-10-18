@@ -170,10 +170,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5" data-path="methods.html"><a href="methods.html"><i class="fa fa-check"></i><b>5</b> Methods</a></li>
 <li class="chapter" data-level="6" data-path="analyses.html"><a href="analyses.html"><i class="fa fa-check"></i><b>6</b> Analyses</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="analyses.html"><a href="analyses.html#netoyage-de-la-base-des-données"><i class="fa fa-check"></i><b>6.1</b> Netoyage de la base des données</a>
-<ul>
-<li class="chapter" data-level="6.1.1" data-path="analyses.html"><a href="analyses.html#nouvelle-base-de-données-pour-les-analyses"><i class="fa fa-check"></i><b>6.1.1</b> Nouvelle base de données pour les analyses</a></li>
-</ul></li>
+<li class="chapter" data-level="6.1" data-path="analyses.html"><a href="analyses.html#netoyage-de-la-base-des-données"><i class="fa fa-check"></i><b>6.1</b> Netoyage de la base des données</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="modele-avec-les-pays-comme-individus.html"><a href="modele-avec-les-pays-comme-individus.html"><i class="fa fa-check"></i><b>7</b> Modele avec les pays comme individus</a>
 <ul>
@@ -477,102 +474,11 @@ Instruments et appareils du n°90.15
 ## [26] &quot;boissons, bières,liqueurs et limonades&quot;   
 ## [27] &quot;produits beaute&quot;                          
 ## [28] &quot;peauxdes betes&quot;</code></pre>
-<pre><code>##                                              n    % val%
-## Autres Marchandises                        160  4.8  4.8
-## Bois                                       140  4.2  4.2
-## Machines et appareils domestique            30  0.9  0.9
-## Médicaments et plantes médécinales          34  1.0  1.0
-## Poissaons, viande et oeufs                  12  0.4  0.4
-## Matériels de construction                   27  0.8  0.8
-## Materiel Informatique et Electroniques      32  1.0  1.0
-## Véhicules,camions,Motos et acc             113  3.4  3.4
-## Vetements,tissus et acc et chaussure       100  3.0  3.0
-## boissons, bières et limonades               15  0.5  0.5
-## Machine us Ingsutriel                       54  1.6  1.6
-## Article Menange et Campement                37  1.1  1.1
-## sacs, sachetsn emballages                    6  0.2  0.2
-## Papiers et fournitures de bureaux           24  0.7  0.7
-## Produits alimentaires,prep et huiles        68  2.1  2.1
-## caféarabica                               1303 39.4 39.5
-## Minérais et dérivés                       1053 31.8 31.9
-## engins et tracteurs                         18  0.5  0.5
-## Cigarette et papier cigarettes et tabac     14  0.4  0.4
-## constructionprefabriquees                    7  0.2  0.2
-## cadreset conteneurs                          1  0.0  0.0
-## Pièces de Réchange appareils                 6  0.2  0.2
-## Générateurs,baterie et piles                15  0.5  0.5
-## etuis en plastique ou textile                1  0.0  0.0
-## Pétrole et dérivées et huile de graissage    4  0.1  0.1
-## boissons, bières,liqueurs et limonades       2  0.1  0.1
-## produits beaute                             10  0.3  0.3
-## peauxdes betes                              14  0.4  0.4
-## NA                                          10  0.3   NA</code></pre>
 <p>netoyyage de la variable country_desti qui est un facteur dans le quel nous retrouvons les niveaux rédondants (sur l’identifiant des pays)</p>
-<pre><code>##  [1] &quot;AFRIQUE DU SUD&quot;                          
-##  [2] &quot;ALGERIE&quot;                                 
-##  [3] &quot;ALLEMAGNE&quot;                               
-##  [4] &quot;AMERIQUE LATINE&quot;                         
-##  [5] &quot;GRANDE BRATAGNE&quot;                         
-##  [6] &quot;ANGOLA&quot;                                  
-##  [7] &quot;ARABIE&quot;                                  
-##  [8] &quot;ASIE&quot;                                    
-##  [9] &quot;AUSTRALIE&quot;                               
-## [10] &quot;BELGIQUE&quot;                                
-## [11] &quot;BURUNDI&quot;                                 
-## [12] &quot;CANADA&quot;                                  
-## [13] &quot;CHINE&quot;                                   
-## [14] &quot;CHYPRE&quot;                                  
-## [15] &quot;CONGO BRAZA&quot;                             
-## [16] &quot;REP TCHEQUE&quot;                             
-## [17] &quot;NA&quot;                                      
-## [18] &quot;EMIRATES ARABES UNIES&quot;                   
-## [19] &quot;ESPAGNE&quot;                                 
-## [20] &quot;FRANCE&quot;                                  
-## [21] &quot;GABON&quot;                                   
-## [22] &quot;GRECE&quot;                                   
-## [23] &quot;HONG KONG&quot;                               
-## [24] &quot;ILE MAURICE&quot;                             
-## [25] &quot;INDE&quot;                                    
-## [26] &quot;ITALIE&quot;                                  
-## [27] &quot;JAPON&quot;                                   
-## [28] &quot;KENYA&quot;                                   
-## [29] &quot;KP - Corée, République Populaire démocra&quot;
-## [30] &quot;LIBAN&quot;                                   
-## [31] &quot;LUXEMBOURG&quot;                              
-## [32] &quot;MALAISIE&quot;                                
-## [33] &quot;MAROC&quot;                                   
-## [34] &quot;NERLAND&quot;                                 
-## [35] &quot;PAYS BAS&quot;                                
-## [36] &quot;NIGERIA&quot;                                 
-## [37] &quot;NOUVELLE ZELANDE&quot;                        
-## [38] &quot;OUGANDA&quot;                                 
-## [39] &quot;PANAMA&quot;                                  
-## [40] &quot;PHILLIPINE&quot;                              
-## [41] &quot;POLOGNE&quot;                                 
-## [42] &quot;PORTUGAL&quot;                                
-## [43] &quot;ROYAUME UNI&quot;                             
-## [44] &quot;RDC&quot;                                     
-## [45] &quot;USA&quot;                                     
-## [46] &quot;RWANDA&quot;                                  
-## [47] &quot;SINGAPOUR&quot;                               
-## [48] &quot;SUISSE&quot;                                  
-## [49] &quot;SENEGAL&quot;                                 
-## [50] &quot;SOMALIE&quot;                                 
-## [51] &quot;SOUDAN&quot;                                  
-## [52] &quot;SUD SOUDAN&quot;                              
-## [53] &quot;SUEDE&quot;                                   
-## [54] &quot;Swaziland&quot;                               
-## [55] &quot;TANZANIE&quot;                                
-## [56] &quot;TCHAD&quot;                                   
-## [57] &quot;THAILANDE&quot;                               
-## [58] &quot;UNION EUROPEENNE&quot;                        
-## [59] &quot;ZAMBIE&quot;</code></pre>
 <p>Dans la base des données il y a des entreprises que l’on a enregistré à la place des pays. ces genre des cas ont été traité par remplacement avec le <em>NA</em> pour <strong>Not Available</strong> et ces dernier on été élagués de la base des données, car nous avions jugé qu’ aucune méthode d’imputation n’est applicable pour ce genre de situation. Nous avions fait la même chose pour les variables telles que <strong>Les marchandises</strong>.</p>
-<div id="nouvelle-base-de-données-pour-les-analyses" class="section level3" number="6.1.1">
-<h3><span class="header-section-number">6.1.1</span> Nouvelle base de données pour les analyses</h3>
+<p><strong>Nouvelle base de données pour les analyses</strong></p>
 <p>Regroupement des variables pour la synthèse pour rendre la base des données simple à exploiter, éliminer les NA dans les observations telsque les pays et les valeurs pour les marchandises et les taxes.</p>
 
-</div>
 </div>
 </div>
             </section>
@@ -623,7 +529,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["panel analyses book.pdf", "panel analyses book.epub"],
+"download": "panel-analyses-book.pdf",
 "search": {
 "engine": "fuse",
 "options": null
