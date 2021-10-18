@@ -4,6 +4,31 @@ knitr::opts_chunk$set(warning =  FALSE)
 ```
 
 
+
+Les données de panel, ou données longitudinales possèdent les deux dimensions précédentes (individuelle et temporelle). En effet, il est souvent intéressant d’identifier l’effet associé à chaque individu (un effet qui ne varie pas dans le temps, mais qui varie d’un individu à un autre). Cet effet peut être fixe ou aléatoire.
+
+
+Par conséquent, le modèle en données de panel s’écrit comme un modèle à double indice qui prend la forme suivante :
+
+
+$$ Y_{it}= \alpha_i\sum_{k}\beta_{ki}x_{ki}+ \epsilon_{it} $$
+
+avec 
+$$ i:1 \rightarrow N $$  
+et 
+$$ t:1 \rightarrow T $$ 
+
+La double dimension qu’offrent les données de panel est un atout majeur. En effet, si les données en séries temporelles permettent d’étudier l’évolution des relations dans le temps, elles ne permettent pas de contrôler l’hétérogénéité entre les individus. A l’inverse, les données en coupes transversales permettent d’analyser l’hétérogénéité entre les individus mais elles ne peuvent pas tenir compte des comportements dynamiques, puisque la dimension temporelle est exclue du champ d’analyse.
+
+
+Ainsi, en utilisant des données de panel, on pourra exploiter les deux sources de variation de l’information statistique :
+- Temporelle où variabilité intra-individuelle (within)
+- et individuelle ou variabilité inter-individuelle (Between).
+
+
+
+
+
 ```{r}
 library(plm)
 library(tidyverse)
@@ -12,7 +37,7 @@ library(kableExtra)
 library(knitr)
 ```
 
-# Modele avec les pays comme individus
+## Modele avec les pays comme individus
 
 
 ```{r}
@@ -21,7 +46,7 @@ DF <- df %>% pivot_wider(names_from = Goods, values_from = c(Taxe,Weight))
 DF <- DF %>% mutate_all(~replace(.,is.na(.),0))
 
 ```
-## Agregation des données avec la méthode reduce
+### Agregation des données avec la méthode reduce
                         
 
 ```{r}
@@ -35,7 +60,7 @@ p_DF_aggreg <- DF_aggreg %>% pdata.frame(index = c("Destination_Country","Year")
 ```
 
 
-## Analyse descriptive des Varariales 
+### Analyse descriptive des Varariales 
 
 Conversion des données en modèle des panels des données
 
@@ -46,7 +71,7 @@ DBase$Destination_Country %>% levels()
 
 
 
-## Overall Variations
+### Overall Variations
 
 ```{r}
 p_DF_aggreg %>% mutate_all(function(x) {x-mean(x,na.rm=T)}) %>% as.data.frame() %>%
@@ -55,7 +80,7 @@ p_DF_aggreg %>% mutate_all(function(x) {x-mean(x,na.rm=T)}) %>% as.data.frame() 
 ```
 L'écart-type des taxes pour les individus à travars le temps est 24,567,143.00 et celle des poids des marchandises est de 407,973.40 Kg .
 
-## Between Variations
+### Between Variations
 
 ```{r}
 p_DF_aggreg %>% group_by(Destination_Country) %>% 
@@ -69,7 +94,7 @@ De ce tableau, on peut lire que:
 - Les taxes varient de varient de 4,215,140.00 en moyenne d'un individu à un autre
 - Les poids des marchandises varient de 132,331.80 dollars d'un pays à un autre. 
 
-## Within variations
+### Within variations
 
 ```{r}
 p_DF_aggreg %>% 
@@ -86,7 +111,7 @@ De ce tableau, on peut lire que :
 - L'écart moyen des poids des marchandises est de 322,405.60 kg d'une année à une autre, pour un pays.
 
 
-## Modélisation
+### Modélisation
 
 
 Modèle à polaire, considérant que le modèle est le même pour tous les pays. ce la suppose l'absence des éffets aléatoire et des éffets aléatoires.

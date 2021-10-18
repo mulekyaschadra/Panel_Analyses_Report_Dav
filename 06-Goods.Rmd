@@ -4,10 +4,10 @@ library(tidyverse)
 library(broom)
 ```
 
-# Modèle avec les marchandises comme individus
+## Modèle avec les marchandises comme individus
 
 
-```{r setup1, include=FALSE}
+```{r setup1, include=FALSE, echo=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 knitr::opts_chunk$set(warning =  FALSE)
 ```

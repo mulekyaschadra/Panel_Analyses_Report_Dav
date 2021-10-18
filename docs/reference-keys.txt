@@ -17,7 +17,6 @@ test-for-poolability-under
 test-for-poolability-under-the-general-assumption
 tests-for-individual-and-time-effects
 hausmans-specification-test
-methods
 analyses
 netoyage-de-la-base-des-données
 modele-avec-les-pays-comme-individus
