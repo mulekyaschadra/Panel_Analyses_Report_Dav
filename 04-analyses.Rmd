@@ -1,3 +1,4 @@
+
 ```{r setup0, echo=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 knitr::opts_chunk$set(warning =  FALSE)
@@ -1328,12 +1329,11 @@ Dans la base des données il y a des entreprises que l'on a enregistré à la pl
 Regroupement des variables pour la synthèse  pour rendre la base des données simple à exploiter, éliminer les NA dans les observations telsque les pays et les valeurs pour les marchandises et les taxes.
 
 ```{r fig.dim=c(5,6)}
-DBase <- taxe_df %>% rename("Destination_Country"=`Country/destination`)
-
+DBase <- taxe_df %>% rename("Country"=`Country/destination`)
 
 DBase <- DBase  %>% 
-  select(Year,Destination_Country,Goods,Weight,Taxe) %>% 
-  group_by(Year,Destination_Country,Goods) %>% 
+  select(Year,Country,Goods,Weight,Taxe) %>% 
+  group_by(Year,Country,Goods) %>% 
   summarise(Weight=sum(Weight),Taxe=sum(Taxe),.groups = "drop") %>% drop_na() 
 
 correlate(DBase) %>% kable(caption = "Table de corrélation entre les variables quantitatives",format = "latex")

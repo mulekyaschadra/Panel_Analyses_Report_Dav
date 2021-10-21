@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2021/W32TeX) (preloaded format=xelatex 2021.10.18)  18 OCT 2021 16:59
+This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2021/W32TeX) (preloaded format=xelatex 2021.10.18)  21 OCT 2021 09:51
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1129,13 +1129,13 @@ Missing character: There is no ν (U+03BD) in font [lmroman10-regular]:mapping=t
 ex-text;!
 Missing character: There is no 𝜇 (U+1D707) in font [lmroman10-regular]:mapping=
 tex-text;!
-[8]
 Missing character: There is no 𝛿 (U+1D6FF) in font [lmroman10-regular]:mapping=
 tex-text;!
 Missing character: There is no 𝛼 (U+1D6FC) in font [lmroman10-regular]:mapping=
 tex-text;!
 Missing character: There is no 𝛽 (U+1D6FD) in font [lmroman10-regular]:mapping=
 tex-text;!
+[8]
 Missing character: There is no 𝜇 (U+1D707) in font [lmroman10-regular]:mapping=
 tex-text;!
 Missing character: There is no ⊗ (U+2297) in font [lmroman10-regular]:mapping=t
@@ -1180,12 +1180,12 @@ Missing character: There is no 𝛼 (U+1D6FC) in font [lmroman10-regular]:mappin
 tex-text;!
 Missing character: There is no 𝛽 (U+1D6FD) in font [lmroman10-regular]:mapping=
 tex-text;!
-[9]
 Missing character: There is no µ ("B5) in font lmmi7!
 Missing character: There is no α (U+03B1) in font [lmroman10-regular]:mapping=t
 ex-text;!
 Missing character: There is no β (U+03B2) in font [lmroman10-regular]:mapping=t
 ex-text;!
+[9]
 Missing character: There is no ∑ (U+2211) in font [lmroman10-regular]:mapping=t
 ex-text;!
 Missing character: There is no 𝜇 (U+1D707) in font [lmroman10-italic]:mapping=t
@@ -1258,7 +1258,7 @@ tex-text;!
 
 Package amsmath Warning: Foreign command \atop;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 702.
+(amsmath)                 on input line 700.
 
 [25] [26]
 Chapter 4.
@@ -1268,7 +1268,7 @@ Chapter 4.
 
 Package amsmath Warning: Foreign command \atopwithdelims;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 844.
+(amsmath)                 on input line 842.
 
 [29]
 Missing character: There is no 𝛺 (U+1D6FA) in font [lmroman10-regular]:mapping=
@@ -1281,26 +1281,44 @@ ex-text;!
 
 ]
 Chapter 5.
-[33] [34] [35] [36] [37] [38]
+[33] [34] [35] [36] [37]
+Overfull \hbox (61.94514pt too wide) in paragraph at lines 1260--1260
+[]\TU/lmtt/m/n/10 ##               Mean       Std.Dev            Min      Media
+n            Max   N.Valid   Pct.Valid[] 
+ []
 
-LaTeX Warning: Float too large for page by 136.39618pt on input line 1436.
 
-[39] [40] [41] [42] [43] [44]
+Overfull \hbox (61.94514pt too wide) in paragraph at lines 1260--1260
+[]\TU/lmtt/m/n/10 ## ----------- ------ ------------- -------------- ----------
+- -------------- --------- -----------[] 
+ []
+
+
+Overfull \hbox (61.94514pt too wide) in paragraph at lines 1260--1260
+[]\TU/lmtt/m/n/10 ##       value   0.00   17660853.14   -76127299.48   -38253.0
+2   135485917.99    228.00      100.00[] 
+ []
+
+[38] [39]
+
+LaTeX Warning: Float too large for page by 136.39618pt on input line 1454.
+
+[40] [41] [42] [43] [44] [45] [46
+
+]
 Chapter 6.
 No file panel-analyses-book.bbl.
-[45
-
-] (./panel-analyses-book.aux)
+[47] (./panel-analyses-book.aux)
 Package rerunfilecheck Info: File `panel-analyses-book.out' has not changed.
 (rerunfilecheck)             Checksum: 9B5767DD8699D907AFA1BA8B38B4045D;3578.
  ) 
 Here is how much of TeX's memory you used:
- 18436 strings out of 478492
- 325015 string characters out of 5859604
- 835454 words of memory out of 5000000
- 38432 multiletter control sequences out of 15000+600000
- 410019 words of font info for 85 fonts, out of 8000000 for 9000
+ 18442 strings out of 478492
+ 325183 string characters out of 5859604
+ 835710 words of memory out of 5000000
+ 38436 multiletter control sequences out of 15000+600000
+ 410027 words of font info for 86 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  87i,10n,120p,2813b,481s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on panel-analyses-book.pdf (45 pages).
+Output written on panel-analyses-book.pdf (47 pages).

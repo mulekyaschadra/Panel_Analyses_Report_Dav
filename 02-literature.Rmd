@@ -6,7 +6,7 @@ A panel data regression differs from a regular time-series or cross-section regr
 
 \begin{equation}
  y_{it}= \alpha + X_{it}^{'} \beta + u_{it}                      $$ $$ i=1, ... , N  ; t=1, ... ,T 
- \end{equation}(2.1)
+ \end{equation}
 
 with \$ i \$ denoting households, individuals, firms, countries, etc. and t denoting time. The i subscript, therefore, denotes the cross-section dimension whereas t denotes the time-series dimension. $$ \alpha  $$ is a scalar, $$ \beta $$ is $$ K × 1 $$ and Xi t is the \$ it\_{th} \$ observation on K explanatory variables. Most of the panel data applications utilize a one-way error component model for the disturbances, with
 
@@ -20,7 +20,7 @@ where μi denotes the unobservable individual-specific effect and νi t denotes 
 
 where \$ y \$ is \$ NT × 1 \$, \$ X \$ is \$ NT × K \$, \$ Z = [ι\_{NT} , X] \$, \$ \delta\^{'} = (α^{'},^\beta{'}) \$ and $ι_NT$ is a vector of ones of dimension NT. Also, (2.2) can be written as
 
-\begin{equation} u=Z_\mu \mu +v  \end{equation} (2.4)
+\begin{equation} u=Z_\mu \mu +v  \end{equation}
 
 $$  y_{it} = \alpha + X_{it}^{'} + U_{it}   $$ , \$ i=1,...,N ; t=1,...,T \$ with i denoting households, individuals, firms, countries, etc. and t denoting time. The i subscript, therefore, denotes the cross-section dimension whereas t denotes the time-series dimension. \$ \alpha \$ is a scalar, \$ \beta \$ is \$ K × 1 \$ and \$X\_{it} \$is the \$ it\^{th} \$ observation on K explanatory variables. disturbances, with it $$ u_{it}=u_i  + v_{it}     $$
 
@@ -30,7 +30,7 @@ $$ y= \alpha i_{NT}  + X\beta +u = Z\delta + u $$
 
 where $y$ is \$ NT × 1\$ , X is $NT × K$ , \$ Z = [i\_{NT} , X] \$ , \$ \delta^{'}=(^\alpha{'},\beta\^{'})\$ and $i_{NT}$ is a vector of ones of dimension $NT$ . Also, (2.2) can be written as
 
-\begin{equation} u=Z_\mu \mu  + v\end{equation} (2.4)
+\begin{equation} u=Z_\mu \mu  + v\end{equation} 
 
 where \$ u\^{'} = (u\_{11}, . . . , u\_{1T} , u\_{21}, . . . , u\_{2T}, . . . , u\_{N1}, . . . , u\_{NT} ) \$ with the observations stacked such that the slower index is over individuals and the faster index is over time.\$ Z\_\mu = IN \otimes ιT \$ where IN is an identity matrix of dimension N, ιT is a vector of ones of dimension T and \$ \otimes \$ denotes Kronecker product. \$ Z\_\mu \$ is a selector matrix of ones and zeros, or simply the matrix of individual dummies that one may include in the regression to estimate theμi if they are assumed to be fixed parameters. \$ \mu\^{'} = (\mu\_1, . . . , \mu\_N )\$ and $ν^{'} = (ν11, . . . , ν_{1T} , . . . , ν_{N1}, . . . , ν_{NT} )$. Note that \$Z\_\mu Z\^{'}\mu = I_N \otimes J_T \$ where $J_T$ is a matrix of ones of dimension T and \$ P = Zμ(Z^{'}^\mu Z\mu){−1} Z\^{'}\mu \$ , the projectionmatrix on \$ Z\_\mu \$ , reduces to \$ IN \otimes J_T \$ where \$J \_T= JT /T \$ . P is a matrix which averages the observation across time for each individual, and Q = INT − P is a matrix which obtains the deviations from individual means. For example, regressing y on the matrix of dummy variables $Z_μ$ gets the predicted values \$ P_y \$ which has a typical element
 
@@ -44,26 +44,26 @@ In this case, the μi are assumed to be fixed parameters to be estimated and the
 
 \begin{equation} 
 y=\alpha i\_{IT} + X\beta + Z\_\mu \mu +v = Z\delta + Z\_\mu \mu +v 
-\end{equation} (2.5)
+\end{equation} 
 
 and then perform ordinary least squares (OLS) on (2.5) to get estimates of \$ \alpha,\beta  and  µ \$
 
 Note that Z is \$ NT \times (K+1)\$ and $Z_µ$ , the matrix of individual dummies, is\$NT \times N \$ NT × N. If N is large, (2.5) will include too many individual dummies, and the matrix to be inverted by OLS is large and of dimension $(N + K)$. In fact, since α and β are the parameters of interest, one can obtain the LSDV (least squares dummy variables) estimator from (2.5), by premultiplying the model by Q and performing OLS on the resulting transformed model:
 
-\begin{equation} Qy=QX\beta + Qv\end{equation} (2.6)
+\begin{equation} Qy=QX\beta + Qv\end{equation} 
 
 This uses the fact that $QZ_\mu =Qi_{NT}=0$ , since $PZ_\mu =Z_\mu$ the Q matrix wipes out the individual effects. This is a regression of $\tilde y =QY$ with element $(y_{it} - \bar y _{i.} )$ on $\check X=QX$ with typical element
 
 \begin{equation}
 \widetilde{\beta}=\left(X^{\prime} Q X\right)^{-1} X^{\prime} Q y
-\end{equation}  (2.7)
+\end{equation}  
 (2.7) with $\operatorname{var}(\widetilde{\beta})=\sigma_{v}^{2}\left(X^{\prime} Q X\right)^{-1}=\sigma_{v}^{2}\left(\widetilde{X}^{\prime} \tilde{X}\right)^{-1}$ . $\widetilde{\beta}$ could have been obtained from (2.5) using results on partitioned inverse or the Frisch--Waugh--Lovell theorem discussed in Davidson and MacKinnon (1993, p. 19). This uses the fact that P is the projection matrix on $Z_{\mu}$ and $Q = I_{NT} − P$ (see problem 2.1). In addition, generalized least squares (GLS) on (2.6), using the generalized inverse, will also yield $\widetilde{\beta }$ (see problem 2.2).
 
 Note that for the simple regression 
-\begin{equation}y_{it}=\beta x_{it}+ \mu_i+ v_i     \end{equation} (2.8)
+\begin{equation}y_{it}=\beta x_{it}+ \mu_i+ v_i     \end{equation} 
 
 and averaging over time gives
-\begin{equation}  \bar {y}_{i.}= \beta \bar{x}_{i.}+ \mu_i+ \bar{v}_i   \end{equation} (2.9)
+\begin{equation}  \bar {y}_{i.}= \beta \bar{x}_{i.}+ \mu_i+ \bar{v}_i   \end{equation} 
 
 Therefore, subtracting (2.9) from (2.8) gives $$y_{it}-\bar{y}_{i.}=\beta (x_{it}-\bar{x}_{i.}) + (v_{it}-\bar{v}_{i.})   $$ (2.10)
 
@@ -169,8 +169,6 @@ The second regression is the Between regression which runs the regression of ave
 \begin{equation}
 \bar{y}_{i .}=\alpha+\bar{X}_{i .}^{\prime} \beta+\bar{u}_{i .} \quad i=1, \ldots, N
 \end{equation}
-
-(2.25)
 
 This is equivalent to premultiplying the model in (2.5) by P and running OLS. The only caution is that the latter regression has NT observations because it repeats the averages T times for each individual, while the cross-section regression in (2.25) is based on N observations. To remedy this, one can run the cross-section regression
 

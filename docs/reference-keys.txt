@@ -20,11 +20,14 @@ hausmans-specification-test
 analyses
 netoyage-de-la-base-des-données
 modele-avec-les-pays-comme-individus
-agregation-des-données-avec-la-méthode-reduce
 analyse-descriptive-des-varariales
 overall-variations
 between-variations
 within-variations
 modélisation
+le-modèle-pooling
+modele-à-éffet-individuels-fixes-within
+le-modèle-between
+le-modèle-à-effet-aleatoire
 modèle-avec-les-marchandises-comme-individus
 conclusion

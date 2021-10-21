@@ -18,3 +18,12 @@ La modélisation a donc consister à estimer :
 Pour chaque estimation, nous avions fait les test de spécification du modèle pour identifier , le quel de ces trois modèles sus indiqués represente au mieux nos données. Nous avions possédé au test de **Langrade Multiplier**, et au test d'**Hausman**.
 
 
+Après analyse des données, nous sommes arrivés aux conclusions suivantes: 
+
+(1) Pour les model des panel avec les pays comme individus:
+    (a) Le model n'est pas identique pour tout les pays car les éffers du *pooled model* n'étaitent pas significatif
+    (b) Ces données sont estimées par le *random effects model* car le test d'Hausman s'est revelé non significatif au seuil de 5%.
+    
+(2) Pour le model avec les marchandises comme individus: 
+    (a) Le model n'est pas identique pour tout les pays car les éffers du *pooled model* n'étaitent pas significatif
+    (b)

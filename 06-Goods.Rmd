@@ -1,8 +1,4 @@
-```{r}
-library(plm)
-library(tidyverse)
-library(broom)
-```
+
 
 ## Modèle avec les marchandises comme individus
 
@@ -13,7 +9,19 @@ knitr::opts_chunk$set(warning =  FALSE)
 ```
 
 ```{r}
-Gbase <- df %>% pivot_wider(names_from = Destination_Country, values_from = c(Taxe,Weight))
+library(plm)
+library(tidyverse)
+library(broom)
+```
+
+
+```{r}
+df1 <- df %>% rename("Country"="Destination_Country")
+```
+
+
+```{r}
+Gbase <- df1 %>% pivot_wider(names_from = Country, values_from = c(Taxe,Weight))
 Gbase <-  Gbase %>%  mutate_all(~replace(.,is.na(.),0))
 
 ```

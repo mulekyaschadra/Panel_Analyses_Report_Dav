@@ -98,7 +98,7 @@ fancyfoot[LE,LO]{Project}
 
 \title{Panel Analyses Report}
 \author{David BYAMUNGU}
-\date{2021-10-18}
+\date{2021-10-21}
 
 \begin{document}
 \maketitle
@@ -149,7 +149,7 @@ A panel data regression differs from a regular time-series or cross-section regr
 
 \begin{equation}
  y_{it}= \alpha + X_{it}^{'} \beta + u_{it}                      $$ $$ i=1, ... , N  ; t=1, ... ,T 
- \end{equation}(2.1)
+ \end{equation}
 
 with \$ i \$ denoting households, individuals, firms, countries, etc. and t denoting time. The i subscript, therefore, denotes the cross-section dimension whereas t denotes the time-series dimension. \[ \alpha  \] is a scalar, \[ \beta \] is \[ K × 1 \] and Xi t is the \$ it\_\{th\} \$ observation on K explanatory variables. Most of the panel data applications utilize a one-way error component model for the disturbances, with
 
@@ -163,7 +163,7 @@ where μi denotes the unobservable individual-specific effect and νi t denotes 
 
 where \$ y \$ is \$ NT × 1 \$, \$ X \$ is \$ NT × K \$, \$ Z = {[}ι\_\{NT\} , X{]} \$, \$ \delta\^{}\{'\} = (α\textsuperscript{\{'\},}\beta{'}) \$ and \(ι_NT\) is a vector of ones of dimension NT. Also, (2.2) can be written as
 
-\begin{equation} u=Z_\mu \mu +v  \end{equation} (2.4)
+\begin{equation} u=Z_\mu \mu +v  \end{equation}
 
 \[  y_{it} = \alpha + X_{it}^{'} + U_{it}   \] , \$ i=1,\ldots,N ; t=1,\ldots,T \$ with i denoting households, individuals, firms, countries, etc. and t denoting time. The i subscript, therefore, denotes the cross-section dimension whereas t denotes the time-series dimension. \$ \alpha \$ is a scalar, \$ \beta \$ is \$ K × 1 \$ and \$X\_\{it\} \$is the \$ it\^{}\{th\} \$ observation on K explanatory variables. disturbances, with it \[ u_{it}=u_i  + v_{it}     \]
 
@@ -173,7 +173,7 @@ where μi denotes the unobservable individual-specific effect and \(ν{it}\) den
 
 where \(y\) is \$ NT × 1\$ , X is \(NT × K\) , \$ Z = {[}i\_\{NT\} , X{]} \$ , \$ \delta\^{}\{`\}=(\^{}\alpha{'},\beta\^{}\{'\})\$ and \(i_{NT}\) is a vector of ones of dimension \(NT\) . Also, (2.2) can be written as
 
-\begin{equation} u=Z_\mu \mu  + v\end{equation} (2.4)
+\begin{equation} u=Z_\mu \mu  + v\end{equation}
 
 where \$ u\^{}\{`\} = (u\_\{11\}, . . . , u\_\{1T\} , u\_\{21\}, . . . , u\_\{2T\}, . . . , u\_\{N1\}, . . . , u\_\{NT\} ) \$ with the observations stacked such that the slower index is over individuals and the faster index is over time.\$ Z\_\mu = IN \otimes ιT \$ where IN is an identity matrix of dimension N, ιT is a vector of ones of dimension T and \$ \otimes \$ denotes Kronecker product. \$ Z\_\mu \$ is a selector matrix of ones and zeros, or simply the matrix of individual dummies that one may include in the regression to estimate theμi if they are assumed to be fixed parameters. \$ \mu\^{}\{'\} = (\mu\_1, . . . , \mu\_N )\$ and \(ν^{'} = (ν11, . . . , ν_{1T} , . . . , ν_{N1}, . . . , ν_{NT} )\). Note that \$Z\_\mu Z\^{}\{`\}\mu = I\_N \otimes J\_T \$ where \(J_T\) is a matrix of ones of dimension T and \$ P = Zμ(Z\textsuperscript{\{'\}}\mu Z\mu)\{−1\} Z\^{}\{'\}\mu \$ , the projectionmatrix on \$ Z\_\mu \$ , reduces to \$ IN \otimes J\_T \$ where \$J \_T= JT /T \$ . P is a matrix which averages the observation across time for each individual, and Q = INT − P is a matrix which obtains the deviations from individual means. For example, regressing y on the matrix of dummy variables \(Z_μ\) gets the predicted values \$ P\_y \$ which has a typical element
 
@@ -188,26 +188,26 @@ In this case, the μi are assumed to be fixed parameters to be estimated and the
 
 \begin{equation} 
 y=\alpha i\_{IT} + X\beta + Z\_\mu \mu +v = Z\delta + Z\_\mu \mu +v 
-\end{equation} (2.5)
+\end{equation}
 
 and then perform ordinary least squares (OLS) on (2.5) to get estimates of \$ \alpha,\beta ~and ~µ \$
 
 Note that Z is \$ NT \times (K+1)\$ and \(Z_µ\) , the matrix of individual dummies, is\$NT \times N \$ NT × N. If N is large, (2.5) will include too many individual dummies, and the matrix to be inverted by OLS is large and of dimension \((N + K)\). In fact, since α and β are the parameters of interest, one can obtain the LSDV (least squares dummy variables) estimator from (2.5), by premultiplying the model by Q and performing OLS on the resulting transformed model:
 
-\begin{equation} Qy=QX\beta + Qv\end{equation} (2.6)
+\begin{equation} Qy=QX\beta + Qv\end{equation}
 
 This uses the fact that \(QZ_\mu =Qi_{NT}=0\) , since \(PZ_\mu =Z_\mu\) the Q matrix wipes out the individual effects. This is a regression of \(\tilde y =QY\) with element \((y_{it} - \bar y _{i.} )\) on \(\check X=QX\) with typical element
 
 \begin{equation}
 \widetilde{\beta}=\left(X^{\prime} Q X\right)^{-1} X^{\prime} Q y
-\end{equation} (2.7)
+\end{equation}\\
 (2.7) with \(\operatorname{var}(\widetilde{\beta})=\sigma_{v}^{2}\left(X^{\prime} Q X\right)^{-1}=\sigma_{v}^{2}\left(\widetilde{X}^{\prime} \tilde{X}\right)^{-1}\) . \(\widetilde{\beta}\) could have been obtained from (2.5) using results on partitioned inverse or the Frisch--Waugh--Lovell theorem discussed in Davidson and MacKinnon (1993, p.~19). This uses the fact that P is the projection matrix on \(Z_{\mu}\) and \(Q = I_{NT} − P\) (see problem 2.1). In addition, generalized least squares (GLS) on (2.6), using the generalized inverse, will also yield \(\widetilde{\beta }\) (see problem 2.2).
 
 Note that for the simple regression
-\begin{equation}y_{it}=\beta x_{it}+ \mu_i+ v_i     \end{equation} (2.8)
+\begin{equation}y_{it}=\beta x_{it}+ \mu_i+ v_i     \end{equation}
 
 and averaging over time gives
-\begin{equation}  \bar {y}_{i.}= \beta \bar{x}_{i.}+ \mu_i+ \bar{v}_i   \end{equation} (2.9)
+\begin{equation}  \bar {y}_{i.}= \beta \bar{x}_{i.}+ \mu_i+ \bar{v}_i   \end{equation}
 
 Therefore, subtracting (2.9) from (2.8) gives \[y_{it}-\bar{y}_{i.}=\beta (x_{it}-\bar{x}_{i.}) + (v_{it}-\bar{v}_{i.})   \] (2.10)
 
@@ -320,8 +320,6 @@ The second regression is the Between regression which runs the regression of ave
 \begin{equation}
 \bar{y}_{i .}=\alpha+\bar{X}_{i .}^{\prime} \beta+\bar{u}_{i .} \quad i=1, \ldots, N
 \end{equation}
-
-(2.25)
 
 This is equivalent to premultiplying the model in (2.5) by P and running OLS. The only caution is that the latter regression has NT observations because it repeats the averages T times for each individual, while the cross-section regression in (2.25) is based on N observations. To remedy this, one can run the cross-section regression
 
@@ -1063,8 +1061,7 @@ Ainsi, en utilisant des données de panel, on pourra exploiter les deux sources 
 \hypertarget{modele-avec-les-pays-comme-individus}{%
 \section{Modele avec les pays comme individus}\label{modele-avec-les-pays-comme-individus}}
 
-\hypertarget{agregation-des-donnuxe9es-avec-la-muxe9thode-reduce}{%
-\subsection{Agregation des données avec la méthode reduce}\label{agregation-des-donnuxe9es-avec-la-muxe9thode-reduce}}
+\textbf{Agregation des données avec la méthode reduce}
 
 \hypertarget{analyse-descriptive-des-varariales}{%
 \subsection{Analyse descriptive des Varariales}\label{analyse-descriptive-des-varariales}}
@@ -1133,7 +1130,7 @@ Conversion des données en modèle des panels des données
 \end{verbatim}
 
 \hypertarget{overall-variations}{%
-\subsection{Overall Variations}\label{overall-variations}}
+\subsubsection{Overall Variations}\label{overall-variations}}
 
 \begin{verbatim}
 ## 
@@ -1148,7 +1145,7 @@ Conversion des données en modèle des panels des données
 L'écart-type des taxes pour les individus à travars le temps est 24,567,143.00 et celle des poids des marchandises est de 407,973.40 Kg .
 
 \hypertarget{between-variations}{%
-\subsection{Between Variations}\label{between-variations}}
+\subsubsection{Between Variations}\label{between-variations}}
 
 \begin{verbatim}
 ## 
@@ -1171,7 +1168,7 @@ De ce tableau, on peut lire que:
 \end{itemize}
 
 \hypertarget{within-variations}{%
-\subsection{Within variations}\label{within-variations}}
+\subsubsection{Within variations}\label{within-variations}}
 
 \begin{verbatim}
 ## 
@@ -1196,7 +1193,35 @@ De ce tableau, on peut lire que :
 \hypertarget{moduxe9lisation}{%
 \subsection{Modélisation}\label{moduxe9lisation}}
 
-Modèle à polaire, considérant que le modèle est le même pour tous les pays. ce la suppose l'absence des éffets aléatoire et des éffets aléatoires.
+Avant de passer à la modélisation, nos données ont été transformées de manière à agréger les taxes des
+perçues et le poids des marchandises, relativement à chaque Pays chacune en une variable.
+
+La variable poids, dans les données des bases a été agrées, en calculant la somme de tous les poids pour pour les différentes marchandises n pour une année
+Ainsi, nous avions:
+
+\[ P_{i.t}=\sum_{j=1}^{n} P{i..} \]
+\emph{i} indiquant les marchandises , de la prémière à la n-ième marchandise. Ainsi donc, nous avions somme les poids de chaque marchandise pour trouver le poids annuel des marchanides ayant traversé la douane d'un pays. Il en est de même pour les taxes.
+
+Le modèle s'écrit:
+\[Y= 4.1859e^{01} X - 8.7251e^{05}  \]
+Avec:
+
+\begin{itemize}
+\tightlist
+\item
+  Y : Les taxes collectées pour les différentes marchandises dans tous les pays,
+\item
+  X : Le poids global de toutes les marchandises ayant traversé la douane pour chaque période concernant notre étude, et pour chaque individus
+\end{itemize}
+
+Notons que, dans cette situation, nos individus sont les pays et la dimension temporelle a pout unité \emph{l'année} , de 2010 à 2020.
+
+Notre panel n'est pas équilibre car, nous ne disposons pas de toutes les observations, pour tous les individus, dans toutes les périodes.
+
+\hypertarget{le-moduxe8le-pooling}{%
+\subsubsection{Le modèle pooling}\label{le-moduxe8le-pooling}}
+
+Modèle polaire, considérant que le modèle est le même pour tous les pays, c'est-à-dire, les coefficients du model sont indentiques pour tous les individus. Cela suppose l'absence des éffets aléatoire et des éffets aléatoires.
 
 \begin{verbatim}
 ## Pooling Model
@@ -1224,31 +1249,21 @@ Modèle à polaire, considérant que le modèle est le même pour tous les pays.
 ## F-statistic: 211.315 on 1 and 226 DF, p-value: < 2.22e-16
 \end{verbatim}
 
-Le modèle s'écrit:
-\[Y= 4.1859e^{01} X - 8.7251e^{05}  \]
-Avec:
-
-\begin{itemize}
-\tightlist
-\item
-  Y : Les taxes recoltées pour les différentes marchandises dans tout les pays
-\item
-  X : Le poids globales des toutes les marchandises ayant traversé la douane pour chaque période concernant notre étude, et pour chaque individus
-\end{itemize}
-
-Notons que, pour ce type de panel, nos individus sont les pays et le temps est mésuré en année , à partir de l'année 2010 jusqu'en 2020.
-
-La variable poids, dans les données des bases a été agrées, en calculant la somme de tous les poids pour pour les différentes marchandises n pour une année
-Ainsi, nous avions:
-
-\[ P_{i.t}=\sum_{j=1}^{n} P{i..} \]
-i indiquant les marchandises , de la prémière à la n-ième marchandise. Ainsi donc, nous avions somme les poids de chaque marchandise pour trouver le poids annuel des marchanides ayant traversé la douane d'un pays. Il en est de même pour les taxes.
+\begin{verbatim}
+## Descriptive Statistics  
+## pooling_model$value  
+## N: 228  
+## 
+##               Mean       Std.Dev            Min      Median            Max   N.Valid   Pct.Valid
+## ----------- ------ ------------- -------------- ----------- -------------- --------- -----------
+##       value   0.00   17660853.14   -76127299.48   -38253.02   135485917.99    228.00      100.00
+\end{verbatim}
 
 Le coefficient associé au poids des marchandises est significatif car le p-value associé est inférieur à 0,05. Tansdis que le terme indépendant n'est pas significativement différent de 0 vu que le p-value associé est supérieur au seuil.
 
 Ainsi donc, quand le poids augmente d'une unité, les taxes augmentent de 4,185 unités, pour tous les pays, et à travers le temps. Cette augmentation est significativement différent de 0.
 
-En testant la significativité globale du modèle, nous utilisant le Langranhe Multiplier test.
+Testons la significativité globale du modèle, en utilisant le Langrange Multiplier test.
 
 \begin{verbatim}
 ## 
@@ -1259,10 +1274,12 @@ En testant la significativité globale du modèle, nous utilisant le Langranhe M
 ## alternative hypothesis: significant effects
 \end{verbatim}
 
-Le test pour le modèle \texttt{pooling} est non significatif vu que le p-value associé au test est supérieur au seuil de 5\% (0,05). Ainsi donc, nous adoptons l'hypothèse nulle du test selon laquelle le modèle polaire n'est pas significatif.
+Le test pour le modèle \texttt{pooling} est non significatif vu que le p-value associé au test est supérieur au seuil de 5\% (0,05). Ainsi donc, nous adoptons l'hypothèse nulle du test selon laquelle le modèle polaire n'est pas significatif. C'est ainsi que nous estimons le modèle à éffets fixes \emph{within}.
 
-Modele à éffet fixes.
-Nous produisons ce modèle en utilisant la methode \texttt{Within} qui traduit les variations de la variables dependante en fonction des variables dépendantes, mais pour un individus à travers le temps.
+\hypertarget{modele-uxe0-uxe9ffet-individuels-fixes-within}{%
+\subsubsection{\texorpdfstring{Modele à éffet individuels fixes \emph{within}}{Modele à éffet individuels fixes within}}\label{modele-uxe0-uxe9ffet-individuels-fixes-within}}
+
+Nous produisons ce modèle en utilisant la methode \texttt{Within} qui traduit les variations de la variable dépendante en fonction des variables dépendantes (poids des marchandises), mais pour un individus à travers le temps.
 
 \begin{verbatim}
 ## Oneway (individual) effect Within Model
@@ -1293,7 +1310,8 @@ Nous produisons ce modèle en utilisant la methode \texttt{Within} qui traduit l
 ici, nous modélisons les éffets individuels.
 Le coefficient des taxes signifie, que les pays augmentaient leurs importations d'une unitées, chacune, nous aurions une augmentation de 39,6087 dollars pour ce pays.
 
-EXtraction des effets fixes
+EXtraction des effets fixes.
+
 Ce sont les effects individuels spécifiques pour chaque pays.
 
 On remarque que:
@@ -1310,7 +1328,7 @@ On remarque que:
 
 \begin{table}
 
-\caption{\label{tab:unnamed-chunk-51}Effets individuels }
+\caption{\label{tab:unnamed-chunk-50}Effets individuels }
 \centering
 \begin{tabular}[t]{l|r|r|r|r}
 \hline
@@ -1435,7 +1453,10 @@ ZAMBIE & -1561477.21 & 18903647 & -0.0826019 & 0.9342658\\
 \end{tabular}
 \end{table}
 
-Le modèle à éffets aléatoire
+Dans ce modèle, nous allons considérer les effets individuels des variables. Ainsi donc, nous allons pasasser du fixed effect model à un modelèle LSDV (Least Square Dummy Variables) dans lequel nous explicitons les individus comme variables propre de notre modèle.
+
+\hypertarget{le-moduxe8le-between}{%
+\subsubsection{Le modèle between}\label{le-moduxe8le-between}}
 
 \begin{verbatim}
 ## Oneway (individual) effect Between Model
@@ -1467,7 +1488,7 @@ Le modèle à éffets aléatoire
 Ainsi donc, le modèle within s'écrit:
 
 \[ Y = + 3.8816e^{01}X - 9.2150e^{05} \]
-Pour fragmentation d'une unité pour le poids des marchandises, on observe une augmentation des taxes de 38,81 unitées d'un pays à un autre. cela signifie que, si un pays à importé un 1Kg plus qu'un autre, nous observerons une différence de 38,82 dollars pour les taxes.
+Pour augmentation d'une unité pour le poids des marchandises, on observe une augmentation des taxes de 38,81 dollars d'un pays à un autre. cela signifie que, si un pays à importé un 1Kg plus qu'un autre, nous observerons une différence de 38,82 dollars pour les taxes.
 
 \begin{verbatim}
 ## 
@@ -1478,22 +1499,8 @@ Pour fragmentation d'une unité pour le poids des marchandises, on observe une a
 ## alternative hypothesis: significant effects
 \end{verbatim}
 
-Le choix du modèle en utlisant le test d'Hausman
-
-Ce test consiste à comparer les coefficients de ce s deux modèles, pour en fint chhoisir le modèle qui est consistant entre les modèle à éffet individuel et le modèle à éffet aléatoire.
-
-\begin{verbatim}
-## 
-##  Hausman Test
-## 
-## data:  Taxes ~ Weight
-## chisq = 0.020872, df = 1, p-value = 0.8851
-## alternative hypothesis: one model is inconsistent
-\end{verbatim}
-
-Ce test étant non qignificatif, c'est-à-dire , nous adoptons l'hypothèse nulle : les coefficients du modèle à éffet fixe et ceux du modèle à éffet aléatoire ne sont pas significativement différents. Ainsi donc, nous utiliserons les modèles à éffets aléatoire car celui-ci est efficien (éficace).
-
-Effet aleatoire
+\hypertarget{le-moduxe8le-uxe0-effet-aleatoire}{%
+\subsubsection{Le modèle à effet aleatoire}\label{le-moduxe8le-uxe0-effet-aleatoire}}
 
 \begin{verbatim}
 ## Oneway (individual) effect Random Effect Model 
@@ -1530,6 +1537,35 @@ Effet aleatoire
 ## Adj. R-Squared: 0.48092
 ## Chisq: 211.315 on 1 DF, p-value: < 2.22e-16
 \end{verbatim}
+
+Le modèle à éffet aléatoire suppose un modèle à erreur composé dans lequel nous incluons le terme indéfendant dans le terme d'erreur.
+
+On considérant le paramètre \textbf{theta} dont la médianne est de 0, on trouve que le model à effet aléatoire est plus proche du mudèle polaire que du modèlle à éffet fixe car ce paramère est plus proche de 0 que de 1.
+
+\textbf{Le choix du modèle en utlisant le test d'Hausman}
+
+Ce test consiste à comparer les coefficients de ces deux modèles, pour en fint choisir le modèle qui est consistant entre les modèle à éffet individuel et le modèle à éffet aléatoire.
+
+Les hypothèses du test sont:
+
+\begin{itemize}
+\tightlist
+\item
+  \(H_0\) : Les coefficients du modèle à éffet fixes \emph{within} ne sont pas significativement différents de ceux du modèle à effet aléatoire
+\item
+  \(H_1\) : Les coefficients du modèle à éffet fixes \emph{within} sont significativement différents de ceux du modèle à effet aléatoire
+\end{itemize}
+
+\begin{verbatim}
+## 
+##  Hausman Test
+## 
+## data:  Taxes ~ Weight
+## chisq = 0.73925, df = 1, p-value = 0.3899
+## alternative hypothesis: one model is inconsistent
+\end{verbatim}
+
+Ce test étant non significatif, c'est-à-dire , nous adoptons l'hypothèse nulle : les coefficients du modèle à éffet fixe et ceux du modèle à éffet aléatoire ne sont pas significativement différents. Ainsi donc, nous utiliserons les modèles à éffets aléatoire car celui-ci est efficient (éficace).
 
 \hypertarget{moduxe8le-avec-les-marchandises-comme-individus}{%
 \section{Modèle avec les marchandises comme individus}\label{moduxe8le-avec-les-marchandises-comme-individus}}
